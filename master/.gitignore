@@ -1,1 +1,9 @@
-/target/
+.project
+.settings
+.idea
+sdsj.iml
+ubarchive/webapp/images/
+ubarchive/webapp/flowfile/
+
+bin/
+target/
