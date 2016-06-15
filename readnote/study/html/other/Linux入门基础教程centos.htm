@@ -1,0 +1,857 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0050)http://www.centoscn.com/CentOS/2015/0528/5555.html -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=gb2312" http-equiv="Content-Type">
+<TITLE>Linux入门基础教程centos</TITLE>
+<META name="keywords" content="Linux,入门,基础,教程,Linux,操作系统,简介,一">
+<META name="description" content=""><LINK rel="stylesheet" type="text/css" href="Linux入门基础教程centos_files/dedecms.css" 
+media="screen">
+<SCRIPT language="javascript" type="text/javascript" src="Linux入门基础教程centos_files/j.js"></SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript">
+<!--
+function CheckLogin(){
+	  var taget_obj = document.getElementById('_ajax_feedback');
+	  myajax = new DedeAjax(taget_obj,false,false,'','','');
+	  myajax.SendGet2("/member/ajax_feedback.php");
+	  DedeXHTTP = null;
+}
+function postBadGood(ftype,fid)
+{
+	var taget_obj = document.getElementById(ftype+fid);
+	var saveid = GetCookie('badgoodid');
+	if(saveid != null)
+	{
+		var saveids = saveid.split(',');
+		var hasid = false;
+		saveid = '';
+		j = 1;
+		for(i=saveids.length-1;i>=0;i--)
+		{
+			if(saveids[i]==fid && hasid) continue;
+			else {
+				if(saveids[i]==fid && !hasid) hasid = true;
+				saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+				j++;
+				if(j==10 && hasid) break;
+				if(j==9 && !hasid) break;
+			}
+		}
+		if(hasid) { alert('您刚才已表决过了喔！'); return false;}
+		else saveid += ','+fid;
+		SetCookie('badgoodid',saveid,1);
+	}
+	else
+	{
+		SetCookie('badgoodid',fid,1);
+	}
+	myajax = new DedeAjax(taget_obj,false,false,'','','');
+	myajax.SendGet2("/plus/feedback.php?aid="+fid+"&action="+ftype+"&fid="+fid);
+}
+function postDigg(ftype,aid)
+{
+	var taget_obj = document.getElementById('newdigg');
+	var saveid = GetCookie('diggid');
+	if(saveid != null)
+	{
+		var saveids = saveid.split(',');
+		var hasid = false;
+		saveid = '';
+		j = 1;
+		for(i=saveids.length-1;i>=0;i--)
+		{
+			if(saveids[i]==aid && hasid) continue;
+			else {
+				if(saveids[i]==aid && !hasid) hasid = true;
+				saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+				j++;
+				if(j==20 && hasid) break;
+				if(j==19 && !hasid) break;
+			}
+		}
+		if(hasid) { alert("您已经顶过该帖，请不要重复顶帖 ！"); return; }
+		else saveid += ','+aid;
+		SetCookie('diggid',saveid,1);
+	}
+	else
+	{
+		SetCookie('diggid',aid,1);
+	}
+	myajax = new DedeAjax(taget_obj,false,false,'','','');
+	var url = "/plus/digg_ajax.php?action="+ftype+"&id="+aid;
+	myajax.SendGet2(url);
+}
+function getDigg(aid)
+{
+	var taget_obj = document.getElementById('newdigg');
+	myajax = new DedeAjax(taget_obj,false,false,'','','');
+	myajax.SendGet2("/plus/digg_ajax.php?id="+aid);
+	DedeXHTTP = null;
+}
+-->
+</SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 9.00.8112.16684"></HEAD>
+<BODY class="articleview">
+<DIV class="header">
+<DIV class="top w960 center">
+<DIV class="title">
+<H1> <A href="http://www.centoscn.com/">centos</A> </H1></DIV>
+<DIV class="banner"><A href="https://ke.qq.com/course/133485?from=qqchat#term_id=100149337&amp;&amp;ADUIN=1815759616&amp;ADSESSION=1465183217&amp;ADTAG=CLIENT.QQ.5474_.0&amp;ADPUBNO=26568" 
+target="_blank"><IMG src="Linux入门基础教程centos_files/centosa.jpg"></A></DIV>
+<DIV class="rlink">
+<UL><A title="CentOS7.0.140" href="http://www.centoscn.com/CentosSoft/iso/2015/0402/5070.html"><IMG 
+  src="Linux入门基础教程centos_files/donate.png"></A></UL></DIV></DIV><!-- //top --><!-- //菜单 -->
+<DIV class="module blue mT10 wrapper w963">
+<DIV id="mytop" class="top">
+<DIV class="t_l"></DIV>
+<DIV class="t_r"></DIV><!-- //如果不使用currentstyle，可以在channel标签加入 cacheid='channeltoplist' 属性提升性能 -->
+<DIV id="navMenu">
+<UL>
+  <LI><A href="http://www.centoscn.com/">首页</A></LI>
+  <LI class="hover"><A href="http://www.centoscn.com/CentOS/" 
+  rel="dropmenu1">CentOS入门</A></LI>
+  <LI><A href="http://www.centoscn.com/CentosSoft/" 
+  rel="dropmenu6">CentOS下载</A></LI>
+  <LI><A href="http://www.centoscn.com/image-text/" 
+  rel="dropmenu8">CentOS教程</A></LI>
+  <LI><A href="http://www.centoscn.com/CentosServer/" 
+  rel="dropmenu7">CentOS服务器</A></LI>
+  <LI><A href="http://www.centoscn.com/shell/">shell编程</A></LI>
+  <LI><A href="http://www.centoscn.com/CentosSecurity/" 
+  rel="dropmenu9">安全防御</A></LI>
+  <LI><A href="http://www.centoscn.com/CentosBug/" rel="dropmenu3">故障解决</A></LI>
+  <LI><A href="http://www.centoscn.com/yunwei/" rel="dropmenu16">运维管理</A></LI>
+  <LI><A href="http://www.cncentos.com/">中文论坛</A></LI></UL></DIV><!-- sonMenu 子栏目 开始--><LINK 
+rel="stylesheet" type="text/css" href="Linux入门基础教程centos_files/tabs.css">
+<DIV class="sonMenu">
+<UL>
+  <LI><A>推荐:<A style="color: rgb(255, 0, 0);"> </A>
+  <LI><A href="http://www.jfedu.net/" target="_blank">京峰linux教育</A></LI>
+  <LI><A href="http://vbird.dic.ksu.edu.tw/" target="_blank">鸟哥linux私房菜</A></LI>
+  <LI><A 
+  href="http://www.centoscn.com/yunwei/news/2012/1227/131.html">开源镜像大全</A></LI>
+  <LI><A href="http://linux.51yip.com/" target="_blank">Linux命令查询</A></LI>
+  <LI><A>Q群： 282491757</A></LI>
+  <LI><A>微信公众号：centoscn </A></LI></UL><!-- sonMenu 子栏目 结束--><!-- //search -->
+</DIV>
+<DIV class="threead"><A href="http://www.centoscn.com/CentosSoft/iso/2015/0402/5070.html" 
+target="_blank"><IMG 
+src="Linux入门基础教程centos_files/new960.jpg.jpg"></A></DIV></DIV></DIV> <A title="CentOS" 
+href="http://www.linuxprobe.com/" target="_blank"><IMG src="Linux入门基础教程centos_files/Centoscn.gif"></A>
+<SCRIPT type="text/javascript">
+/*960*90*/
+var cpro_id = "u1486013";
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="Linux入门基础教程centos_files/c.js"></SCRIPT>
+<!-- //header -->
+<DIV style="border: 1px solid rgb(159, 209, 246); width: 958px; padding-top: 0px; margin-top: 2px;" 
+class="header">
+<DIV style="padding-top: 0px; margin-top: 0px;" class="module blue mT10 wrapper w963">
+<DIV style="padding-top: 0px; margin-top: 0px;" class="search">
+<FORM name="formsearch" action="/plus/search.php">
+<DIV class="form">
+<H4>搜索</H4><INPUT name="kwtype" value="0" type="hidden"><INPUT id="search-keyword" 
+class="search-keyword" name="keyword" type="text"><SELECT id="search-option" 
+class="search-option" name="searchtype"><OPTION selected="1" value="titlekeyword">智能模糊搜索</OPTION><OPTION 
+  value="title">仅搜索标题</OPTION></SELECT><BUTTON class="search-submit" 
+type="submit">搜索</BUTTON></DIV></FORM>
+<DIV class="tags">
+<H4>热门标签</H4>
+<UL></UL></DIV></DIV></DIV></DIV><!-- //search --></DIV><!-- /header --><!-- /channel-nav -->
+<DIV class="w960 center clear mt1">
+<DIV class="pleft">
+<DIV class="place"><STRONG>当前位置:</STRONG> <A 
+href="http://www.centoscn.com/">主页</A> &gt; <A href="http://www.centoscn.com/CentOS/">CentOS入门</A> 
+&gt; 		</DIV><!-- /place -->
+<DIV class="viewbox">
+<DIV class="title">
+<H2>Linux入门基础教程</H2></DIV><!-- /title -->
+<DIV class="info"><SMALL>时间:</SMALL>2015-05-28 
+16:46<SMALL>来源:</SMALL>v.jfedu.net  <SMALL>作者:</SMALL>veryi.com <A href="http://www.centoscn.com/plus/erraddsave.php?aid=5555&amp;title=Linux入门基础教程" 
+target="_blank">举报</A><SMALL>点击:</SMALL>
+<SCRIPT language="javascript" type="text/javascript" src="Linux入门基础教程centos_files/count.htm"></SCRIPT>
+次</DIV><!-- /info -->
+<DIV class="content">
+<SCRIPT type="text/javascript">
+var cpro_id="u2000246";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"695",rsi1:"250",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="Linux入门基础教程centos_files/c.js"></SCRIPT>
+
+<H2><SPAN style="font-size: 14px;">1. 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Linux操作系统简介</SPAN></H2><SPAN 
+style="font-size: 14px;">Linux是一套免费使用和自由传播的类Unix操作系统，是一个基于POSIX和UNIX的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的UNIX工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。<BR>
+1991年的10月5日，Linux创始人林纳斯·托瓦兹（Linus 
+Torvalds）在comp.os.minix新闻组上发布消息，正式向外宣布Linux内核的诞生，1994年3月，Linux 
+1.0发布，代码量17万行，当时是按照完全自由免费的协议发布，随后正式采用GPL（General Public 
+License的缩写，是一份GNU通用公共授权）协议。<BR>Linux具有如下优点：<BR>
+&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 稳定、免费或者花费少<BR>
+&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 安全性高<BR>
+&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 多任务，多用户<BR>
+&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 耗资源少<BR>
+&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+由于内核小，所以它可以支持多种电子产品，如：Android手机、PDA等。</SPAN><BR>
+<H2><SPAN style="font-size: 14px;">1. 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Linux发展趋势</SPAN></H2><SPAN 
+style="font-size: 14px;">随着IT产业的不断发展，用户对网站体验要求也越来越高，而目前主流网站后端承载系统都是Linux系统，目前Android手机全部基于Linux内核研发。企业大数据、云存储、虚拟化等先进技术都是基于Linux系统。<BR>
+2010年据有关权威部门统计：将来几年内我国软件行业的从业机会十分庞大，中国每年对软件人才的需求将达到50万人左右。而对于Linux&nbsp;专业人才的就业前景，更是广阔；据悉在未来5-10年内&nbsp;Linux&nbsp;专业人才的需求将达到&nbsp;120&nbsp;万+！尤其是有经验的资深的Linux工程师目前非常的缺乏，薪资也是非常诱人，平均月薪都是15-20K，能力强的薪资更高。<BR>
+<IMG style="width: 518px; height: 243px;" alt="" src="Linux入门基础教程centos_files/1-15052Q61000227.png"><BR>
+所以机会对每个人都是公平的，关键是我们每个人如何去行动，选择大于努力。<BR>&nbsp;</SPAN><BR>
+<H2><SPAN style="font-size: 14px;">1. 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Linux系统安装</SPAN></H2><SPAN 
+style="font-size: 14px;">在安装Linux系统之前，先来了解windows系统结构，windows系统一般是安装在C盘系统盘，同样Linux也有类似的系统盘（/根分区），Linux通常分区为（根分区/、swap分区），Linux系统以文件的存储方式，所有的文件都是存储在某个目录下的，类似于windows的文件夹。<BR>
+对于文件系统的属性来说，windows文件系统类型一般是ntfs、fat32等，而Linux文件系统类型则为ext2、ext3、ext4等（文件系统：是操作系统用于明确磁盘或分区上的文件的方法和数据结构，文件系统由三部分组成：与文件管理有关软件、被管理文件以及实施文件管理所需数据结构。）<BR>
+安装 Linux系统是每一个初学者的第一个门槛。在这个过程中间，最大的困惑莫过于给硬盘进行分区。虽然现在各种发行版本的 Linux 
+已经提供了友好的图形交互界面，但是很多人还是感觉无从下手。这其中的原因主要是不清楚 Linux 
+的分区规定。就好比如果我们了解了windows分区的规则，系统盘C、数据盘D等，就很好分区了。<BR>在 Linux 中规定，每一个硬盘设备最多只能有 
+4个主分区（其中包含扩展分区）构成，任何一个扩展分区都要占用一个主分区号码，也就是在一个硬盘中，主分区和扩展分区一共最多是 4 个。<BR>
+下面正式来安装Linux系统，安装系统前需要准备如下软件：<BR>ü&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VMware 
+workstation 10.0<BR>ü&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CentOS 5.8 
+x86_i386.iso<BR>安装图解如下：<BR>第一步，新建虚拟机如下图：<BR><IMG style="width: 571px; height: 280px;" 
+alt="" src="Linux入门基础教程centos_files/1-15052Q61033P2.png"><BR>第二步，选择相关选项，如下图：<BR>
+<IMG style="width: 520px; height: 498px;" alt="" src="Linux入门基础教程centos_files/1-15052Q61144613.png"><BR>
+第三步选择“稍后安装操作系统”，如下图:<BR><IMG style="width: 518px; height: 503px;" alt="" src="Linux入门基础教程centos_files/1-15052Q61304362.png"><BR>
+第四步，选择客户机操作系统类型如下图：<BR><IMG style="width: 517px; height: 507px;" alt="" src="Linux入门基础教程centos_files/1-15052Q61315559.png"><BR>
+第五步，设置虚拟机硬盘大小为20G，最低不能小于5G，如下图：<BR><IMG style="width: 523px; height: 496px;" 
+alt="" src="Linux入门基础教程centos_files/1-15052Q61324a6.png"><BR>
+第六步，虚拟机新建完成，如下图：<BR><IMG style="width: 563px; height: 353px;" alt="" src="Linux入门基础教程centos_files/1-15052Q61333153.png"><BR>
+第七步，修改虚拟机内存为512M，并添加ISO镜像，如下图：<BR><IMG style="width: 569px; height: 518px;" alt="" 
+src="Linux入门基础教程centos_files/1-15052Q61342212.png"><BR>
+自此，虚拟机新建完成，接下来点击“启动此虚拟机”进行Linux系统安装，Linux系统安装图解如下：<BR>
+第一步，进入安装界面，直接按Enter回车键即可。<BR><IMG style="width: 568px; height: 432px;" alt="" 
+src="Linux入门基础教程centos_files/1-15052Q61352259.png"><BR>第二步，光盘检测，选择SKIP跳过。<BR>
+<IMG style="width: 553px; height: 429px;" alt="" src="Linux入门基础教程centos_files/1-15052Q614035c.png"><BR>
+<IMG style="width: 561px; height: 418px;" alt="" src="Linux入门基础教程centos_files/1-15052Q614142F.png"><BR>
+第三步，选择安装过程中的语言，初学者可以选择“简体中文”。<BR><IMG style="width: 564px; height: 425px;" alt="" 
+src="Linux入门基础教程centos_files/1-15052Q61426361.png"><BR>第四步，选择初始化整个硬盘，清除所有数据。<BR>
+<IMG style="width: 564px; height: 423px;" alt="" src="Linux入门基础教程centos_files/1-15052Q61440c6.png"><BR>
+第五步，选择分区方式为“自定义分区“。<BR><IMG style="width: 559px; height: 840px;" alt="" src="Linux入门基础教程centos_files/1-15052Q6144T50.png"><BR>
+<IMG style="width: 561px; height: 420px;" alt="" src="Linux入门基础教程centos_files/1-15052Q61503X7.png"><BR>
+第五步，点击“新建“-首先创建一个swap交换分区，大小为物理内存的2倍（1024M）。<BR><IMG style="width: 563px; height: 423px;" 
+alt="" src="Linux入门基础教程centos_files/1-15052Q61519323.png"><BR>
+第六步，继续创建分区，选择“新建“，然后创建根分区/，如下图选择，大小为剩余所有空间即可。<BR><IMG style="width: 563px; height: 423px;" 
+alt="" src="Linux入门基础教程centos_files/1-15052Q64A0V2.png"><BR><IMG style="width: 557px; height: 426px;" 
+alt="" src="Linux入门基础教程centos_files/1-15052Q64F4639.png"><BR>
+第七步，默认点击下一步，同时默认DHCP配置，时钟选择上海，去掉UTC勾，点击下一步。<BR><IMG style="width: 562px; height: 419px;" 
+alt="" src="Linux入门基础教程centos_files/1-15052Q64G2962.png"><BR><IMG style="width: 551px; height: 418px;" 
+alt="" src="Linux入门基础教程centos_files/1-15052Q64H0Q3.png"><BR><IMG style="width: 557px; height: 413px;" 
+alt="" src="Linux入门基础教程centos_files/1-15052Q64I1408.png"><BR>
+第八步，设置root密码，至少六位，点击下一步。<BR><IMG style="width: 557px; height: 421px;" alt="" 
+src="Linux入门基础教程centos_files/1-15052Q64J1203.png"><BR>
+第九步，系统安装包选择，这里选择“现在定制“。<BR><IMG style="width: 561px; height: 415px;" alt="" src="Linux入门基础教程centos_files/1-15052Q64K1191.png"><BR>
+第十步，系统安装包选择，左侧选择“开发“----右侧选择”开发工具“和“开发库”，语言选择“支持中文“，其他一概不选择。<BR><IMG style="width: 561px; height: 418px;" 
+alt="" src="Linux入门基础教程centos_files/1-15052Q64P0Q7.png"><BR><IMG style="width: 561px; height: 416px;" 
+alt="" src="Linux入门基础教程centos_files/1-15052Q64Pa92.png"><BR>
+安装完毕会提示“reboot“，直接回车即可。</SPAN><BR>
+<H2><SPAN style="font-size: 14px;">1. 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Linux学习技巧</SPAN></H2><SPAN 
+style="font-size: 14px;">初学者可以自己安装虚拟机，然后把linux常用命令例如cd、ls、chmod、useradd、vi等等多练习几十遍，把自己敲打命令的熟练程度提升上来。<BR>
+然后根据文档搭建Linux下常见的各种服务（DHCP、SAMBA、DNS、Apache、Mysql等），遇到问题后可以在google搜索，搜索的时候多看几篇文章，综合最好的文章来解决问题。<BR>
+能够熟练的搭建服务后，理解每个服务的完整配置和优化，可以拓展思维。例如LAMP，我们一般是把所有服务放在一台机器上，如果分开多台该如何部署呢？等等。<BR>
+平时多积累shell编程，可以在网上查找前辈们写的非常好的shell，自己下载下来多练习几遍，从中吸取，不断提高。<BR>
+建立一个自己的学习博客，把平时工作学习中的知识都记录在里面，这样也可以供别人来参考同时也能提高自己的编写文档及方案的能力。<BR>
+通过以上学习能够满足企业的一般应有，需要达到资深级别，还需要深入学习集群架构、负载均衡、自动化运维、运维开发等知识。最后还是一句话：多练习才是硬道理！实践出真知！</SPAN><BR>
+<H1><SPAN style="font-size: 14px;">1.&nbsp;&nbsp; Linux系统篇</SPAN></H1>
+<H2><SPAN 
+style="font-size: 14px;">2.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Linux系统管理</SPAN></H2><SPAN 
+style="font-size: 14px;">通过前两章的学习，我们已经能够独立安装Linux系统，已经掌握了Linux学习的技巧，那接下来，我们将系统的来了解Linux系统各目录、权限及常用命令的使用。</SPAN><BR>
+<H3><SPAN style="font-size: 14px;">2.1. 
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Linux目录初识</SPAN></H3><SPAN 
+style="font-size: 14px;">通过前面的学习,我们已经能够独立安装完一个linux系统，那接下来我们来熟悉一下Linux系统里面的各个目录文件夹的大致功能：<BR>
+主要的目录树的有/、/root、/home、/usr、/bin等目录。下面是一个典型的linux目录结构如下：&nbsp;（附图表）<BR><IMG 
+style="width: 558px; height: 341px;" alt="" src="Linux入门基础教程centos_files/1-15052Q64QSA.png"><BR>
+/ 根目录&nbsp;<BR>/bin 存放必要的命令&nbsp;<BR>/boot 存放内核以及启动所需的文件<BR>
+/dev&nbsp;存放设备文件&nbsp;<BR>/etc 存放系统配置文件&nbsp;<BR>/home 
+普通用户的宿主目录，用户数据存放在其主目录中&nbsp;<BR>/lib 存放必要的运行库&nbsp;<BR>/mnt 
+存放临时的映射文件系统，通常用来挂载使用。<BR>&nbsp; /proc 存放存储进程和系统信息&nbsp;<BR> /root 
+超级用户的主目录&nbsp;<BR>/sbin 存放系统管理程序&nbsp;<BR>/tmp 存放临时文件<BR>/usr 
+存放应用程序，命令程序文件、程序库、手册和其它文档。&nbsp;<BR>/var 系统默认日志存放目录</SPAN><BR>
+<H3><SPAN style="font-size: 14px;">2.1. 
+2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Linux必备命令</SPAN></H3><SPAN 
+style="font-size: 14px;">默认进入系统，我们会看到这样的字符: [root@localhost 
+~]#,其中#代表当前是root用户登录，如果是$表示当前为普通用户。<BR>我们了解linux由很多目录文件构成，那我们来学习第一个Linux命令：<BR>
+cd命令， cd&nbsp; /home&nbsp; ；解析：进入/home目录<BR>cd /root 进入/root目录 ；cd 
+../返回上一级目录;cd&nbsp; ./当前目录；（.和..可以理解为相对路径；例如cd /hom/test 
+，cd加完整的路径，可以理解为绝对路径）<BR>接下来继续学习更多的命令：<BR>&nbsp;&nbsp; ls&nbsp; ./ 
+查看当前目录所有的文件和目录。<BR>ls&nbsp; -a 查看所有的文件，包括隐藏文件,以.开头的文件。<BR>&nbsp;<BR>
+pwd显示当前所在的目录。<BR>mkdir创建目录，用法mkdir&nbsp; test ，命令后接目录的名称。<BR>rmdir 删除空目录<BR>rm 
+删除文件或者目录，用法 rm –rf&nbsp; test.txt (-r表示递归，-f表示强制)。<BR>cp 拷贝文件，用法,cp&nbsp; 
+old.txt&nbsp; /tmp/new.txt ，常用来备份；如果拷贝目录<BR>需要加 –r参数。<BR>&nbsp;<BR>mv 
+重命名或者移动文件或者目录，用法, mv old.txt new.txt<BR>touch 创建文件，用法，touch 
+test.txt，如果文件存在，则表示修改当前文件时间。<BR>Useradd创建用户，用法 useradd wugk ，userdel删除用户。<BR>
+Groupadd创建组，用法 groupadd wugk1 ，groupdel删除组。<BR>&nbsp;<BR>find查找文件或目录，用法 
+find&nbsp; /home&nbsp; -name&nbsp; “test.txt”,命令格式为:<BR>find 
+后接查找的目录，-name指定需要查找的文件名称，名称可以使用*表示所有。<BR>find&nbsp; /home&nbsp; -name&nbsp; 
+“*.txt” ;查找/home目录下，所有以.txt结尾的文件或者目录。<BR>vi 修改某个文件，vi有三种模式：<BR>
+命令行模式、文本输入模式、末行模式。<BR>默认vi打开一个文件，首先是命令行模式，然后按i进入文本输入模式，可以在文件里写入字符等等信息。<BR>
+写完后，按esc进入命令模式，然后输入:进入末行模式，例如输入:wq表示保存退出。<BR>如果想直接退出，不保存，可以执行:q!， 
+q!叹号表示强制退出。<BR>cat 查看文件内容，用法 cat test.txt 可以看到test.txt内容<BR>more 
+查看文件内容，分页查看，cat是全部查看，如果篇幅很多，只能看到最后的篇幅。可以使用cat和more同时使用,例如： cat&nbsp; test.txt 
+|more 分页显示text内容，|符号是管道符，用于把|前的输出作为后面命令的输入。<BR>echo 回显，用法 echo 
+ok，会显示ok，输入什么就打印什么。<BR>echo&nbsp; ok&nbsp; &gt; test.txt 
+；把ok字符覆盖test.txt内容，&gt;表示追加并覆盖的意思。<BR>&gt;&gt;两个大于符号，表示追加，echo ok &gt;&gt; 
+test.txt,表示向test.txt文件追加OK字符，不覆盖原文件里的内容。<BR>
+初学者常见的命令就如上所示，当然还有很多深入的命令需要学习，后面的课程会讲解。</SPAN><BR>
+<H3><SPAN style="font-size: 14px;">2.1. 
+3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Linux用户权限管理</SPAN></H3><SPAN 
+style="font-size: 14px;">在Linux操作系统中，root的权限是最高的，相当于windows的administrator，拥有最高权限，能执行任何命令和操作。在系统中，通过UID来区分用户的权限级别，UID等于0，表示此用户具有最高权限，也就是管理员。其他的用户UID依次增加，通过/etc/passwd用户密码文件可以查看到每个用户的独立的UID。<BR>
+每一个文件或者目录的权限，都包含一个用户权限、一个组的权限、其他人权限，例如下：<BR>
+标红第一个root表示该文件所有者是root用户，第二个root代表该文件的所属的组为root组，其他用户这里默认不标出。<BR>
+&nbsp; [root@node1 ~]# ls -l monitor_log.sh<BR>-rw-r--r-- 1 root root 91 
+May&nbsp; 7 20:21 monitor_log.sh<BR>[root@node1 ~]#<BR>
+如果我们想改变某个文件的所有者或者所属的组，可以使用命令chown<BR>chown&nbsp; –R&nbsp; test:test&nbsp; 
+monitor_log.sh即可。<BR>每个Linux文件具有四种访问权限：可读(r)、可写(w)、可执行(x)和无权限(-)。<BR>利用ls 
+-l命令可以看到某个文件或目录的权限，它以显示数据的第一个字段为<BR>&nbsp;准。第一个字段由10个字符组成，如下：<BR>&nbsp;&nbsp; 
+&nbsp;[root@node1 ~]# ls -l monitor_log.sh<BR>-rw-r--r-- 1 root root 91 
+May&nbsp; 7 20:21 monitor_log.sh<BR>[root@node1 ~]#<BR>&nbsp;&nbsp;&nbsp; 
+第一位表示文件类型，-表示文件，d表示目录；后面每三位为一组。<BR>&nbsp; 
+&nbsp;第一组：2-4位表示文件所有者的权限，即用户user权限，简称u<BR>&nbsp; 
+&nbsp;第二组：5-7位表示文件所有者所属组成员的权限，group权限，简称g<BR>&nbsp; 
+&nbsp;第三组：8-10位表示所有者所属组之外的用户的权限，other权限，简称o<BR>
+从上面这个文件，我们可以看出，monito_log.sh文件对应的权限为：<BR>
+root用户具有读和写的权限，root组具有读的权限，其他人具有读的权限。<BR>
+为了能更简单快捷的使用和熟悉权限，rwx权限可以用数字来表示，分别表示为r（4）、w（2）、x（1）。<BR>
+Monitor_log.sh权限可以表示为：644<BR>如果给某个文件授权，命令为chmod：chmod 777 
+monitor_log.sh</SPAN><BR>
+<H3><SPAN style="font-size: 14px;">2.1. 
+4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Linux网络配置管理</SPAN></H3><SPAN 
+style="font-size: 14px;">熟悉了常用的命令和Linux权限，那接下来如何让所在的Linux系统上网呢？管理linux服务器网络有哪些命令呢？<BR>
+&nbsp;&nbsp; 
+Linux服务器默认网卡配置文件在/etc/sysconfig/network-scripts/下，命名的名称一般为:ifcfg-eth0 ifcfg-eth1 
+，eth0表示第一块网卡，eth1表示第二块网卡，依次类推。一般DELL R720标配有4块千兆网卡。<BR>&nbsp;&nbsp; 
+修改网卡的IP，可以使用命令: vi /etc/sysconfig/network-scripts/ifcfg-eth0 
+如果是DHCP获取的IP，默认配置如下：<BR># Advanced Micro Devices [AMD] 79c970 [PCnet32 
+LANCE]<BR>DEVICE=eth0<BR>BOOTPROTO=dhcp<BR>HWADDR=00:0c:29:52:c7:4e<BR>
+ONBOOT=yes<BR>TYPE=Ethernet<BR>如果是静态配置的IP，ifcfg-eth0网卡配置内容如下：<BR># Advanced 
+Micro Devices [AMD] 79c970 [PCnet32 LANCE]<BR>DEVICE=eth0<BR>
+BOOTPROTO=static<BR>HWADDR=00:0c:29:52:c7:4e<BR>ONBOOT=yes<BR>TYPE=Ethernet<BR>
+IPADDR=192.168.33.10<BR>NETMASK=255.255.255.0<BR>GATEWAY=192.168.33.1<BR>
+网卡参数详解如下：<BR>DEVICE=eth0&nbsp;&nbsp; #物理设备名<BR>ONBOOT=yes&nbsp;&nbsp; # 
+[yes|no]（重启网卡是否激活设备）<BR>BOOTPROTO=static 
+#[none|static|bootp|dhcp]（不使用协议|静态分配|BOOTP协议|DHCP协议）</SPAN><BR><PRE><SPAN style="font-size: 14px;">TYPE=Ethernet&nbsp; #网卡类型</SPAN></PRE><SPAN 
+style="font-size: 14px;">IPADDR=192.168.33.10 #IP 地址<BR>NETMASK=255.255.255.0 
+#子网掩码<BR>GATEWAY=192.168.33.1 #网关地址<BR>网卡配置完毕，重启网卡，命令: /etc/init.d/network 
+restart 即可。<BR>查看ip命令：ifconfig 查看当前服务器所有网卡的IP，可以单独指定，ifconfig eth0 
+查看eth0的IP地址。<BR>网卡配置完毕，如果来配置DNS，首先要知道DNS配置在哪个目录文件下，vi&nbsp; /etc/resolv.conf 
+文件:<BR>在该文件里面添加如下两条：<BR>nameserver 202.106.0.20<BR>nameserver 8.8.8.8<BR>
+从上到下，分别表示主DNS，备DNS。配置完毕后，不需要重启网卡,DNS立即生效。<BR>可以ping www.baidu.com 看看效果:<BR><IMG 
+style="width: 566px; height: 243px;" alt="" src="Linux入门基础教程centos_files/1-15052Q64RKU.png"><BR>
+IP配置完毕后，我们可以通过远程工具来连接Linux服务器，常见的Linux远程连接工具有:putty、secureCRT（主流）、xshell、xmanger等工具。<BR>
+下载安装secureCRT，打开工具，然后如图配置：<BR>点击左上角quick 
+connect快速连接，弹出界面，然后输入IP，用户名，端口默认是22，然后点击下方的connect连接，会提示输入密码，输入即可。<BR><IMG 
+style="width: 559px; height: 179px;" alt="" src="Linux入门基础教程centos_files/1-15052Q64S5157.png"><BR>
+弹出输入密码框：<BR><IMG style="width: 566px; height: 203px;" alt="" src="Linux入门基础教程centos_files/1-15052Q64T4210.png"><BR>
+进入远程界面，与服务器真实登录一样，然后可以执行命令：<BR><IMG style="width: 572px; height: 166px;" alt="" 
+src="Linux入门基础教程centos_files/1-15052Q64UHS.png"><BR>
+通过这几章的学习，我们已经熟练了Linux常用命令的操作，权限网络、网络配置、远程连接等知识，那接下来我们还能做什么呢？我们已经差不多入门了，接下来就是更进一步的服务配置，Linux系统到底用来做什么呢？接下来的章节将跟大家一起来学习。&nbsp;&nbsp;<BR>
+Linux系统的应用，我们最开始介绍的时候简单介绍过，目前大中型企业都用它来承载web网站、数据库、虚拟化平台等，那接下来我们将在Linux系统安装各种服务和软件来实现Linux真正的价值。</SPAN><BR>
+<H3><SPAN style="font-size: 14px;">2.1. 
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Linux软件包管理必备命令</SPAN></H3>
+<H1><SPAN style="font-size: 14px;">2.&nbsp;&nbsp; Linux服务篇</SPAN></H1>
+<H2><SPAN 
+style="font-size: 14px;">3.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Linux服务部署</SPAN></H2>
+<H3><SPAN style="font-size: 14px;">3.1. 
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 构建NTP时间服务器</SPAN></H3><SPAN 
+style="font-size: 14px;">NTP服务器是用于局域网服务器时间同步使用的，可以保证局域网所有的服务器与时间服务器的时间保持一致，某些应用对时间实时性要求高的必须统一时间。<BR>
+互联网的时间服务器也有很多，例如ntpdate ntp.fudan.edu.cn 复旦大学的NTP免费提供互联网时间同步。<BR>
+NTP服务器监听端口为UDP的123，那就需要在本地防火墙开启运行客户端访问123端口，vi 
+/etc/sysconfig/iptables添加如下规则：<BR>-A INPUT -m state --state NEW -m udp -p udp 
+--dport 123 -j ACCEPT<BR>NTP时间服务器配置：<BR>yum install ntp ntpdate -y 即可！<BR>
+修改ntp.conf配置文件<BR>cp&nbsp; /etp/ntp.conf /etc/ntp.conf.bak<BR>vi /etc/ntp.conf 
+只修改如下两行，把#号去掉即可！<BR>server 127.127.1.0&nbsp;&nbsp;&nbsp;&nbsp; # local clock<BR>
+fudge&nbsp; 127.127.1.0 stratum 10<BR>以守护进程启动ntpd<BR>/etc/init.d/ntpd start 
+即可<BR>（注意*： ntpd启动后，客户机要等几分钟再与其进行时间同步，否则会提示“no server suitable for 
+synchronization found”错误。）<BR>配置时间同步客户机<BR>crontab -e<BR>
+增加一行，在每天的6点10分与时间同步服务器进行同步<BR>10 06 * * * /usr/sbin/ntpdate ntp-server的ip 
+&gt;&gt;/usr/local/logs/crontab/ntpdate.log<BR>备注：如果客户机没有ntpdate，可以yum –y 
+install ntp 即可！<BR>以下是ntp服务器配置文件内容(局域网NTP，如果需要跟外网同步，添加外网server即可)<BR>driftfile 
+/var/lib/ntp/drift<BR>restrict default kod nomodify notrap nopeer noquery<BR>
+restrict -6 default kod nomodify notrap nopeer noquery<BR>restrict 127.0.0.1<BR>
+restrict -6 ::1<BR>server&nbsp; 127.127.1.0&nbsp;&nbsp;&nbsp;&nbsp; # local 
+clock<BR>fudge&nbsp;&nbsp; 127.127.1.0 stratum 10<BR>includefile 
+/etc/ntp/crypto/pw<BR>keys /etc/ntp/keys<BR>下面是参数详解：</SPAN><BR>
+<TABLE style="width: 556px;" border="1" cellSpacing="0" cellPadding="0" width="556">
+  <TBODY>
+  <TR>
+    <TD style="width: 244px; height: 22px;"><SPAN 
+      style="font-size: 14px;">restrict default ignore</SPAN></TD>
+    <TD style="width: 312px; height: 22px;"><SPAN style="font-size: 14px;"># 
+      关闭所有的 NTP 要求封包</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 244px; height: 21px;"><SPAN 
+      style="font-size: 14px;">restrict 127.0.0.1</SPAN></TD>
+    <TD style="width: 312px; height: 21px;"><SPAN style="font-size: 14px;"># 
+      开启内部递归网络接口 lo</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 244px; height: 21px;"><SPAN 
+      style="font-size: 14px;">restrict 192.168.0.0 mask 255.255.255.0 
+      nomodify</SPAN></TD>
+    <TD style="width: 312px; height: 21px;"><SPAN 
+      style="font-size: 14px;">#在内部子网里面的客户端可以进行网络校时，但不能修改NTP服务器的时间参数。</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 244px; height: 23px;"><SPAN 
+      style="font-size: 14px;">server 198.123.30.132</SPAN></TD>
+    <TD style="width: 312px; height: 23px;"><SPAN 
+      style="font-size: 14px;">#198.123.30.132作为上级时间服务器参考</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 244px; height: 22px;"><SPAN 
+      style="font-size: 14px;">restrict 198.123.30.132</SPAN></TD>
+    <TD style="width: 312px; height: 22px;"><SPAN 
+      style="font-size: 14px;">#开放server 访问我们ntp服务的权限</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 244px; height: 23px;"><SPAN 
+      style="font-size: 14px;">driftfile /var/lib/ntp/drift</SPAN></TD>
+    <TD style="width: 312px; height: 23px;"><SPAN 
+      style="font-size: 14px;">在与上级时间服务器联系时所花费的时间，记录在driftfile参数后面的文件内</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 244px; height: 23px;"><SPAN 
+      style="font-size: 14px;">broadcastdelay 0.008</SPAN></TD>
+    <TD style="width: 312px; height: 23px;"><SPAN 
+      style="font-size: 14px;">#广播延迟时间</SPAN></TD></TR></TBODY></TABLE><SPAN style="font-size: 14px;">&nbsp;<BR>
+自此NTP服务搭建完毕，然后在所有客户端crontab里面添加如下语句：<BR>0&nbsp; 0&nbsp;&nbsp; *&nbsp; *&nbsp; * 
+/usr/sbin/ntpdate&nbsp; 10.0.0.155 &gt;&gt;/data/logs/ntp.log 
+2&gt;&amp;1</SPAN><BR>
+<H3><SPAN style="font-size: 14px;">3.1. 
+2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 构建DHCP服务器</SPAN></H3><SPAN 
+style="font-size: 14px;">DHCP(Dynamic Host Configuration 
+Protocol，动态主机配置协议)是一个局域网的网络协议，使用UDP协议工作，主要用途：给内部网络或网络服务供应商自动分配IP地址，DHCP有3个端口，其中UDP67和UDP68为正常的DHCP服务端口，分别作为DHCP 
+Server和DHCP Client的服务端口。<BR>
+DHCP可以部署在服务器、交换机或者服务器，可以控制一段IP地址范围，客户机登录服务器时就可以自动获得DHCP服务器分配的IP地址和子网掩码。其中DHCP所在服务器的需要安装TCP/IP协议，需要设置静态IP地址、子网掩码、默认网关。<BR>
+正式安装DHCP服务：<BR>Yum&nbsp; install&nbsp; dhcp dhcp-devel –y 即可，然后修改DHCP 
+/etc/dhcpd.conf配置文件内容如下：<BR>ddns-update-style interim;<BR>ignore 
+client-updates;<BR>next-server &nbsp;192.168.0.79;<BR>
+filename&nbsp;"pxelinux.0";<BR>allow booting;<BR>allow bootp;&nbsp;<BR>
+subnet&nbsp;192.168.0.0&nbsp;netmask&nbsp;255.255.255.0&nbsp;{<BR># 
+---&nbsp;default&nbsp;gateway<BR>option 
+routers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;192.168.0.1;<BR>
+option subnet-mask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;255.255.252.0;<BR>
+#&nbsp;&nbsp; option 
+nis-domain&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"domain.org";<BR>#&nbsp; 
+option domain-name "192.168.0.10";<BR>#&nbsp;&nbsp; option 
+domain-name-servers&nbsp;&nbsp;192.168.0.11;<BR>#&nbsp;&nbsp; option 
+ntp-servers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;192.168.1.1;<BR>#&nbsp;&nbsp; 
+option netbios-name-servers&nbsp; 192.168.1.1;<BR># --- Selects point-to-point 
+node (default&nbsp;is&nbsp;hybrid). Don't change&nbsp;this&nbsp;unless<BR># -- 
+you understand Netbios very well<BR>#&nbsp;&nbsp; option 
+netbios-node-type&nbsp;2;<BR>range &nbsp;dynamic-bootp&nbsp; 
+192.168.0.100&nbsp;192.168.0.200;<BR>host ns {<BR>hardware 
+ethernet&nbsp;&nbsp;00:1a:a0:2b:38:81;<BR>fixed-address&nbsp;192.168.0.101;}<BR>
+}<BR>参数解析如下：</SPAN><BR>
+<TABLE style="width: 548px;" border="1" cellSpacing="0" cellPadding="0" width="548">
+  <TBODY>
+  <TR>
+    <TD style="width: 262px;"><SPAN 
+      style="font-size: 14px;">选&nbsp;&nbsp;&nbsp; 项</SPAN></TD>
+    <TD style="width: 286px;"><SPAN 
+      style="font-size: 14px;">解&nbsp;&nbsp;&nbsp; 释</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px;"><SPAN style="font-size: 14px;">&nbsp;</SPAN></TD>
+    <TD style="width: 286px;"><SPAN 
+  style="font-size: 14px;">&nbsp;</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px; height: 47px;"><SPAN 
+      style="font-size: 14px;">ddns-update-style interim|ad-hoc|none</SPAN></TD>
+    <TD style="width: 286px; height: 47px;"><SPAN 
+      style="font-size: 14px;">&nbsp;参数用来设置DHCP服务器与DNS服务器的动态信息更新模式：interim为DNS互动更新模式，ad-hoc为特殊DNS更新模式，none为不支持动态更新模式。</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px; height: 47px;"><SPAN 
+      style="font-size: 14px;">next-server ip</SPAN></TD>
+    <TD style="width: 286px; height: 47px;"><SPAN 
+      style="font-size: 14px;">pxeclient远程安装系统，指定tftp server 地址</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px; height: 47px;"><SPAN 
+      style="font-size: 14px;">filename</SPAN></TD>
+    <TD style="width: 286px; height: 47px;"><SPAN 
+      style="font-size: 14px;">开始启动文件的名称，应用于无盘安装，可以是tftp的相对或绝对路径 
+  &nbsp;</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px; height: 19px;"><SPAN 
+      style="font-size: 14px;">ignore client-updates</SPAN></TD>
+    <TD style="width: 286px; height: 19px;"><SPAN 
+      style="font-size: 14px;">为忽略客户端更新</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px; height: 19px;"><SPAN 
+      style="font-size: 14px;">subnet-mask</SPAN></TD>
+    <TD style="width: 286px; height: 19px;"><SPAN 
+      style="font-size: 14px;">为客户端设定子网掩码</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px; height: 19px;"><SPAN 
+      style="font-size: 14px;">option routers</SPAN></TD>
+    <TD style="width: 286px; height: 19px;"><SPAN 
+      style="font-size: 14px;">为客户端指定网关地址</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px;"><SPAN 
+    style="font-size: 14px;">domain-name</SPAN></TD>
+    <TD style="width: 286px;"><SPAN 
+    style="font-size: 14px;">为客户端指明DNS名字</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px;"><SPAN 
+      style="font-size: 14px;">domain-name-servers</SPAN></TD>
+    <TD style="width: 286px;"><SPAN 
+      style="font-size: 14px;">为客户端指明DNS服务器的IP地址</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px;"><SPAN 
+    style="font-size: 14px;">host-name</SPAN></TD>
+    <TD style="width: 286px;"><SPAN 
+    style="font-size: 14px;">为客户端指定主机名称</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px;"><SPAN 
+      style="font-size: 14px;">broadcast-address</SPAN></TD>
+    <TD style="width: 286px;"><SPAN 
+    style="font-size: 14px;">为客户端设定广播地址</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px;"><SPAN 
+    style="font-size: 14px;">ntp-server</SPAN></TD>
+    <TD style="width: 286px;"><SPAN 
+      style="font-size: 14px;">为客户端设定网络时间服务器的IP地址</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 262px;"><SPAN 
+    style="font-size: 14px;">time-offset</SPAN></TD>
+    <TD style="width: 286px;"><SPAN 
+      style="font-size: 14px;">为客户端设定格林威治时间的偏移时间，单位是秒</SPAN></TD></TR></TBODY></TABLE>
+<SPAN 
+style="font-size: 14px;">注意如上配置，需要修改成对应服务器网段IP，然后重启DHCP服务，/etc/init.d/dhcpd 
+restart即可。<BR>
+客户端要从这个DHCP服务器获取IP，需要做简单的设置，如果是linux需要把/etc/sysconfig/network-scritps/ifcfg-eth0里BOOTPROTO相改成dhcp即可，windows机器的话，需要修改本地连接，把它设置成自动获取IP即可。<BR>
+BOOTPROTO=dhcp</SPAN><BR>
+<H3><SPAN style="font-size: 14px;">3.1. 
+3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 搭建Samba服务器</SPAN></H3><SPAN 
+style="font-size: 14px;">Samba是在Linux和UNIX系统上实现SMB协议的一个免费软件，由服务器及客户端程序构成，<BR>
+SMB（Server Messages 
+Block，信息服务块）是一种在局域网上共享文件和打印机的一种通信协议，它为局域网内的不同计算机之间提供文件及打印机等资源的共享服务。<BR>
+SMB协议是客户机/服务器型协议，客户机通过该协议可以访问服务器上的共享文件系统、打印机及其他资源。通过设置“NetBIOS over 
+TCP/IP”使得Samba不但能与局域网络主机分享资源，还能与全世界的电脑分享资源。<BR>安装SAMBA服务器：<BR>Yum install&nbsp; 
+samba –y<BR>安装完毕，然后做如下设置（过滤#号行、空行如下命令）<BR>cp /etc/samba/smb.conf 
+/etc/samba/smb.conf.bak ;egrep -v "#|^$" /etc/samba/smb.conf.bak |grep -v "^;" 
+&gt;/etc/samba/smb.conf<BR>查看smb.conf配置文件如下：<BR>[global]<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; workgroup = MYGROUP<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; server string = Samba Server Version 
+%v<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; security = share<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; passdb backend = tdbsam<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; load printers = yes<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cups options = raw<BR>&nbsp;<BR>
+[temp]<BR>&nbsp;&nbsp;&nbsp;&nbsp; comment=Temporary file space<BR>
+&nbsp;&nbsp;&nbsp;&nbsp; path=/tmp<BR>&nbsp;&nbsp;&nbsp;&nbsp; read only=no<BR>
+&nbsp;&nbsp;&nbsp;&nbsp; public=yes<BR>&nbsp;<BR>[data]<BR>
+&nbsp;&nbsp;&nbsp;&nbsp; comment=Temporary file space<BR>
+&nbsp;&nbsp;&nbsp;&nbsp; path=/data<BR>&nbsp;&nbsp;&nbsp;&nbsp; read only=no<BR>
+&nbsp;&nbsp;&nbsp;&nbsp; public=yes<BR>根据需求修改之后重启服务：<BR>[root@node1 ~]# 
+/etc/init.d/smb restart<BR>Shutting down SMB 
+services:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;[FAILED]<BR>Shutting down NMB 
+services:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;[FAILED]<BR>Starting SMB 
+services:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+[&nbsp; OK&nbsp; ]<BR>Starting NMB 
+services:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+[&nbsp; OK&nbsp; ]<BR>&nbsp;</SPAN><BR>
+<TABLE style="width: 548px;" border="1" cellSpacing="0" cellPadding="0" width="548">
+  <TBODY>
+  <TR>
+    <TD style="width: 149px; height: 24px;"><SPAN 
+      style="font-size: 14px;">workgroup =</SPAN></TD>
+    <TD style="width: 399px; height: 24px;"><SPAN 
+      style="font-size: 14px;">WORKGROUP 设Samba Server 所要加入的工作组或者域。</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 24px;"><SPAN 
+      style="font-size: 14px;">server string = Samba Server Version %v</SPAN></TD>
+    <TD style="width: 399px; height: 24px;"><SPAN 
+      style="font-size: 14px;">Samba Server 
+      的注释，可以是任何字符串，也可以不填。宏%v表示显示Samba的版本号。</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 24px;"><SPAN 
+      style="font-size: 14px;">&nbsp;<BR>				&nbsp;<BR>				&nbsp;<BR>
+      				&nbsp;<BR>security = user</SPAN></TD>
+    <TD style="width: 399px; height: 24px;"><SPAN 
+      style="font-size: 14px;">1.share：用户访问Samba Server不需要提供用户名和口令, 
+      安全性能较低。<BR>2. user：Samba Server共享目录只能被授权的用户访问,由Samba 
+      Server负责检查账号和密码的正确性。账号和密码要在本Samba Server中建立。<BR>3. server：依靠其他Windows 
+      NT/2000或Samba 
+      Server来验证用户的账号和密码,是一种代理验证。此种安全模式下,系统管理员可以把所有的Windows用户和口令集中到一个NT系统上,使用Windows 
+      NT进行Samba认证, 远程服务器可以自动认证全部用户和口令,如果认证失败,Samba将使用用户级安全模式作为替代的方式。<BR>4. 
+      domain：域安全级别,使用主域控制器(PDC)来完成认证。</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 24px;"><SPAN 
+      style="font-size: 14px;">comment = test</SPAN></TD>
+    <TD style="width: 399px; height: 24px;"><SPAN 
+      style="font-size: 14px;">是对该共享的描述，可以是任意字符串。</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 25px;"><SPAN 
+      style="font-size: 14px;">path = /home/test</SPAN></TD>
+    <TD style="width: 399px; height: 25px;"><SPAN 
+      style="font-size: 14px;">共享目录路径</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 19px;"><SPAN 
+      style="font-size: 14px;">browseable= yes/no&nbsp;</SPAN></TD>
+    <TD style="width: 399px; height: 19px;"><SPAN 
+      style="font-size: 14px;">用来指定该共享是否可以浏览。</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 16px;"><SPAN 
+      style="font-size: 14px;">writable = yes/no</SPAN></TD>
+    <TD style="width: 399px; height: 16px;"><SPAN 
+      style="font-size: 14px;">writable用来指定该共享路径是否可写。</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 20px;"><SPAN 
+      style="font-size: 14px;">available = yes/no</SPAN></TD>
+    <TD style="width: 399px; height: 20px;"><SPAN 
+      style="font-size: 14px;">available用来指定该共享资源是否可用</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 24px;"><SPAN 
+      style="font-size: 14px;">admin users = admin</SPAN></TD>
+    <TD style="width: 399px; height: 24px;"><SPAN 
+      style="font-size: 14px;">该共享的管理者</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 22px;"><SPAN 
+      style="font-size: 14px;">valid users = test</SPAN></TD>
+    <TD style="width: 399px; height: 22px;"><SPAN 
+      style="font-size: 14px;">允许访问该共享的用户</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 25px;"><SPAN 
+      style="font-size: 14px;">invalid users = test</SPAN></TD>
+    <TD style="width: 399px; height: 25px;"><SPAN 
+      style="font-size: 14px;">禁止访问该共享的用户</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 19px;"><SPAN 
+      style="font-size: 14px;">write list = test</SPAN></TD>
+    <TD style="width: 399px; height: 19px;"><SPAN 
+      style="font-size: 14px;">允许写入该共享的用户</SPAN></TD></TR>
+  <TR>
+    <TD style="width: 149px; height: 24px;"><SPAN 
+      style="font-size: 14px;">public = yes/no</SPAN></TD>
+    <TD style="width: 399px; height: 24px;"><SPAN 
+      style="font-size: 14px;">public用来指定该共享是否允许guest账户访问。</SPAN></TD></TR></TBODY>
+</TABLE><SPAN style="font-size: 14px;">&nbsp;<BR>在浏览器里面访问方式为：\\192.168.33.10 
+（SMB文件共享服务端IP），如何没有权限访问，需要注意防火墙和selinux设置，可以使用如下命令关闭：<BR>/etc/init.d/iptables 
+stop ;sed&nbsp; –i&nbsp;&nbsp; ‘/SELINUX/s/enforcing/disabled’&nbsp; 
+/etc/sysconfig/selinux<BR><IMG border="0" src="" width="547" 
+height="150"></SPAN><BR>
+<H3><SPAN style="font-size: 14px;">3.1. 
+4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 搭建NFS服务器</SPAN></H3><SPAN 
+style="font-size: 14px;">NFS 是Network File 
+System的缩写，即网络文件系统。一种使用于分散式文件系统的协定，由Sun公司开发，于1984年向外公布。功能是通过网络让不同的机器、不同的操作系统能够彼此分享个别的数据，让应用程序在客户端通过网络访问位于服务器磁盘中的数据，是在类Unix系统间实现磁盘文件共享的一种方法。<BR>
+NFS在文件传送或信息传送过程中依赖于RPC协议。RPC，远程过程调用 (Remote Procedure Call) 
+是能使客户端执行其他系统中程序的一种机制。NFS本身是没有提供信息传输的协议和功能的。<BR>
+NFS应用场景，常用于高可用文件共享，多台服务器共享同样的数据，可扩展性比较差，本身高可用方案不完善，取而代之的数据量比较大的可以采用MFS、TFS、HDFS等等分布式文件系统。<BR>
+NFS安装配置：<BR>Yum&nbsp; install nfs*&nbsp; portmap&nbsp; -y 如下图，安装成功即可。<BR><IMG 
+style="width: 560px; height: 162px;" alt="" src="Linux入门基础教程centos_files/1-15052Q64ZJ61.png"><BR>
+NFS安装完毕，需要创建共享目录，共享目录在/etc/exports文件里面配置，可配置参数如下：<BR>
+/data/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+192.168.33.11(rw,sync,no_hide,no_all_squash)<BR>
+在配置文件中添加如上一行，然后重启Portmap，NFS服务即可，/etc/init.d/portmap restart ;/etc/init.d/nfs 
+restart<BR>第一列/data/表示需要共享的目录。<BR>IP表示允许哪个客户端访问。<BR>IP后括号里的设置表示对该共享文件的权限。<BR>
+ro&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+只读访问<BR>
+rw&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+读写访问<BR>
+sync&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+所有数据在请求时写入共享<BR>
+hide&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+在NFS共享目录中不共享其子目录<BR>
+no_hide&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+共享NFS目录的子目录<BR>
+all_squash&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+共享文件的UID和GID映射匿名用户anonymous，适合公用目录。<BR>
+no_all_squash&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+保留共享文件的UID和GID（默认）<BR>
+root_squash&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+root用户的所有请求映射成如anonymous用户一样的权限（默认）<BR>
+no_root_squas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+root用户具有根目录的完全管理访问权限<BR><BR><BR>Linux客户端，如何想使用这个NFS文件系统，需要在客户端挂载，挂载命令为：<BR>Mount 
+–t&nbsp; nfs&nbsp; 192.168.33.10:/data/&nbsp;&nbsp;&nbsp; /mnt 
+即可。如果有报错根据错误信息排查。常见问题有rpc服务没有启动、防火墙没关闭、selinux未关闭等问题。（拓展* 
+有兴趣的童鞋可以研究MFS（分布式文件系统）。）</SPAN><BR>
+<H3><SPAN style="font-size: 14px;">3.1. 
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 搭建FTP服务器</SPAN></H3><SPAN 
+style="font-size: 14px;">FTP&nbsp;是文件传输协议，正是由于这种协议使得主机间可以共享文件。 FTP 
+使用TCP&nbsp;生成一个虚拟连接用于控制信息，然后再生成一个单独的 TCP 连接用于数据传输。<BR>
+vsftpd是一款在Linux发行版中最主流的FTP服务器程序；特点是小巧轻快，安全易用；能让其自身特点得发发挥和掌握。<BR>
+目前在开源操作系统中常用的FTP服务器程序主要有vsftpd、ProFTPD、PureFTPd和wuftpd等，这么多FTP服务器程序，关键在于自己熟练哪一个就使用哪一个。今天我们来研究一下VSFTPD简单安装及使用。安装命令: 
+yum&nbsp; install vsftpd*&nbsp; -y<BR><IMG border="0" src="" width="548" height="289"><BR>
+修改配置文件如下：<BR>#vsftpd config 2014 by wugk<BR>
+anonymous_enable=NO&nbsp;&nbsp;&nbsp; //禁止匿名用户访问<BR>local_enable=YES&nbsp; 
+//允许本地用户登录FTP<BR>write_enable=YES&nbsp;&nbsp; //运行用户在FTP目录有写入的权限<BR>
+local_umask=022&nbsp;&nbsp; //设置本地用户的文件生成掩码为022，默认是077<BR>dirmessage_enable=YES 
+//激活目录信息,当远程用户更改目录时,将出现提示信息<BR>xferlog_enable=YES&nbsp;&nbsp; //启用上传和下载日志功能<BR>
+connect_from_port_20=YES&nbsp; //启用FTP数据端口的连接请求<BR>xferlog_std_format=YES&nbsp; 
+//是否使用标准的ftpd xferlog日志文件格式<BR>listen=YES&nbsp; //使vsftpd处于独立启动监听端口模式<BR>
+pam_service_name=vsftpd //设置PAM认证服务配置文件名称，文件存放在/etc/pam.d/目录<BR>
+userlist_enable=YES&nbsp;&nbsp; //用户列表中的用户是否允许登录FTP服务器,默认是不允许<BR>
+tcp_wrappers=YES&nbsp;&nbsp;&nbsp; //使用tcp_wrqppers作为主机访问控制方式<BR>&nbsp;<BR>
+1)&nbsp;&nbsp;&nbsp; 
+第一种方法就是使用系统用户登录FTP，但是也是比较危险的，先测试系统用户登录FTP，在Linux系统上创建useradd&nbsp; test 
+用户，并为其设置名，然后在xp客户端打开我的电脑资源里面访问 ftp://192.168.33.10，输入用户名和密码即可访问，进行创建和删除操作。<BR>
+2)&nbsp;&nbsp;&nbsp; 第二种方法比较安全，配置相对复杂一点，就是使用vsftpd虚拟用户登录FTP服务器进行常见的操作。<BR>
+&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 首先安装FTP 虚拟用户需要用到的软件及认证模块<BR>yum install 
+pam* db4* --skip-broken –y<BR>创建并生成vsftpd数据库文件vi 
+/etc/vsftpd/ftpusers.txt，内容如下：<BR>第一行为FTP虚拟用户，登录用户名，第二行为密码，第三行为用户名，依次类推。<BR>
+wugk<BR>1<BR>wugk1<BR>1<BR>&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 生成数据库文件命令：<BR>
+db_load -T -t hash -f /etc/vsftpd/ftpusers.txt /etc/vsftpd/vsftpd_login.db<BR>
+chmod 700 /etc/vsftpd/vsftpd_login.db<BR>&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+配置PAM验证文件：<BR>在配置文件vi /etc/pam.d/vsftpd 
+行首加入如下两行认证语句：（如果是32位，lib64需改成lib，如果RedHat，加入的语句不一样，需注意）<BR>
+auth&nbsp;&nbsp;&nbsp; sufficient&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+/lib64/security/pam_userdb.so&nbsp;&nbsp;&nbsp;&nbsp; 
+db=/etc/vsftpd/vsftpd_login<BR>account sufficient&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+/lib64/security/pam_userdb.so&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+db=/etc/vsftpd/vsftpd_login<BR>&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+创建vsftpd映射本地用户:<BR>所有的FTP虚拟用户需要使用一个系统用户，这个系统用户不需要密码，也不需要登录。主要用来做虚拟用户映射使用。<BR>
+useradd&nbsp; –d /home/ftpuser –s /sbin/nologin ftpuser<BR>
+&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 修改完整版配置文件内容如下：<BR>anonymous_enable=NO<BR>
+local_enable=YES<BR>write_enable=YES<BR>local_umask=022<BR>
+dirmessage_enable=YES<BR>xferlog_enable=YES<BR>connect_from_port_20=YES<BR>
+xferlog_file=/var/log/vsftpd.log<BR>xferlog_std_format=YES<BR>
+ascii_upload_enable=YES<BR>ascii_download_enable=YES<BR>listen=YES<BR>&nbsp;<BR>
+guest_enable=YES<BR>guest_username=ftpuser<BR>pam_service_name=vsftpd<BR>
+user_config_dir=/etc/vsftpd/vsftpd_user_conf<BR>virtual_use_local_privs=YES<BR>
+&nbsp;<BR>&nbsp;&nbsp; 保存重启,/etc/init.d/vsftpd restart 
+即可使用虚拟用户登录，这时候所有的虚拟用户共同使用/home/ftpuser目录上传下载，如果想使用自己独立的目录，可以在/etc/vsftpd/vsftpd_user_conf目录创建各自的配置文件，如给wugk创建独立的配置文件：<BR>
+vi /etc/vsftpd/vsftpd_user_conf/wugk ，内容如下，建立自己的FTP目录。<BR>
+local_root=/home/ftpsite/wugk<BR>write_enable=YES<BR>
+anon_world_readable_only=YES<BR>anon_upload_enable=YES<BR>
+anon_mkdir_write_enable=YES<BR>anon_other_write_enable=YES<BR>
+&nbsp;重启，使用客户端登录FTP，测试即可。关于FTP讲解就到此，windows还可以使用Server-U来搭建FTP服务器端，有兴趣的童鞋可以研究一下。<BR>
+&Oslash;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FTP主被动模式<BR>
+FTP主动模式：客户端从一个任意的非特权端口N（N&gt;1024）连接到FTP服务器的port 
+21命令端口。然后客户端开始监听端口N+1，并发送FTP命令“port 
+N+1”到FTP服务器。接着服务器会从它自己的数据端口（20）连接到客户端指定的数据端口（N+1）。<BR>
+FTP被动模式：客户端从一个任意的非特权端口N（N&gt;1024）连接到FTP服务器的port 21命令端口。然后客户端开始监听端口N+1，同时客户端提交 
+PASV命令。服务器会开启一个任意的非特权端口（P &gt;1024），并发送PORT 
+P命令给客户端。然后客户端发起从本地端口N+1到服务器的端口P的连接用来传送数据。<BR>&nbsp;<BR>&nbsp;<BR>
+更多课程欢迎访问京峰Linux运维官网：http://www.jfedu.net<BR>
+Centos在线学习视频站：http://v.jfedu.net</SPAN><BR>
+<TABLE width="100%"></TABLE></DIV><!-- /content -->
+<DIV class="dede_pages">
+<UL class="pagelist"></UL></DIV><!-- /pages --><!-- //顶踩 -->
+<DIV id="newdigg" class="newdigg">
+<SCRIPT type="text/javascript">
+    /*640*60*/
+    var cpro_id = "u1490624";
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="Linux入门基础教程centos_files/c.js"></SCRIPT>
+	<!-- //顶踩部份的源码结束 -->
+<DIV class="boxoff"><STRONG>------分隔线----------------------------</STRONG></DIV>
+<DIV class="handle"></DIV>
+<DIV class="context">
+<UL>
+  <LI>上一篇：<A 
+  href="http://www.centoscn.com/CentOS/2015/0527/5544.html">CentOS开机启动脚本的顺序</A> 
+  </LI>
+  <LI>下一篇：<A 
+  href="http://www.centoscn.com/CentOS/2015/0531/5568.html">CentOS添加单个IP和批量添加IP的方法</A> 
+  </LI></UL></DIV><!-- /context -->
+<DIV class="actbox">
+<UL>
+  <LI id="act-fav"><A href="http://www.centoscn.com/plus/stow.php?aid=5555" 
+  target="_blank">收藏</A></LI>
+  <LI id="act-err"><A href="http://www.centoscn.com/plus/erraddsave.php?aid=5555&amp;title=Linux入门基础教程" 
+  target="_blank">举报</A></LI>
+  <LI id="act-pus"><A href="http://www.centoscn.com/plus/recommend.php?aid=5555" 
+  target="_blank">推荐</A></LI>
+  <LI id="act-pnt"><A onclick="window.print();" href="http://www.centoscn.com/CentOS/2015/0528/5555.html#">打印</A></LI></UL></DIV><!-- /actbox --></DIV><!-- /handle --></DIV><!-- /viewbox --><!-- //AJAX评论区 --><!-- //主模板必须要引入/include/dedeajax2.js -->
+<A name="postform"></A>
+<DIV class="mt1">
+<DL class="tbox">
+  <DT><STRONG>发表评论</STRONG><SPAN class="more"></SPAN></DT>
+  <DD>
+  <DIV class="dede_comment_post">
+  <FORM method="post" name="feedback" action="#"><INPUT name="dopost" value="send" 
+  type="hidden"><INPUT name="comtype" value="comments" type="hidden"><INPUT 
+  name="aid" value="5555" type="hidden"><INPUT id="feedbackfid" name="fid" 
+  value="0" type="hidden">
+  <DIV 
+  class="dcmp-title"><SMALL>为了和诣的生活，我关闭了评论页面，请大家到QQ群里交流吧：348944156,也欢迎关注本站微信公众号：centoscn 
+  </SMALL></DIV></FORM></DIV></DD></DL></DIV><!-- //评论表单区结束 --></DIV><!-- //左边内容结束 --><!-- //右边内容开始 -->
+<DIV class="pright">
+<DIV class="commend mt1">
+<DL class="tbox light">
+  <DT class="light"><STRONG>栏目分类</STRONG></DT>
+  <DD class="light">
+  <UL class="c1 ico2">
+    <UL>
+      <LI><A href="http://www.centoscn.com/CentOS/help/" 
+      target="_blank">基础命令<SPAN></SPAN></A></LI>
+      <LI><A href="http://www.centoscn.com/CentOS/config/" 
+      target="_blank">系统配置<SPAN></SPAN></A></LI>
+      <LI><A href="http://www.centoscn.com/CentOS/Intermediate/" 
+      target="_blank">中级进介<SPAN></SPAN></A></LI></UL></UL></DD></DL></DIV><!-- /commend -->
+<DIV class="commend mt1">
+<DL class="tbox light">
+  <DT class="light"><STRONG>本月热点</STRONG></DT>
+  <DD class="light">
+  <UL class="c1 ico2">
+    <LI><A 
+    href="http://www.centoscn.com/CentOS/help/2013/0725/558.html">Centos查看端口占用情况和开启端</A></LI>
+    <LI><A href="http://www.centoscn.com/CentOS/Intermediate/2015/0313/4879.html">CentOS7下Firewall防火墙配置用</A></LI>
+    <LI><A href="http://www.centoscn.com/CentOS/2014/0708/3268.html"> 
+    CentOS7.0下载各版本说明  新增</A></LI>
+    <LI><A href="http://www.centoscn.com/CentOS/help/2013/0725/597.html">Centos 
+    建立一个新用户 详细讲解</A></LI>
+    <LI><A 
+    href="http://www.centoscn.com/CentOS/2012/1226/96.html">CentOS下安装软件的常用方法</A></LI>
+    <LI><A 
+    href="http://www.centoscn.com/CentOS/config/2015/0416/5189.html">将Centos的yum源更换为国内的阿</A></LI>
+    <LI><A href="http://www.centoscn.com/CentOS/help/2013/0725/496.html">centos 
+    tar压缩与解压缩命令大全</A></LI>
+    <LI><A href="http://www.centoscn.com/CentOS/Intermediate/2013/0817/1334.html">Centos下MySQL使用总结</A></LI>
+    <LI><A 
+    href="http://www.centoscn.com/CentOS/2014/0606/3098.html">CentOS正确关机方法</A></LI>
+    <LI><A 
+    href="http://www.centoscn.com/CentOS/config/2013/1017/1878.html">CentOS服务器时间同步的2种方法</A></LI></UL></DD></DL></DIV><!-- /commend -->
+<DIV class="hot mt1">
+<DL class="tbox light">
+<SCRIPT type="text/javascript">
+var cpro_id="u2000262";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"245",rsi1:"300",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</SCRIPT>
+  
+<SCRIPT type="text/javascript" src="Linux入门基础教程centos_files/c.js"></SCRIPT>
+
+  <DT class="light"><STRONG>推荐内容</STRONG></DT>
+  <DD class="light">
+  <UL class="d4">
+    <LI><A href="http://www.centoscn.com/CentOS/Intermediate/2016/0504/7172.html">如何调整Linux系统为正确时区</A>
+    <P>...</P></LI>
+    <LI><A 
+    href="http://www.centoscn.com/CentOS/help/2016/0429/7147.html">CentOS7 
+    (精简操作指令)</A>
+    <P>...</P></LI>
+    <LI><A 
+    href="http://www.centoscn.com/CentOS/config/2016/0413/7044.html">如何配置Ubuntu 
+    16.04 GRUB 2引导加载程序</A>
+    <P>...</P></LI>
+    <LI><A href="http://www.centoscn.com/CentOS/Intermediate/2015/1221/6550.html">CentOS7.0重置Root的密码</A>
+    <P>...</P></LI>
+    <LI><A href="http://www.centoscn.com/CentOS/Intermediate/2015/1106/6395.html">CentOS 
+    6.5 LVM磁盘管理学习</A>
+    <P>...</P></LI></UL></DD></DL></DIV></DIV></DIV><!-- //二级子类下拉菜单，考虑SEO原因放置于底部  --><!-- //底部模板 -->
+<DIV class="footer w960 center mt1 clear"><A href="http://www.centoscn.com/CentOS/2015/0528/about.html" 
+target="_blank">关于我们</A> -<A href="http://www.centoscn.com/CentOS/2015/0528/about.html" 
+target="_blank">联系我们</A> -<A href="http://www.centoscn.com/CentOS/2015/0528/about.html" 
+target="_blank">广告服务</A> -
+<SCRIPT type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F65a70808534a9fe419a0a120e9bef073' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+<A href="http://www.centoscn.com/CentOS/2015/0528/about.html" 
+target="_blank">免责申明</A> -<A href="http://www.centoscn.com/CentOS/2015/0528/about.html" 
+target="_blank">版权申明</A> -<A href="http://www.centoscn.com/CentOS/2015/0528/about.html" 
+target="_blank">TAG标签</A> -<A href="http://www.centoscn.com/CentOS/2015/0528/about.html" 
+target="_blank">网站地图</A> -<A href="http://www.centoscn.com/CentOS/2015/0528/5555.html#top">返回顶部</A> 
+
+<P></P><!-- /powered -->
+<P class="copyright">Copyright 2012-2013(CentOS中文网) CentOScn.Com <A href="http://www.miibeian.gov.cn/" 
+target="_blank">粤ICP备16045568号-1</A> Powered by DedeCMS 1.0   </P>
+<SCRIPT type="text/javascript">
+/*120*270*/
+var cpro_id = "u1486028";
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="Linux入门基础教程centos_files/f.js"></SCRIPT>
+</DIV><!-- /footer --></BODY></HTML>

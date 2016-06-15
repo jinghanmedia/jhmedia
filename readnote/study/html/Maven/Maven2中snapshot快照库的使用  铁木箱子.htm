@@ -1,0 +1,538 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0036)http://www.mzone.cc/article/654.html -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD profile="http://gmpg.org/xfn/11">
+<TITLE>Maven2中snapshot快照库的使用 | 铁木箱子</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<META name="GENERATOR" content="MSHTML 9.00.8112.16684"><!-- leave this for stats please -->
+<LINK rel="stylesheet" type="text/css" href="Maven2中snapshot快照库的使用%20%20铁木箱子_files/style.css">
+<LINK title="RSS 2.0" rel="alternate" type="application/rss+xml" href="http://www.mzone.cc/feed">
+<LINK title="RSS .92" rel="alternate" type="text/xml" href="http://www.mzone.cc/feed/rss">
+<LINK title="Atom 0.3" rel="alternate" type="application/atom+xml" href="http://www.mzone.cc/feed/atom">
+<LINK rel="pingback" href="http://www.mzone.cc/xmlrpc.php"><LINK title="2014年02月" 
+rel="archives" href="http://www.mzone.cc/article/date/2014/02"><LINK title="2013年07月" 
+rel="archives" href="http://www.mzone.cc/article/date/2013/07"><LINK title="2012年11月" 
+rel="archives" href="http://www.mzone.cc/article/date/2012/11"><LINK title="2012年09月" 
+rel="archives" href="http://www.mzone.cc/article/date/2012/09"><LINK title="2012年07月" 
+rel="archives" href="http://www.mzone.cc/article/date/2012/07"><LINK title="2012年06月" 
+rel="archives" href="http://www.mzone.cc/article/date/2012/06"><LINK title="2011年11月" 
+rel="archives" href="http://www.mzone.cc/article/date/2011/11"><LINK title="2011年10月" 
+rel="archives" href="http://www.mzone.cc/article/date/2011/10"><LINK title="2011年09月" 
+rel="archives" href="http://www.mzone.cc/article/date/2011/09"><LINK title="2011年08月" 
+rel="archives" href="http://www.mzone.cc/article/date/2011/08"><LINK title="2011年07月" 
+rel="archives" href="http://www.mzone.cc/article/date/2011/07"><LINK title="2011年06月" 
+rel="archives" href="http://www.mzone.cc/article/date/2011/06"><LINK title="2011年05月" 
+rel="archives" href="http://www.mzone.cc/article/date/2011/05"><LINK title="2011年04月" 
+rel="archives" href="http://www.mzone.cc/article/date/2011/04"><LINK title="2011年03月" 
+rel="archives" href="http://www.mzone.cc/article/date/2011/03"><LINK title="2011年01月" 
+rel="archives" href="http://www.mzone.cc/article/date/2011/01"><LINK title="2010年12月" 
+rel="archives" href="http://www.mzone.cc/article/date/2010/12"><LINK title="2010年11月" 
+rel="archives" href="http://www.mzone.cc/article/date/2010/11"><LINK title="2010年10月" 
+rel="archives" href="http://www.mzone.cc/article/date/2010/10"><LINK title="2010年09月" 
+rel="archives" href="http://www.mzone.cc/article/date/2010/09"><LINK title="2010年08月" 
+rel="archives" href="http://www.mzone.cc/article/date/2010/08"><LINK title="2010年07月" 
+rel="archives" href="http://www.mzone.cc/article/date/2010/07"><LINK title="2010年05月" 
+rel="archives" href="http://www.mzone.cc/article/date/2010/05"><LINK title="2009年11月" 
+rel="archives" href="http://www.mzone.cc/article/date/2009/11"><LINK title="2009年09月" 
+rel="archives" href="http://www.mzone.cc/article/date/2009/09"><LINK title="2009年07月" 
+rel="archives" href="http://www.mzone.cc/article/date/2009/07"><LINK title="2009年06月" 
+rel="archives" href="http://www.mzone.cc/article/date/2009/06"><LINK title="2009年05月" 
+rel="archives" href="http://www.mzone.cc/article/date/2009/05"><LINK title="2009年04月" 
+rel="archives" href="http://www.mzone.cc/article/date/2009/04"><LINK title="2009年03月" 
+rel="archives" href="http://www.mzone.cc/article/date/2009/03"><LINK title="2009年01月" 
+rel="archives" href="http://www.mzone.cc/article/date/2009/01"><LINK title="2008年12月" 
+rel="archives" href="http://www.mzone.cc/article/date/2008/12"><LINK title="2008年09月" 
+rel="archives" href="http://www.mzone.cc/article/date/2008/09"><LINK title="2008年08月" 
+rel="archives" href="http://www.mzone.cc/article/date/2008/08"><LINK title="2008年07月" 
+rel="archives" href="http://www.mzone.cc/article/date/2008/07"><LINK title="2008年05月" 
+rel="archives" href="http://www.mzone.cc/article/date/2008/05"><LINK title="2008年04月" 
+rel="archives" href="http://www.mzone.cc/article/date/2008/04"><LINK title="2008年03月" 
+rel="archives" href="http://www.mzone.cc/article/date/2008/03"><LINK title="2008年02月" 
+rel="archives" href="http://www.mzone.cc/article/date/2008/02"><LINK title="2008年01月" 
+rel="archives" href="http://www.mzone.cc/article/date/2008/01"><LINK title="2007年11月" 
+rel="archives" href="http://www.mzone.cc/article/date/2007/11"><LINK title="铁木箱子 » Maven2中snapshot快照库的使用 评论订阅" 
+rel="alternate" type="application/rss+xml" href="http://www.mzone.cc/article/654.html/feed">
+<LINK id="wp-pagenavi-css" rel="stylesheet" type="text/css" href="Maven2中snapshot快照库的使用%20%20铁木箱子_files/pagenavi-css.css" 
+media="all"><LINK title="RSD" rel="EditURI" type="application/rsd+xml" href="http://www.mzone.cc/xmlrpc.php?rsd">
+<LINK rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.mzone.cc/wp-includes/wlwmanifest.xml"><LINK 
+title="铁木箱子" rel="index" href="http://www.mzone.cc"><LINK title="Maven2插件编写中文文档导致的运行错误" 
+rel="start" href="http://www.mzone.cc/article/5.html"><LINK title="navicat8的注册码" 
+rel="prev" href="http://www.mzone.cc/article/651.html"><LINK title="WAC启动Android模拟器时出现“transfer error: Read-only file system”问题的解决" 
+rel="next" href="http://www.mzone.cc/article/657.html">
+<META name="generator" content="WordPress 3.0"><LINK rel="canonical" href="http://www.mzone.cc/article/654.html">
+<LINK rel="shortlink" href="http://www.mzone.cc/?p=654"><!-- platinum seo pack 1.3.3 -->
+<META name="robots" content="index,follow,noodp,noydir">
+<META name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
+<META name="keywords" content="maven,release,snapshot,快照库,Java,技术杂谈"><LINK rel="canonical" 
+href="http://www.mzone.cc/article/654.html"><!-- /platinum one seo pack --><!-- Start Of Script Generated By WP-PostViews 1.50 -->
+<SCRIPT type="text/javascript" src="Maven2中snapshot快照库的使用%20%20铁木箱子_files/jquery.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+/* <![CDATA[ */
+jQuery.ajax({type:'GET',url:'http://www.mzone.cc/wp-content/plugins/wp-postviews/wp-postviews.php',data:'postviews_id=654',cache:false});/* ]]> */
+</SCRIPT>
+<!-- End Of Script Generated By WP-PostViews 1.50 --><LINK rel="stylesheet" 
+type="text/css" href="Maven2中snapshot快照库的使用%20%20铁木箱子_files/wp-recentcomments.css" 
+media="screen">
+<SCRIPT type="text/javascript" src="Maven2中snapshot快照库的使用%20%20铁木箱子_files/wp-recentcomments.js"></SCRIPT>
+<LINK rel="stylesheet" type="text/css" href="Maven2中snapshot快照库的使用%20%20铁木箱子_files/wp-syntax.css" 
+media="screen"><!-- wp thread comment 1.4.9.4.002 -->
+<STYLE type="text/css" media="screen">
+.editComment, .editableComment, .textComment{
+	display: inline;
+}
+.comment-childs{
+	border: 1px solid #999;
+	margin: 5px 2px 2px 4px;
+	padding: 4px 2px 2px 4px;
+	background-color: white;
+}
+.chalt{
+	background-color: #E2E2E2;
+}
+#newcomment{
+	border:1px dashed #777;width:90%;
+}
+#newcommentsubmit{
+	color:red;
+}
+.adminreplycomment{
+	border:1px dashed #777;
+	width:99%;
+	margin:4px;
+	padding:4px;
+}
+.mvccls{
+	color: #999;
+}
+			
+</STYLE>
+
+<SCRIPT type="text/javascript" src="Maven2中snapshot快照库的使用%20%20铁木箱子_files/time.js"></SCRIPT>
+
+<STYLE>body{font-size:13px;}</STYLE>
+</HEAD>
+<BODY onload="show_time()"><!--header start -->
+<DIV id="header">
+<DIV class="inner"><INPUT id="time">
+<DIV class="fixed"></DIV>
+<H1><A href="http://www.mzone.cc/">铁木箱子的mzone</A></H1>
+<H2>记录铁木箱子工作与生活历程！</H2><!--for seo--><!-- 页面列表 -->
+<UL>
+  <LI class="page_item"><A title="关于" 
+  href="http://www.mzone.cc/about">关于</A></LI></UL></DIV></DIV>
+<DIV class="menu_bar">
+<DIV class="menu_home"><A href="http://www.mzone.cc/"></A></DIV>
+<UL class="menu_category">
+  <LI class="cat-item cat-item-3"><A title="查看Java下的所有日志" href="http://www.mzone.cc/article/category/java">Java</A>
+  </LI>
+  <LI class="cat-item cat-item-4"><A title="查看P&amp;P下的所有日志" href="http://www.mzone.cc/article/category/pythonphp">P&amp;P</A>
+  </LI>
+  <LI class="cat-item cat-item-5"><A title="查看Web技术下的所有日志" href="http://www.mzone.cc/article/category/web">Web技术</A>
+  </LI>
+  <LI class="cat-item cat-item-6"><A title="查看手机开发下的所有日志" href="http://www.mzone.cc/article/category/mobile">手机开发</A>
+  </LI>
+  <LI class="cat-item cat-item-7"><A title="查看Linux/服务器下的所有日志" href="http://www.mzone.cc/article/category/linux">Linux/服务器</A>
+  </LI>
+  <LI class="cat-item cat-item-8"><A title="查看技术杂谈下的所有日志" href="http://www.mzone.cc/article/category/technology">技术杂谈</A>
+  </LI>
+  <LI class="cat-item cat-item-9"><A title="查看生活点滴下的所有日志" href="http://www.mzone.cc/article/category/life">生活点滴</A>
+  </LI>
+  <LI class="cat-item cat-item-10"><A title="查看大千世界下的所有日志" href="http://www.mzone.cc/article/category/world">大千世界</A>
+  </LI></UL></DIV><!--header end -->
+<DIV id="container"><!-- google top ad -->
+<DIV style="text-align: center; margin-bottom: 20px;" class="inner"></DIV><!--container start -->
+<DIV class="inner"><!--inner start -->
+<DIV id="content"><!--content start --><!--postpath end-->
+<DIV id="post-654" class="post">
+<DIV class="entry">
+<H2 style="font-size: 18px;"><A title="Maven2中snapshot快照库的使用" href="http://www.mzone.cc/article/654.html">Maven2中snapshot快照库的使用		 
+   </A></H2>
+<DIV class="postmetadata">
+<DIV class="left">Post by 铁木箱子 in <A title="查看 Java 中所有日志" href="http://www.mzone.cc/article/category/java" 
+rel="category tag">Java</A>, <A title="查看 技术杂谈 中所有日志" href="http://www.mzone.cc/article/category/technology" 
+rel="category tag">技术杂谈</A>on 2011-10-28 12:12.                    </DIV>
+<DIV class="right"><SPAN class="addcomment"><A href="http://www.mzone.cc/article/654.html#respond">点评一下</A></SPAN><SPAN 
+class="comments"><A href="http://www.mzone.cc/article/654.html#comments">        
+                            评论 (0)                                
+</A></SPAN><SPAN class="views">阅读 (7,188)                             
+</SPAN></DIV></DIV><!-- 版权申明 -->
+<DIV class="article_copyright"><SPAN>[转载声明]</SPAN> 
+转载时必须标注：本文来源于铁木箱子的博客http://www.mzone.cc<BR><SPAN>[本文地址]</SPAN> 本文永久地址是：<A href="http://www.mzone.cc/article/654.html">http://www.mzone.cc/article/654.html</A></DIV><!-- 日志内容 -->
+<DIV class="content_show">
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+之前有过几篇文章介绍了mavven中release和snapshot库的作用，如下（不太了解的可以参考看一下）：</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1、<A href="http://www.mzone.cc/article/279.html" 
+target="_blank">maven2中snapshot快照库和release发布库的应用</A></P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2、<A href="http://www.mzone.cc/article/277.html" 
+rel="prev" target="_blank">maven中snapshot快照库和release发布库的区别和作用</A></P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+另外，今天在使用snapshot快照库时遇到一个问题，我一个构件的发布配置如下（在构件的pom文件中）：</P>
+<DIV class="wp_syntax">
+<DIV class="code"><PRE style="font-family: monospace;" class="xml"><OL><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;modelVersion<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>4.0.0<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/modelVersion<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;groupId<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>cc.mzone<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/groupId<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;artifactId<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>workflow<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/artifactId<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;version<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>0.1-SNAPSHOT<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/version<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;packaging<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>jar<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/packaging<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;distributionManagement<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;repository<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: bold; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;id<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>kt<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/id<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;url<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>http://192.168.1.112/nexus/content/repositories/kt<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/url<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/repository<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;snapshotRepository<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;id<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>kt-snapshot<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/id<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;url<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>http://192.168.1.112/nexus/content/repositories/kt-snapshot<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/url<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;uniqueVersion<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>true<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/uniqueVersion<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/snapshotRepository<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: bold; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/distributionManagement<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI></OL></PRE></DIV></DIV>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+这个是构件的发布配置，其中snapshot快照库中使用了uniqueVersion为true，这个表明每次发布都会在服务器上留下一个新版本（加上时间后缀的版本）。这个true和false不影响快照库，只是是否节省服务器空间的问题。在通过mvn 
+deploy发布到服务器后，在依赖该构件的项目的pom文件中写上依赖：</P>
+<DIV class="wp_syntax">
+<DIV class="code"><PRE style="font-family: monospace;" class="xml"><OL><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;dependency<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;groupId<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>cc.mzone<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/groupId<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;artifactId<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>workflow<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/artifactId<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;version<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>0.1-SNAPSHOT<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/version<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/dependency<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI></OL></PRE></DIV></DIV>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 然后在该项目中执行：mvn 
+eclipse:eclipse进行其依赖构件的下载，结果却发现提示如下：</P>
+<DIV class="wp_syntax">
+<DIV class="code"><PRE style="font-family: monospace;" class="bash"><OL><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(122, 8, 116); font-weight: bold;">[</SPAN>WARNING<SPAN style="color: rgb(122, 8, 116); font-weight: bold;">]</SPAN> An error occurred during dependency resolution.</DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    Failed to retrieve cc.mzone:workflow-<SPAN style="color: rgb(0, 0, 0);">0.1</SPAN>-SNAPSHOT</DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">Caused by: Unable to download the artifact from any repository</DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">&nbsp;</DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">Try downloading the <SPAN style="color: rgb(194, 12, 185); font-weight: bold;">file</SPAN> manually from the project website.</DIV></LI></OL></PRE></DIV></DIV>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 刚开始不太清楚原因，经过查证比对，发现是因为<STRONG><SPAN style="color: rgb(255, 0, 0);">项目没有开启snapshot快照库的缘故</SPAN></STRONG>！知道了原因，解决就好办了，有两种方法可以解决：</P>
+<P><STRONG>1、第一种方法是在项目的pom文件中进行配置，如下</STRONG>：</P>
+<DIV class="wp_syntax">
+<DIV class="code"><PRE style="font-family: monospace;" class="xml"><OL><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;repositories<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;repository<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;id<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>cc-mzone-nexus<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/id<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;name<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>MZONE<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/name<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;url<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>http://192.168.1.112/nexus/content/groups/public/<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/url<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;snapshots<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">            <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;enabled<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>true<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/enabled<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: bold; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">  	    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;updatePolicy<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>interval:5<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/updatePolicy<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/snapshots<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/repository<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/repositories<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI></OL></PRE></DIV></DIV>
+<P><STRONG>2、第二种方法是在maven的配置文件（conf/settings.xml）中进行配置，如下</STRONG>：</P>
+<DIV class="wp_syntax">
+<DIV class="code"><PRE style="font-family: monospace;" class="xml"><OL><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;profiles<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;profile<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;id<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>cc-mzone-profile<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/id<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;repositories<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">            <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;repository<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">                <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;id<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>cc-mzone-nexus<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/id<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">                <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;name<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>MZONE<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/name<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: bold; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">                <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;url<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>http://192.168.1.112/nexus/content/groups/public/<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/url<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">                <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;releases<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">                    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;enabled<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>true<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/enabled<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">                <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/releases<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">                <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;snapshots<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">                    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;enabled<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>true<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/enabled<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">                    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;updatePolicy<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>interval:10<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/updatePolicy<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">                <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/snapshots<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: bold; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">            <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/repository<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">        <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/repositories<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/profile<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/profiles<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;activeProfiles<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;">    <SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;activeProfile<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN>cc-mzone-profile<SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/activeProfile<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI><LI style="font-weight: normal; vertical-align: top;"><DIV style="font: 1em/1.2em monospace; margin: 0px; padding: 0px; vertical-align: top; font-size-adjust: none; font-stretch: normal;"><SPAN style="color: rgb(0, 153, 0);"><SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&lt;/activeProfiles<SPAN style="color: rgb(0, 0, 0); font-weight: bold;">&gt;</SPAN></SPAN></SPAN></DIV></LI></OL></PRE></DIV></DIV>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+以上两种方式都是打开snapshot快照库，允许快照库生效（重要就是snapshot中enabled要设置为true），第一种是项目级别的，第二种是全局的。出现的问题当然主要还是默认snapshot快照库是没有生效导致的，如此配置即可解决问题！</P></DIV><!-- 分享 --><!--nextpage分页代码-->
+<DIV class="postmetadata"><SPAN class="categories"><A title="查看 Java 中所有日志" 
+href="http://www.mzone.cc/article/category/java" rel="category tag">Java</A>, <A 
+title="查看 技术杂谈 中所有日志" href="http://www.mzone.cc/article/category/technology" 
+rel="category tag">技术杂谈</A></SPAN><SPAN class="tags"><A href="http://www.mzone.cc/?tag=maven" 
+rel="tag">maven</A>,  <A href="http://www.mzone.cc/?tag=release" 
+rel="tag">release</A>,  <A href="http://www.mzone.cc/?tag=snapshot" 
+rel="tag">snapshot</A>,  <A href="http://www.mzone.cc/?tag=%e5%bf%ab%e7%85%a7%e5%ba%93" 
+rel="tag">快照库</A></SPAN></DIV></DIV>
+<DIV style="width: 100%; margin-bottom: 15px;">
+<TABLE width="100%">
+  <TBODY>
+  <TR>
+    <TD width="100%" align="left">上一篇：<A href="http://www.mzone.cc/article/651.html" 
+      rel="prev">navicat8的注册码</A></TD></TR>
+  <TR>
+    <TD width="100%" align="left">                           下一篇：<A href="http://www.mzone.cc/article/657.html" 
+      rel="next">WAC启动Android模拟器时出现“transfer error: Read-only file 
+      system”问题的解决</A></TD></TR></TBODY></TABLE></DIV><!--post relate start-->
+<DIV class="post-relate">
+<DIV style="width: 50%;" class="left">
+<DIV style="font-weight: bold;">我猜你也在找这些</DIV>
+<UL>
+  <LI><A title="maven中snapshot快照库和release发布库的区别和作用" href="http://www.mzone.cc/article/277.html">maven中snapshot快照库和release发布库的区别和作用</A></LI>
+  <LI><A title="maven2中snapshot快照库和release发布库的应用" href="http://www.mzone.cc/article/279.html">maven2中snapshot快照库和release发布库的应用</A></LI>
+  <LI><A title="基于maven2打包不同jdk版本的包" 
+  href="http://www.mzone.cc/article/626.html">基于maven2打包不同jdk版本的包</A></LI>
+  <LI><A title="Maven2编译时“是 Sun 的专用 API，可能会在未来版本中删除”错误解决" href="http://www.mzone.cc/article/442.html">Maven2编译时“是 
+  Sun 的专用 API，可能会在未来版本中删除”错误解决</A></LI>
+  <LI><A title="struts2-coc-plugin演示示例" href="http://www.mzone.cc/article/395.html">struts2-coc-plugin演示示例</A></LI>
+  <LI><A title="在maven中使用ant" 
+  href="http://www.mzone.cc/article/298.html">在maven中使用ant</A></LI></UL></DIV>
+<DIV style="width: 50%;" class="right">
+<DIV style="font-weight: bold;">顺便看看推荐文章</DIV>
+<UL>
+  <LI><A title="java.net.UnknownHostException异常" href="http://www.mzone.cc/article/449.html">java.net.UnknownHostException异常</A>
+  </LI>
+  <LI><A title="收到SAE的邀请码了" 
+  href="http://www.mzone.cc/article/609.html">收到SAE的邀请码了</A></LI>
+  <LI><A title="maven2中profile的介绍与使用" href="http://www.mzone.cc/article/282.html">maven2中profile的介绍与使用</A>
+  </LI>
+  <LI><A title="实用的JS工具类（一）——表单AJAX提交" href="http://www.mzone.cc/article/224.html">实用的JS工具类（一）——表单AJAX提交</A>
+  </LI>
+  <LI><A title="真的，别想钱想疯了" 
+  href="http://www.mzone.cc/article/256.html">真的，别想钱想疯了</A></LI>
+  <LI><A title="在RCP中应用OSGI DS" 
+  href="http://www.mzone.cc/article/68.html">在RCP中应用OSGI DS</A></LI></UL></DIV>
+<DIV class="fixed"></DIV></DIV><!--post relate end--><!--comment start-->
+<DIV id="comments">
+<OL class="commentlist">
+  <LI>No Comments Yet</LI></OL></DIV>
+<DIV id="respond">
+<FORM id="commentform" onsubmit="return checkCommentSubmit(this);" method="post" 
+action="http://www.mzone.cc/wp-comments-post.php">
+<P><INPUT id="author" tabIndex="1" name="author" size="22" type="text"><LABEL 
+for="author">你的名称(<FONT color="red">必须</FONT>)			</LABEL></P>
+<P><INPUT id="email" tabIndex="2" name="email" size="22" type="text"><LABEL for="email">你的Email 
+(向God起誓：保证不会被泄露^_^)(<FONT color="red">必须</FONT>)                        
+</LABEL></P>
+<P><INPUT id="url" tabIndex="3" name="url" size="22" type="text"><LABEL for="url">你的网站</LABEL></P>
+<P><TEXTAREA id="comment" tabIndex="4" cols="100" rows="10" name="comment"></TEXTAREA></P>
+<P><A href="http://www.mzone.cc/gravatar" target="_blank">不知道如何设置自己的评论头像？        
+            </A><INPUT id="submit" tabIndex="5" name="submit" value="Submit Comment" type="submit"><INPUT 
+name="comment_post_ID" value="654" type="hidden"></P>
+<DIV style="display: block;" id="secureimgdiv">
+<P><LABEL for="securitycode">Anti-spam word: (Required)</LABEL><SPAN style="color: rgb(255, 0, 0);">*</SPAN><BR><SMALL>To 
+prove you're a person (not a spam script), type the security word shown in the 
+picture. Click on the picture to hear an audio file of the 
+word.</SMALL><BR><INPUT id="cas_fieldname" name="4daa046a32b957cb8de6fcdfc93d4e21" 
+size="30" type="text"><INPUT id="cas_match" name="matchthis" value="765884" 
+type="hidden"><A id="cas_link" title="Click to hear an audio file of the anti-spam word" 
+href="http://www.mzone.cc/wp-content/plugins/peters-custom-anti-spam-image/custom_anti_spam.php?audioselect=765884" 
+rel="nofollow"><IMG style="border: 1px solid black; width: 160px; height: 50px; vertical-align: top;" 
+id="cas_image" alt="Anti-spam image" src="Maven2中snapshot快照库的使用%20%20铁木箱子_files/custom_anti_spam.gif"></A></P></DIV>
+<SCRIPT language="JavaScript" type="text/javascript">
+                <!--
+                    var commentinput = document.getElementById("comment").parentNode;
+                    var submitp = commentinput.parentNode;
+                    var substitution2 = document.getElementById("secureimgdiv");
+                    submitp.insertBefore(substitution2, commentinput);
+                // -->
+                </SCRIPT>
+
+<P><INPUT id="comment_reply_ID" name="comment_reply_ID" value="0" 
+type="hidden"><INPUT id="comment_reply_dp" name="comment_reply_dp" value="0" 
+type="hidden"></P>
+<DIV style="display: none;" id="cancel_reply"><A style="color: red;" onclick="movecfm(null,0,1,null);" 
+href="javascript:void(0)">点击取消回复</A></DIV>
+<SCRIPT type="text/javascript">
+/* <![CDATA[ */
+var commentformid = "commentform";
+var USERINFO = false;
+var atreply = "none";
+/* ]]> */
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="Maven2中snapshot快照库的使用%20%20铁木箱子_files/wp-thread-comment.js.htm"></SCRIPT>
+</FORM></DIV>
+<SCRIPT>
+var email_p = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+function checkCommentSubmit(form) {
+    if (form.author.value == "") {
+        alert("请留下你的名称！");
+        form.author.focus();
+        return false;
+    }
+    if (!email_p.test(form.email.value)) {
+        alert("请留下你正确的Email地址！");
+        form.email.focus();
+        return false;
+    }
+    if (form.comment.value == "") {
+        alert("评论的内容不能够为空哦");
+        form.comment.focus();
+        return false;
+    }
+    return true;
+}
+</SCRIPT>
+<!--comment end--></DIV></DIV><!--content end --><!--sidebar start-->
+<DIV id="sidebar"><!-- sidebar north START -->
+<DIV id="northsidebar"><!-- RSS 订阅 -->
+<DIV class="rss_zone"><A title="订阅到Google" href="http://fusion.google.com/add?source=atgs&amp;feedurl=http%3A//www.mzone.cc/feed" 
+target="_blank"><IMG border="0" alt="订阅到Google" src="Maven2中snapshot快照库的使用%20%20铁木箱子_files/rss_google.png"></A><A 
+title="订阅到鲜果" href="http://xianguo.com/subscribe?url=http%3A%2F%2Fwww.mzone.cc%2Ffeed" 
+target="_blank"><IMG border="0" alt="订阅到鲜果" src="Maven2中snapshot快照库的使用%20%20铁木箱子_files/rss_xianguo.png"></A><BR><A 
+title="订阅到QQ" href="http://mail.qq.com/cgi-bin/feed?u=http://www.mzone.cc/feed" 
+target="_blank"><IMG border="0" alt="订阅到QQ邮箱" src="Maven2中snapshot快照库的使用%20%20铁木箱子_files/rss_qqmail.png"></A><A 
+title="订阅到有道" href="http://reader.youdao.com/b.do?keyfrom=bookmarklet&amp;url=http%3A%2F%2Fwww.mzone.cc%2Ffeed" 
+target="_blank"><IMG border="0" alt="订阅到有道" src="Maven2中snapshot快照库的使用%20%20铁木箱子_files/rss_youdao.png"></A></DIV><!-- search -->
+<DIV><!-- google search --><!--
+                <form action="http://www.google.com/cse" id="cse-search-box">
+                    <div>
+                        <input type="hidden" name="cx" value="005080137773669329907:3dxy3x-ilp4" />
+                        <input type="hidden" name="ie" value="UTF-8" />
+                        <input type="text" name="q" size="26" />
+                        <input type="submit" name="sa" value="搜索" />
+                    </div>
+                </form>
+                <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=zh-Hans"></script>
+                --><!-- blog search -->
+<FORM method="get" action="http://www.mzone.cc">
+<DIV class="content"><INPUT onblur="if (this.value == '') {this.value = 'Search Text';}" 
+class="textfield" onfocus="if (this.value == 'Search Text') {this.value = '';}" 
+name="s" value="Search Text" size="26" type="text"><INPUT value="搜索" type="submit"></DIV></FORM></DIV></DIV><!-- sidebar north END --><!--centersidebar start-->
+<DIV id="centersidebar"><!-- sidebar east START -->
+<DIV id="eastsidebar" class="right">
+<DIV class="widget">
+<H3>我的开源项目</H3>
+<UL>
+  <LI class="page_item page-item-521"><A title="android-docs-cn" href="http://www.mzone.cc/android-docs-cn">android-docs-cn</A></LI>
+  <LI class="page_item page-item-482"><A title="mupload" href="http://www.mzone.cc/mupload">mupload</A></LI>
+  <LI class="page_item page-item-380"><A title="struts2-coc-plugin" href="http://www.mzone.cc/struts2-coc-plugin">struts2-coc-plugin</A></LI></UL></DIV></DIV><!-- sidebar east END --><!-- sidebar west START -->
+<DIV id="westsidebar" class="left"><!-- categories -->
+<DIV class="widget widget_categories">
+<H3>分类导航</H3>
+<UL>
+  <LI class="cat-item cat-item-3"><A title="查看Java下的所有日志" href="http://www.mzone.cc/article/category/java">Java</A>
+  </LI>
+  <LI class="cat-item cat-item-4"><A title="查看P&amp;P下的所有日志" href="http://www.mzone.cc/article/category/pythonphp">P&amp;P</A>
+  </LI>
+  <LI class="cat-item cat-item-5"><A title="查看Web技术下的所有日志" href="http://www.mzone.cc/article/category/web">Web技术</A>
+  </LI>
+  <LI class="cat-item cat-item-6"><A title="查看手机开发下的所有日志" href="http://www.mzone.cc/article/category/mobile">手机开发</A>
+  </LI>
+  <LI class="cat-item cat-item-7"><A title="查看Linux/服务器下的所有日志" href="http://www.mzone.cc/article/category/linux">Linux/服务器</A>
+  </LI>
+  <LI class="cat-item cat-item-8"><A title="查看技术杂谈下的所有日志" href="http://www.mzone.cc/article/category/technology">技术杂谈</A>
+  </LI>
+  <LI class="cat-item cat-item-9"><A title="查看生活点滴下的所有日志" href="http://www.mzone.cc/article/category/life">生活点滴</A>
+  </LI>
+  <LI class="cat-item cat-item-10"><A title="查看大千世界下的所有日志" href="http://www.mzone.cc/article/category/world">大千世界</A>
+  </LI></UL></DIV></DIV><!-- sidebar west END -->
+<DIV class="fixed"></DIV></DIV><!--centersidebar start--><!-- sidebar south START -->
+<DIV id="southsidebar"><!-- 最新文章或随机文章 -->
+<DIV class="widget">
+<H3>最新发布</H3>
+<UL>
+  <LI><A title="终于搞定ICP备案" 
+  href="http://www.mzone.cc/article/695.html">终于搞定ICP备案</A></LI>
+  <LI><A title="发布一款模拟盖章效果的jquery插件" 
+  href="http://www.mzone.cc/article/685.html">发布一款模拟盖章效果的jquery插件</A></LI>
+  <LI><A title="关于Eclipse新版本中中文字体难看的解决办法" href="http://www.mzone.cc/article/680.html">关于Eclipse新版本中中文字体难看的解决办法</A>
+  </LI>
+  <LI><A title="Windows7中右键菜单加入“进入DOS”功能" href="http://www.mzone.cc/article/676.html">Windows7中右键菜单加入“进入DOS”功能</A>
+  </LI>
+  <LI><A title="MySQL中使用load data命令进行数据导入" href="http://www.mzone.cc/article/672.html">MySQL中使用load 
+  data命令进行数据导入</A></LI>
+  <LI><A title="Drools规则引擎初体验" 
+  href="http://www.mzone.cc/article/669.html">Drools规则引擎初体验</A></LI>
+  <LI><A title="CentOS-6.2系统安装和基本软件环境配置" href="http://www.mzone.cc/article/663.html">CentOS-6.2系统安装和基本软件环境配置</A>
+  </LI>
+  <LI><A title="WAC启动Android模拟器时出现“transfer error: Read-only file system”问题的解决" 
+  href="http://www.mzone.cc/article/657.html">WAC启动Android模拟器时出现“transfer error: 
+  Read-only file system”问题的解决</A></LI>
+  <LI><A title="Maven2中snapshot快照库的使用" href="http://www.mzone.cc/article/654.html">Maven2中snapshot快照库的使用</A>
+  </LI>
+  <LI><A title="navicat8的注册码" 
+  href="http://www.mzone.cc/article/651.html">navicat8的注册码</A></LI></UL></DIV><!-- 最新评论 -->
+<DIV class="widget">
+<H3>最新评论</H3>
+<UL>
+  <LI id="rc_item_1" class="rc_item">
+  <DIV class="rc_avatar rc_left"><IMG class="avatar avatar-28 photo" alt="" src="" 
+  width="28" height="28"></DIV>
+  <DIV class="rc_info"><SPAN class="author_name"><A href="http://www.mzone.cc/article/321.html#comment-1916" 
+  rel="nofollow">一个求提高的人</A></SPAN></DIV>
+  <DIV class="rc_excerpt">你好，大侠，我一直对jav... <SPAN class="rc_expand"><A onclick="RCJS.detail(1916,'http://www.mzone.cc','limit--6|length--13|post--false|smilies--true|avatar_size--28',0,'正在加载');" 
+  href="javascript:void(0);" rel="nofollow">»</A></SPAN></DIV></LI>
+  <LI id="rc_item_2" class="rc_item">
+  <DIV class="rc_avatar rc_left"><IMG class="avatar avatar-28 photo" alt="" src="" 
+  width="28" height="28"></DIV>
+  <DIV class="rc_info"><SPAN class="author_name"><A href="http://www.mzone.cc/article/559.html#comment-1915" 
+  rel="nofollow">sad</A></SPAN></DIV>
+  <DIV class="rc_excerpt">你好，上传不成功呀 <SPAN class="rc_expand"><A onclick="RCJS.detail(1915,'http://www.mzone.cc','limit--6|length--13|post--false|smilies--true|avatar_size--28',0,'正在加载');" 
+  href="javascript:void(0);" rel="nofollow">»</A></SPAN></DIV></LI>
+  <LI id="rc_item_3" class="rc_item">
+  <DIV class="rc_avatar rc_left"><IMG class="avatar avatar-28 photo" alt="" src="" 
+  width="28" height="28"></DIV>
+  <DIV class="rc_info"><SPAN class="author_name"><A href="http://www.mzone.cc/article/288.html#comment-1908" 
+  rel="nofollow">呵呵呵</A></SPAN></DIV>
+  <DIV class="rc_excerpt">楼主的这篇文章很好。不过我... <SPAN class="rc_expand"><A onclick="RCJS.detail(1908,'http://www.mzone.cc','limit--6|length--13|post--false|smilies--true|avatar_size--28',0,'正在加载');" 
+  href="javascript:void(0);" rel="nofollow">»</A></SPAN></DIV></LI>
+  <LI id="rc_item_4" class="rc_item">
+  <DIV class="rc_avatar rc_left"><IMG class="avatar avatar-28 photo" alt="" src="" 
+  width="28" height="28"></DIV>
+  <DIV class="rc_info"><SPAN class="author_name"><A href="http://www.mzone.cc/article/260.html#comment-1907" 
+  rel="nofollow">xiaocao</A></SPAN></DIV>
+  <DIV class="rc_excerpt">弱弱的问一下，jsp页面的... <SPAN class="rc_expand"><A onclick="RCJS.detail(1907,'http://www.mzone.cc','limit--6|length--13|post--false|smilies--true|avatar_size--28',0,'正在加载');" 
+  href="javascript:void(0);" rel="nofollow">»</A></SPAN></DIV></LI>
+  <LI id="rc_item_5" class="rc_item rc_pingback">
+  <DIV class="rc_info"><SPAN class="rc_label">Pingback:</SPAN> <A class="url" 
+  href="http://www.songyawei.cn/content/296" rel="external nofollow">date 
+  时间设置命令_Linux运维工程师的技术博客</A></DIV></LI>
+  <LI id="rc_item_6" class="rc_item rc_trackback">
+  <DIV class="rc_info"><SPAN class="rc_label">Trackback:</SPAN> <A class="url" 
+  href="http://www.gregorysmithblog.com/" rel="external nofollow">Gregory 
+  Smith</A></DIV></LI>
+  <LI id="rc_nav">
+  <DIV>
+  <DIV id="rc_older"><A onclick="RCJS.page('http://www.mzone.cc','limit--6|length--13|post--false|smilies--true|avatar_size--28',6,'正在加载');" 
+  href="javascript:void(0);" rel="nofollow">下一页 »</A></DIV>
+  <DIV class="rc_fixed"></DIV></DIV></LI></UL></DIV><!-- tag cloud -->
+<DIV id="tag_cloud" class="widget">
+<H3>标签大杂烩</H3><A style="color: rgb(108, 207, 247); font-size: 12.106pt;" class="tag-link-111" 
+title="4 篇主题" href="http://www.mzone.cc/?tag=ajax">ajax</A><A style="color: rgb(108, 207, 247); font-size: 12.106pt;" 
+class="tag-link-269" title="4 篇主题" 
+href="http://www.mzone.cc/?tag=android">android</A><A style="color: rgb(238, 16, 90); font-size: 17.706pt;" 
+class="tag-link-79" title="9 篇主题" 
+href="http://www.mzone.cc/?tag=apache">apache</A><A style="color: rgb(108, 207, 247); font-size: 12.106pt;" 
+class="tag-link-15" title="4 篇主题" 
+href="http://www.mzone.cc/?tag=appengine">appengine</A><A style="color: rgb(247, 148, 29); font-size: 10.24pt;" 
+class="tag-link-251" title="3 篇主题" href="http://www.mzone.cc/?tag=asp">asp</A><A 
+style="color: rgb(121, 0, 0); font-size: 14.906pt;" class="tag-link-134" title="6 篇主题" 
+href="http://www.mzone.cc/?tag=centos">centos</A><A style="color: rgb(247, 148, 29); font-size: 10.24pt;" 
+class="tag-link-217" title="3 篇主题" 
+href="http://www.mzone.cc/?tag=convention">convention</A><A style="color: rgb(108, 207, 247); font-size: 12.106pt;" 
+class="tag-link-43" title="4 篇主题" 
+href="http://www.mzone.cc/?tag=eclipse">eclipse</A><A style="color: rgb(247, 148, 29); font-size: 10.24pt;" 
+class="tag-link-239" title="3 篇主题" href="http://www.mzone.cc/?tag=gae">GAE</A><A 
+style="color: rgb(247, 148, 29); font-size: 10.24pt;" class="tag-link-250" 
+title="3 篇主题" href="http://www.mzone.cc/?tag=iis">IIS</A><A style="color: rgb(241, 108, 77); font-size: 20.506pt;" 
+class="tag-link-18" title="13 篇主题" 
+href="http://www.mzone.cc/?tag=java-2">java</A><A style="color: rgb(241, 108, 77); font-size: 20.506pt;" 
+class="tag-link-32" title="13 篇主题" 
+href="http://www.mzone.cc/?tag=javascript">javascript</A><A style="color: rgb(247, 148, 29); font-size: 10.24pt;" 
+class="tag-link-265" title="3 篇主题" 
+href="http://www.mzone.cc/?tag=jquery">jquery</A><A style="color: rgb(133, 95, 168); font-size: 19.2pt;" 
+class="tag-link-20" title="11 篇主题" href="http://www.mzone.cc/?tag=js">js</A><A 
+style="color: rgb(255, 0, 0); font-size: 22pt;" class="tag-link-30" title="16 篇主题" 
+href="http://www.mzone.cc/?tag=linux-2">linux</A><A style="color: rgb(133, 95, 168); font-size: 19.2pt;" 
+class="tag-link-11" title="11 篇主题" 
+href="http://www.mzone.cc/?tag=maven">maven</A><A style="color: rgb(247, 148, 29); font-size: 10.24pt;" 
+class="tag-link-259" title="3 篇主题" 
+href="http://www.mzone.cc/?tag=mupload">mupload</A><A style="color: rgb(0, 89, 81); font-size: 21.066pt;" 
+class="tag-link-83" title="14 篇主题" 
+href="http://www.mzone.cc/?tag=mysql">mysql</A><A style="color: rgb(121, 0, 0); font-size: 14.906pt;" 
+class="tag-link-36" title="6 篇主题" href="http://www.mzone.cc/?tag=osgi">osgi</A>
+<A style="color: rgb(108, 207, 247); font-size: 12.106pt;" class="tag-link-285" 
+title="4 篇主题" href="http://www.mzone.cc/?tag=php">PHP</A><A style="color: rgb(121, 0, 0); font-size: 14.906pt;" 
+class="tag-link-125" title="6 篇主题" 
+href="http://www.mzone.cc/?tag=python-2">python</A><A style="color: rgb(247, 148, 29); font-size: 10.24pt;" 
+class="tag-link-150" title="3 篇主题" 
+href="http://www.mzone.cc/?tag=release">release</A><A style="color: rgb(108, 207, 247); font-size: 12.106pt;" 
+class="tag-link-271" title="4 篇主题" href="http://www.mzone.cc/?tag=sdk">sdk</A><A 
+style="color: rgb(247, 148, 29); font-size: 10.24pt;" class="tag-link-149" 
+title="3 篇主题" href="http://www.mzone.cc/?tag=snapshot">snapshot</A><A style="color: rgb(108, 207, 247); font-size: 12.106pt;" 
+class="tag-link-44" title="4 篇主题" 
+href="http://www.mzone.cc/?tag=spring">spring</A><A style="color: rgb(108, 207, 247); font-size: 12.106pt;" 
+class="tag-link-23" title="4 篇主题" 
+href="http://www.mzone.cc/?tag=struts2">struts2</A><A style="color: rgb(130, 122, 0); font-size: 13.6pt;" 
+class="tag-link-215" title="5 篇主题" href="http://www.mzone.cc/?tag=struts2-coc-plugin">struts2-coc-plugin</A>
+<A style="color: rgb(247, 148, 29); font-size: 10.24pt;" class="tag-link-145" 
+title="3 篇主题" href="http://www.mzone.cc/?tag=svn">SVN</A><A style="color: rgb(121, 0, 0); font-size: 14.906pt;" 
+class="tag-link-84" title="6 篇主题" 
+href="http://www.mzone.cc/?tag=tomcat">tomcat</A><A style="color: rgb(241, 108, 77); font-size: 8pt;" 
+class="tag-link-37" title="2 篇主题" href="http://www.mzone.cc/?tag=web%e6%9c%8d%e5%8a%a1%e5%99%a8">web服务器</A>
+<A style="color: rgb(108, 207, 247); font-size: 12.106pt;" class="tag-link-106" 
+title="4 篇主题" href="http://www.mzone.cc/?tag=windows">windows</A><A style="color: rgb(247, 148, 29); font-size: 10.24pt;" 
+class="tag-link-172" title="3 篇主题" 
+href="http://www.mzone.cc/?tag=wordpress">wordpress</A><A style="color: rgb(247, 148, 29); font-size: 10.24pt;" 
+class="tag-link-218" title="3 篇主题" href="http://www.mzone.cc/?tag=wp">wp</A><A 
+style="color: rgb(241, 108, 77); font-size: 8pt;" class="tag-link-41" title="2 篇主题" 
+href="http://www.mzone.cc/?tag=wxwidgets">wxWidgets</A><A style="color: rgb(247, 148, 29); font-size: 10.24pt;" 
+class="tag-link-14" title="3 篇主题" href="http://www.mzone.cc/?tag=xml">xml</A><A 
+style="color: rgb(241, 108, 77); font-size: 8pt;" class="tag-link-13" title="2 篇主题" 
+href="http://www.mzone.cc/?tag=%e4%b8%ad%e6%96%87">中文</A><A style="color: rgb(108, 207, 247); font-size: 12.106pt;" 
+class="tag-link-270" title="4 篇主题" href="http://www.mzone.cc/?tag=%e4%b8%ad%e6%96%87%e6%96%87%e6%a1%a3">中文文档</A>
+<A style="color: rgb(247, 148, 29); font-size: 10.24pt;" class="tag-link-17" 
+title="3 篇主题" href="http://www.mzone.cc/?tag=%e4%b9%b1%e7%a0%81">乱码</A><A style="color: rgb(247, 148, 29); font-size: 10.24pt;" 
+class="tag-link-260" title="3 篇主题" href="http://www.mzone.cc/?tag=%e5%a4%a7%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0">大文件上传</A>
+<A style="color: rgb(121, 0, 0); font-size: 14.906pt;" class="tag-link-12" 
+title="6 篇主题" href="http://www.mzone.cc/?tag=%e6%8f%92%e4%bb%b6">插件</A><A style="color: rgb(130, 122, 0); font-size: 13.6pt;" 
+class="tag-link-85" title="5 篇主题" href="http://www.mzone.cc/?tag=%e6%95%b4%e5%90%88">整合</A>
+<A style="color: rgb(241, 108, 77); font-size: 8pt;" class="tag-link-24" title="2 篇主题" 
+href="http://www.mzone.cc/?tag=%e6%96%87%e4%bb%b6%e4%b8%8b%e8%bd%bd">文件下载</A><A 
+style="color: rgb(247, 148, 29); font-size: 10.24pt;" class="tag-link-54" title="3 篇主题" 
+href="http://www.mzone.cc/?tag=%e6%a1%8c%e9%9d%a2%e5%bc%80%e5%8f%91">桌面开发</A><A 
+style="color: rgb(247, 148, 29); font-size: 10.24pt;" class="tag-link-241" 
+title="3 篇主题" href="http://www.mzone.cc/?tag=%e6%a8%a1%e5%9d%97">模块</A><A style="color: rgb(108, 207, 247); font-size: 12.106pt;" 
+class="tag-link-102" title="4 篇主题" href="http://www.mzone.cc/?tag=%e7%ba%bf%e7%a8%8b">线程</A></DIV><!-- blogroll-->
+<DIV class="widget widget_links">
+<H3>友情链接</H3>
+<UL>
+  <LI><A href="http://sae.sina.com.cn/" target="_blank"><IMG alt="SAE" src="Maven2中snapshot快照库的使用%20%20铁木箱子_files/120X33_transparent.gif"></A></LI>
+  <LI><A href="http://taobaopress.com/" target="_blank">淘博客</A></LI></UL></DIV><!-- meta -->
+<DIV class="widget">
+<H3>Meta</H3>
+<UL>
+  <LI><A href="http://www.mzone.cc/wp-login.php" 
+rel="nofollow">登录</A></LI></UL></DIV></DIV><!-- sidebar south END --></DIV><!--sidebar end -->
+<DIV class="fixed"></DIV></DIV><!--inner end --></DIV><!--container end--><!--footer start-->
+<DIV id="footer">
+<DIV class="inner"><A id="gotop" onclick="MGJS.goTop();return false;" href="http://www.mzone.cc/article/654.html#"> 
+Top </A>
+<DIV class="fixed"></DIV>
+<DIV id="themeinfo"><!-- 统计信息 --><IMG style="display: none;" src="">			Copyright 
+© 2007-2014 铁木箱子.			Powered By <A id="powered" href="http://wordpress.org/" 
+target="_blank">WordPress</A></DIV>
+<DIV id="themeabout"><SPAN class="icp"><A href="http://www.miitbeian.gov.cn/" 
+target="_blank">粤ICP备14010063号-1</A></SPAN><SPAN class="footrss"><A title="订阅我的blog" 
+href="http://www.mzone.cc/feed"></A></SPAN><SPAN class="mail"><A title="给我发邮件吧" 
+href="mailto:biqiang.ma@gmail.com"></A></SPAN><SPAN class="aboutme"><A title="关于作者" 
+href="http://www.mzone.cc/about"></A></SPAN><SPAN style="display: none;"><!-- 百度统计 -->
+<SCRIPT type="text/javascript">
+                            var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                            document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F804b3f8a3af60ce3db7b07767706253a' type='text/javascript'%3E%3C/script%3E"));
+                            </SCRIPT>
+</SPAN></DIV></DIV></DIV><!--footer end--></BODY></HTML>

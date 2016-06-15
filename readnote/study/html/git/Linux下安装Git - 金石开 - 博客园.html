@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)http://www.cnblogs.com/zhcncn/p/4030078.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Linux下安装Git - 金石开 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Linux下安装Git - 金石开 - 博客园_files/blog-common.css">
+<link type="text/css" rel="stylesheet" href="./Linux下安装Git - 金石开 - 博客园_files/126695.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/zhcncn/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/zhcncn/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/zhcncn/wlwmanifest.xml">
+<script type="text/javascript" src="./Linux下安装Git - 金石开 - 博客园_files/encoder.js"></script><script src="./Linux下安装Git - 金石开 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'zhcncn', cb_enable_mathjax=false;</script>
+<script src="./Linux下安装Git - 金石开 - 博客园_files/blog-common.js" type="text/javascript"></script>
+<style type="text/css">div#ad_b4,div#ad_b3,div#ad_b2,div#ad_b1{display:none !important;}</style></head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<style type="text/css">
+    .Abstract
+    {
+        padding: 15px;
+        border: dotted 2px #999;
+        color: #999;
+        font-family: 'Microsoft Yahei';
+        border-radius: 4px;
+    }
+        
+    .First
+    {
+        margin: 10px 0;
+        font-family: 'Microsoft Yahei';
+        text-align: left;
+        padding: 6px 20px;
+        color: #fff;
+        background: #55895B;
+        font-size: 20px;
+        border-radius: 4px;
+        clear: both;
+    }
+        
+        
+    .Second
+    {
+        margin: 10px 0;
+        font-family: 'Microsoft Yahei';
+        padding: 6px 20px;
+        background: #93C8A2;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 4px;
+        clear: both;
+    }
+        
+        
+    .Third
+    {
+        margin: 10px 0;
+        padding: 6px 20px;
+        font-family: 'Microsoft Yahei';
+        margin: 15px 0;
+        font-size: 16px;
+        color: fff;
+        background: #C6EFD2;
+        color: #999;
+        border-radius: 4px;
+        clear: both;
+    }
+    .note
+    {
+        margin: 10px 0;
+        padding: 15px 20px 15px 60px;
+        background: #FCFAA9 url('http://images.cnblogs.com/cnblogs_com/libaoheng/305804/o_yellow-pin.png') no-repeat 20px 0;
+        font-size: 15px;
+        font-family: 'Microsoft Yahei';
+        box-shadow: 0 0 8px #aaa;
+        clear: both;
+    }
+        
+    .demo
+    {
+        text-align: left;
+        padding: 6px 20px;
+        overflow: auto;
+        border-radius: 4px;
+        background: orange;
+        color: #fff;
+        font-size: 16px;
+        clear: both;
+    }
+        
+    .cnblogs_Highlighter
+    {
+        border: solid 1px #ccc;
+        clear: both;
+    }
+        
+    .cnblogs_code
+    {
+        background: #EFFFF4;
+        border: solid 0px #939393;
+        font-size: 14px;
+        clear: both;
+        padding: 10px 20px;
+    }
+    .cnblogs_code pre
+    {
+        font-size: 14px;
+    }
+    .cnblogs_code span
+    {
+        font-family: Courier New;
+        font-size: 14px;
+    }
+</style>
+<!--PageBeginHtml Block End-->
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/zhcncn/">金石开</a></div>
+<div class="subtitle"></div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"></li>
+<li id="nav_myhome"></li>
+<li id="nav_newpost"></li>
+<li id="nav_contact"></li>
+<li id="nav_rss">
+<!----></li>
+<li id="nav_admin"><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔-48&nbsp;
+文章-76&nbsp;
+评论-42&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./Linux下安装Git - 金石开 - 博客园_files/Linux下安装Git - 金石开 - 博客园.html">Linux下安装Git</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>Ubuntu12.04中默认没有安装Git。需要自行安装。</p>
+<h1>1. 安装Git</h1>
+<h2>1.1&nbsp;Ubuntu12.04下</h2>
+<p>可以使用apt-get方式安装，也可以下载源代码安装【1】，我们这里使用apt-git安装。</p>
+<p>但由于直接使用 <code>sudo apt-get install git </code>安装的版本较老，因此我们参考【2】中给出的PPA源。</p>
+<pre>sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git</pre>
+<p>安装完成后，检查是否安装成功</p>
+<pre>git --version</pre>
+<p>显示 git version 2.1.1，表明安装成功。</p>
+<h2>1.2 CentOS6.6下</h2>
+<p>在CentOS5的时代，由于yum源中没有git，所以需要预先安装一系列的依赖包。但在CentOS6的yum源中已经有git的版本了，可以直接使用yum源进行安装。</p>
+<div class="cnblogs_code">
+<pre>$ sudo yum install git</pre>
+</div>
+<p>但是yum源中安装的git版本是1.7.1，太老了，Github等需要的Git版本最低都不能低于1.7.2 。所以我们一般不用上面的方法。而是下载git源码，编译安装。</p>
+<p>编译安装的步骤是【4】：</p>
+<p>（1）首先先更新系统</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">sudo</span> <span style="color: #0000ff;">yum</span> update</pre>
+</div>
+<p>（2）安装依赖的包</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">sudo</span> <span style="color: #0000ff;">yum</span> <span style="color: #0000ff;">install</span> curl-devel expat-devel gettext-devel openssl-devel zlib-devel <span style="color: #0000ff;">gcc</span> <span style="color: #0000ff;">perl</span>-ExtUtils-MakeMaker</pre>
+</div>
+<p>（3）下载git源码并解压缩</p>
+<div class="cnblogs_code">
+<pre>$ <span style="color: #0000ff;">wget</span> https:<span style="color: #008000;">//</span><span style="color: #008000;">github.com/git/git/archive/v2.3.0.zip</span>
+$ <span style="color: #0000ff;">unzip</span> v2.<span style="color: #800080;">3.0</span>.<span style="color: #0000ff;">zip</span><span style="color: #000000;">
+$ cd git</span>-<span style="color: #800080;">2.3</span>.<span style="color: #800080;">0</span></pre>
+</div>
+<p>（4）编译安装</p>
+<p>将其安装在“/usr/local/git”目录下。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">make</span> prefix=/usr/local/<span style="color: #000000;">git all
+</span><span style="color: #0000ff;">sudo</span> <span style="color: #0000ff;">make</span> prefix=/usr/local/git <span style="color: #0000ff;">install</span></pre>
+</div>
+<p>（5）此时你如果使用git --version 查看git版本的话，发现git仍然是1.7.1版本。这是因为它默认使用了"/usr/bin"下的git。</p>
+<p>你可以用下面的命令查看git所在的路径：</p>
+<div class="cnblogs_code">
+<pre>$ <span style="color: #0000ff;">whereis</span><span style="color: #000000;"> git
+git: </span>/usr/bin/git /usr/local/git /usr/share/<span style="color: #0000ff;">man</span>/man1/git.<span style="color: #800080;">1</span>.gz</pre>
+</div>
+<p>（6）我们要把编译安装的git路径放到环境变量里，让它替换"/usr/bin"下的git。为此我们可以修改“/etc/profile”文件（或者/etc/bashrc文件）。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">sudo</span> vim /etc/profile</pre>
+</div>
+<p>然后在文件的最后一行，添加下面的内容，然后保存退出。</p>
+<div class="cnblogs_code">
+<pre>export PATH=/usr/local/git/bin:$PATH</pre>
+</div>
+<p>（7）使用source命令应用修改。</p>
+<div class="cnblogs_code">
+<pre>source /etc/profile</pre>
+</div>
+<p><span style="line-height: 1.5;">（8）然后再次使用</span><span style="line-height: 1.5;">git --version 查看git版本，发现输出2.3.0，表明安装成功。</span></p>
+<h1>2. 设置Git</h1>
+<p>（1）设置用户名和email。</p>
+<pre>git config --global user.name "Your Name"
+git config --global user.email "youremail@domain.com"</pre>
+<p>此时，Home目录下会新建一个.gitconfig文件</p>
+<h1>3. 为GitHub账号添加SSH Keys</h1>
+<p>以公钥认证方式访问SSH协议的Git服务器时无需输入口令，而且更安全。（访问HTTP协议的Git服务器时，比如提交修改，每次都需要输入口令。）</p>
+<p>（1）创建SSH key</p>
+<pre>$ ssh-keygen -t rsa -C "youremail@163.com"</pre>
+<p>系统会提示key的保存位置（一般是~/.ssh目录）和指定口令，保持默认，连续三次回车即可。</p>
+<p>（2）Copy SSH Key</p>
+<p>然后用vim打开该文件，id_rsa.pub文件内的内容，粘帖到github帐号管理的添加SSH key界面中。</p>
+<pre>vim ~/.ssh/id_rsa.pub</pre>
+<p>（3）添加到GitHub</p>
+<p>登录github-&gt; Accounting settings图标-&gt; SSH key-&gt; Add SSH key-&gt; 填写SSH key的名称（可以起一个自己容易区分的），然后将拷贝的~/.ssh/id_rsa.pub文件内容粘帖-&gt; add key”按钮添加。</p>
+<p>（4）测试</p>
+<pre>ssh -T <a href="mailto:git@github.com">git@github.com</a></pre>
+<h1>4. 为GitHub上的Repository提交修改</h1>
+<p>（1）git clone已存在GitHub上的Repository。（在新建的~/MyTestFolder目录中）</p>
+<pre>git clone https://github.com/zhchnchn/ZhchnchnTest.git</pre>
+<p>（2）修改一个文件，然后提交</p>
+<pre>vim README.md
+git status
+git add README.md
+git status
+git commit -m "Edit by WorkUbuntu 1204"
+git status
+git remote add origin https://github.com/zhchnchn/ZhchnchnTest.git</pre>
+<p>这时会报错误：</p>
+<p>fatal: remote origin already exists.</p>
+<p>解决办法【3】：</p>
+<pre>$ git remote rm origin</pre>
+<p>然后再次执行 git remote add origin https://github.com/zhchnchn/ZhchnchnTest.git</p>
+<p>（3）之后，需要将修改push到GitHub上</p>
+<pre>git push -u origin master</pre>
+<p>执行该条命令后，会要求输入GitHub账户的用户名和密码。</p>
+<p>（4）提交完成后，查看GitHub上的Repository，会发现内容修改成功。</p>
+<h1>Refer</h1>
+<p>【1】How To Install Git on Ubuntu 14.04（<a href="https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04%EF%BC%89">https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04）</a></p>
+<p>【2】Installing Latest version of git in ubuntu（<a href="http://stackoverflow.com/questions/19109542/installing-latest-version-of-git-in-ubuntu%EF%BC%89">http://stackoverflow.com/questions/19109542/installing-latest-version-of-git-in-ubuntu）</a></p>
+<p>【3】Ubuntu12.04下安装Git（<a href="http://blog.csdn.net/biosd/article/details/9115837">http://blog.csdn.net/biosd/article/details/9115837</a>）</p>
+<p>【4】CentOS6.6源码安装git-2.3.0（http://blog.csdn.net/goritcly/article/details/43878209）（http://www.centoscn.com/image-text/install/2015/0225/4735.html）</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/zhcncn/category/457599.html">VCS</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/zhcncn/tag/Linux/">Linux</a>, <a href="http://www.cnblogs.com/zhcncn/tag/Git/">Git</a></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4030078,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/%E9%87%91%E7%9F%B3%E5%BC%80" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Linux下安装Git - 金石开 - 博客园_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Linux下安装Git - 金石开 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/zhcncn/" target="_blank"><img src="./Linux下安装Git - 金石开 - 博客园_files/u408827.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/zhcncn/">金石开</a><br>
+<a href="http://home.cnblogs.com/u/zhcncn/followees">关注 - 9</a><br>
+<a href="http://home.cnblogs.com/u/zhcncn/followers">粉丝 - 36</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(4030078,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">2</span>
+    </div>
+	<div class="buryit" onclick="votePost(4030078,&#39;Bury&#39;)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/zhcncn/p/4027025.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/zhcncn/p/4027025.html" title="发布于2014-10-15 18:43">Ubuntu12.04 安装PyCharm</a><br><a href="http://www.cnblogs.com/zhcncn/p/4030576.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/zhcncn/p/4030576.html" title="发布于2014-10-17 11:11">使用pathogen管理Vim插件并托管到Github</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-10-17 01:02</span> <a href="http://www.cnblogs.com/zhcncn/">金石开</a> 阅读(<span id="post_view_count">24671</span>) 评论(<span id="post_comment_count">2</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=4030078" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/zhcncn/p/4030078.html#" onclick="AddToWz(4030078);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=126695,cb_entryId=4030078,cb_blogApp=currentBlogApp,cb_blogUserGuid='cbf499ac-8f9d-e111-aa3f-842b2b196315',cb_entryCreatedDate='2014/10/17 1:02:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhcncn/p/4030078.html#3404703" class="layer">#1楼</a><a name="3404703" id="comment_anchor_3404703"></a>  <span class="comment_date">2016-04-11 04:17</span> <a id="a_comment_author_3404703" href="http://www.cnblogs.com/jamesmarva/" target="_blank">jamesfuxk</a> <a href="http://msg.cnblogs.com/send/jamesfuxk" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3404703" class="blog_comment_body">谢谢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3404703,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3404703,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3404703_avatar" style="display:none;">http://pic.cnblogs.com/face/792885/20150801041542.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/zhcncn/p/4030078.html#3420724" class="layer">#2楼</a><a name="3420724" id="comment_anchor_3420724"></a><span id="comment-maxId" style="display:none;">3420724</span><span id="comment-maxDate" style="display:none;">2016/4/30 23:02:33</span>  <span class="comment_date">2016-04-30 23:02</span> <a id="a_comment_author_3420724" href="http://home.cnblogs.com/u/644706/" target="_blank">lucifer2014</a> <a href="http://msg.cnblogs.com/send/lucifer2014" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3420724" class="blog_comment_body">sudo apt-get update---这一步不成功，大量提示Ign</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3420724,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3420724,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/zhcncn/p/4030078.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/zhcncn/p/4030078.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/547328/" target="_blank">雅虎拍卖3000项专利估值10亿美元 尚无中国买家</a><br> ·  <a href="http://news.cnblogs.com/n/547327/" target="_blank">苹果太空船总部接近完工 外观美轮美奂磅礴大气</a><br> ·  <a href="http://news.cnblogs.com/n/547326/" target="_blank">支付宝“四六级险”免费抢：缺考赔12000</a><br> ·  <a href="http://news.cnblogs.com/n/547325/" target="_blank">华为不顾脸面自曝“黑幕”：系统性公开反省十大内耗难题</a><br> ·  <a href="http://news.cnblogs.com/n/547324/" target="_blank">孤独雷布斯：拯救小米 反思自己</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/547251/" target="_blank">一个32岁入门的70后程序员给我的启示</a><br> ·  <a href="http://kb.cnblogs.com/page/539205/" target="_blank">技术发展瓶颈的突破</a><br> ·  <a href="http://kb.cnblogs.com/page/536334/" target="_blank">高效编程之道：好好休息</a><br> ·  <a href="http://kb.cnblogs.com/page/545476/" target="_blank">快速学习者的高效学习策略</a><br> ·  <a href="http://kb.cnblogs.com/page/545784/" target="_blank">一个前端的自我修养</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_categories">
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(48)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhcncn/archive/2015/09.html">2015年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/zhcncn/archive/2015/07.html">2015年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/zhcncn/archive/2015/03.html">2015年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/zhcncn/archive/2014/12.html">2014年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/zhcncn/archive/2014/11.html">2014年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/zhcncn/archive/2014/10.html">2014年10月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/zhcncn/archive/2014/09.html">2014年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/zhcncn/archive/2014/08.html">2014年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/zhcncn/archive/2014/06.html">2014年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/zhcncn/archive/2014/05.html">2014年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/zhcncn/archive/2014/04.html">2014年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/zhcncn/archive/2014/01.html">2014年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/zhcncn/archive/2013/05.html">2013年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/zhcncn/archive/2013/04.html">2013年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/zhcncn/archive/2013/03.html">2013年3月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/zhcncn/archive/2013/02.html">2013年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/zhcncn/archive/2013/01.html">2013年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/zhcncn/archive/2012/12.html">2012年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/zhcncn/archive/2012/11.html">2012年11月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	102472
+	</li>
+	<li class="liRank">
+		排名 -	2024
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhcncn/archive/2013/01/08/2851656.html#3442710">1. Re:ios::app与ios::ate的区别</a></li>
+        <li class="recent_comment_body">Ifstream的第二栏中：“ios::ate或ios::ate|ios::out”和“ios::ate|ios::in”对应的结果是不是反掉了呢？</li>
+        <li class="recent_comment_author">--魏伊轩</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhcncn/p/4030078.html#3420724">2. Re:Linux下安装Git</a></li>
+        <li class="recent_comment_body">sudo apt-get update---这一步不成功，大量提示Ign</li>
+        <li class="recent_comment_author">--lucifer2014</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhcncn/p/4030078.html#3404703">3. Re:Linux下安装Git</a></li>
+        <li class="recent_comment_body">谢谢</li>
+        <li class="recent_comment_author">--jamesfuxk</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhcncn/p/3987301.html#3404550">4. Re:VirtualBox中安装Ubuntu12.04/Ubuntu14.04虚拟机</a></li>
+        <li class="recent_comment_body">很受用</li>
+        <li class="recent_comment_author">--瑜琅</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhcncn/p/4689225.html#3386684">5. Re:配置算法（第4版）的Java编译环境</a></li>
+        <li class="recent_comment_body">感谢指导！</li>
+        <li class="recent_comment_author">--好好顽</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhcncn/p/4097881.html">1. Hexo搭建Github静态博客(35067)</a></li><li><a href="http://www.cnblogs.com/zhcncn/p/3987301.html">2. VirtualBox中安装Ubuntu12.04/Ubuntu14.04虚拟机(30449)</a></li><li><a href="./Linux下安装Git - 金石开 - 博客园_files/Linux下安装Git - 金石开 - 博客园.html">3. Linux下安装Git(24671)</a></li><li><a href="http://www.cnblogs.com/zhcncn/p/4113589.html">4. Sublime Text 3安装与使用(24108)</a></li><li><a href="http://www.cnblogs.com/zhcncn/p/3969419.html">5. Notepad++配置Python开发环境(21716)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhcncn/p/3987301.html">1. VirtualBox中安装Ubuntu12.04/Ubuntu14.04虚拟机(10)</a></li><li><a href="http://www.cnblogs.com/zhcncn/p/4097881.html">2. Hexo搭建Github静态博客(8)</a></li><li><a href="http://www.cnblogs.com/zhcncn/p/3950477.html">3. boost 1.56.0 编译及使用(4)</a></li><li><a href="http://www.cnblogs.com/zhcncn/p/4330112.html">4. JavaScript单元测试框架-Jasmine(4)</a></li><li><a href="http://www.cnblogs.com/zhcncn/archive/2013/03/08/2949569.html">5. VirtualBox虚拟机使用技巧(3)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 金石开
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.cnblogs.com/zhcncn/p/4030078.html#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.cnblogs.com/zhcncn/p/4030078.html#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.cnblogs.com/zhcncn/p/4030078.html#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./Linux下安装Git - 金石开 - 博客园_files/yun6.html" style="border: none; display: none; z-index: 2147483645; background: transparent;"></iframe><script src="./Linux下安装Git - 金石开 - 博客园_files/pv.gif"></script></body></html>

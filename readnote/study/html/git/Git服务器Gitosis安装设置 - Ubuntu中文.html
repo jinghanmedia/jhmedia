@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)http://wiki.ubuntu.org.cn/Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE -->
+<html lang="zh-Hans" dir="ltr" class="client-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Git服务器Gitosis安装设置 - Ubuntu中文</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Git服务器Gitosis安装设置","wgTitle":"Git服务器Gitosis安装设置","wgCurRevisionId":149661,"wgRevisionId":149661,"wgArticleId":43909,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"zh-hans","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"zh","wgMonthNames":["","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],"wgMonthNamesShort":["","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],"wgRelevantPageName":"Git服务器Gitosis安装设置","wgRelevantArticleId":43909,"wgIsProbablyEditable":!0,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":!1,"dialogs":!1,
+"preview":!1,"publish":!1}});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"zh-hans"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="http://wiki.ubuntu.org.cn/load.php?debug=false&lang=zh-hans&modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cskins.cavendish&only=styles&skin=cavendish">
+<!--[if IE 6]><link rel="stylesheet" href="/skins/Cavendish/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/Cavendish/IE70Fixes.css?303" media="screen" /><![endif]-->
+<link rel="stylesheet" href="http://wiki.ubuntu.org.cn/skins/Cavendish/colors/brown.css?303" media="screen">
+<link rel="stylesheet" href="http://wiki.ubuntu.org.cn/skins/Cavendish/extensions.css?303" media="screen">
+<link rel="stylesheet" href="http://wiki.ubuntu.org.cn/skins/Cavendish/style.php?303" media="screen">
+<style>
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}  .mw-content-ltr .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr .mw-collapsible-toggle{float:right} .mw-content-rtl .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl .mw-collapsible-toggle{float:left}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle,.mw-content-ltr caption .mw-collapsible-toggle,.mw-content-rtl caption .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle,.mw-content-ltr li .mw-collapsible-toggle,.mw-content-rtl li .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr li .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left; overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.highlight{font-weight:bold}
+#interwiki-completelist{font-weight:bold}  ol.references{font-size:100%}.references-small{font-size:90%}sup.reference{white-space:nowrap}    .references-2column{font-size:90%;-moz-column-count:2;column-count:2}.same-bg{background:none }ol.references > li:target,sup.reference:target,cite:target{background-color:#DDEEFF}  table.wikitable,table.prettytable{background:#f9f9f9;border:1px #aaaaaa solid;border-collapse:collapse;margin-top:1em;margin-bottom:1em}table.wikitable th,table.wikitable td,table.prettytable th,table.prettytable td{border:1px #aaaaaa solid;padding:0.2em}table.wikitable th,table.prettytable th{background:#f2f2f2;text-align:center}table.wikitable caption,table.prettytable caption{margin-left:inherit;margin-right:inherit}  .notice{text-align:justify;margin:1em;padding:0.2em}#disambig{border-top:3px double #cccccc;border-bottom:3px double #cccccc}#spoiler{border-top:2px solid #ddd;border-bottom:2px solid #ddd} .Talk-Notice{border:1px solid #C0C090;background-color:#F8EABA;margin-bottom:3px;width:80%;border-spacing:3px;margin-left:auto;margin-right:auto}.Talk-Notice:after{content:"The CSS for this template should be changed. See [[Wikipedia:Template Standardisation]]."} .Talk-Notice td{background:inherit} div.thumb{border-top:1em solid #FFFFFF;margin-top:1em}  .allpagesredirect{font-style:italic}  .Use_Default_Date_Convention{display:inline}.Use_AD_and_BC{display:none}.Use_BCE_and_CE{display:none}     .audiolink a{background:url(http://upload.wikimedia.org/wikipedia/commons/f/f7/Loudspeaker.png) center left no-repeat !important;padding-left:16px !important;padding-right:0 !important} div.listenlist{background:url(http://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Gnome-speakernotes.png/30px-Gnome-speakernotes.png);padding-left:40px}div.videolist{background:url(http://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Video.svg/40px-Video.svg.png);padding-left:50px}div.multivideolist{background:url(http://upload.wikimedia.org/wikipedia/en/thumb/7/7a/FilmRoll-small.png/40px-FilmRoll-small.png);padding-left:50px} div.medialist{min-height:50px;margin:1em;background-position:top left;background-repeat:no-repeat}div.medialist ul{list-style-type:none;list-style-image:none;margin:0}div.medialist ul li{padding-bottom:0.5em}div.medialist ul li li{font-size:91%;padding-bottom:0} .plainlinksneverexpand{background:none ! important;padding:0 ! important}.plainlinksneverexpand .urlexpansion{display:none ! important} .plainlinksneverexpand a{background:none !important;padding:0 !important} .plainlinksneverexpand a.external.text:after{display:none !important}.plainlinksneverexpand a.external.autonumber:after{display:none !important} .infobox{border:1px solid #aaaaaa;background-color:#f9f9f9;color:black;margin-bottom:0.5em;margin-left:1em;padding:0.2em;float:right;clear:right}.infobox td,.infobox th{vertical-align:top}.infobox caption{font-size:larger;margin-left:inherit}.infobox.bordered{border-collapse:collapse}.infobox.bordered td,.infobox.bordered th{border:1px solid #aaaaaa}.infobox.bordered .borderless td,.infobox.bordered .borderless th{border:0}.infobox.sisterproject{width:20em;font-size:90%} .infobox.bordered .mergedtoprow td,.infobox.bordered .mergedtoprow th{border:0;border-top:1px solid #aaaaaa;border-right:1px solid #aaaaaa}.infobox.bordered .mergedrow td,.infobox.bordered .mergedrow th{border:0;border-right:1px solid #aaaaaa} .infobox.geography{text-align:left;border-collapse:collapse;line-height:1.2em;font-size:90%}.infobox.geography td,.infobox.geography th{border-top:solid 1px #aaaaaa;padding:0.4em 0.6em 0.4em 0.6em}.infobox.geography .mergedtoprow td,.infobox.geography .mergedtoprow th{border-top:solid 1px #aaaaaa;padding:0.4em 0.6em 0.2em 0.6em}.infobox.geography .mergedrow td,.infobox.geography .mergedrow th{border:0;padding:0 0.6em 0.2em 0.6em}.infobox.geography .mergedbottomrow td,.infobox.geography .mergedbottomrow th{border-top:0;border-bottom:solid 1px #aaaaaa;padding:0 0.6em 0.4em 0.6em}.infobox.geography .maptable td,.infobox.geography .maptable th{border:0;padding:0} .IPA{font-family:"Segoe UI","Chrysanthi Unicode","Doulos SIL","Gentium","GentiumAlt","Code2000","TITUS Cyberbit Basic","DejaVu Sans","Bitstream Cyberbit","Arial Unicode MS","Lucida Sans Unicode","Hiragino Kaku Gothic Pro","Matrix Unicode"}.Unicode{font-family:"Segoe UI","TITUS Cyberbit Basic","Code2000","Doulos SIL","Chrysanthi Unicode","Bitstream Cyberbit","Bitstream CyberBase","Thryomanes","Gentium","GentiumAlt","Visual Geez Unicode","Lucida Grande","Arial Unicode MS","Microsoft Sans Serif","Lucida Sans Unicode"}.latinx{font-family:"TITUS Cyberbit Basic","Code2000","Microsoft Sans Serif"}.polytonic,.interwiki-el a{font-family:"Athena","Gentium","Palatino Linotype","Segoe UI","Arial Unicode MS","Lucida Sans Unicode","Lucida Grande","Code2000"}.mufi{font-family:"Alphabetum","Cardo","LeedsUni","Junicode","TITUS Cyberbit Basic","ALPHA-Demo"}.interwiki-ja a{font-family:"Meiryo","MS PMincho","MS Mincho","MS PGothic","MS Gothic","Arial Unicode MS"}.interwiki-ko a{font-family:"Malgun Gothic","Gulim","Dotum","Arial Unicode MS"}.interwiki-ru a,.interwiki-uk a,.interwiki-be a,.interwiki-bg a,.interwiki-sr a,.interwiki-mk a,.interwiki-os a,.interwiki-tg a,.interwiki-mo a,.interwiki-kk a,.interwiki-ky a,.interwiki-tt a,.interwiki-ba a,.interwiki-cv a,.interwiki-mn a,.interwiki-xal a,.interwiki-udm a,.interwiki-ab a,.interwiki-av a,.interwiki-ce a{ font-family:"Times CY","Times New Roman",Times,serif}.interwiki-ar a,.interwiki-fa a,.interwiki-ur a,.interwiki-ug a{ font-family:"Arial Unicode MS","Microsoft Sans Serif","Times New Roman",Times,serif;direction:rtl}.interwiki-he a,.interwiki-yi a{ font-family:Cardo,"Arial Unicode MS",Code2000,David,"Times New Roman",Times,serif;direction:rtl}.interwiki-af a,.interwiki-als a,.interwiki-an a,.interwiki-ang a,.interwiki-ast a,.interwiki-az a,.interwiki-ba a,.interwiki-bat-smg a,.interwiki-bm a,.interwiki-br a,.interwiki-bs a,.interwiki-ca a,.interwiki-ceb a,.interwiki-co a,.interwiki-cs a,.interwiki-csb a,.interwiki-cy a,.interwiki-da a,.interwiki-de a,.interwiki-en a,.interwiki-eo a,.interwiki-es a,.interwiki-et a,.interwiki-eu a,.interwiki-ff a,.interwiki-fi a,.interwiki-fiu-vro a,.interwiki-fo a,.interwiki-fr a,.interwiki-frp a,.interwiki-fur a,.interwiki-fy a,.interwiki-ga a,.interwiki-gd a,.interwiki-gl a,.interwiki-gv a,.interwiki-ha a,.interwiki-hr a,.interwiki-ht a,.interwiki-hu a,.interwiki-ia a,.interwiki-id a,.interwiki-ie a,.interwiki-ilo a,.interwiki-io a,.interwiki-is a,.interwiki-it a,.interwiki-jbo a,.interwiki-jv a,.interwiki-kg a,.interwiki-ksh a,.interwiki-ku a,.interwiki-kw a,.interwiki-la a,.interwiki-lad a,.interwiki-lb a,.interwiki-li a,.interwiki-lij a,.interwiki-lmo a,.interwiki-ln a,.interwiki-lt a,.interwiki-lv a,.interwiki-map-bms a,.interwiki-mi a,.interwiki-ms a,.interwiki-na a,.interwiki-nap a,.interwiki-nds a,.interwiki-nl a,.interwiki-nn a,.interwiki-no a,.interwiki-nrm a,.interwiki-oc a,.interwiki-om a,.interwiki-os a,.interwiki-pam a,.interwiki-pl a,.interwiki-pms a,.interwiki-pt a,.interwiki-rm a,.interwiki-ro a,.interwiki-sc a,.interwiki-scn a,.interwiki-sco a,.interwiki-se a,.interwiki-simple a,.interwiki-sk a,.interwiki-sl a,.interwiki-so a,.interwiki-sq a,.interwiki-su a,.interwiki-sv a,.interwiki-sw a,.interwiki-tet a,.interwiki-tpi a,.interwiki-tk a,.interwiki-tl a,.interwiki-tw a,.interwiki-tr a,.interwiki-uz a,.interwiki-vec a,.interwiki-vi a,.interwiki-wa a,.interwiki-war a,.interwiki-wo a,.interwiki-yo a,.interwiki-cdo a,.interwiki-zh-min-nan a{font-family:"Times New Roman",Times,serif}#wpSave{font-weight:bold} .hiddenStructure{display:none;speak:none} .nounderlines a{text-decoration:none} #EnWpMainPage{width:100%;margin-top:1em}#EnWpMainPage h2{font-size:130%;font-weight:bold;margin:0;padding:0;border:0}#EnWpMpMargin{margin-right:13.8em}#EnWpMpCol1{float:left;clear:left;width:50%}#EnWpMpCol2{width:49.9%;float:left}#EnWpMpBrowse{background:#f8fcff url(http://upload.wikimedia.org/wikipedia/en/9/9f/MP-three-books.png) no-repeat 180% 9%;border:1px solid #c7c7c7}#EnWpMpBrowseCats li{font-size:85%;margin-left:1em;line-height:1.5}#EnWpMpBrowseCats h3{font-size:120%;margin:.2em 0 .1em -.8em;padding:0;font-weight:normal}#EnWpMpBrowseCats h3 a{font-weight:bold}#EnWpMpBook{background-image:url(http://upload.wikimedia.org/wikipedia/en/7/7e/MP-open-book.png)}#EnWpMpFeaturedPic{text-align:center;margin:0 0 .5em;font-size:85%;font-weight:bold}#EnWpMpFeaturedPic h2{font-size:145%;text-align:left}.EnWpMpBrowseRight{float:right;width:12.7em}.EnWpMpBrowseBottom{margin:1em 0}.EnWpMpBrowseBottom #EnWpMpBrowseCats li,.EnWpMpBrowseBottom #EnWpMpUsefulLinks,.EnWpMpBrowseBottom #EnWpMpFeaturedPic{float:left;width:24%;margin:0;line-height:normal}.EnWpMpBrowseBottom #EnWpMpBrowseCats h3{margin-left:0}#EnWpMpUsefulLinks{clear:left}#EnWpMpSearch{background:url(http://upload.wikimedia.org/wikipedia/en/a/ae/MP-magnifying-glass.png) no-repeat top right}#EnWpMpSearch input{vertical-align:middle}#EnWpMpSearchInner{float:right;width:20em;text-align:center}#bodySearchMP{margin:0;padding:0}#bodySearchMP .bodySearchWrap{float:right;width:17.5em;text-align:left;padding:.8em 0}#bodySearchMP label{display:block;font-size:95%;font-weight:bold;margin-bottom:-.2em}#bodySearchMP .bodySearchBtnGo{font-weight:bold;padding-left:.3em;padding-right:.3em;margin-left:.5em}.EnWpMpContentBox{border:1px solid;margin-bottom:.9em}#EnWpMpCol2 .EnWpMpContentBox{margin-left:.9em}.EnWpMpImage{float:right;margin:0 0 .2em .2em}.EnWpMpImage img{position:relative;z-index:3}#EnWpMpSisterProjects{float:left;width:49%}.EnWpMpSisterProject{float:left;width:17em;margin:0;height:5.5em;margin:0}.EnWpMpSisterImg{float:left;width:40px;height:100%}#EnWpMpOtherLangs{margin-left:50%}#EnWpMainPageNoCSS{display:none}#EnWpMpBook2{background-image:url(http://upload.wikimedia.org/wikipedia/commons/8/8e/MP-open-book2.png)}#EnWpMpSearch2{background:url(http://upload.wikimedia.org/wikipedia/en/3/3a/MP-magnifying-glass2.png) no-repeat top right} .charboxblack a:link,.charboxblack a:hover,.charboxblack a:visited,.charboxblack a:active{color:black}.charboxsilver a:link,.charboxsilver a:hover,.charboxsilver a:visited,.charboxsilver a:active{color:silver}.charboxgray a:link,.charboxgray a:hover,.charboxgray a:visited,.charboxgray a:active{color:gray}.charboxwhite a:link,.charboxwhite a:hover,.charboxwhite a:visited,.charboxwhite a:active{color:white}.charboxmaroon a:link,.charboxmaroon a:hover,.charboxmaroon a:visited,.charboxmaroon a:active{color:maroon}.charboxred a:link,.charboxred a:hover,.charboxred a:visited,.charboxred a:active{color:red}.charboxpurple a:link,.charboxpurple a:hover,.charboxpurple a:visited,.charboxpurple a:active{color:purple}.charboxfuchsia a:link,.charboxfuchsia a:hover,.charboxfuchsia a:visited,.charboxfuchsia a:active{color:fuchsia}.charboxgreen a:link,.charboxgreen a:hover,.charboxgreen a:visited,.charboxgreen a:active{color:green}.charboxlime a:link,.charboxlime a:hover,.charboxlime a:visited,.charboxlime a:active{color:lime}.charboxolive a:link,.charboxolive a:hover,.charboxolive a:visited,.charboxolive a:active{color:olive}.charboxyellow a:link,.charboxyellow a:hover,.charboxyellow a:visited,.charboxyellow a:active{color:yellow}.charboxnavy a:link,.charboxnavy a:hover,.charboxnavy a:visited,.charboxnavy a:active{color:navy}.charboxblue a:link,.charboxblue a:hover,.charboxblue a:visited,.charboxblue a:active{color:blue}.charboxteal a:link,.charboxteal a:hover,.charboxteal a:visited,.charboxteal a:active{color:teal}.charboxaqua a:link,.charboxaqua a:hover,.charboxaqua a:visited,.charboxaqua a:active{color:aqua} .allpagesredirect a:link{color:#0066ff}  .tickerDiffLink{} .tickerMiscLink{}  .tickerList ul,.tickerList ul li{list-style:none;text-indent:-2em;margin-left:2em;text-align:left}.tickerList ul ul,.tickerList ul ul li{list-style:none;text-indent:0;margin-left:1.5em;text-align:left} .tickerEntry_deleted{} .tickerEntry_replaced{} .tickerEntry_tagged{} .tickerEntry_redir{} .tickerEntry_recat{} .tickerEntry_notify{} .tickerEntry_changed{}  .tickerAction_deleted:before{content:"(×)";color:#FF0000;font-family:monospace;font-weight:bold;font-size:100%;background:pink}.tickerAction_replaced:before{content:" REPL ";color:#CC88FF;font-family:monospace;font-weight:bold;font-size:100%}.tickerAction_addedBad:before{content:" +VfD ";color:#FF8800;font-family:monospace;font-weight:bold;font-size:100%}.tickerAction_removedBad:before{content:" -VfD ";color:#00BB00;font-family:monospace;font-weight:bold;font-size:100%}.tickerAction_addedGood:before{content:" +OK ";color:#00BB00;font-family:monospace;font-weight:bold;font-size:100%}.tickerAction_removedGood:before{content:" -OK ";color:#FF8800;font-family:monospace;font-weight:bold;font-size:100%} .tickerUsage{font-size:80%} .tickerTemplateEntry{font-weight:bold} .tickerSubEntry{} .tickerMinorEntry{color:#666} .tickerMinorEntry a,.tickerMinorEntry a:link,.tickerMinorEntry a:visited{color:#669}#bodyContent .tickerMinorEntry a.extiw,#bodyContent .tickerMinorEntry a.extiw:link,#bodyContent .tickerMinorEntry a.extiw:visited{color:#669}   .toccolours{border:1px solid #aaaaaa;background-color:#f9f9f9;padding:5px;font-size:95%} #bodyContent .plainlinks a{padding:0 !important}#p-nav h5{display:none}.portlet a{text-decoration:none}.portlet a:hover{text-decoration:underline}#p-nav .pBody{padding-right:0}#p-nav a{display:block;width:100%} #editpage-specialchars a{text-decoration:none}#editpage-specialchars a:hover{text-decoration:underline}     div.thumb div a img{background-color:#f9f9f9} #file img{background:url(http://upload.wikimedia.org/wikipedia/commons/5/5d/Checker-16x16.png) repeat} #spoken{position:absolute;float:right;text-align:right;font-size:90%;right:0;z-index:1;background:none;border-bottom-style:none;top:-2.2em;display:block !important} .plainlinksneverexpand a.external.text:after{display:none !important }  div.Boxmerge,div.NavFrame{margin:0px;padding:2px;border:1px solid #aaaaaa;border-collapse:collapse;font-size:95%}div.Boxmerge div.NavFrame{border-style:none;border-style:hidden}div.NavFrame + div.NavFrame,div.NavFrame + table.collapsible,table.collapsible + div.NavFrame,table.collapsible + table.collapsible{border-top-style:none;border-top-style:hidden}div.NavPic{background-color:#ffffff;margin:0px;padding:2px;float:left}div.NavFrame div.NavHead{height:1.6em;font-weight:bold;font-size:100%;text-align:center;background-color:#efefef;cursor:pointer}div.NavFrame p{font-size:100%}div.NavFrame div.NavContent{font-size:100%}div.NavFrame div.NavContent p{font-size:100%}div.NavEnd{margin:0px;padding:0px;line-height:1px;clear:both}span.NavToggle{float:right;display:none; text-align:right;font-weight:normal;font-size:smaller} table.ambox{width:80%;margin:0 auto;border-collapse:collapse;background:#fbfbfb;border:1px solid #aaa;border-left:10px solid #1e90ff; }table.ambox th,table.ambox td{ padding:0.25em 0.5em; }table.ambox td.ambox-image{ width:52px;padding:2px 0px 2px 0.5em; text-align:center}table.ambox td.ambox-imageright{ width:52px;padding:2px 4px 2px 0px; text-align:center}table.ambox-notice{border-left:10px solid #1e90ff;   }table.ambox-serious{border-left:10px solid #b22222; }table.ambox-content{border-left:10px solid #f28500; }table.ambox-style{border-left:10px solid #f4c430; }table.ambox-merge{border-left:10px solid #9932cc; }table.ambox-growth{border-left:10px solid #228b22; }table.ambox-protection{border-left:10px solid #bba; }table.ambox-talk{border-left:10px solid #18e7f8; }table.ambox.ambox-mini{ float:right;clear:right;margin:0 0 0 1em;width:25%} .geo-default{display:inline}.geo-nondefault{display:none}.geo-dms{display:inline}.geo-dec{display:inline}.geo-multi-punct{display:none}.longitude .latitude{white-space:nowrap} .geo{}   #content span.coordinates a.external.text:after,#content span.coordinates a.external.autonumber:after{content:""} #coordinates{position:absolute;z-index:1;border:none;background:none;right:12px;top:1.3em;float:right;margin:0.0em;padding:0.0em;line-height:1.5em;text-align:right;text-indent:0;font-size:85%;text-transform:none;white-space:normal} #coordinates a[href ^="http://"]{background:url(http://upload.wikimedia.org/wikipedia/de/d/d4/Gnome-globe.png) center right no-repeat;padding-right:18px !important}  #catlinks{border:1px solid #aaa;background-color:#f9f9f9;padding:5px;margin-top:1em;clear:both}  table.navbox{background-color:#f9f9f9;border:1px solid #aaaaaa;clear:both;font-size:90%;margin:auto;padding:2px;text-align:center;width:100%}table.navbox + table.navbox{margin-top:-1px; }.navbox-title,.navbox-abovebelow,table.navbox th{text-align:center; padding-left:1em;padding-right:1em}.navbox-group{ white-space:nowrap;text-align:right;font-weight:bold;padding-left:1em;padding-right:1em}.navbox,.navbox-subgroup{background:#fdfdfd; }.navbox-title,table.navbox th{background:#ccccff; }.navbox-abovebelow,.navbox-group,.navbox-subgroup .navbox-title{background:#ddddff; }.navbox-subgroup .navbox-group,.navbox-subgroup .navbox-abovebelow{background:#e6e6ff; }.navbox-even{background:#f7f7f7; }.navbox-odd{background:transparent; }table.navbox tr:not(:first-child) th{background-color:#ddf}#toolbar{border:1px solid #aaaaaa} .editsection{font-weight:normal !important;margin-left:1em} .noedit{padding-top:1px}.noedit .editsection{display:none} .messagebox{border:1px solid #aaa;background-color:#f9f9f9;width:80%;margin:0 auto 1em auto;padding:.2em}.messagebox.merge{border:1px solid #c0b8cc;background-color:#f0e5ff;text-align:center}.messagebox.cleanup{border:1px solid #9f9fff;background-color:#efefff;text-align:center}.messagebox.standard-talk{border:1px solid #c0c090;background-color:#f8eaba}.messagebox.nested-talk{border:1px solid #c0c090;background-color:#f8eaba;width:100%;margin:2px 4px 2px 4px}.messagebox.small{width:238px;font-size:85%;float:right;clear:both;margin:0 0 1em 1em;line-height:1.25em}.messagebox.small-talk{width:238px;font-size:85%;float:right;clear:both;margin:0 0 1em 1em;line-height:1.25em;background:#F8EABA} .template-documentation{clear:both;margin:1em 0 0 0;border:1px solid #aaa;background-color:#ecfcf4;padding:5px} #bodyContent a[href$=".pdf"].external,#bodyContent a[href*=".pdf?"].external,#bodyContent a[href*=".pdf#"].external,#bodyContent a[href$=".PDF"].external,#bodyContent a[href*=".PDF?"].external,#bodyContent a[href*=".PDF#"].external{background:url(http://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Icons-mini-file_acrobat.gif/15px-Icons-mini-file_acrobat.gif) center right no-repeat;padding-right:16px}  span.PDFlink a{background:url(http://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Icons-mini-file_acrobat.gif/15px-Icons-mini-file_acrobat.gif) center right no-repeat !important;padding-right:17px !important}span.geolink a{background:url(http://upload.wikimedia.org/wikipedia/en/a/a7/Monobook-globe.png) center right no-repeat !important;padding-right:11px !important} .TipTrackButton_tip,.TipMouseButton_tip,.TipClickButton_tip,.TipTrack_tip,.TipMouse_tip,.TipClick_tip{border:1px solid #8888aa;background:#f7f8ff;padding:0.5em} span.lanLabel{color:#777777;padding-left:0.5em}tt span.minor{margin:0 -2px 0 -3px;font-size:12px}tt span.newpage{margin:0 1px 0 -6px;font-size:12px}tt span.bot{margin:0 -6px 0 1px;font-size:12px}  div.user-block{padding:5px;border:1px solid #A9A9A9;background-color:#FFEFD5} @media screen,handheld,projection{cite *.printonly{display:none}} .plainlinksneverexpand a.external.text:after{display:none !important}.plainlinksneverexpand a.external.autonumber:after{display:none !important} .plainlinksneverexpand a.external.text:after{display:none !important}.plainlinksneverexpand a.external.autonumber:after{display:none !important} .messagebox{border:1px solid #aaa;background-color:#f9f9f9;width:80%;margin:0 auto 1em auto;padding:.2em}.messagebox.merge{border:1px solid #c0b8cc;background-color:#f0e5ff;text-align:center}.messagebox.cleanup{border:1px solid #9f9fff;background-color:#efefff;text-align:center}.messagebox.standard-talk{border:1px solid #c0c090;background-color:#f8eaba;margin:4px auto}.messagebox.nested-talk{border:1px solid #c0c090;background-color:#f8eaba;width:100%;margin:2px 0 0 0;padding:2px}.messagebox.small{width:238px;font-size:85%;float:right;clear:both;margin:0 0 1em 1em;line-height:1.25em}.messagebox.small-talk{width:238px;font-size:85%;float:right;clear:both;margin:0 0 1em 1em;line-height:1.25em;background:#F8EABA} th.mbox-text,td.mbox-text{ border:none;padding:0.25em 0.9em; width:100%}td.mbox-image{ border:none;padding:2px 0 2px 0.9em; text-align:center}td.mbox-imageright{ border:none;padding:2px 0.9em 2px 0; text-align:center} table.ambox{ margin:-1px 10% 0px; border:1px solid #aaa;border-left:10px solid #1e90ff; background:#fbfbfb}.ambox th.mbox-text,.ambox td.mbox-text{ border:none;padding:0.25em 0.5em; width:100%; }.ambox td.mbox-image{ border:none;padding:2px 0 2px 0.5em; text-align:center}.ambox td.mbox-imageright{ border:none;padding:2px 0.5em 2px 0; text-align:center}table.ambox-notice{border-left:10px solid #1e90ff; }table.ambox-speedy{border-left:10px solid #b22222; background:#fee; }table.ambox-serious,table.ambox-delete{ border-left:10px solid #b22222; }table.ambox-content{border-left:10px solid #f28500; }table.ambox-style{border-left:10px solid #f4c430; }table.ambox-merge,table.ambox-move{ border-left:10px solid #9932cc; }table.ambox-protection{border-left:10px solid #bba; } table.imbox{margin:4px 10%;border-collapse:collapse;border:3px solid #1e90ff; background:#fbfbfb}.imbox .mbox-text .imbox{ margin:0 -0.5em; }.mbox-inside .imbox{ margin:4px}table.imbox-notice{border:3px solid #1e90ff; }table.imbox-speedy{border:3px solid #b22222; background:#fee; }table.imbox-delete{border:3px solid #b22222; }table.imbox-content{border:3px solid #f28500; }table.imbox-style{border:3px solid #f4c430; }table.imbox-move{border:3px solid #9932cc; }table.imbox-protection{border:3px solid #bba; }table.imbox-license{border:3px solid #88a; background:#f7f8ff; }table.imbox-featured{border:3px solid #cba135; } table.cmbox{margin:3px 10%;border-collapse:collapse;border:1px solid #aaa;background:#DFE8FF; }table.cmbox-notice{background:#DFE8FF; }table.cmbox-speedy{margin-top:4px;margin-bottom:4px;border:4px solid #b22222; background:#FFDBDB; }table.cmbox-delete{background:#FFDBDB; }table.cmbox-content{background:#FFE7CE; }table.cmbox-style{background:#FFF9DB; }table.cmbox-move{background:#F1D0FF; }table.cmbox-protection{background:#EFEFE1; } table.ombox{margin:4px 10%;border-collapse:collapse;border:1px solid #aaa; background:#f9f9f9}table.ombox-small{ clear:right;float:right;margin:4px 0 4px 1em;width:238px;font-size:88%;line-height:1.25em}table.ombox-notice{border:1px solid #aaa; }table.ombox-speedy{border:2px solid #b22222; background:#fee; }table.ombox-delete{border:2px solid #b22222; }table.ombox-content{border:1px solid #f28500; }table.ombox-style{border:1px solid #f4c430; }table.ombox-move{border:1px solid #9932cc; }table.ombox-protection{border:2px solid #bba; } table.tmbox{margin:4px 10%;border-collapse:collapse;border:1px solid #c0c090; background:#f8eaba}table.tmbox-small{ clear:right;float:right;margin:4px 0 4px 1em;width:238px;font-size:88%;line-height:1.25em}.mbox-inside .tmbox{ margin:2px}table.tmbox-speedy{border:2px solid #b22222; background:#fee; }table.tmbox-delete{border:2px solid #b22222; }table.tmbox-content{border:2px solid #f28500; }table.tmbox-style{border:2px solid #f4c430; }table.tmbox-move{border:2px solid #9932cc; }table.tmbox-protection,table.tmbox-notice{border:1px solid #c0c090; }   .mcBoto{background-color:#d0b0ff; border:0.15em solid #000000;border-color:#f0d0ff #b090e0 #9070c0 #f0d0ff; border-radius-topleft:.5em;border-radius-topright:.5em;-moz-border-radius:.5em .5em 0em 0em;cursor:pointer;display:inline;margin-right:0.1em;padding:0.2em 0.3em 0.2em 0.3em;position:relative}.mcBoto a,.mcBoto strong{background:none !important;color:#7050a0 !important; font-size:90%;font-weight:bold;padding:0 !important;text-decoration:none !important}.mcBoto a:hover,.mcBoto strong:hover{color:black !important;text-decoration:underline !important}.mcBotoSel{background-color:#9070c0; border:0.15em solid #000000;border-color:#b090e0 #7050a0 #9070c0 #b090e0; border-radius-topleft:.5em;border-radius-topright:.5em;-moz-border-radius:.5em .5em 0em 0em;cursor:default;display:inline;margin-right:0.1em;padding:0.2em 0.3em 0.2em 0.3em;position:relative;color:white}.mcBotoSel a{background:none !important;color:white !important;cursor:default;font-size:90%;font-weight:bold;padding:0 !important;text-decoration:none !important}.mcContingut{background-color:#f8f8ff;border:0.2em solid #9070c0; border-color:#9070c0 #7050a0 #7050a0 #9070c0 ; -moz-border-radius:0em .5em .5em 0em;border-radius-topright:.5em;border-radius-bottomright:.5em;padding:1em;position:static}.mcPestanya{background-color:#f8f8ff;border-color:#7050a0 #b090e0 #b090e0 #7050a0; width:100%} .mcVerd .mcBoto{background-color:#a5e085; border-color:#c0f090 #90d060 #75c045 #c0f090}.mcVerd .mcBoto a,.mcVerd .mcBoto strong{color:#60b030 !important; font-size:90%}.mcVerd .mcBoto a:hover,.mcVerd .mcBoto strong:hover{color:black !important;text-decoration:underline}.mcVerd .mcBotoSel{background-color:#75c045; border-color:#90d060 #60b030 #75c045 #90d060}.mcVerd .mcContingut{background-color:#f5fffa;border-color:#75c045 #60b030 #60b030 #75c045 }.mcVerd .mcPestanya{background-color:#f5fffa;border-color:#60b030 #90d060 #90d060 #60b030} .mcVermell .mcBoto{background-color:#FFAAAA; border-color:#FFCCCC #FF8888 #FF0000 #FFCCCC}.mcVermell .mcBoto a,.mcVermell .mcBoto strong{color:#CC0000 !important; font-size:90%}.mcVermell .mcBoto a:hover .mcVermell .mcBoto strong:hover{color:black !important;text-decoration:underline}.mcVermell .mcBotoSel{background-color:#FF0000; border-color:#FF8888 #CC0000 #FF0000 #FF8888}.mcVermell .mcContingut{background-color:#fffafa;border-color:#FF0000 #CC0000 #CC0000 #FF0000}.mcVermell .mcPestanya{background-color:#fffafa;border-color:#CC0000 #FF0000 #FF0000 #CC0000} .mcBlau .mcBoto{background-color:#a7c1e6; border-color:#c8d6e9 #88abde #5b8dd6 #c8d6e9}.mcBlau .mcBoto a,.mcBlau .mcBoto strong{color:#3379de !important; font-size:90%}.mcBlau .mcBoto a:hover .mcBlau .mcBoto strong:hover{color:black !important;text-decoration:underline}.mcBlau .mcBotoSel{background-color:#5b8dd6; border-color:#88abde #3379de #5b8dd6 #88abde}.mcBlau .mcContingut{background-color:#f0f8ff;border-color:#5b8dd6 #3379de #3379de #5b8dd6}.mcBlau .mcPestanya{background-color:#f0f8ff;border-color:#3379de #88abde #88abde #3379de} .mcGroc .mcBoto{background-color:#fff1a4; border-color:#fef4bc #ffe977 #ffe147 #fef4bc}.mcGroc .mcBoto a,.mcGroc .mcBoto strong{color:#ffd813 !important; font-size:90%}.mcGroc .mcBoto a:hover .mcGroc .mcBoto strong:hover{color:black !important;text-decoration:underline}.mcGroc .mcBotoSel{background-color:#ffe147; border-color:#ffe977 #ffd813 #ffe147 #ffe977}.mcGroc .mcContingut{background-color:#fffce8;border-color:#ffe147 #ffd813 #ffd813 #ffe147}.mcGroc .mcPestanya{background-color:#fffce8;border-color:#ffd813 #88abde #88abde #ffd813} .mcTaronja .mcBoto{background-color:#ffbd7f; border-color:#ffd0a4 #ffac5d #ff9d42 #ffd0a4}.mcTaronja .mcBoto a,.mcTaronja .mcBoto strong{color:#ff820e !important; font-size:90%}.mcTaronja .mcBoto a:hover .mcTaronja .mcBoto strong:hover{color:black !important;text-decoration:underline}.mcTaronja .mcBotoSel{background-color:#ff9d42; border-color:#ffac5d #ff820e #ff9d42 #ffac5d}.mcTaronja .mcContingut{background-color:#ffeedd; border-color:#ff9d42 #ff820e #ff820e #ff9d42}.mcTaronja .mcPestanya{background-color:#ffeedd; border-color:#ff820e #ffac5d #ffac5d #ff820e}   strong.mw-plusminus-neg{color:#c00}.mw-plusminus-pos{color:#060}.mw-plusminus-neg{color:#900}
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba(255,255,255,0.5);border-radius:5px;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABblBMVEUAAAD///////9PfTf///80aRdTgjn///9Feij///////////9Rfzf///////////9PfjZRgDh1o1xOfTb///////+bwYqLtnj///////9PfTa82K////9WhT6YxIL///9QgDdTgzr////////j7uDl7eLq8efi693k7OH///////9UhjuBr2rp9uRUhjr///9YljVKgir///9WiTlYjT3////9/v57vFlbkT5PjC9dlD/5/fhuq09stUTs9uhxuElctCpfnT1huDFloEZloUZmpENmvDZpvDxpvTxqvjxrvT5rvT9rwTxsqktswD5uwkBvuUdxw0NztFBztU9ztVBzwkp0tlJ1xkd2t1R3uVR4w1F4xk54x014yE15uVZ5v1R5xVB6v1R7yFJ8wVh9xVl9yFR9yVd9ylN+xVh+yFd/x1l/yFeAylmEx1+Ny2uY0Hqe04Wj1Ymv3Ze33qLD47TJ5L3O6cPU7Mrq9eb2+/Q4j37OAAAAQHRSTlMAAQIEBAUFBQwPFB4fJCUoKiosQEhJS01RUlZZXmdydXaChYuSlJSWmJmoq6uur8LExcvM19fg5ejt8fX2+Pr7SljgewAAAKpJREFUGBkFwQNCAwAAAMDLtl3LtrG4rWXbtvX77gAgZ6grFwC0bhwNVgKgdPZx8b0dgLi+s7Wn0VoAqpfOI9+BNADZI7fLrz2pSEwGHZuH+78lSK8ZLkLezF3ooyUG3VPXq2USei9WngeyoG195yBYWDF3E/2pAhl1e9Gr8bGT+bfOFCC2fnvh4X7rcqIAQNNu+HT6sxkAjceTL/2ZAIhv+PorBwBJxfkA//dFHSCBy/UTAAAAAElFTkSuQmCC);background-image:url(/resources/src/mediawiki.action/images/green-checkmark.png?9048a)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:black;text-shadow:0 0.0625em 0 white;text-decoration:none;opacity:0.2;filter:alpha(opacity=20)}.postedit-close:hover{color:black;text-decoration:none;opacity:0.4;filter:alpha(opacity=40)}</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{color:black;text-decoration:none}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:white}.suggestions a.mw-searchSuggest-link .special-query{ overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="http://wiki.ubuntu.org.cn/load.php?debug=false&lang=zh-hans&modules=site&only=styles&skin=cavendish">
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="./Git服务器Gitosis安装设置 - Ubuntu中文_files/load.php"></script>
+<meta name="generator" content="MediaWiki 1.26.3">
+<link rel="alternate" type="application/x-wiki" title="编辑" href="http://wiki.ubuntu.org.cn/index.php?title=Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE&action=edit">
+<link rel="edit" title="编辑" href="http://wiki.ubuntu.org.cn/index.php?title=Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE&action=edit">
+<link rel="shortcut icon" href="http://wiki.ubuntu.org.cn/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wiki.ubuntu.org.cn/opensearch_desc.php" title="Ubuntu中文 (zh-hans)">
+<link rel="EditURI" type="application/rsd+xml" href="http://wiki.ubuntu.org.cn/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="Ubuntu中文的Atom feed" href="http://wiki.ubuntu.org.cn/index.php?title=%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E6%9B%B4%E6%94%B9&feed=atom">
+<script src="./Git服务器Gitosis安装设置 - Ubuntu中文_files/load(1).php"></script></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Git服务器Gitosis安装设置 skin-cavendish action-view">
+<div id="internal"></div>
+<!-- Skin-Version: 2.3.4 //Please leave this for bugtracking purpose//-->
+<div id="globalWrapper" class="view">
+	<div id="p-personal" class="portlet">
+		<h5>个人工具</h5>
+		<div class="pBody">
+			<ul>
+						
+			<li id="pt-login" class="top-nav-element">
+				<span class="top-nav-left">&nbsp;</span>
+				<a class="top-nav-mid " href="http://wiki.ubuntu.org.cn/index.php?title=%E7%89%B9%E6%AE%8A:%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95&returnto=Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE">
+				   登录</a>
+				<span class="top-nav-right">&nbsp;</span></li>
+							
+			</ul>
+		</div>
+	</div>
+	<div id="header">
+		<a name="top" id="contentTop"></a>
+		<h6>
+		<a href="http://wiki.ubuntu.org.cn/%E9%A6%96%E9%A1%B5" title="首页">Git服务器Gitosis安装设置 - Ubuntu中文</a></h6>
+		<div id="p-cactions" class="portlet"><ul>
+
+				<li id="ca-nstab-main" class="selected"><a href="./Git服务器Gitosis安装设置 - Ubuntu中文_files/Git服务器Gitosis安装设置 - Ubuntu中文.html" title="查看内容页面">页面</a></li>
+				<li id="ca-talk"><a href="http://wiki.ubuntu.org.cn/%E8%AE%A8%E8%AE%BA:Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE" title="关于内容页面的讨论">讨论</a></li>
+				<li id="ca-edit"><a href="http://wiki.ubuntu.org.cn/index.php?title=Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE&action=edit" title="编辑本页">编辑</a></li>
+				<li id="ca-history"><a href="http://wiki.ubuntu.org.cn/index.php?title=Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE&action=history" title="本页面过去的版本">历史</a></li>			</ul></div>
+					<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">搜索</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://wiki.ubuntu.org.cn/index.php" id="searchform">
+					<input type="hidden" name="title" value="特殊:搜索">
+					<input type="search" name="search" placeholder="搜索" title="搜索Ubuntu中文[alt-shift-f]" accesskey="f" id="searchInput" autocomplete="off">
+					<input type="submit" name="go" value="前往" title="若相同标题存在，则直接前往该页面" id="searchGoButton" class="searchButton">&nbsp;
+						<input type="submit" name="fulltext" value="搜索" title="搜索含这些文字的页面" id="mw-searchButton" class="searchButton">
+				</form>
+
+							</div>
+		</div>
+		</div>
+	<div id="mBody">
+		<div id="side">
+			<div id="nav">
+	<div class="generated-sidebar portlet" id="p-navigation" role="navigation">
+		<h3>导航</h3>
+		<div class="pBody">
+							<ul>
+											<li id="n-mainpage-description"><a href="http://wiki.ubuntu.org.cn/%E9%A6%96%E9%A1%B5" title="访问首页[alt-shift-z]" accesskey="z">首页</a></li>
+											<li id="n-recentchanges"><a href="http://wiki.ubuntu.org.cn/%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E6%9B%B4%E6%94%B9" title="本wiki最近更改的列表[alt-shift-r]" accesskey="r">最近更改</a></li>
+											<li id="n-randompage"><a href="http://wiki.ubuntu.org.cn/%E7%89%B9%E6%AE%8A:%E9%9A%8F%E6%9C%BA" title="载入一个随机页面[alt-shift-x]" accesskey="x">随机页面</a></li>
+											<li id="n-.E9.A1.B5.E9.9D.A2.E5.88.86.E7.B1.BB"><a href="http://wiki.ubuntu.org.cn/%E5%88%86%E7%B1%BB:%E9%A1%B5%E9%9D%A2%E5%88%86%E7%B1%BB">页面分类</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="查找帮助的地方">帮助</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-.E7.BC.96.E8.BE.91" role="navigation">
+		<h3>编辑</h3>
+		<div class="pBody">
+							<ul>
+											<li id="n-.E7.BC.96.E8.BE.91.E6.8C.87.E5.8D.97"><a href="http://wiki.ubuntu.org.cn/%E5%88%86%E7%B1%BB:%E8%B4%A1%E7%8C%AE">编辑指南</a></li>
+											<li id="n-.E6.B2.99.E7.9B.92"><a href="http://wiki.ubuntu.org.cn/%E6%B2%99%E7%9B%92">沙盒</a></li>
+											<li id="n-currentevents"><a href="http://wiki.ubuntu.org.cn/Ubuntu%E4%B8%AD%E6%96%87:%E6%96%B0%E9%97%BB%E5%8A%A8%E6%80%81" title="查看当前事件的背景信息">新闻动态</a></li>
+											<li id="n-.E5.AD.97.E8.AF.8D.E5.A4.84.E7.90.86"><a href="http://wiki.ubuntu.org.cn/MediaWiki:Conversiontable/zh-hant">字词处理</a></li>
+									</ul>
+					</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>工具</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://wiki.ubuntu.org.cn/%E7%89%B9%E6%AE%8A:%E9%93%BE%E5%85%A5%E9%A1%B5%E9%9D%A2/Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE" title="所有链接至本页面的wiki页面的列表[alt-shift-j]" accesskey="j">链入页面</a></li>
+											<li id="t-recentchangeslinked"><a href="http://wiki.ubuntu.org.cn/%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E9%93%BE%E5%87%BA%E6%9B%B4%E6%94%B9/Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE" title="链自本页的页面的最近更改[alt-shift-k]" accesskey="k">相关更改</a></li>
+											<li id="t-specialpages"><a href="http://wiki.ubuntu.org.cn/%E7%89%B9%E6%AE%8A:%E7%89%B9%E6%AE%8A%E9%A1%B5%E9%9D%A2" title="所有特殊页面的列表[alt-shift-q]" accesskey="q">特殊页面</a></li>
+											<li id="t-print"><a href="http://wiki.ubuntu.org.cn/index.php?title=Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE&printable=yes" rel="alternate" title="本页面的可打印版本[alt-shift-p]" accesskey="p">打印版本</a></li>
+											<li id="t-permalink"><a href="http://wiki.ubuntu.org.cn/index.php?title=Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE&oldid=149661" title="本页面该版本的固定链接">固定链接</a></li>
+											<li id="t-info"><a href="http://wiki.ubuntu.org.cn/index.php?title=Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE&action=info" title="关于此页面的更多信息">页面信息</a></li>
+									</ul>
+							</div>
+		</div>
+	</div>
+</div>
+		</div><!-- end of SIDE div -->
+		<div id="column-content">
+			<div id="content">
+				<a id="top"></a>
+								<h1 id="firstHeading" class="firstHeading">Git服务器Gitosis安装设置</h1>
+				<div id="bodyContent">
+					<h3 id="siteSub">来自Ubuntu中文</h3>
+					<div id="contentSub"></div>
+															<div id="jump-to-nav">跳转至： <a href="http://wiki.ubuntu.org.cn/Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE#column-one">导航</a>, <a href="http://wiki.ubuntu.org.cn/Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE#searchInput">搜索</a></div>					<!-- start content -->
+					<div id="mw-content-text" lang="zh-Hans" dir="ltr" class="mw-content-ltr"><p>1、安装 openssh服务器
+</p>
+<pre>sudo apt-get install openssh-server openssh-client
+</pre>
+<p>2、创建个人公钥和私钥
+</p><p>在默认用户的主目录路径下，运行以下命令，按照提示创建公钥和私钥
+</p>
+<pre>ssh-keygen -t rsa
+</pre>
+<p>默认生成2048位，如果需要提高安全级别，也可以通过下面的命令创建公钥和私钥
+</p>
+<pre>ssh-keygen -t rsa -b 4096
+</pre>
+<p>默认情况下，公钥和私钥会保存在~/.ssh目录下，如下所示：
+</p>
+<pre>id_rsa  id_rsa.pub  known_hosts
+</pre>
+<p>3、安装 git服务器
+</p>
+<pre>sudo apt-get install git-core
+</pre>
+<p>4、配置 git服务器
+</p><p>创建git服务器管理用户
+</p>
+<pre>sudo useradd -m git
+sudo passwd git
+</pre>
+<p>创建git仓库存储目录
+</p>
+<pre>sudo mkdir /home/git/repositories
+</pre>
+<p>设置git仓库权限
+</p>
+<pre>sudo chown git:git /home/git/repositories
+sudo chmod 755 /home/git/repositories
+</pre>
+<p>初始化全局设置
+</p>
+<pre>git config --global user.name "myname"
+git config --global user.email "myname@server"
+</pre>
+<p>5、安装python的setup tool
+</p>
+<pre>sudo apt-get install python-setuptools
+</pre>
+<p>6、获取并安装gitosis
+</p>
+<pre>cd /tmp
+git clone <a rel="nofollow" class="external free" href="https://github.com/res0nat0r/gitosis.git">https://github.com/res0nat0r/gitosis.git</a>
+cd gitosis
+sudo python setup.py install
+</pre>
+<p>7、配置gitosis
+</p>
+<pre>cp ~/.ssh/id_rsa.pub /tmp
+sudo -H -u git gitosis-init &lt; /tmp/id_rsa.pub
+sudo chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update
+</pre>
+<p>8、管理gitosis配置
+</p>
+<pre>cd ~
+git clone git@hostname:用户名/gitosis-admin.git
+cd gitosis-admin/
+</pre>
+<p>各个用户按照前面提到的办法生成各自的ssh公钥文件后，服务器管理员把所有人的 ssh公钥文件都拿来，拷贝到keydir目录下。
+</p><p>修改gitosis.conf文件，如下所示
+</p>
+<pre>[gitosis]
+</pre>
+<pre>[group gitosis-admin]
+writable = gitosis-admin
+members = a@server1
+</pre>
+<pre>[group developers]
+writable = helloworld
+members = a@server1 b@server2
+</pre>
+<pre>[group test] 
+readonly = helloworld
+members = c@server3
+</pre>
+<p>这个配置文件表达了如下含义：gitosis-admin组成员有a，该组对gitosis-admin仓库有读写权限；
+developers组有a，b两个成员，该组对helloworld仓库有读写权限；
+test组有c一个成员，对helloworld仓库有只读权限。
+当然目前这些配置文件的修改只是在你的本地，你必须推送到gitserver上才能真正生效。
+加入新文件、提交并push到git服务器：
+</p>
+<pre>git add .
+git commit -am "add helloworld project and users"
+git remote add origin ssh://git@hostname/helloworld.git
+git push origin master
+</pre>
+<p>9、安装apache2
+</p>
+<pre>sudo apt-get install apache2
+</pre>
+<p>10、安装gitweb
+</p>
+<pre>sudo apt-get install gitweb
+</pre>
+<p>11、配置 gitweb
+</p><p>默认没有 css 加载，把 gitweb 要用的静态文件连接到 DocumentRoot 下：
+</p>
+<pre>cd /var/www/
+sudo ln -s /usr/share/gitweb/* .
+</pre>
+<p>修改配置：
+</p>
+<pre>sudo vi /etc/gitweb.conf
+</pre>
+<p>将 $projectroot 改为git仓库存储目录(例如：/home/git/repositories)，保存后刷新浏览器。
+</p><p><br>
+如果没有找到项目，你需要将$projectroot/*.git 的属性改为755，让apache用户有可读权限。可以只改你需要让别人通过web访问的那个git。
+<a rel="nofollow" class="external free" href="http://localhost/cgi-bin/gitweb.cgi">http://localhost/cgi-bin/gitweb.cgi</a>
+</p><p><br>
+修改/etc/gitweb.conf 内容：
+</p>
+<pre># path to git projects (&lt;project&gt;.git)
+#$projectroot = "/var/cache/git";
+$projectroot = "/home/git/repositories";
+</pre>
+<pre># directory to use for temp files
+$git_temp = "/tmp";
+</pre>
+<pre># target of the home link on top of all pages
+$home_link = $my_uri || "/";
+</pre>
+<pre># html text to include at home page
+$home_text = "indextext.html";
+</pre>
+<pre># file with project list; by default, simply scan the projectroot dir.
+$projects_list = $projectroot;
+</pre>
+<pre># stylesheet to use
+@stylesheets = ("/gitweb/static/gitweb.css");
+</pre>
+<pre># javascript code for gitweb
+$javascript = "gitweb/static/gitweb.js";
+</pre>
+<pre># logo to use
+$logo = "/gitweb/static/git-logo.png";
+</pre>
+<pre># the 'favicon'
+$favicon = "/gitweb/static/git-favicon.png";
+</pre>
+<pre># git-diff-tree(1) options to use for generated patches
+#@diff_opts = ("-M");
+@diff_opts = ();
+</pre>
+<p>12、配置apache2
+</p><p>ubuntu中默认的web目录是/var/www，默认的cgi目录是 /usr/lib/cgi-bin/,安装完成gitweb后，gitweb的gitweb.cgi会自动放置到该目录下。
+</p><p>如果你的cgi路径不是默认的/usr/lib/cgi-bin/，需要将gitweb安装在/usr/lib/cgi-bin中的gitweb.cgi复制到原来配置的cgi-bin路径，并在apache的配置文件/etc/apache2/apache.conf末尾加上以下内容：
+</p>
+<pre>SetEnv  GITWEB_CONFIG   /etc/gitweb.conf 
+&lt;Directory "/srv/www/cgi-bin/gitweb"&gt;           
+     Options FollowSymlinks ExecCGI          
+     Allow from all                          
+     AllowOverride all                       
+     Order allow,deny                        
+     &lt;Files gitweb.cgi&gt; 
+          SetHandler cgi-script 
+     &lt;/Files&gt;                    
+     RewriteEngine on 
+     RewriteCond&nbsp;%{REQUEST_FILENAME}&nbsp;!-f 
+     RewriteCond&nbsp;%{REQUEST_FILENAME}&nbsp;!-d 
+     RewriteRule ^.* /gitweb.cgi/$0 [L,PT] 
+&lt;/Directory&gt;
+</pre>
+<p>重新启动apache：sudo /etc/init.d/apache2 restart，访问http://localhost/cgi-bin/gitweb.cgi
+<a href="http://wiki.ubuntu.org.cn/%E6%96%87%E4%BB%B6:5640850295_c021ba8c01_z.jpg" class="image"><img alt="5640850295 c021ba8c01 z.jpg" src="./Git服务器Gitosis安装设置 - Ubuntu中文_files/5640850295_c021ba8c01_z.jpg" width="640" height="375"></a>
+</p><p>13、参考：
+</p><p><a rel="nofollow" class="external text" href="http://gitref.org/index.html">Git Reference</a>
+</p><p><a rel="nofollow" class="external text" href="http://techblog.iamzellux.com/2009/05/install-git-gitoss-gitweb-in-archlinux/">ArchLinux下安装git, gitosis, gitweb服务</a>
+</p><p><a rel="nofollow" class="external text" href="http://blog.csdn.net/wirror800/archive/2010/01/14/5189564.aspx">Git服务器在Ubuntu中的搭建</a>
+</p><p><a rel="nofollow" class="external text" href="http://zensheno.blog.51cto.com/2712776/489571">Ubuntu中Git服务器搭建</a>
+</p><p><a rel="nofollow" class="external text" href="http://www.jiangmiao.org/blog/1600.html">Git服务器Gitosis架设指南</a>
+</p><p><a rel="nofollow" class="external text" href="http://blog.chinaunix.net/space.php?uid=20146040&do=blog&cuid=2422172">gitweb在ubuntu上的配置</a>
+</p><p><a rel="nofollow" class="external text" href="http://blog.csdn.net/jixiuffff/archive/2010/10/26/5966852.aspx">git通过ssh进行认证连接</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20160613093126
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.028 seconds
+Real time usage: 0.030 seconds
+Preprocessor visited node count: 1/1000000
+Preprocessor generated node count: 4/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key ubuntuwiki:pcache:idhash:43909-0!*!*!*!*!5!* and timestamp 20160613093126 and revision id 149661
+ -->
+</div><div class="printfooter">
+取自“<a dir="ltr" href="http://wiki.ubuntu.org.cn/index.php?title=Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE&oldid=149661">http://wiki.ubuntu.org.cn/index.php?title=Git服务器Gitosis安装设置&amp;oldid=149661</a>”</div>
+					<div id="catlinks" class="catlinks catlinks-allhidden"></div>					<!-- end content -->
+									</div>
+			</div><!-- end of MAINCONTENT div -->	
+		</div>
+	</div><!-- end of MBODY div -->
+	<div class="visualClear"></div>
+	<div id="footer">
+		<table>
+			<tbody><tr>
+				<td rowspan="2" class="f-iconsection">
+						</td>
+				<td align="center">
+			<ul id="f-list">
+					<li id="f-credits">本页面被Ubuntu中文匿名用户<a href="http://wiki.ubuntu.org.cn/%E7%89%B9%E6%AE%8A:%E7%94%A8%E6%88%B7%E8%B4%A1%E7%8C%AE/59.40.178.13" title="特殊:用户贡献/59.40.178.13">59.40.178.13</a>最后修改于2013年1月31日 (星期四) 17:18。 基于<a href="http://wiki.ubuntu.org.cn/%E7%94%A8%E6%88%B7:Snowdream" title="用户:Snowdream">snowdream</a>的工作。</li>
+					<li id="f-privacy"><a href="http://wiki.ubuntu.org.cn/Ubuntu%E4%B8%AD%E6%96%87:%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96" title="Ubuntu中文:隐私政策">隐私政策</a></li>
+					<li id="f-about"><a href="http://wiki.ubuntu.org.cn/Ubuntu%E4%B8%AD%E6%96%87:%E5%85%B3%E4%BA%8E" title="Ubuntu中文:关于">关于Ubuntu中文</a></li>
+					<li id="f-disclaimer"><a href="http://wiki.ubuntu.org.cn/Ubuntu%E4%B8%AD%E6%96%87:%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E" title="Ubuntu中文:免责声明">免责声明</a></li>
+</ul></td>
+				<td rowspan="2" class="f-iconsection">
+												<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="./Git服务器Gitosis安装设置 - Ubuntu中文_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"></a></div>
+					 
+				</td>
+			</tr>
+			<tr>
+				<td><div id="skin-info">
+					Mozilla Cavendish Theme based on Cavendish style by Gabriel Wicke modified by <a href="http://www.dasch-tour.de/" title="DaSch-Tour Blog" target="_blank">DaSch</a> for the <a href="http://www.wecowi.de/" title="Web Community Wiki">Web Community Wiki</a><br>
+					<a href="https://github.com/DaSchTour/Cavendish" title="github projectpage">github Projectpage</a> – <a href="https://github.com/DaSchTour/Cavendish/issues" title="Bug reporting at github">Report Bug</a> – Skin-Version: 2.3.4				</div></td>
+			</tr>
+		</tbody></table>
+	</div><!-- end of the FOOTER div -->
+<!-- end of the CONTAINER div -->
+<!-- scripts and debugging information -->
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":212});
+} );</script><div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://wiki.ubuntu.org.cn/Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://wiki.ubuntu.org.cn/Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://wiki.ubuntu.org.cn/Git%E6%9C%8D%E5%8A%A1%E5%99%A8Gitosis%E5%AE%89%E8%A3%85%E8%AE%BE%E7%BD%AE#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./Git服务器Gitosis安装设置 - Ubuntu中文_files/yun6.html" style="border: none; display: none; z-index: 2147483645; background: transparent;"></iframe><script src="./Git服务器Gitosis安装设置 - Ubuntu中文_files/pv.gif"></script><div class="suggestions" style="display: none; font-size: 12px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div></body></html>

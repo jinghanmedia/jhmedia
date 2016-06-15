@@ -1,0 +1,553 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0063)http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>10分钟教会你Apache Shiro - 爱开卷360 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/bundle-coffee.css">
+<link type="text/css" rel="stylesheet" href="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/99494.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/ibook360/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/ibook360/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/ibook360/wlwmanifest.xml">
+<script src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'ibook360', cb_enable_mathjax=false;</script>
+<script src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/blog-common.js" type="text/javascript"></script>
+<style type="text/css">div#ad_b4,div#ad_b3,div#ad_b2,div#ad_b1{display:none !important;}</style></head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/ibook360/"><img id="blogLogo" src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/ibook360/">爱开卷360</a></h1>
+<h2>好文章 • 爱开卷 • 360Tech</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/ibook360/">首页</a></li>
+	<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="MyLinks1_ContactLink" accesskey="9" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/%E7%88%B1%E5%BC%80%E5%8D%B7360">联系</a></li>
+	<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+	<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/ibook360/rss">订阅</a>
+	<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/ibook360/rss"><img src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				
+<!--done-->
+随笔- 148&nbsp;
+文章- 0&nbsp;
+评论- 53&nbsp;
+
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/10分钟教会你Apache Shiro - 爱开卷360 - 博客园.html">10分钟教会你Apache Shiro</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><span style="font-family: 宋体; font-size: 12pt;"><strong><em>前言</em></strong> </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">欢迎来到Apache Shiro 10分钟之旅！ </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">希望通过这个简单、快速的示例，可以让你对应用程序中使用Shiro有个深入的了解。嗯，10分钟你应该可以搞定它。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;"><strong><em>概述</em></strong> </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">Apache Shiro是什么？ </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">Apache Shiro一个功能强大，使用简单的Java安全框架，它为开发人员提供一个直观而全面的认证，授权，加密及会话管理的解决方案。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">实际上，Shiro的主要功能是管理应用程序中与安全相关的全部，同时尽可能支持多种实现方法。Shiro是建立在完善的接口驱动设计和面向对象原则之上的，支持各种自定义行为。Shiro提供的默认实现，使其能完成与其他安全框架同样的功能，这不也是我们一直努力想要得到的吗！ </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">那么Apache Shiro能用来做什么呢？ </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">很多，很多，嘿嘿。但是不在快速指南中做介绍，如果你想知道，那怎么办呢？去<a href="http://shiro.apache.org/features.html"><span style="color: blue; text-decoration: underline;"><em>这里</em></span></a>找寻你的答案吧。当然如果你还想知道我们什么时候，以及为什么要"创造"Shiro，去看看<a href="http://shiro.apache.org/what-is-shiro.html"><span style="color: blue; text-decoration: underline;"><em>Shrio的历史和使命</em></span></a>吧。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">OK，现在让我们动手做点儿什么吧。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;"><em>注：Shiro可以在任何环境下运行，小到最简单的命令行应用，大到大型的企业应用以及集群应用。但是我们准备在快速指南中使用最最简单的main方法的方式，让你对Shiro的API有个感官的认识。</em> </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;"><strong><em>下载</em></strong> </span></p>
+<ol>
+<li><span style="font-family: 宋体; font-size: 12pt;">确保已经安装了JDK1.5+和Maven2.2+ </span></li>
+<li><span style="font-family: 宋体; font-size: 12pt;">去<a href="http://shiro.apache.org/download.html"><span style="color: blue; text-decoration: underline;"><em>这里</em></span></a>下载最新已发布的源码。例子中我们使用1.1.0发布版本。 </span></li>
+<li><span style="font-family: 宋体; font-size: 12pt;">解压源代码 </span></li>
+<li>
+<div><span style="font-family: 宋体; font-size: 12pt;">进入快速指南文件夹 </span></div>
+<p style="margin-left: 36pt;"><span style="font-family: 宋体; font-size: 12pt;">cd shiro-root-1.1.0/samples/quickstart </span></p>
+</li>
+<li>
+<div><span style="font-family: 宋体; font-size: 12pt;">运行快速指南 </span></div>
+<p style="margin-left: 36pt;"><span style="font-family: 宋体; font-size: 12pt;">mvn compile exec:java </span></p>
+</li>
+</ol>
+<p><span style="font-family: 宋体; font-size: 12pt;">过程中会输出日志信息，用来告诉你正在进行的是什么，最后退出执行。可以在这里"samples/quickstart/src/main/java/Quickstart.java "找到源码，也可以进行修改，记得修改后运行"mvn compile exec:java "即可。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;"><strong><em>Quickstart.java</em></strong> </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">Quickstart.java中包含刚刚我们提到的所有内容(认证、授权等等)，通过这个简单的示例可以让你轻松的熟悉Shiro的API。那么，让我们把Quickstart.java中的代码，一点一点剖析，这样便于理解它们的作用。 几乎所有的环境下，都可以通过这种方式获取当前用户： </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">Subject currentUser = SecurityUtils.getSubject(); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">通过SecurityUtils.getSubject()，就可以获取当前Subject。Subject是应用中用户的一个特定安全的缩影，虽然感觉上直接使用User会更贴切，但是实际上它的意义远远超过了User。而且每个应用程序都会有自己的用户以及框架，我们可不想和它们混淆在一起，况且Subject就是安全领域公认的名词。OK，我们继续。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">在单应用系统中，调用getSubject()会返回一个Subject，它是位于应用程序中特定位置的用户信息；在服务器中运行的情况下(比如web应用)，getSubject会返回一个位于当前线程或请求中的用户信息。 现在你已经得到了Subject对象，那么用它可以做什么呢？ </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">如果你想得到应用中用户当前Session的其他参数，可以这样获取Session对象： </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">Session session = currentUser.getSession(); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">session.setAttribute( "someKey", "aValue" ); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">这个Session对象是Shiro中特有的对象，它和我们经常使用的HttpSession非常相似，但还提供了额外的东西，其中与HttpSession最大的不同就是Shiro中的Session不依赖HTTP环境(换句话说，可以在非HTTP 容器下运行)。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">如果将Shiro部署在web应用程序中，那么这个Session就是基于HttpSession的。但是像QuickStart示例那样，在非web环境下使用，Shiro则默认使用EnterpriseSessionManagment。也就是说，不论在应用中的任何一层使用同样的API，却不需要考虑部署环境，这一优点为应用打开一个全新的世界，因为应用中要获取Session对象再也不用依赖于HttpSession或者EJB的会话Bean。而且任何客户端技术都可以共享session 数据。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">现在你可以得到当前Subject和它的Session对象。那么我们如何验证比如角色和权限这些东西呢？ </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">很简单，可以通过已得到的user对象进行验证。Subject对象代表当前用户，但是，谁才是当前用户呢？他们可是匿名用户啊。也就是说，必须登录才能获取到当前用户。没问题，这样就可以搞定： </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">if ( !currentUser.isAuthenticated() ) { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//collect user principals and credentials in a gui specific manner </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//such as username/password html form, X509 certificate, OpenID, etc. </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//We'll use the username/password example here since it is the most common. </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//(do you know what movie this is from? ;) </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">UsernamePasswordToken token = new UsernamePasswordToken("lonestarr", "vespa"); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//this is all you have to do to support 'remember me' (no config - built in!): </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">token.setRememberMe(true); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">currentUser.login(token); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">就是这样，太简单了吧！ </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">那登录失败了怎么处理呢？可以通过捕获各类异常，根据不同类型的异常做出不同的处理： </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">try { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">currentUser.login( token ); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//if no exception, that's it, we're done! </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} catch ( UnknownAccountException uae ) { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//username wasn't in the system, show them an error message? </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} catch ( IncorrectCredentialsException ice ) { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//password didn't match, try again? </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} catch ( LockedAccountException lae ) { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//account for that username is locked - can't login. Show them a message? </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">... more types exceptions to check if you want ... </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} catch ( AuthenticationException ae ) { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//unexpected condition - error? </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">可以捕获Shiro提供的各种异常，也可以抛出自定义类异常用于处理Shiro未考虑到的情况。预知详情，可以去了解<a href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/authc/AuthenticationException.html"><span style="color: blue; text-decoration: underline;"><em>AuthenticationException JavaDoc</em></span></a>。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;"><em>提示：最安全的做法是将登录失败的消息告知用户，你总不会帮助攻击者入侵你的系统吧！</em> </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">OK，现在已经拥有一个登录用户了，我们还能做点儿什么呢？ </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">比方说，他们是谁： </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">//print their identifying principal (in this case, a username): </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">log.info( "User [" + currentUser.getPrincipal() + "] logged in successfully." ); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">也可以判断用户是否拥有特定的角色： </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">if ( currentUser.hasRole( "schwartz" ) ) { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">log.info("May the Schwartz be with you!" ); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} else { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">log.info( "Hello, mere mortal." ); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">还可以判断用户是否对特定某实体有操作权限： </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">if ( currentUser.isPermitted( "lightsaber:weild" ) ) { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">log.info("You may use a lightsaber ring. Use it wisely."); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} else { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">log.info("Sorry, lightsaber rings are for schwartz masters only."); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">当然，还可以进行功能强大的实例级别的权限验证。通过它可以判断用户是否有访问特定类型实例的权限： </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">if ( currentUser.isPermitted( "winnebago:drive:eagle5" ) ) { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">log.info("You are permitted to 'drive' the 'winnebago' with license plate (id) 'eagle5'. " +"Here are the keys - have fun!"); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} else { </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">log.info("Sorry, you aren't allowed to drive the 'eagle5' winnebago!"); </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">} </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">小菜一碟，对吧。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">最后，当用户使用完毕，还可以退出应用。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">currentUser.logout(); //removes all identifying information and invalidates their session too. </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">这些就是使用Apache Shiro开发应用的核心了，当然，Apache Shiro已将将很多复杂的东西封装在内部了，但是现在它就是这么简单。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">你会有疑问吧，用户登录时，谁负责把用户信息(用户名、密码、角色、权限等)取出来，还有运行时，谁负责安全认证呢？当然由你决定了啊。通过将一个实现了Shiro中的Realm的Reaml配置到Shiro中即可。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">至于如何配置很大程度上取决于你的运行时环境，比如在单应用、web应用、基于Spring或JEE 容器的应用或者组合模式中使用Shiro，配置都有所不同。如何配置已经超出QuickStart示例的范围，因为它的主要目的是帮助你熟悉Shiro的API和概念。 </span></p>
+<p><span style="font-family: 宋体; font-size: 12pt;">如果想进一步了解Shiro，可以看看<a href="http://shiro.apache.org/java-authentication-guide.html"><span style="color: blue; text-decoration: underline;"><em>Authentication Guide</em></span></a>和<a href="http://shiro.apache.org/java-authorization-guide.html"><span style="color: blue; text-decoration: underline;"><em>Authorization Guide</em></span></a>。也可以查看其他文档(特别是<a href="http://shiro.apache.org/reference.html"><span style="color: blue; text-decoration: underline;"><em>Reference Manual</em></span></a>)，这里可以解决你的各种疑问。 </span></p>
+<p>&nbsp;</p>
+<p>转自：http://www.turingbook.com/article/details/163</p>
+<p>&nbsp;</p>
+<hr>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;">&nbsp;</p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;"><span style="line-height: 21px; background-color: #f5f2ef; font-family: simsun; word-wrap: normal; color: #494949; word-break: normal;"><strong style="font-weight: bold;">相关文章阅读及下载：</strong></span></p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;">&nbsp;</p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;"><strong style="font-weight: bold;">《</strong><span style="line-height: 19px; font-family: tahoma, Arial, 宋体; word-wrap: normal; color: #666666; word-break: normal; font-weight: bold; -webkit-text-size-adjust: none;"><a style="color: #616351; text-decoration: none;" title="Shiro1.1.0开发配置文档" href="http://blog.sina.com.cn/s/blog_8d1a1a3e0100u3bh.html" target="_blank">Shiro1.1.0开发配置文档</a></span><strong style="font-weight: bold;">》</strong></p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;">&nbsp;</p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;"><strong style="font-weight: bold;">《</strong><span style="line-height: 19px; font-family: tahoma, Arial, 宋体; word-wrap: normal; color: #666666; word-break: normal; font-weight: bold; -webkit-text-size-adjust: none;"><a style="color: #616351; text-decoration: none;" title="应用Shiro到Web Application" href="http://blog.sina.com.cn/s/blog_8d1a1a3e0100u3bj.html" target="_blank">应用Shiro到Web Application</a></span><strong style="font-weight: bold;">》</strong></p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;">&nbsp;</p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;"><strong style="font-weight: bold;">《</strong><span style="line-height: 19px; font-family: tahoma, Arial, 宋体; word-wrap: normal; color: #666666; word-break: normal; font-weight: bold; -webkit-text-size-adjust: none;"><a style="color: #616351; text-decoration: none;" title="Apache Shiro 使用手册" href="http://blog.sina.com.cn/s/blog_8d1a1a3e0100u3bm.html" target="_blank">Apache Shiro 使用手册</a></span><strong style="font-weight: bold;">》</strong></p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;">&nbsp;</p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;"><strong style="font-weight: bold;">《</strong><span style="line-height: 19px; font-family: tahoma, Arial, 宋体; word-wrap: normal; color: #666666; word-break: normal; font-weight: bold; -webkit-text-size-adjust: none;"><a style="color: #616351; text-decoration: none;" title="10分钟教会你Apache Shiro" href="http://blog.sina.com.cn/s/blog_8d1a1a3e0100u3bq.html" target="_blank">10分钟教会你Apache Shiro</a></span><strong style="font-weight: bold;">》</strong></p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;">&nbsp;</p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;"><strong>更多</strong><span style="line-height: 19px; font-family: tahoma, Arial, 宋体; word-wrap: normal; word-break: normal; font-weight: bold; -webkit-text-size-adjust: none;"><a style="color: #616351; text-decoration: none;" title="Apache Shiro文档" href="http://www.docin.com/d-139349.html" target="docin_p_end"><span style="line-height: 21px; word-wrap: normal; color: #ff7e00; word-break: normal;">Apache Shiro文档</span></a></span><strong>，尽在</strong><span style="line-height: 19px; font-family: tahoma, Arial, 宋体; word-wrap: normal; word-break: normal; font-weight: bold; -webkit-text-size-adjust: none;"><a style="color: #616351; text-decoration: none;" href="http://www.docin.com/book_360"><span style="line-height: 21px; word-wrap: normal; color: #204cd2; word-break: normal;">开卷有益360 &nbsp;http://www.docin.com/book_360</span></a></span></p>
+<p style="line-height: 21px; list-style-type: none; margin: 0px 0px 5px; word-wrap: normal; word-break: normal; border-width: 0px; padding: 0px;">&nbsp;</p></div><div id="MySignature" style="display: block;">博客地址：<a href="http://www.cnblogs.com/ibook360/">【爱开卷360】http://www.cnblogs.com/ibook360</a></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/ibook360/category/328870.html">权限管理</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/ibook360/tag/Apache/">Apache</a>, <a href="http://www.cnblogs.com/ibook360/tag/shiro/">shiro</a>, <a href="http://www.cnblogs.com/ibook360/tag/%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6/">安全框架</a>, <a href="http://www.cnblogs.com/ibook360/tag/%E8%AE%A4%E8%AF%81/">认证</a>, <a href="http://www.cnblogs.com/ibook360/tag/%E6%8E%88%E6%9D%83/">授权</a>, <a href="http://www.cnblogs.com/ibook360/tag/session%E7%AE%A1%E7%90%86/">session管理</a>, <a href="http://www.cnblogs.com/ibook360/tag/%E6%9D%83%E9%99%90/">权限</a>, <a href="http://www.cnblogs.com/ibook360/tag/%E9%9B%86%E7%BE%A4/">集群</a></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2226522,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/%E7%88%B1%E5%BC%80%E5%8D%B7360" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/ibook360/" target="_blank"><img src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/ibook360/">爱开卷360</a><br>
+<a href="http://home.cnblogs.com/u/ibook360/followees">关注 - 1</a><br>
+<a href="http://home.cnblogs.com/u/ibook360/followers">粉丝 - 206</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(2226522,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">2</span>
+    </div>
+	<div class="buryit" onclick="votePost(2226522,&#39;Bury&#39;)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/ibook360/archive/2011/10/24/2222182.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/ibook360/archive/2011/10/24/2222182.html" title="发布于2011-10-24 00:13">Apache Nutch 1.3 学习笔记十一（页面评分机制 LinkRank 介绍）</a><br><a href="http://www.cnblogs.com/ibook360/archive/2011/10/31/2230594.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/ibook360/archive/2011/10/31/2230594.html" title="发布于2011-10-31 18:10">Apache Solr使用自定义QParser后同义词扩展及Token去重的感悟</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2011-10-27 14:21</span> <a href="http://www.cnblogs.com/ibook360/">爱开卷360</a> 阅读(<span id="post_view_count">81840</span>) 评论(<span id="post_comment_count">5</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=2226522" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#" onclick="AddToWz(2226522);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=99494,cb_entryId=2226522,cb_blogApp=currentBlogApp,cb_blogUserGuid='e0aa83b8-58f9-e011-b7b9-842b2b196315',cb_entryCreatedDate='2011/10/27 14:21:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#2975428" class="layer">#1楼</a><a name="2975428" id="comment_anchor_2975428"></a> <span class="comment_date">2014-07-01 21:27</span> | <a id="a_comment_author_2975428" href="http://www.cnblogs.com/diyunpeng/" target="_blank">规格严格-功夫到家</a> <a href="http://msg.cnblogs.com/send/%E8%A7%84%E6%A0%BC%E4%B8%A5%E6%A0%BC-%E5%8A%9F%E5%A4%AB%E5%88%B0%E5%AE%B6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2975428" class="blog_comment_body">呵呵，不错啊。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2975428,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2975428,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#3053821" class="layer">#2楼</a><a name="3053821" id="comment_anchor_3053821"></a> <span class="comment_date">2014-10-30 09:21</span> | <a id="a_comment_author_3053821" href="http://home.cnblogs.com/u/650049/" target="_blank">命运的左岸</a> <a href="http://msg.cnblogs.com/send/%E5%91%BD%E8%BF%90%E7%9A%84%E5%B7%A6%E5%B2%B8" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3053821" class="blog_comment_body">学习了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3053821,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3053821,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#3252597" class="layer">#3楼</a><a name="3252597" id="comment_anchor_3252597"></a> <span class="comment_date">2015-08-23 14:18</span> | <a id="a_comment_author_3252597" href="http://home.cnblogs.com/u/794176/" target="_blank">葛大大</a> <a href="http://msg.cnblogs.com/send/%E8%91%9B%E5%A4%A7%E5%A4%A7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3252597" class="blog_comment_body">不错！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3252597,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3252597,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#3281074" class="layer">#4楼</a><a name="3281074" id="comment_anchor_3281074"></a> <span class="comment_date">2015-10-09 16:17</span> | <a id="a_comment_author_3281074" href="http://www.cnblogs.com/java4vanna/" target="_blank">芳姐的工作室</a> <a href="http://msg.cnblogs.com/send/%E8%8A%B3%E5%A7%90%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%AE%A4" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3281074" class="blog_comment_body">不错！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3281074,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3281074,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#3417360" class="layer">#5楼</a><a name="3417360" id="comment_anchor_3417360"></a><span id="comment-maxId" style="display:none;">3417360</span><span id="comment-maxDate" style="display:none;">2016/4/26 9:02:51</span> <span class="comment_date">2016-04-26 09:02</span> | <a id="a_comment_author_3417360" href="http://www.cnblogs.com/bbbbbb-nl/" target="_blank">宝宝抱抱贝贝</a> <a href="http://msg.cnblogs.com/send/%E5%AE%9D%E5%AE%9D%E6%8A%B1%E6%8A%B1%E8%B4%9D%E8%B4%9D" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3417360" class="blog_comment_body">配置文件呢，可以配置多个登录名吗？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3417360,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3417360,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3417360_avatar" style="display:none;">http://pic.cnblogs.com/face/753692/20160426085747.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/547295/" target="_blank">这届开发者大会上，苹果只做了一点微小的工作，很惭愧</a><br> ·  <a href="http://news.cnblogs.com/n/547292/" target="_blank">Oculus Touch仍未公布发货时间：但承诺带来30多款游戏</a><br> ·  <a href="http://news.cnblogs.com/n/547274/" target="_blank">TechCrunch：微软收购LinkedIn获得重要销售渠道</a><br> ·  <a href="http://news.cnblogs.com/n/547290/" target="_blank">Blue Origin将第一次直播火箭发射</a><br> ·  <a href="http://news.cnblogs.com/n/547289/" target="_blank">三星考虑旗下所有产品均采用Tizen操作系统</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/547251/" target="_blank">一个32岁入门的70后程序员给我的启示</a><br> ·  <a href="http://kb.cnblogs.com/page/539205/" target="_blank">技术发展瓶颈的突破</a><br> ·  <a href="http://kb.cnblogs.com/page/536334/" target="_blank">高效编程之道：好好休息</a><br> ·  <a href="http://kb.cnblogs.com/page/545476/" target="_blank">快速学习者的高效学习策略</a><br> ·  <a href="http://kb.cnblogs.com/page/545784/" target="_blank">一个前端的自我修养</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/ibook360/">爱开卷360</a><br>园龄：<a href="http://home.cnblogs.com/u/ibook360/" title="入园时间：2011-10-18">4年7个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/ibook360/followers/">206</a><br>关注：<a href="http://home.cnblogs.com/u/ibook360/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;e0aa83b8-58f9-e011-b7b9-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2011/09/01&#39;);return false;">&lt;</a></td><td align="center">2011年10月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2011/11/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center"><a href="http://www.cnblogs.com/ibook360/archive/2011/10/18.html"><u>18</u></a></td><td align="center"><a href="http://www.cnblogs.com/ibook360/archive/2011/10/19.html"><u>19</u></a></td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/ibook360/archive/2011/10/22.html"><u>22</u></a></td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/ibook360/archive/2011/10/23.html"><u>23</u></a></td><td align="center"><a href="http://www.cnblogs.com/ibook360/archive/2011/10/24.html"><u>24</u></a></td><td align="center">25</td><td align="center">26</td><td align="center"><a href="http://www.cnblogs.com/ibook360/archive/2011/10/27.html"><u>27</u></a></td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center"><a href="http://www.cnblogs.com/ibook360/archive/2011/10/31.html"><u>31</u></a></td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/ibook360/tag/Apache/">Apache</a>(58)</li><li><a href="http://www.cnblogs.com/ibook360/tag/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">搜索引擎</a>(55)</li><li><a href="http://www.cnblogs.com/ibook360/tag/Solr/">Solr</a>(51)</li><li><a href="http://www.cnblogs.com/ibook360/tag/lucene/">lucene</a>(36)</li><li><a href="http://www.cnblogs.com/ibook360/tag/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>(24)</li><li><a href="http://www.cnblogs.com/ibook360/tag/%E9%87%87%E9%9B%86/">采集</a>(19)</li><li><a href="http://www.cnblogs.com/ibook360/tag/%E7%88%AC%E8%99%AB/">爬虫</a>(19)</li><li><a href="http://www.cnblogs.com/ibook360/tag/1.3/">1.3</a>(19)</li><li><a href="http://www.cnblogs.com/ibook360/tag/Nutch/">Nutch</a>(19)</li><li><a href="http://www.cnblogs.com/ibook360/tag/%E5%AE%9E%E6%97%B6%E6%90%9C%E7%B4%A2/">实时搜索</a>(11)</li><li><a href="http://www.cnblogs.com/ibook360/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/ibook360/category/379710.html">android(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/ibook360/category/657417.html">CSS(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/ibook360/category/333430.html">Eclipse(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/ibook360/category/388089.html">FreeMarker(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/ibook360/category/461379.html">Groovy(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/ibook360/category/636419.html">Hadoop(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/ibook360/category/338631.html">java(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/ibook360/category/414573.html">JavaScript(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/ibook360/category/464624.html">Maven(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/ibook360/category/350903.html">MongoDB(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/ibook360/category/396464.html">ORM(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/ibook360/category/346131.html">Play Framework(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/ibook360/category/351326.html">Spring Framework(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/ibook360/category/486626.html">Web Server(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/ibook360/category/342758.html">WebLogic(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/ibook360/category/563966.html">大数据(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/ibook360/category/339299.html">工作流引擎</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/ibook360/category/400393.html">规则引擎(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/ibook360/category/341416.html">好书推介(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/ibook360/category/537540.html">监控(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/ibook360/category/328870.html">权限管理(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/ibook360/category/412388.html">数据库(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/ibook360/category/328869.html">搜索引擎(84)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/ibook360/category/415848.html">未分类(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/ibook360/category/332457.html">系统优化(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/ibook360/category/384171.html">性能估算(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/ibook360/category/712777.html">移动开发(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/ibook360/category/337755.html">云计算(16)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/ibook360/archive/2015/12.html">2015年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/ibook360/archive/2015/07.html">2015年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/ibook360/archive/2015/05.html">2015年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/ibook360/archive/2015/02.html">2015年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/ibook360/archive/2014/12.html">2014年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/ibook360/archive/2014/03.html">2014年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/ibook360/archive/2013/12.html">2013年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/ibook360/archive/2013/11.html">2013年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/ibook360/archive/2013/07.html">2013年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/ibook360/archive/2013/06.html">2013年6月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/ibook360/archive/2013/03.html">2013年3月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/ibook360/archive/2013/02.html">2013年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/ibook360/archive/2012/12.html">2012年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/ibook360/archive/2012/09.html">2012年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/ibook360/archive/2012/07.html">2012年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/ibook360/archive/2012/06.html">2012年6月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/ibook360/archive/2012/05.html">2012年5月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/ibook360/archive/2012/02.html">2012年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/ibook360/archive/2012/01.html">2012年1月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/ibook360/archive/2011/12.html">2011年12月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/ibook360/archive/2011/11.html">2011年11月 (43)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/ibook360/archive/2011/10.html">2011年10月 (26)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	216557
+	</li><li class="liRank">
+		排名 -	716
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ibook360/archive/2012/07/16/2594056.html#3430315">1. Re:mybatis注解详解</a></li>
+        <li class="recent_comment_body">学习了</li>
+        <li class="recent_comment_author">--讨厌起名字</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#3417360">2. Re:10分钟教会你Apache Shiro</a></li>
+        <li class="recent_comment_body">配置文件呢，可以配置多个登录名吗？</li>
+        <li class="recent_comment_author">--宝宝抱抱贝贝</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ibook360/archive/2013/03/15/2961141.html#3341105">3. Re:用ElasticSearch存储日志</a></li>
+        <li class="recent_comment_body">您好，最近一个需求刚刚接触这块，想请教一下您，ES能做大数据的实时检索吗？如果能的话，我的数据又是放在哪里呢？如果放在Hbase上面是否可行？</li>
+        <li class="recent_comment_author">--wen^King</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#3281074">4. Re:10分钟教会你Apache Shiro</a></li>
+        <li class="recent_comment_body">不错！</li>
+        <li class="recent_comment_author">--芳姐的工作室</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ibook360/archive/2012/12/30/2840142.html#3269587">5. Re:远程调用框架dubbo</a></li>
+        <li class="recent_comment_body">教程目录：<a href="" target="_blank">教程目录：</a></li>
+        <li class="recent_comment_author">--liuzhenhua321</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/10分钟教会你Apache Shiro - 爱开卷360 - 博客园.html">1. 10分钟教会你Apache Shiro(81840)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2012/07/16/2594056.html">2. mybatis注解详解(49603)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2012/05/11/2495405.html">3. 正确配置Linux系统ulimit值的方法(35018)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2012/12/30/2840142.html">4. 远程调用框架dubbo(19890)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2012/06/13/2548303.html">5. 两种Freemarker模板路径设置方法(19629)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/10分钟教会你Apache Shiro - 爱开卷360 - 博客园.html">1. 10分钟教会你Apache Shiro(5)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2011/11/30/2269126.html">2. Solr的自动完成实现方式（第三部分：Suggester方式续）(3)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2011/12/14/2287685.html">3. 如何实现“浏览过该页面的人还浏览过...”功能（数据库版）(3)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2011/11/01/2231477.html">4. Apache Solr索引富文本（html word pdf）(3)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2013/03/15/2961428.html">5. Kibana+Logstash+Elasticsearch 日志查询系统(3)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/ibook360/archive/2012/07/16/2594056.html">1. mybatis注解详解(6)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2011/10/18/2216631.html">2. Apache Lucene 3.x推荐教程(4)</a></li><li><a href="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/10分钟教会你Apache Shiro - 爱开卷360 - 博客园.html">3. 10分钟教会你Apache Shiro(2)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2011/11/30/2269059.html">4. Solr的自动完成实现方式（第一部分：facet方式）(2)</a></li><li><a href="http://www.cnblogs.com/ibook360/archive/2013/03/22/2975345.html">5. 实时分布式搜索引擎比较（senseidb、Solr、elasticsearch）(2)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 爱开卷360
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/stat.php" language="JavaScript"></script><script src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=3547470" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/pic1.gif"></a>
+<!--PageEndHtml Block End-->
+
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.cnblogs.com/ibook360/archive/2011/10/27/2226522.html#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/yun6.html" style="border: none; display: none; z-index: 2147483645; background: transparent;"></iframe><script src="./10分钟教会你Apache Shiro - 爱开卷360 - 博客园_files/pv.gif"></script></body></html>

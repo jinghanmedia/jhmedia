@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://www.mamicode.com/info-detail-495162.html -->
+<html lang="zh-cn"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="znBdcsStyle" type="text/css">.bdcs-container .bdcs-main,.bdcs-container .bdcs-main *{box-sizing:content-box;margin:0;padding:0;float:none;clear:none;overflow:hidden;white-space:nowrap;word-wrap:normal;border:0;background:0 0;width:auto;height:auto;max-width:none;min-width:none;max-height:none;min-height:none;border-radius:0;box-shadow:none;transition:none;text-align:left}.bdcs-container .bdcs-clearfix:after{content:'';display:block;clear:both;height:0}.bdcs-container .bdcs-clearfix{zoom:1}.bdcs-container .bdcs-main{overflow:visible}.bdcs-container .bdcs-search{display:block;overflow:visible;position:relative;border-style:solid}.bdcs-container .bdcs-search-form-input-wrap{display:inline-block}.bdcs-container .bdcs-search-form-input{border-width:1px;border-style:solid;display:inline-block;vertical-align:top;text-indent:5px;background-color:#fff;float:left}.bdcs-container .bdcs-search-form-input:focus{border-width:1px;border-style:solid;outline:0}.bdcs-container .bdcs-search-form-submit-wrap{display:inline-block}.bdcs-container .bdcs-search-form-submit{display:inline-block;cursor:pointer;border-width:1px;border-style:solid;vertical-align:top;text-align:center;width:50px;//_overflow:hidden}.bdcs-container .bdcs-search-form-submit-magnifier{width:45px;padding:0;text-indent:-999em;overflow:hidden;background:url(http://znsv.baidu.com/static/customer-search/component/search/magnifier-icon.png) no-repeat center center;_background:url(http://znsv.baidu.com/static/customer-search/component/search/magnifier-icon_ie6.png) no-repeat center center}div#default-searchbox .default-channel-meun{position:relative;width:75px;display:inline-block;vertical-align:middle;cursor:pointer;background:#fff;float:left;overflow:visible}div#default-searchbox .default-channel-current{border:1px solid;position:relative;width:100%;border-right:0}div#default-searchbox .default-channel-current span{margin-left:8px}div#default-searchbox .default-channel-current i{overflow:hidden;width:0;height:0;border-width:6px 6px 0;border-color:#9E9E9E #fff;border-style:solid;display:block;position:absolute;right:10px;top:11px}div.cse-default-channel-container{display:block;position:absolute;z-index:30061000000}div.cse-default-channel-container .default-channel-list{display:none;width:99%;list-style:none;background:#fff;border:1px solid #DDD;border-top:0;margin:0;padding:0}div.cse-default-channel-container .default-channel-list li{background:0 0;line-height:24px;list-style:none;display:block;padding-left:7px;cursor:pointer}div.cse-default-channel-container .default-channel-list li:hover{background:#DDD}.bdcs-container .bdcs-search-form-input-wrap{}.bdcs-container .bdcs-search-form-input-notspan{margin-left:0px;font-family:Arial,SimSun,sans-serif;color:#000000;font-size:14px;}.bdcs-container .bdcs-search-form-input .icon-nofocus{left:;right:;top:;height:;width:;}.bdcs-container .bdcs-search{width:299px;height:36px;overflow:hidden;border-color:#1a89ed;border-radius:5px;border-width:2px;box-shadow:none;background-color:none;}.bdcs-container .bdcs-search-form-input{border-color:#ffffff;margin-right:0px;width:246px;height:34px;line-height:34px;font-family:Arial,SimSun,sans-serif;color:#000000;font-size:14px;border-radius:1px;background-color:#FFFFFF;}.bdcs-container .bdcs-search-form-input:focus{border-color:#1a89ed;}.bdcs-container .bdcs-search-form-submit-wrap{}.bdcs-container .bdcs-search-form-submit{border-color:#1c89ea;height:34px;width:50px;background-color:#1c89ea;color:#ffffff;font-family:Arial,SimSun,sans-serif;font-size:14px;border-radius:0px;}.bdcs-container .bdcs-search-form-submit{*height:36px;*margin-top:1px;}.bdcs-container .bdcs-search-form-submit{line-height:34px;}.bdcs-container .bdcs-search-form-input{margin-right:-1px;}#bdcs-rec{display:none;}</style><meta name="keywords" content="码迷,mamicode.com,互联网,软件开发,开源,asp,asp.net,android,apple,jsp,php,Windows,数据库,HTML,JS,CSS,技术文章,游戏,创业,手机相关"><meta name="baidu-site-verification" content="TEj1q15lpz"><meta name="description" content="Shiro授权简介Shiro授权简单来说分为两种类型：
+粗粒度的：也就是代码中直接写入和角色的绑定。
+细粒度的：代码中写入的是和权限的绑定，而角色到权限和可配置的。
+对于粗粒度来说，若角色对应权限有改变的话，那么则需要更改代码，很不方便。而细粒度的好处显而易见，所以一般项目中应该都采用细粒度的权限配置。源码及流程分析那么Shiro中是如何来完成权限检验的呢？ 
+通过调用Subject.hasRole..."><title>
+	Shiro简单授权原理分析
+</title><link href="./Shiro简单授权原理分析_files/css.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" async="" src="./Shiro简单授权原理分析_files/js"></script><script src="./Shiro简单授权原理分析_files/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script><link rel="stylesheet" type="text/css" href="./Shiro简单授权原理分析_files/prettify.css">
+    <script type="text/javascript" charset="utf-8" src="./Shiro简单授权原理分析_files/prettify.js"></script>
+</head>
+<body>
+    <div class="width100bi height20px divbackgroundcolor">
+    <div class="width1000px divmargin0auto">
+        <div class="divfloatleft">
+        </div>
+        <div class="divfloatright">
+            <div id="logintopdescription" class="paddingtop3"><a href="http://member.mamicode.com/login.aspx">[登录]</a>&nbsp;&nbsp;<a href="http://member.mamicode.com/reg.aspx">[注册]</a></div>
+        </div>
+        <div class="divfloatclear">
+        </div>
+    </div>
+</div>
+<div class="width1000px divmargin0auto margintop20bottom20">
+    <div class="width120px divfloatleft">
+        <a href="http://www.mamicode.com/" title="码迷，mamicode.com">
+            <img src="./Shiro简单授权原理分析_files/logo.png" alt="码迷，mamicode.com" width="109" height="60" border="0">
+        </a>
+    </div>
+    <div class="width880px divfloatright">
+        <div class="menuDiv">
+            <ul>
+                <li class="bottomline width10px">&nbsp;</li>
+                <li id="default-aspx" class="title0"><a href="http://www.mamicode.com/" title="码迷，mamicode.com">首页</a></li>
+                <li id="infolist-2" class="title1"><a href="http://www.mamicode.com/info-list-2-1.html" title="Web开发">Web开发</a></li>
+                <li id="infolist-3" class="title1"><a href="http://www.mamicode.com/info-list-3-1.html" title="Windows程序">Windows程序</a></li>
+                <li id="infolist-4" class="title1"><a href="http://www.mamicode.com/info-list-4-1.html" title="编程语言">编程语言</a></li>
+                <li id="infolist-5" class="title1"><a href="http://www.mamicode.com/info-list-5-1.html" title="数据库">数据库</a></li>
+                <li id="infolist-6" class="title1"><a href="http://www.mamicode.com/info-list-6-1.html" title="移动开发">移动开发</a></li>
+                <li id="infolist-8" class="title1"><a href="http://www.mamicode.com/info-list-8-1.html" title="系统相关">系统相关</a></li>
+                <li id="infolist-9" class="title1"><a href="http://www.mamicode.com/info-list-9-1.html" title="微信">微信</a></li>
+                <li id="infolist-11" class="title1"><a href="http://www.mamicode.com/info-list-11-1.html" title="其他好文">其他好文</a></li>
+                <li id="memberhtml" class="title1"><a href="http://www.mamicode.com/member.html" title="会员">会员</a></li>
+                <li class="bottomline width10px">&nbsp;</li>
+            </ul>
+        </div>
+    </div>
+    <div class="divfloatclear">
+    </div>
+</div>
+<div style="margin: 0px auto; width:1000px;" class="margintop10bottom10">
+    <script type="text/javascript">
+        var cpro_id = "u2192072";
+        (window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id] = { at: "3", rsi0: "1000", rsi1: "120", pat: "6", tn: "baiduCustNativeAD", rss1: "#FFFFFF", conBW: "1", adp: "1", ptt: "0", titFF: "%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91", titFS: "14", rss2: "#000000", titSU: "0", ptbg: "90", piw: "0", pih: "0", ptp: "0" }
+    </script>
+    <script src="./Shiro简单授权原理分析_files/c.js" type="text/javascript"></script>
+</div>
+
+    <div class="divdaohang">
+        <div class="divtitlefont">
+            <a href="http://www.mamicode.com/" title="码迷首页">首页</a>
+            <span id="lbltitle"> &gt; <a href="http://www.mamicode.com/infolist-11-1.html">其他好文</a> &gt; 详细</span>
+        </div>
+    </div>
+    <div class="divmain">
+        <div class="width70bi divfloatleft" style="min-height:2000px;">
+            <div class="marginright20">
+                <div class="divtextaligncenter">
+    <script type="text/javascript">
+        var cpro_id = "u2391650";
+        (window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id] = { at: "3", rsi0: "680", rsi1: "250", pat: "6", tn: "baiduCustNativeAD", rss1: "#FFFFFF", conBW: "1", adp: "1", ptt: "0", titFF: "%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91", titFS: "14", rss2: "#000000", titSU: "0", ptbg: "90", piw: "0", pih: "0", ptp: "0" }
+    </script>
+    <script src="./Shiro简单授权原理分析_files/c.js" type="text/javascript"></script>
+</div>
+
+                <div class="detailtitle divtextaligncenter divborderbottomdotted">
+                    <h1 id="Htitle" class="detailtitle">Shiro简单授权原理分析</h1>
+                </div>
+                <div class="detail1 divtextaligncenter">
+                    时间：<span id="Label2" class="colorlv">2015-03-03 13:36:41</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp; 阅读：<span id="Label1" class="colorCheng">4095</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp; 评论：<span id="lblcommentcount" class="colorCheng">0</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp; 收藏：<span id="lblfavorite" class="colorCheng">0</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp; <a id="infofavorite" class="acursorpointer">[点我收藏+]</a>
+                </div>
+                
+                <div class="detailcontennt">
+                    <span id="Label3"><p>标签：<a href="http://www.mamicode.com/so/1/%e6%8e%88%e6%9d%83" title="授权">授权</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/shiro" title="shiro">shiro</a>&nbsp;&nbsp;&nbsp;</p><div class="markdown_views"><h1 id="shiro授权简介">Shiro授权简介</h1>
+
+<p><strong>Shiro</strong>授权简单来说分为两种类型：</p>
+
+<ol>
+<li>粗粒度的：也就是代码中直接写入和角色的绑定。</li>
+<li>细粒度的：代码中写入的是和权限的绑定，而角色到权限和可配置的。</li>
+</ol>
+
+<p>对于粗粒度来说，若角色对应权限有改变的话，那么则需要更改代码，很不方便。而细粒度的好处显而易见，所以一般项目中应该都采用细粒度的权限配置。</p>
+
+<h1 id="源码及流程分析">源码及流程分析</h1>
+
+<p>那么Shiro中是如何来完成权限检验的呢？ <br>
+通过调用<code>Subject.hasRoles(...)</code>或<code>Subject.isPermitted(...)</code> <br>
+另外还有<code>Subject.checkRoles(...)</code>或<code>Subject.checkPermissions(...)</code> <br>
+前两种和后两种的区别是，后两种在没有权限时会抛出异常。</p>
+
+<p>关于角色，相信你都会定义，因为就是一个名字，比如admin、vip、user等。 <br>
+而对于权限的定义，就需要有一套规则了。在Shiro中我们可以这么来定义权限字符串：<strong>资源标识符：操作：对象实例ID</strong>。另外这里支持通配符配置， <br>
+比如： <br>
+<code>user:create</code>表示对<strong>user</strong>有<strong>create</strong>的权限（这里省略了:对象实例ID，等价于<code>user:create:*</code>） <br>
+<code>user:*</code>表示对<strong>user</strong>拥有所有操作的权限(<strong>create,update,delete,view</strong>) <br>
+<code>user:view:1</code>表示对<strong>user</strong>的1实例有<strong>view</strong>的权限 <br>
+差不多就类似这样，就不多说了。<strong>Shiro</strong>内部会有一个<strong>PermissionResolver</strong>来负责将这类字符串解析为<strong>Permission</strong>对象。</p>
+
+<p>下面分析一下授权的流程：</p>
+
+<ol>
+<li>当我们调用<code>Subject.hasRole(...)</code>后</li>
+<li>首先会委托给<strong>securityManager</strong>来处理，而<strong>securityManager</strong>内部有一个<strong>Authorizer</strong>来做真正的授权，默认实现为<strong>ModularRealmAuthorizer</strong></li>
+<li><strong>ModularRealmAuthorizer</strong>可以根据多个Realm来判断是否拥有相应的角色，其中只要某个Realm匹配，则返回true</li>
+<li><strong>AuthorizingRealm</strong>对于判断<strong>hasRole</strong>的逻辑也很简单</li>
+</ol>
+
+<pre class="prettyprint"><code class=" hljs java"><span class="pln">    </span><span class="hljs-keyword"><span class="kwd">protected</span></span><span class="pln"> </span><span class="hljs-keyword"><span class="kwd">boolean</span></span><span class="pln"> </span><span class="hljs-title"><span class="pln">hasRole</span></span><span class="pun">(</span><span class="typ">String</span><span class="pln"> roleIdentifier</span><span class="pun">,</span><span class="pln"> </span><span class="typ">AuthorizationInfo</span><span class="pln"> info</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="hljs-keyword"><span class="kwd">return</span></span><span class="pln"> info </span><span class="pun">!=</span><span class="pln"> </span><span class="hljs-keyword"><span class="kwd">null</span></span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> info</span><span class="pun">.</span><span class="pln">getRoles</span><span class="pun">()</span><span class="pln"> </span><span class="pun">!=</span><span class="pln"> </span><span class="hljs-keyword"><span class="kwd">null</span></span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> info</span><span class="pun">.</span><span class="pln">getRoles</span><span class="pun">().</span><span class="pln">contains</span><span class="pun">(</span><span class="pln">roleIdentifier</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+
+<p>而对于<code>Subject.isPermitted(...)</code>稍微会显得复杂一些，前三步都一样，就是<strong>AuthorizingRealm</strong>对于判断<strong>isPermitted</strong>的逻辑稍微有点不一样。它会先将权限字符串转换成<strong>Permission</strong>，将用户的权限转换成<code>List&lt;Permission&gt;</code>，这里的<code>List&lt;Permission&gt;</code>由三个部分组成：</p>
+
+<ul>
+<li>通过<code>AuthorizationInfo.getObjectPermissions()</code>得到<strong>Permission</strong>实例集合</li>
+<li>通过<code>AuthorizationInfo. getStringPermissions()</code>得到字符串集合并通过<strong>PermissionResolver</strong>解析为Permission实例</li>
+<li>然后获取用户的角色，并通过<strong>RolePermissionResolver</strong>解析角色对应的权限集合（默认没有实现，可以自己提供）</li>
+</ul>
+
+<p>而<strong>JdbcRealm</strong>的实现是使用了<strong>stringPermissions</strong>，可能第一想法以为它是用了<strong>RolePermissionResolver</strong>吧。 <br>
+好了，接下来，用<strong>Permission</strong>和<strong>List</strong>进行匹配，其中遍历用户权限的匹配方法就是<code>implies(...)</code>，这个单词可以理解成“蕴含”的意思，这样就比较好理解了。</p>
+
+<pre class="prettyprint"><code class=" hljs java"><span class="pln">   </span><span class="hljs-keyword"><span class="kwd">private</span></span><span class="pln"> </span><span class="hljs-keyword"><span class="kwd">boolean</span></span><span class="pln"> </span><span class="hljs-title"><span class="pln">isPermitted</span></span><span class="pun">(</span><span class="typ">Permission</span><span class="pln"> permission</span><span class="pun">,</span><span class="pln"> </span><span class="typ">AuthorizationInfo</span><span class="pln"> info</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">Collection</span><span class="pun">&lt;</span><span class="typ">Permission</span><span class="pun">&gt;</span><span class="pln"> perms </span><span class="pun">=</span><span class="pln"> getPermissions</span><span class="pun">(</span><span class="pln">info</span><span class="pun">);</span><span class="pln">
+        </span><span class="hljs-keyword"><span class="kwd">if</span></span><span class="pln"> </span><span class="pun">(</span><span class="pln">perms </span><span class="pun">!=</span><span class="pln"> </span><span class="hljs-keyword"><span class="kwd">null</span></span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> </span><span class="pun">!</span><span class="pln">perms</span><span class="pun">.</span><span class="pln">isEmpty</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="hljs-keyword"><span class="kwd">for</span></span><span class="pln"> </span><span class="pun">(</span><span class="typ">Permission</span><span class="pln"> perm </span><span class="pun">:</span><span class="pln"> perms</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                </span><span class="hljs-keyword"><span class="kwd">if</span></span><span class="pln"> </span><span class="pun">(</span><span class="pln">perm</span><span class="pun">.</span><span class="pln">implies</span><span class="pun">(</span><span class="pln">permission</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                    </span><span class="hljs-keyword"><span class="kwd">return</span></span><span class="pln"> </span><span class="hljs-keyword"><span class="kwd">true</span></span><span class="pun">;</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="hljs-keyword"><span class="kwd">return</span></span><span class="pln"> </span><span class="hljs-keyword"><span class="kwd">false</span></span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+
+<p>举个例子，比如<code>user:*</code>权限<strong>implies</strong><code>user:create</code>权限，这就是一种蕴含关系。</p>
+
+
+
+<h1 id="具体用法">具体用法</h1>
+
+<p>一般有编程式和声明式两种：</p>
+
+<ul>
+<li>编程式：</li>
+</ul>
+
+<pre class="prettyprint"><code class=" hljs cs"><span class="typ">Subject</span><span class="pln"> subject </span><span class="pun">=</span><span class="pln"> </span><span class="typ">SecurityUtils</span><span class="pun">.</span><span class="pln">getSubject</span><span class="pun">();</span><span class="pln">
+</span><span class="hljs-keyword"><span class="kwd">if</span></span><span class="pun">(</span><span class="pln">subject</span><span class="pun">.</span><span class="pln">hasRole</span><span class="pun">(“</span><span class="pln">admin</span><span class="pun">”))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="hljs-comment"><span class="com">//有权限</span></span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> </span><span class="hljs-keyword"><span class="kwd">else</span></span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="hljs-comment"><span class="com">//无权限</span></span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<ul>
+<li>声明式：</li>
+</ul>
+
+<pre class="prettyprint"><code class=" hljs java"><span class="hljs-annotation"><span class="lit">@RequiresRoles</span></span><span class="pun">(</span><span class="hljs-string"><span class="str">"admin"</span></span><span class="pun">)</span><span class="pln">
+</span><span class="hljs-keyword"><span class="kwd">public</span></span><span class="pln"> </span><span class="hljs-keyword"><span class="kwd">void</span></span><span class="pln"> </span><span class="hljs-title"><span class="pln">hello</span></span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="hljs-comment"><span class="com">//有权限</span></span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>没有权限的话就抛出相应的异常。而我们只需要捕获异常做出相应的处理就可以了，在<strong>Spring</strong>中是可以配置一个全局的<strong>ExceptionHandler</strong>的。当然在<strong>Spring3.2</strong>之后的版本还提供了<strong>@ControllerAdvice</strong>来增强<strong>Controller</strong>，其中定义的所有<strong>@ExceptionHandler</strong>方法将会应用于所有的<strong>@RequestMapping</strong>方法，那么我们可以这么来定义异常处理类：</p>
+
+<pre class="prettyprint"><code class=" hljs java"><span class="hljs-annotation"><span class="lit">@ControllerAdvice</span></span><span class="pln">
+</span><span class="hljs-keyword"><span class="kwd">public</span></span><span class="pln"> </span><span class="hljs-class"><span class="hljs-keyword"><span class="kwd">class</span></span><span class="pln"> </span><span class="hljs-title"><span class="typ">DefaultExceptionHandler</span></span><span class="pln"> </span><span class="pun">{</span></span><span class="pln">
+
+    </span><span class="hljs-annotation"><span class="lit">@ExceptionHandler</span></span><span class="pun">(</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="typ">UnauthorizedException</span><span class="pun">.</span><span class="kwd">class</span><span class="pln"> </span><span class="pun">})</span><span class="pln">
+    </span><span class="hljs-annotation"><span class="lit">@ResponseStatus</span></span><span class="pun">(</span><span class="typ">HttpStatus</span><span class="pun">.</span><span class="pln">UNAUTHORIZED</span><span class="pun">)</span><span class="pln">
+    </span><span class="hljs-keyword"><span class="kwd">public</span></span><span class="pln"> </span><span class="typ">ModelAndView</span><span class="pln"> </span><span class="hljs-title"><span class="pln">processUnauthorizedException</span></span><span class="pun">(</span><span class="pln">
+            </span><span class="typ">NativeWebRequest</span><span class="pln"> request</span><span class="pun">,</span><span class="pln"> </span><span class="typ">UnauthorizedException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">ModelAndView</span><span class="pln"> mv </span><span class="pun">=</span><span class="pln"> </span><span class="hljs-keyword"><span class="kwd">new</span></span><span class="pln"> </span><span class="typ">ModelAndView</span><span class="pun">();</span><span class="pln">
+        mv</span><span class="pun">.</span><span class="pln">addObject</span><span class="pun">(</span><span class="hljs-string"><span class="str">"contextPath"</span></span><span class="pun">,</span><span class="pln"> request</span><span class="pun">.</span><span class="pln">getContextPath</span><span class="pun">());</span><span class="pln">
+        mv</span><span class="pun">.</span><span class="pln">addObject</span><span class="pun">(</span><span class="hljs-string"><span class="str">"exception"</span></span><span class="pun">,</span><span class="pln"> e</span><span class="pun">);</span><span class="pln">
+        mv</span><span class="pun">.</span><span class="pln">setViewName</span><span class="pun">(</span><span class="hljs-string"><span class="str">"special/unauthorized"</span></span><span class="pun">);</span><span class="pln">
+        </span><span class="hljs-keyword"><span class="kwd">return</span></span><span class="pln"> mv</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>当然对于编程式的也可以直接使用<code>subject.checkRoles(“admin”)</code>，这样一来也会抛出异常并被<strong>ExceptionHandler</strong>捕获了。</p>
+
+<p>这里若启用声明式的鉴权，还需要启用<strong>aspectJ</strong>自动代理，并支持对类的代理。</p>
+
+<pre class="prettyprint"><code class=" hljs applescript"><span class="pln">    </span><span class="tag">&lt;aop:aspectj-autoproxy</span><span class="pln"> </span><span class="atn">proxy-target-</span><span class="hljs-type"><span class="atn">class</span></span><span class="pun">=</span><span class="hljs-string"><span class="atv">"true"</span></span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+    </span><span class="tag">&lt;bean</span><span class="pln"> </span><span class="hljs-type"><span class="atn">class</span></span><span class="pun">=</span><span class="hljs-string"><span class="atv">"org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"</span></span><span class="tag">&gt;</span><span class="pln">
+        </span><span class="tag">&lt;</span><span class="hljs-keyword"><span class="tag">property</span></span><span class="pln"> </span><span class="hljs-property"><span class="atn">name</span></span><span class="pun">=</span><span class="hljs-string"><span class="atv">"securityManager"</span></span><span class="pln"> </span><span class="hljs-keyword"><span class="atn">ref</span></span><span class="pun">=</span><span class="hljs-string"><span class="atv">"securityManager"</span></span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+    </span><span class="tag">&lt;/bean&gt;</span></code></pre>
+
+<p>下一篇文章会写一个<strong>Spring</strong>项目中整合<strong>JdbcRealm</strong>来实现鉴权的实例。</p></div><p><a href="./Shiro简单授权原理分析_files/Shiro简单授权原理分析.html" title="Shiro简单授权原理分析,mamicode.com" style="color:#ffffff" target="_blank">Shiro简单授权原理分析</a></p><p>标签：<a href="http://www.mamicode.com/so/1/%e6%8e%88%e6%9d%83" title="授权">授权</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/shiro" title="shiro">shiro</a>&nbsp;&nbsp;&nbsp;</p></span>
+                </div>
+                <div id="divcomment">
+                    <div>
+                        <div class=" divtextaligncenter">
+                            <div class="detailcai" id="infono">
+                                <div class="detailcai1 colorboldlan">
+                                    踩</div>
+                                <div class="detailcai2 colorboldlan">
+                                    (<span id="spanNo">1</span>)</div>
+                            </div>
+                            <div class="detailzan" id="infoyes">
+                                <div class="detailzan1 colorboldHong">
+                                    赞</div>
+                                <div class="detailzan2 colorboldHong">
+                                    (<span id="spanYes">0</span>)</div>
+                            </div>
+                            <div class="divfloatclear">
+                            </div>
+                        </div>
+                        <div class="divtextalignright margintop10">
+                            <div class="width100bi paddingleft10right10">
+                                <span id="spanYesContent" class="colorboldHong"></span>&nbsp; <span id="spanNoContent" class="colorboldlan"></span>&nbsp; <span id="spanBadContent" class="colorboldHong">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divtextalignright margintop10">
+                        <span class="detailjubao" id="infobad">举报</span>
+                    </div>
+                    <div class="margintop20bottom20">
+    <div class="divfloatleft">
+        <script async="" src="./Shiro简单授权原理分析_files/adsbygoogle.js"></script>
+        <!-- mamicode-infodetail-336x280-1 -->
+        <ins class="adsbygoogle" style="display: inline-block; width: 336px; height: 280px" data-ad-client="ca-pub-8616102841876629" data-ad-slot="6851602680"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    <div class="divfloatright">
+        <script async="" src="./Shiro简单授权原理分析_files/adsbygoogle.js"></script>
+        <!-- mamicode-infodetail-336x280-2 -->
+        <ins class="adsbygoogle" style="display: inline-block; width: 336px; height: 280px" data-ad-client="ca-pub-8616102841876629" data-ad-slot="8328335888"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    <div class="divfloatclear">
+    </div>
+</div>
+
+                    <div id="comment" class="divtextalignleft margintop20">
+                        <div class="detailpinglun1">
+                            <span class="detailpinglun2 title6">评论</span> <span class="detailpinglun3">一句话评论（<span id="commentCount" class="colorboldHong">0</span>）</span>
+                        </div>
+                        <div class="paddingtop20">
+                            
+                            <div id="commentlistend" name="commentlistend" class="divtextaligncenter margintop20">
+                                <span id="lblpage">共<span class="pagecolorc">0</span>条&nbsp;&nbsp;</span>
+                            </div>
+                        </div>
+                        <div class="margintop20">
+                            <form method="post" action="http://www.mamicode.com/ajaxjs/info_detail_commentadd.aspx">
+                            <div class="divtextalignleft paddingtop20">
+                                <div id="commenthf" class="divbackgroundcolor1">
+                                </div>
+                                <div>
+                                    <textarea name="tbcommentcontent" id="tbcommentcontent" class="tb" style="width: 680px;
+                                        height: 120px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="divtextalignright paddingtop10 ">
+                                <span id="addCommentTishi" class="colorboldHong">登录后才能评论！</span>
+                                <span id="loginno"><input type="button" class="mbtn1" value="登录" onclick="location.href=&#39;http://member.mamicode.com/login.aspx?returnUrl=http://www.mamicode.com/infodetail.aspx?id=495162&#39;;"></span>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="width30bi divfloatright">
+            
+            <div class="paddingbottom20">
+    <script type="text/javascript">        (function () { document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E')); var bdcs = document.createElement('script'); bdcs.type = 'text/javascript'; bdcs.async = true; bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=7490613033886828738' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date() / 3600000); var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bdcs, s); })();</script><div id="bdcs"><div class="bdcs-container"><meta http-equiv="x-ua-compatible" content="IE=9">   <!-- 嵌入式 -->  <div class="bdcs-main bdcs-clearfix" id="default-searchbox">      <div class="bdcs-search bdcs-clearfix" id="bdcs-search-inline">          <form action="http://zhannei.baidu.com/cse/search" method="get" target="_blank" class="bdcs-search-form" autocomplete="off" id="bdcs-search-form">              <input type="hidden" name="s" value="7490613033886828738">              <input type="hidden" name="entry" value="1">                                                                        <input type="text" name="q" class="bdcs-search-form-input" id="bdcs-search-form-input" placeholder="请输入关键词" style="height: 34px; line-height: 34px;">              <input type="submit" class="bdcs-search-form-submit " id="bdcs-search-form-submit" value="搜索">                       </form>      </div>                  </div>                           </div></div>
+</div>
+<div class="paddingbottom10">
+    <script async="" src="./Shiro简单授权原理分析_files/adsbygoogle.js"></script>
+    <!-- 1-mamicode-right-300x600 -->
+    <ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 600px" data-ad-client="ca-pub-8616102841876629" data-ad-slot="8947049888"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <script type="text/javascript">
+        /*mamicode-infodetail-zuoyouxuanfu-120*300 创建于 2015-03-13*/
+        var cpro_id = "u1987286";
+    </script>
+    <script src="./Shiro简单授权原理分析_files/f.js" type="text/javascript"></script>
+    <script>
+        var baiduImagePlus = {
+            noLogo: true,
+            unionId: 'u2416663',
+            formList: [{ formId: 2}]
+        };
+    </script>
+    <script src="./Shiro简单授权原理分析_files/i.js"></script>
+</div>
+<div class="paddingbottom10">
+<script type="text/javascript">
+var sogou_ad_id=547185;
+var sogou_ad_height=250;
+var sogou_ad_width=300;
+</script>
+<script type="text/javascript" src="./Shiro简单授权原理分析_files/c(1).js"></script>
+</div>
+
+<div class="width100bi divborder">
+    <div class="divtitle">
+        <div id="infofile1_div1" class="divfloatleft divtitlefont">
+            分享档案</div>
+        <div class="divfloatright">
+            <a href="http://www.mamicode.com/infotimemore.html" title="分享档案更多" class="colorCheng">更多&gt;</a>
+        </div>
+        <div class="divfloatclear">
+        </div>
+    </div>
+    <div class="divtextalignleft paddingleft10right10 margintop10bottom10 heightline30px">
+        
+                <a class="taga" href="http://www.mamicode.com/info-time-20160614-1.html" target="_blank" title="2016年06月14日技术分享文章">
+                        2016年06月14日
+                        (358)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20160613-1.html" target="_blank" title="2016年06月13日技术分享文章">
+                        2016年06月13日
+                        (1640)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20160612-1.html" target="_blank" title="2016年06月12日技术分享文章">
+                        2016年06月12日
+                        (2141)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20160611-1.html" target="_blank" title="2016年06月11日技术分享文章">
+                        2016年06月11日
+                        (1126)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20160610-1.html" target="_blank" title="2016年06月10日技术分享文章">
+                        2016年06月10日
+                        (1143)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20160609-1.html" target="_blank" title="2016年06月09日技术分享文章">
+                        2016年06月09日
+                        (1097)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20160608-1.html" target="_blank" title="2016年06月08日技术分享文章">
+                        2016年06月08日
+                        (1497)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20160607-1.html" target="_blank" title="2016年06月07日技术分享文章">
+                        2016年06月07日
+                        (1420)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20160606-1.html" target="_blank" title="2016年06月06日技术分享文章">
+                        2016年06月06日
+                        (1929)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20160605-1.html" target="_blank" title="2016年06月05日技术分享文章">
+                        2016年06月05日
+                        (1463)</a><br>
+            
+    </div>
+</div>
+
+            
+<div class="width100bi margintop20 divborder">
+    <div class="divtitle">
+        <div id="infotop2_divtitle" class="divfloatleft divtitlefont">周排行</div>
+        <div class="divfloatright">
+            <img src="./Shiro简单授权原理分析_files/j01.jpg" width="14" height="14" alt="mamicode.com排行更多图片"></div>
+        <div class="divfloatright">
+            <a href="http://www.mamicode.com/info-toplist-11-2-1.html" id="infotop2_amore" title="周排行更多">更多</a></div>
+        <div class="divfloatclear">
+        </div>
+    </div>
+    <div>
+        <ul>
+            <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-63266.html" title="彻底解决_OBJC_CLASS_$_某文件名&quot;, referenced from:问题（转）" target="_blank">
+                        彻底解决_OBJC_CLASS_$_某文件名", referenced from:问题（转）
+                        &nbsp;<span class="colorlan">2014-06-15</span> </a></li><li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-149397.html" title="当刷机工具遇到SetupConnection时的解决方法" target="_blank">
+                        当刷机工具遇到SetupConnection时的解决方法
+                        &nbsp;<span class="colorlan">2014-08-09</span> </a></li><li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-168312.html" title="dubbo管理控制台安装和使用" target="_blank">
+                        dubbo管理控制台安装和使用
+                        &nbsp;<span class="colorlan">2014-08-19</span> </a></li><li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-247448.html" title="（七）理解angular中的module和injector，即依赖注入" target="_blank">
+                        （七）理解angular中的module和injector，即依赖注入
+                        &nbsp;<span class="colorlan">2014-10-10</span> </a></li><li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-327339.html" title="CUDA从入门到精通" target="_blank">
+                        CUDA从入门到精通
+                        &nbsp;<span class="colorlan">2014-11-21</span> </a></li><li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-470300.html" title="使用第三方框架 Masonry 实现自动布局" target="_blank">
+                        使用第三方框架 Masonry 实现自动布局
+                        &nbsp;<span class="colorlan">2015-02-10</span> </a></li><li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-507676.html" title="numpy的random模块" target="_blank">
+                        numpy的random模块
+                        &nbsp;<span class="colorlan">2015-03-10</span> </a></li><li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-507929.html" title="WAMPServer 默认安装启动后，图标显示橙黄色" target="_blank">
+                        WAMPServer 默认安装启动后，图标显示橙黄色
+                        &nbsp;<span class="colorlan">2015-03-10</span> </a></li><li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-525592.html" title="Swagger框架学习分享" target="_blank">
+                        Swagger框架学习分享
+                        &nbsp;<span class="colorlan">2015-03-18</span> </a></li><li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-538646.html" title="十六进制转八进制" target="_blank">
+                        十六进制转八进制
+                        &nbsp;<span class="colorlan">2015-03-31</span> </a></li>
+        </ul>
+    </div>
+</div>
+
+            <div id="xuanting" class="width300px">
+    <div class="margintop10">
+        <script type="text/javascript">
+            var cpro_id = "u2208973";
+            (window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id] = { at: "3", rsi0: "300", rsi1: "300", pat: "17", tn: "baiduCustNativeAD", rss1: "#FFFFFF", conBW: "1", adp: "1", ptt: "0", titFF: "", titFS: "14", rss2: "#000000", titSU: "0" }
+        </script>
+        <script src="./Shiro简单授权原理分析_files/c.js" type="text/javascript"></script>
+    </div>
+    <div class="margintop10">
+        <script async="" src="./Shiro简单授权原理分析_files/adsbygoogle.js"></script>
+        <!-- mamicode-xuanting-300x250 -->
+        <ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 250px" data-ad-client="ca-pub-8616102841876629" data-ad-slot="3583171088"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+
+        </div>
+        <div class="divfloatclear">
+        </div>
+    </div>
+    <div class="width1000px divmargin0auto paddingtop20bottom20">
+    <div class="width1000px divborder margintop20">
+        <div class="youqingtitle">
+            <a title="友情链接">友情链接</a>
+        </div>
+        <div class="youqingcontent">
+            <a href="http://www.lightinit.com/" target="_blank" title="互联网产品定制开发专家">兰亭集智</a>&nbsp;&nbsp;<a href="http://www.guozhihua.net/" target="_blank">国之画</a>&nbsp;&nbsp;<a href="http://www.bubufx.com/" target="_blank">布布分享</a>&nbsp;&nbsp;<a href="http://tongji.baidu.com/" target="_blank">百度统计</a>&nbsp;&nbsp; <a href="http://www.cnzz.com/" target="_blank">
+                        站长统计</a>&nbsp;&nbsp;<a href="http://www.aliyun.com/" target="_blank">阿里云</a>&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<div class="bottomdiv">
+    <div class="width1000px divmargin0auto paddingtop20">
+        <div class="height30px divtextalignleft">
+            <a href="http://www.mamicode.com/about.html" title="mamicode.com关于我们">关于我们</a> - <a href="http://www.mamicode.com/contactus.html" title="mamicode.com联系我们">联系我们</a> - <a href="http://www.mamicode.com/guest.html" title="mamicode.com留言反馈">留言反馈</a>
+        </div>
+        <div class="height30px divtextalignleft">
+            © 2014 <a href="http://www.mamicode.com/" target="_blank" title="mamicode.com,技术分享">mamicode.com</a>
+            版权所有 京ICP备13008772号-2
+        </div>
+        <div class="divtextalignleft">
+            <span class="colorlan">迷上了代码！</span>
+        </div>
+        <div class="paddingtop20">
+            <script type="text/javascript">                var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1254666564'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1254666564%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1254666564"><a href="http://www.cnzz.com/stat/website.php?web_id=1254666564" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./Shiro简单授权原理分析_files/pic1.gif"></a></span><script src="./Shiro简单授权原理分析_files/z_stat.php" type="text/javascript"></script><script src="./Shiro简单授权原理分析_files/core.php" charset="utf-8" type="text/javascript"></script>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <script type="text/javascript">
+                var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb65e01a9bac157f881c4d8cbac4b6995' type='text/javascript'%3E%3C/script%3E"));
+            </script><script src="./Shiro简单授权原理分析_files/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=b65e01a9bac157f881c4d8cbac4b6995" target="_blank"><img border="0" src="./Shiro简单授权原理分析_files/21.gif" width="20" height="20"></a>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+<script type="text/javascript" src="./Shiro简单授权原理分析_files/mamicodejs.js"></script>
+
+    <script type="text/javascript">        var mid = ''; var id = '495162'; var idm = '315031'; var commentitemcount = '0'; var memberhost = 'http://member.mamicode.com/'; prettyPrint(); </script>  
+    <script src="./Shiro简单授权原理分析_files/infodetail.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./Shiro简单授权原理分析_files/member.js" type="text/javascript" charset="utf-8"></script>
+
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.mamicode.com/info-detail-495162.html#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.mamicode.com/info-detail-495162.html#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.mamicode.com/info-detail-495162.html#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./Shiro简单授权原理分析_files/yun6.html" style="border: none; display: none; z-index: 2147483645; background: transparent;"></iframe><script src="./Shiro简单授权原理分析_files/pv.gif"></script></body></html>

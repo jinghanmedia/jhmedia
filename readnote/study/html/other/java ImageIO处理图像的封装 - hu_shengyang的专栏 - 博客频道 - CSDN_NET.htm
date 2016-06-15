@@ -1,0 +1,2409 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0057)http://blog.csdn.net/hu_shengyang/article/details/7433988 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<SCRIPT type="text/javascript" charset="utf-8" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/tracking.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </SCRIPT>
+
+<META content="no-siteapp" http-equiv="Cache-Control"><LINK rel="alternate" 
+href="#" media="handheld"><TITLE>java ImageIO处理图像的封装 - hu_shengyang的专栏        - 
+博客频道 - CSDN.NET</TITLE>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type">
+<META name="description" content="参考资料地址：&nbsp;http://www.cnblogs.com/leoo2sk/archive/2010/09/17/naive-bayesian-classifier.html我的数据挖掘算法实现源码地址：https://github.com/linyiqun/DataMiningAlgorithm介绍要介绍朴素贝叶斯算法(Naive Bayes)，那就得先介绍贝叶斯分类算法，贝叶斯分">
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/jquery.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/jquery-version.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/ad.js"></SCRIPT>
+<!--new top--><LINK rel="stylesheet" href="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/index.css"><!--new top--><!-- ad begin -->
+<SCRIPT language="javascript" type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/tracking(1).js"></SCRIPT>
+<!-- ad end--><LINK rel="Stylesheet" type="text/css" href="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/style.css"><LINK 
+id="RSSLink" title="RSS" rel="alternate" type="application/rss+xml" href="/hu_shengyang/rss/list"><LINK 
+rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico"><LINK rel="stylesheet" 
+type="text/css" href="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/default.css">
+<META name="GENERATOR" content="MSHTML 9.00.8112.16684"></HEAD>
+<BODY><!-- 广告位开始 --><INS data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57" 
+data-revive-zoneid="149"></INS><!-- 广告位结束 --><!--new top-->
+<SCRIPT id="toolbar-tpl-scriptId" type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/html.js" skin="black" prod="blog" fixed="true"></SCRIPT>
+<!--new top-->
+<DIV id="container">
+<DIV id="header">
+<DIV class="header">
+<DIV id="blog_title">
+<H2><A href="http://blog.csdn.net/hu_shengyang">hu_shengyang的专栏</A></H2>
+<H3></H3>
+<DIV class="clear"></DIV></DIV>
+<DIV class="clear"></DIV></DIV></DIV>
+<DIV id="navigator">
+<DIV class="navigator_bg"></DIV>
+<DIV class="navigator">
+<UL>
+  <LI id="btnContents"><A href="http://blog.csdn.net/hu_shengyang?viewmode=contents"><SPAN 
+  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])"><IMG 
+  src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/ico_list.gif">目录视图</SPAN></A></LI>
+  <LI id="btnView"><A 
+  href="http://blog.csdn.net/hu_shengyang?viewmode=list"><SPAN onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])"><IMG 
+  src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/ico_summary.gif">摘要视图</SPAN></A></LI>
+  <LI id="btnRss"><A href="http://blog.csdn.net/hu_shengyang/rss/list"><SPAN 
+  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])"><IMG 
+  src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/ico_rss.gif">订阅</SPAN></A></LI></UL></DIV>
+</DIV>
+<SCRIPT type="text/javascript">var username = "hu_shengyang";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/hu_shengyang";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</SCRIPT>
+
+<DIV id="body">
+<DIV id="main">
+<DIV class="main">
+<DIV class="ad_class">
+<DIV class="notice tracking-ad" data-mod="popu_3"><A href="http://ask.csdn.net/subjects/9">
+<FONT color="blue">【专家问答】韦玮：Python基础编程实战专题</FONT></A>&nbsp;&nbsp;&nbsp;<A href="http://lib.csdn.net/base/swift/resource">
+<FONT color="red">【知识库】Swift资源大集合</FONT></A>&nbsp;&nbsp;&nbsp;<A href="http://blog.csdn.net/csdnproduct/article/details/51668917">
+<FONT color="blue">【公告】博客新皮肤上线啦</FONT></A>&nbsp;&nbsp;&nbsp;</DIV></DIV><!-- 广告位开始 -->
+<INS data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57" 
+data-revive-zoneid="72"></INS><!-- 广告位结束 --><LINK rel="stylesheet" type="text/css" 
+href="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/comment1.css">
+<LINK rel="stylesheet" type="text/css" href="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/style1.css">
+<SCRIPT language="JavaScript" type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/jquery.cookie.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/main.js"></SCRIPT>
+<LINK rel="stylesheet" href="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/markdown_views.css">
+<LINK rel="stylesheet" href="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/category.css">
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/MathJax.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/web-storage-cache.min.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/replace.min.js"></SCRIPT>
+<LINK rel="stylesheet" href="http://static.blog.csdn.net/css/blog_code.css">
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/saveToCode.js"></SCRIPT>
+
+<SCRIPT type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+          
+    </SCRIPT>
+
+<DIV id="article_details" class="details">
+<DIV class="article_title"><SPAN class="ico ico_type_Original"></SPAN>
+<H1><SPAN class="link_title"><A href="http://blog.csdn.net/hu_shengyang/article/details/7433988"><FONT 
+color="red">[置顶]</FONT>java ImageIO处理图像的封装                    </A></SPAN></H1>
+</DIV>
+<DIV class="article_manage clearfix">
+<DIV class="article_l"><SPAN class="link_categories">            标签：             
+ <A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);" 
+href="http://www.csdn.net/tag/java" target="_blank">java</A><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);" 
+href="http://www.csdn.net/tag/string" target="_blank">string</A><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);" 
+href="http://www.csdn.net/tag/null" target="_blank">null</A><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);" 
+href="http://www.csdn.net/tag/image" target="_blank">image</A><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);" 
+href="http://www.csdn.net/tag/exception" target="_blank">exception</A><A 
+onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);" 
+href="http://www.csdn.net/tag/file" target="_blank">file</A></SPAN></DIV>
+<DIV class="article_r"><SPAN class="link_postdate">2012-04-06 22:35</SPAN><SPAN 
+class="link_view" title="阅读次数">20538人阅读</SPAN><SPAN class="link_comments" title="评论次数"> 
+<A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])" 
+href="http://blog.csdn.net/hu_shengyang/article/details/7433988#comments">评论</A>(12)</SPAN><SPAN 
+class="link_collect tracking-ad" data-mod="popu_171"> <A title="收藏" onclick="javascript:collectArticle('java ImageIO处理图像的封装','7433988');return false;" 
+href="javascript:void(0);">收藏</A></SPAN><SPAN class="link_report"> <A title="举报" 
+onclick="javascript:report(7433988,2);return false;" href="http://blog.csdn.net/hu_shengyang/article/details/7433988#report">举报</A></SPAN></DIV></DIV>
+<DIV style="display: none;" id="embody" class="embody"><SPAN 
+class="embody_t">本文章已收录于：</SPAN>
+<DIV id="lib" class="embody_c" 
+value='{"err":0,"msg":"ok","data":[]}'></DIV></DIV>
+<STYLE type="text/css">.embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </STYLE>
+
+<SCRIPT type="text/javascript">
+        $(function () {
+            var lib = eval("("+$("#lib").attr("value")+")");
+            var html = "";
+            if (lib.err == 0) {
+                $.each(lib.data, function (i) {
+                    var obj = lib.data[i];
+                    //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                    html += ' <a href="' + obj.url + '" target="_blank">';
+                    html += ' <img src="' + obj.logo + '">';
+                    html += ' <em><b>' + obj.name + '</b></em>';
+                    html += ' </a>';
+                });
+                if (html != "") {
+                    setTimeout(function () {
+                        $("#lib").html(html);
+                        /*
+                        var testhtml = "";
+                        testhtml += '<a href="#">';
+                        testhtml += '<img src="http://img.knowledge.csdn.net/upload/base/1455589744328_328.jpg">';
+                        testhtml += '<em>Android知识库</em>';
+                        testhtml += '</a>';
+                        $(".embody_c").html(testhtml);
+                        */
+                        $("#embody").show();
+                    }, 100);
+                }
+            }          
+            
+        });
+    </SCRIPT>
+
+<DIV class="category clearfix">
+<DIV class="category_l"><IMG src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/category_icon.jpg"><SPAN>分类：</SPAN></DIV>
+<DIV class="category_r"><LABEL onclick="GetCategoryArticles('469773','hu_shengyang','top','7433988');"><SPAN 
+onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">【CoreJava】<EM>（37）</EM></SPAN><IMG 
+style="display: inline;" class="arrow-down" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/arrow_triangle%2520_down.jpg"><IMG 
+style="display: none;" class="arrow-up" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/arrow_triangle_up.jpg">
+<DIV class="subItem">
+<DIV class="subItem_t"><A href="http://blog.csdn.net/hu_shengyang/article/category/469773" 
+target="_blank">作者同类文章</A><I class="J_close">X</I></DIV>
+<UL id="top_469773" class="subItem_l"></UL></DIV></LABEL><LABEL onclick="GetCategoryArticles('1088527','hu_shengyang','top','7433988');"><SPAN 
+onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">【图像处理】<EM>（5）</EM></SPAN><IMG 
+style="display: inline;" class="arrow-down" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/arrow_triangle%2520_down.jpg"><IMG 
+style="display: none;" class="arrow-up" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/arrow_triangle_up.jpg">
+<DIV class="subItem">
+<DIV class="subItem_t"><A href="http://blog.csdn.net/hu_shengyang/article/category/1088527" 
+target="_blank">作者同类文章</A><I class="J_close">X</I></DIV>
+<UL id="top_1088527" class="subItem_l"></UL></DIV></LABEL></DIV></DIV>
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/category.js"></SCRIPT>
+
+<DIV class="bog_copyright">
+<P class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</P></DIV>
+<DIV id="article_content" class="article_content">
+<P>直接给代码：</P>
+<P></P><PRE class="java" name="code">package com.adam.dev.pic.easyImage;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.color.ColorSpace;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGImageEncoder;
+
+/**
+ * @author adam.胡升阳
+ * 创建日期 2012-2-29
+ */
+public class OperateImage{
+
+    public OperateImage() {
+		super();
+	}
+
+	/** 
+	 * 对图片裁剪，并把裁剪新图片保存 
+	 * @param srcPath 读取源图片路径
+	 * @param toPath	写入图片路径
+	 * @param x 剪切起始点x坐标
+	 * @param y 剪切起始点y坐标
+	 * @param width 剪切宽度
+	 * @param height	 剪切高度
+	 * @param readImageFormat  读取图片格式
+	 * @param writeImageFormat 写入图片格式
+	 * @throws IOException
+	 */
+    public void cropImage(String srcPath,String toPath,
+    		int x,int y,int width,int height,
+    		String readImageFormat,String writeImageFormat) throws IOException{   
+        FileInputStream fis = null ;
+        ImageInputStream iis =null ;
+        try{   
+            //读取图片文件
+        	fis = new FileInputStream(srcPath); 
+            Iterator it = ImageIO.getImageReadersByFormatName(readImageFormat); 
+            ImageReader reader = (ImageReader) it.next(); 
+            //获取图片流 
+            iis = ImageIO.createImageInputStream(fis);  
+            reader.setInput(iis,true) ;
+            ImageReadParam param = reader.getDefaultReadParam(); 
+            //定义一个矩形
+            Rectangle rect = new Rectangle(x, y, width, height); 
+            //提供一个 BufferedImage，将其用作解码像素数据的目标。 
+            param.setSourceRegion(rect);
+            BufferedImage bi = reader.read(0,param);                
+            //保存新图片 
+            ImageIO.write(bi, writeImageFormat, new File(toPath));     
+        }finally{
+            if(fis!=null)
+            	fis.close();       
+            if(iis!=null)
+               iis.close(); 
+        } 
+    }
+
+    /**
+     * 按倍率缩小图片
+     * @param srcImagePath 读取图片路径
+     * @param toImagePath 写入图片路径
+     * @param widthRatio	宽度缩小比例
+     * @param heightRatio	 高度缩小比例
+     * @throws IOException
+     */
+    public void reduceImageByRatio(String srcImagePath,String toImagePath,int widthRatio,int heightRatio) throws IOException{
+    	FileOutputStream out = null;
+    	try{
+    		//读入文件  
+            File file = new File(srcImagePath);  
+            // 构造Image对象  
+            BufferedImage src = javax.imageio.ImageIO.read(file);  
+            int width = src.getWidth();  
+            int height = src.getHeight();  
+            // 缩小边长 
+            BufferedImage tag = new BufferedImage(width / widthRatio, height / heightRatio, BufferedImage.TYPE_INT_RGB);  
+            // 绘制 缩小  后的图片 
+            tag.getGraphics().drawImage(src, 0, 0, width / widthRatio, height / heightRatio, null);  
+            out = new FileOutputStream(toImagePath);  
+            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);  
+            encoder.encode(tag);  
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(out != null){
+                out.close();  
+    		}
+    	}
+    }
+
+    /**
+     * 长高等比例缩小图片
+     * @param srcImagePath 读取图片路径
+     * @param toImagePath 写入图片路径
+     * @param ratio 缩小比例
+     * @throws IOException
+     */
+    public void reduceImageEqualProportion(String srcImagePath,String toImagePath,int ratio) throws IOException{
+    	FileOutputStream out = null;
+    	try{
+    		//读入文件  
+            File file = new File(srcImagePath);  
+            // 构造Image对象  
+            BufferedImage src = javax.imageio.ImageIO.read(file);  
+            int width = src.getWidth();  
+            int height = src.getHeight();  
+            // 缩小边长 
+            BufferedImage tag = new BufferedImage(width / ratio, height / ratio, BufferedImage.TYPE_INT_RGB);  
+            // 绘制 缩小  后的图片 
+            tag.getGraphics().drawImage(src, 0, 0, width / ratio, height / ratio, null);  
+            out = new FileOutputStream(toImagePath);  
+            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);  
+            encoder.encode(tag);  
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(out != null){
+                out.close();  
+    		}
+    	}
+    }
+    
+    /**
+     * 按倍率放大图片
+     * @param srcImagePath 读取图形路径
+     * @param toImagePath 写入入行路径
+     * @param widthRatio	宽度放大比例
+     * @param heightRatio 高度放大比例
+     * @throws IOException
+     */
+    public void enlargementImageByRatio(String srcImagePath,String toImagePath,int widthRatio,int heightRatio) throws IOException{
+    	FileOutputStream out = null;
+    	try{
+    		//读入文件  
+            File file = new File(srcImagePath);  
+            // 构造Image对象  
+            BufferedImage src = javax.imageio.ImageIO.read(file);  
+            int width = src.getWidth();  
+            int height = src.getHeight();  
+            // 放大边长
+            BufferedImage tag = new BufferedImage(width * widthRatio, height * heightRatio, BufferedImage.TYPE_INT_RGB);  
+            //绘制放大后的图片
+            tag.getGraphics().drawImage(src, 0, 0, width * widthRatio, height * heightRatio, null);  
+            out = new FileOutputStream(toImagePath);  
+            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);  
+            encoder.encode(tag);  
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(out != null){
+                out.close();  
+    		}
+    	}
+    }
+    
+    
+    /**
+     * 长高等比例放大图片
+     * @param srcImagePath 读取图形路径
+     * @param toImagePath 写入入行路径
+     * @param ratio	放大比例
+     * @throws IOException
+     */
+    public void enlargementImageEqualProportion(String srcImagePath,String toImagePath,int ratio) throws IOException{
+    	FileOutputStream out = null;
+    	try{
+    		//读入文件  
+            File file = new File(srcImagePath);  
+            // 构造Image对象  
+            BufferedImage src = javax.imageio.ImageIO.read(file);  
+            int width = src.getWidth();  
+            int height = src.getHeight();  
+            // 放大边长
+            BufferedImage tag = new BufferedImage(width * ratio, height * ratio, BufferedImage.TYPE_INT_RGB);  
+            //绘制放大后的图片
+            tag.getGraphics().drawImage(src, 0, 0, width * ratio, height * ratio, null);  
+            out = new FileOutputStream(toImagePath);  
+            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);  
+            encoder.encode(tag);  
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(out != null){
+                out.close();  
+    		}
+    	}
+    }
+    
+    /**
+     * 重置图形的边长大小
+     * @param srcImagePath 
+     * @param toImagePath
+     * @param width
+     * @param height
+     * @throws IOException
+     */
+    public void resizeImage(String srcImagePath,String toImagePath,int width,int height) throws IOException{
+    	FileOutputStream out = null;
+    	try{
+    		//读入文件  
+            File file = new File(srcImagePath);  
+            // 构造Image对象  
+            BufferedImage src = javax.imageio.ImageIO.read(file);  
+            // 放大边长
+            BufferedImage tag = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);  
+            //绘制放大后的图片
+            tag.getGraphics().drawImage(src, 0, 0, width, height, null);  
+            out = new FileOutputStream(toImagePath);  
+            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);  
+            encoder.encode(tag);  
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(out != null){
+                out.close();  
+    		}
+    	}
+    }
+    
+    /**
+     * 横向拼接图片（两张）
+     * @param firstSrcImagePath 第一张图片的路径
+     * @param secondSrcImagePath	第二张图片的路径
+     * @param imageFormat	拼接生成图片的格式
+     * @param toPath	拼接生成图片的路径
+     */
+    public void joinImagesHorizontal(String firstSrcImagePath, String secondSrcImagePath,String imageFormat, String toPath){  
+    	try {  
+    		//读取第一张图片    
+    		File  fileOne  =  new  File(firstSrcImagePath);    
+            BufferedImage  imageOne = ImageIO.read(fileOne);    
+            int  width  =  imageOne.getWidth();//图片宽度    
+            int  height  =  imageOne.getHeight();//图片高度    
+            //从图片中读取RGB    
+            int[]  imageArrayOne  =  new  int[width*height];    
+            imageArrayOne  =  imageOne.getRGB(0,0,width,height,imageArrayOne,0,width);    
+           
+            //对第二张图片做相同的处理    
+            File  fileTwo  =  new  File(secondSrcImagePath);    
+            BufferedImage  imageTwo  =  ImageIO.read(fileTwo); 
+            int width2 = imageTwo.getWidth();
+            int height2 = imageTwo.getHeight();
+            int[]   ImageArrayTwo  =  new  int[width2*height2];    
+            ImageArrayTwo  =  imageTwo.getRGB(0,0,width,height,ImageArrayTwo,0,width);    
+            //ImageArrayTwo  =  imageTwo.getRGB(0,0,width2,height2,ImageArrayTwo,0,width2); 
+           
+            //生成新图片
+            //int height3 = (height&gt;height2 || height==height2)?height:height2;
+            BufferedImage  imageNew  =  new  BufferedImage(width*2,height,BufferedImage.TYPE_INT_RGB);    
+            //BufferedImage  imageNew  =  new  BufferedImage(width+width2,height3,BufferedImage.TYPE_INT_RGB);    
+            imageNew.setRGB(0,0,width,height,imageArrayOne,0,width);//设置左半部分的RGB  
+            imageNew.setRGB(width,0,width,height,ImageArrayTwo,0,width);//设置右半部分的RGB 
+            //imageNew.setRGB(width,0,width2,height2,ImageArrayTwo,0,width2);//设置右半部分的RGB    
+           
+            File  outFile  =  new  File(toPath);    
+            ImageIO.write(imageNew,  imageFormat,  outFile);//写图片
+        } catch (Exception e) {  
+        	e.printStackTrace();  
+        }  
+    }
+    
+    /**
+	 * 横向拼接一组（多张）图像
+	 * @param pics  将要拼接的图像
+	 * @param type 图像写入格式
+	 * @param dst_pic 图像写入路径
+	 * @return
+	 */
+    public  boolean joinImageListHorizontal(String[] pics, String type, String dst_pic) {   
+    	try {  
+    		int len = pics.length;  
+    		if (len &lt; 1) {  
+    			System.out.println("pics len &lt; 1");  
+                return false;  
+            }  
+    		File[] src = new File[len];  
+    		BufferedImage[] images = new BufferedImage[len];  
+    		int[][] imageArrays = new int[len][];  
+    		for (int i = 0; i &lt; len; i++) {  
+    			src[i] = new File(pics[i]);  
+    			images[i] = ImageIO.read(src[i]);  
+    			int width = images[i].getWidth();  
+    			int height = images[i].getHeight();  
+    			imageArrays[i] = new int[width * height];// 从图片中读取RGB    
+    			imageArrays[i] = images[i].getRGB(0, 0, width, height,  imageArrays[i], 0, width);  
+    		}  
+    		
+    		int dst_width = 0;  
+    		int dst_height = images[0].getHeight();  
+    		for (int i = 0; i &lt; images.length; i++) {  
+    			dst_height = dst_height &gt; images[i].getHeight() ? dst_height : images[i].getHeight();  
+    			dst_width += images[i].getWidth();
+    		}  
+    		//System.out.println(dst_width);  
+    		//System.out.println(dst_height);  
+    		if (dst_height &lt; 1) {  
+    			System.out.println("dst_height &lt; 1");  
+    			return false;  
+    		} 
+    		/*
+    		 * 生成新图片
+    		 */   
+    		BufferedImage ImageNew = new BufferedImage(dst_width, dst_height,  BufferedImage.TYPE_INT_RGB);  
+    		int width_i = 0;
+    		for (int i = 0; i &lt; images.length; i++) {  
+    			ImageNew.setRGB(width_i, 0, images[i].getWidth(), dst_height,  imageArrays[i], 0, images[i].getWidth());  
+    			width_i += images[i].getWidth();
+    		}  
+    		File outFile = new File(dst_pic);  
+    		ImageIO.write(ImageNew, type, outFile);// 写图片   
+    	} catch (Exception e) {  
+            e.printStackTrace();  
+            return false;  
+        }  
+        return true;  
+    }
+    
+    /**
+     * 纵向拼接图片（两张）
+     * @param firstSrcImagePath 读取的第一张图片
+     * @param secondSrcImagePath	读取的第二张图片
+     * @param imageFormat 图片写入格式
+     * @param toPath	图片写入路径
+     */
+    public void joinImagesVertical(String firstSrcImagePath, String secondSrcImagePath,String imageFormat, String toPath){  
+        try {  
+        	//读取第一张图片    
+            File  fileOne  =  new  File(firstSrcImagePath);    
+            BufferedImage  imageOne = ImageIO.read(fileOne);    
+            int  width  =  imageOne.getWidth();//图片宽度    
+            int  height  =  imageOne.getHeight();//图片高度    
+            //从图片中读取RGB    
+            int[]  imageArrayOne  =  new  int[width*height];    
+            imageArrayOne  =  imageOne.getRGB(0,0,width,height,imageArrayOne,0,width);    
+       
+            //对第二张图片做相同的处理    
+            File  fileTwo  =  new  File(secondSrcImagePath);    
+            BufferedImage  imageTwo  =  ImageIO.read(fileTwo); 
+            int width2 = imageTwo.getWidth();
+            int height2 = imageTwo.getHeight();
+            int[]   ImageArrayTwo  =  new  int[width2*height2];    
+            ImageArrayTwo  =  imageTwo.getRGB(0,0,width,height,ImageArrayTwo,0,width);    
+            //ImageArrayTwo  =  imageTwo.getRGB(0,0,width2,height2,ImageArrayTwo,0,width2); 
+       
+            //生成新图片
+            //int width3 = (width&gt;width2 || width==width2)?width:width2;
+            BufferedImage  imageNew  =  new  BufferedImage(width,height*2,BufferedImage.TYPE_INT_RGB);    
+            //BufferedImage  imageNew  =  new  BufferedImage(width3,height+height2,BufferedImage.TYPE_INT_RGB);    
+            imageNew.setRGB(0,0,width,height,imageArrayOne,0,width);//设置上半部分的RGB    
+            imageNew.setRGB(0,height,width,height,ImageArrayTwo,0,width);//设置下半部分的RGB
+            //imageNew.setRGB(0,height,width2,height2,ImageArrayTwo,0,width2);//设置下半部分的RGB    
+       
+            File  outFile  =  new  File(toPath);    
+            ImageIO.write(imageNew,  imageFormat,  outFile);//写图片
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+    }
+    
+    /**
+     * 纵向拼接一组（多张）图像
+     * @param pics		将要拼接的图像数组
+     * @param type	写入图像类型
+     * @param dst_pic	写入图像路径
+     * @return
+     */
+	public  boolean joinImageListVertical(String[] pics, String type, String dst_pic) {   
+        try {  
+        	int len = pics.length;  
+            if (len &lt; 1) {  
+                System.out.println("pics len &lt; 1");  
+                return false;  
+            }  
+        	 File[] src = new File[len];  
+             BufferedImage[] images = new BufferedImage[len];  
+             int[][] imageArrays = new int[len][];  
+             for (int i = 0; i &lt; len; i++) {  
+            	//System.out.println(i);
+	            src[i] = new File(pics[i]);  
+	            images[i] = ImageIO.read(src[i]);  
+	            int width = images[i].getWidth();  
+	            int height = images[i].getHeight();  
+	            imageArrays[i] = new int[width * height];// 从图片中读取RGB   
+	            imageArrays[i] = images[i].getRGB(0, 0, width, height,  imageArrays[i], 0, width);  
+	        }  
+             
+	        int dst_height = 0;  
+	        int dst_width = images[0].getWidth();  
+	        for (int i = 0; i &lt; images.length; i++) {  
+	            dst_width = dst_width &gt; images[i].getWidth() ? dst_width : images[i].getWidth();  
+	            dst_height += images[i].getHeight();  
+	        }  
+	        //System.out.println(dst_width);  
+	        //System.out.println(dst_height);  
+	        if (dst_height &lt; 1) {  
+	            System.out.println("dst_height &lt; 1");  
+	            return false;  
+	        }  
+	        /*
+	         * 生成新图片
+	         */   
+            BufferedImage ImageNew = new BufferedImage(dst_width, dst_height,  BufferedImage.TYPE_INT_RGB);  
+            int height_i = 0;  
+            for (int i = 0; i &lt; images.length; i++) {  
+                ImageNew.setRGB(0, height_i, dst_width, images[i].getHeight(),  imageArrays[i], 0, dst_width);  
+                height_i += images[i].getHeight();  
+            }  
+            File outFile = new File(dst_pic);  
+            ImageIO.write(ImageNew, type, outFile);// 写图片   
+        } catch (Exception e) {  
+            e.printStackTrace();  
+            return false;  
+        }  
+        return true;  
+    }  
+    
+    /**
+     * 合并图片(按指定初始x、y坐标将附加图片贴到底图之上)
+     * @param negativeImagePath 背景图片路径
+     * @param additionImagePath	附加图片路径
+     * @param x 附加图片的起始点x坐标
+     * @param y  附加图片的起始点y坐标
+     * @param toPath 图片写入路径
+     * @throws IOException
+     */
+    public void mergeBothImage(String negativeImagePath,String additionImagePath,int x,int y,String toPath ) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+            is2=new FileInputStream(additionImagePath);
+            BufferedImage image=ImageIO.read(is);
+            BufferedImage image2=ImageIO.read(is2);
+            Graphics g=image.getGraphics();
+            g.drawImage(image2,x,y,null);
+            os = new FileOutputStream(toPath);
+            JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /** 
+     * 将一组图片一次性附加合并到底图上
+     * @param negativeImagePath		源图像（底图）路径
+     * @param additionImageList	附加图像信息列表
+     * @param imageFormat	图像写入格式
+     * @param toPath	图像写入路径
+     * @throws IOException
+     */
+    public void mergeImageList(String negativeImagePath,List additionImageList,String imageFormat, String toPath) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+    		BufferedImage image=ImageIO.read(is);
+    		//Graphics g=image.getGraphics();
+    		Graphics2D g = image.createGraphics();;
+    		BufferedImage image2 = null;
+    		if(additionImageList != null){
+    			for(int i=0;i&lt;additionImageList.size();i++){
+    				//解析附加图片信息：x坐标、 y坐标、 additionImagePath附加图片路径
+    				//图片信息存储在一个数组中
+    				String[] additionImageInfo = (String[]) additionImageList.get(i);
+    				int x = Integer.parseInt(additionImageInfo[0]);
+    				int y = Integer.parseInt(additionImageInfo[1]);
+    				String additionImagePath = additionImageInfo[2];
+    				//读取文件输入流，并合并图片
+    				is2 = new FileInputStream(additionImagePath);
+    				//System.out.println(x+"  :  "+y+"  :  "+additionImagePath);
+    				image2 = ImageIO.read(is2);
+    	            g.drawImage(image2,x,y,null);
+    			}
+    		}
+            os = new FileOutputStream(toPath);
+            ImageIO.write(image,  imageFormat,  os);//写图片
+            //JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            //enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 将附加图片合并到底图的左上角
+     * @param negativeImagePath 底图路径
+     * @param additionImagePath	附加图片路径
+     * @param toPath	合成图片写入路径
+     * @throws IOException
+     */
+    public void mergeBothImageTopleftcorner(String negativeImagePath,String additionImagePath,String toPath ) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+            is2=new FileInputStream(additionImagePath);
+            BufferedImage image=ImageIO.read(is);
+            BufferedImage image2=ImageIO.read(is2);
+            Graphics g=image.getGraphics();
+            g.drawImage(image2,0,0,null);
+            os = new FileOutputStream(toPath);
+            JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 将附加图片合并到底图的右上角
+     * @param negativeImagePath 底图路径
+     * @param additionImagePath	附加图片路径
+     * @param toPath	合成图片写入路径
+     * @throws IOException
+     */
+    public void mergeBothImageToprightcorner(String negativeImagePath,String additionImagePath,String toPath ) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+            is2=new FileInputStream(additionImagePath);
+            BufferedImage image=ImageIO.read(is);
+            BufferedImage image2=ImageIO.read(is2);
+            Graphics g=image.getGraphics();
+            g.drawImage(image2,image.getWidth()-image2.getWidth(),0,null);
+            os = new FileOutputStream(toPath);
+            JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 将附加图片合并到底图的左下角
+     * @param negativeImagePath 底图路径
+     * @param additionImagePath	附加图片路径
+     * @param toPath	合成图片写入路径
+     * @throws IOException
+     */
+    public void mergeBothImageLeftbottom(String negativeImagePath,String additionImagePath,String toPath ) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+            is2=new FileInputStream(additionImagePath);
+            BufferedImage image=ImageIO.read(is);
+            BufferedImage image2=ImageIO.read(is2);
+            Graphics g=image.getGraphics();
+            g.drawImage(image2,0,image.getHeight()-image2.getHeight(),null);
+            os = new FileOutputStream(toPath);
+            JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 将附加图片合并到底图的左下角
+     * @param negativeImagePath 底图路径
+     * @param additionImagePath	附加图片路径
+     * @param toPath	合成图片写入路径
+     * @throws IOException
+     */
+    public void mergeBothImageRightbottom(String negativeImagePath,String additionImagePath,String toPath ) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+            is2=new FileInputStream(additionImagePath);
+            BufferedImage image=ImageIO.read(is);
+            BufferedImage image2=ImageIO.read(is2);
+            Graphics g=image.getGraphics();
+            g.drawImage(image2,image.getWidth()-image2.getWidth(),image.getHeight()-image2.getHeight(),null);
+            os = new FileOutputStream(toPath);
+            JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 将附加图片合并到底图的正中央
+     * @param negativeImagePath 底图路径
+     * @param additionImagePath	附加图片路径
+     * @param toPath	合成图片写入路径
+     * @throws IOException
+     */
+    public void mergeBothImageCenter(String negativeImagePath,String additionImagePath,String toPath ) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+            is2=new FileInputStream(additionImagePath);
+            BufferedImage image=ImageIO.read(is);
+            BufferedImage image2=ImageIO.read(is2);
+            Graphics g=image.getGraphics();
+            g.drawImage(image2,image.getWidth()/2-image2.getWidth()/2,image.getHeight()/2-image2.getHeight()/2,null);
+            os = new FileOutputStream(toPath);
+            JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 将附加图片合并到底图的上边中央
+     * @param negativeImagePath 底图路径
+     * @param additionImagePath	附加图片路径
+     * @param toPath	合成图片写入路径
+     * @throws IOException
+     */
+    public void mergeBothImageTopcenter(String negativeImagePath,String additionImagePath,String toPath ) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+            is2=new FileInputStream(additionImagePath);
+            BufferedImage image=ImageIO.read(is);
+            BufferedImage image2=ImageIO.read(is2);
+            Graphics g=image.getGraphics();
+            g.drawImage(image2,image.getWidth()/2-image2.getWidth()/2,0,null);
+            os = new FileOutputStream(toPath);
+            JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 将附加图片合并到底图的下边中央
+     * @param negativeImagePath 底图路径
+     * @param additionImagePath	附加图片路径
+     * @param toPath	合成图片写入路径
+     * @throws IOException
+     */
+    public void mergeBothImageBottomcenter(String negativeImagePath,String additionImagePath,String toPath ) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+            is2=new FileInputStream(additionImagePath);
+            BufferedImage image=ImageIO.read(is);
+            BufferedImage image2=ImageIO.read(is2);
+            Graphics g=image.getGraphics();
+            g.drawImage(image2,image.getWidth()/2-image2.getWidth()/2,image.getHeight()-image2.getHeight(),null);
+            os = new FileOutputStream(toPath);
+            JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 将附加图片合并到底图的左边中央
+     * @param negativeImagePath 底图路径
+     * @param additionImagePath	附加图片路径
+     * @param toPath	合成图片写入路径
+     * @throws IOException
+     */
+    public void mergeBothImageLeftcenter(String negativeImagePath,String additionImagePath,String toPath ) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+            is2=new FileInputStream(additionImagePath);
+            BufferedImage image=ImageIO.read(is);
+            BufferedImage image2=ImageIO.read(is2);
+            Graphics g=image.getGraphics();
+            g.drawImage(image2,0,image.getHeight()/2-image2.getHeight()/2,null);
+            os = new FileOutputStream(toPath);
+            JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 将附加图片合并到底图的右边中央
+     * @param negativeImagePath 底图路径
+     * @param additionImagePath	附加图片路径
+     * @param toPath	合成图片写入路径
+     * @throws IOException
+     */
+    public void mergeBothImageRightcenter(String negativeImagePath,String additionImagePath,String toPath ) throws IOException{
+    	InputStream is= null;
+    	InputStream is2= null;
+    	OutputStream os = null;
+    	try{
+    		is=new FileInputStream(negativeImagePath);
+            is2=new FileInputStream(additionImagePath);
+            BufferedImage image=ImageIO.read(is);
+            BufferedImage image2=ImageIO.read(is2);
+            Graphics g=image.getGraphics();
+            g.drawImage(image2,image.getWidth()-image2.getWidth(),image.getHeight()/2-image2.getHeight()/2,null);
+            os = new FileOutputStream(toPath);
+            JPEGImageEncoder enc=JPEGCodec.createJPEGEncoder(os);
+            enc.encode(image);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally{
+    		if(os != null){
+    			os.close();
+    		}
+    		if(is2 != null){
+    			is2.close();
+    		}
+    		if(is != null){
+    			is.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 图片灰化操作
+     * @param srcImage 读取图片路径
+     * @param toPath	写入灰化后的图片路径
+     * @param imageFormat 图片写入格式
+     */ 
+    public void grayImage(String srcImage,String toPath,String imageFormat){
+    	try{
+    		BufferedImage src = ImageIO.read(new File(srcImage));
+        	ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
+        	ColorConvertOp op = new ColorConvertOp(cs, null);
+        	src = op.filter(src, null);
+        	ImageIO.write(src, imageFormat, new File(toPath));
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    
+    /**
+     * 在源图片上设置水印文字
+     * @param srcImagePath	源图片路径
+     * @param alpha	透明度（0&lt;alpha&lt;1）
+     * @param font	字体（例如：宋体）
+     * @param fontStyle		字体格式(例如：普通样式--Font.PLAIN、粗体--Font.BOLD )
+     * @param fontSize	字体大小
+     * @param color	字体颜色(例如：黑色--Color.BLACK)
+     * @param inputWords		输入显示在图片上的文字
+     * @param x		文字显示起始的x坐标
+     * @param y		文字显示起始的y坐标
+     * @param imageFormat	写入图片格式（png/jpg等）
+     * @param toPath	写入图片路径
+     * @throws IOException 
+     */
+    public void alphaWords2Image(String srcImagePath,float alpha,
+    		String font,int fontStyle,int fontSize,Color color,
+    		String inputWords,int x,int y,String imageFormat,String toPath) throws IOException{
+    	FileOutputStream fos=null;
+		try {
+			BufferedImage image = ImageIO.read(new File(srcImagePath));
+			//创建java2D对象
+	    	Graphics2D g2d=image.createGraphics();
+	    	//用源图像填充背景
+	    	g2d.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null, null);
+	    	//设置透明度
+	    	AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
+	    	g2d.setComposite(ac);
+	    	//设置文字字体名称、样式、大小
+	    	g2d.setFont(new Font(font, fontStyle, fontSize));
+	    	g2d.setColor(color);//设置字体颜色
+	    	g2d.drawString(inputWords, x, y); //输入水印文字及其起始x、y坐标
+	    	g2d.dispose();
+	    	fos=new FileOutputStream(toPath);
+	    	ImageIO.write(image, imageFormat, fos);
+    	} catch (Exception e) {
+    	   e.printStackTrace();
+    	}finally{
+    		if(fos!=null){
+    			fos.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 在源图像上设置图片水印  
+     * 	---- 当alpha==1时文字不透明（和在图片上直接输入文字效果一样）
+     * @param srcImagePath	源图片路径
+     * @param appendImagePath	水印图片路径
+     * @param alpha	透明度
+     * @param x		水印图片的起始x坐标
+     * @param y		水印图片的起始y坐标
+     * @param width	水印图片的宽度
+     * @param height		水印图片的高度
+     * @param imageFormat	图像写入图片格式
+     * @param toPath	图像写入路径
+     * @throws IOException 
+     */
+    public void alphaImage2Image(String srcImagePath,String appendImagePath,
+    		float alpha,int x,int y,int width,int height,
+    		String imageFormat,String toPath) throws IOException{
+    	FileOutputStream fos = null;
+    	try {
+			BufferedImage image = ImageIO.read(new File(srcImagePath));
+			//创建java2D对象
+	    	Graphics2D g2d=image.createGraphics();
+	    	//用源图像填充背景
+	    	g2d.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null, null);
+	    	//设置透明度
+	    	AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
+	    	g2d.setComposite(ac);
+	    	//设置水印图片的起始x/y坐标、宽度、高度
+	    	BufferedImage appendImage = ImageIO.read(new File(appendImagePath));
+	    	g2d.drawImage(appendImage, x, y, width, height, null, null);
+	    	g2d.dispose();
+	    	fos=new FileOutputStream(toPath);
+	    	ImageIO.write(image, imageFormat, fos);
+    	} catch (Exception e) {
+    	   e.printStackTrace();
+    	}finally{
+    		if(fos!=null){
+    			fos.close();
+    		}
+    	}
+    }
+    
+    /**
+     * 画单点 ---- 实际上是画一个填充颜色的圆
+     * ---- 以指定点坐标为中心画一个小半径的圆形，并填充其颜色来充当点
+     * @param srcImagePath	 源图片颜色
+     * @param x		点的x坐标
+     * @param y		点的y坐标
+     * @param width	填充的宽度
+     * @param height	填充的高度
+     * @param ovalColor	填充颜色
+     * @param imageFormat	写入图片格式
+     * @param toPath	写入路径
+     * @throws IOException
+     */
+    public void drawPoint(String srcImagePath,int x,int y,int width,int height,Color ovalColor,String imageFormat,String toPath) throws IOException{
+    	FileOutputStream fos = null;
+		try {
+			//获取源图片
+			BufferedImage image = ImageIO.read(new File(srcImagePath));
+			//根据xy点坐标绘制连接线
+			Graphics2D g2d = image.createGraphics();
+			g2d.setColor(ovalColor);
+			//填充一个椭圆形
+			g2d.fillOval(x, y, width, height);
+			fos = new FileOutputStream(toPath);
+			ImageIO.write(image, imageFormat, fos);	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			if(fos!=null){
+    			fos.close();
+    		}
+		}
+    }
+    
+    /**
+     * 画一组（多个）点---- 实际上是画一组（多个）填充颜色的圆
+     * ---- 以指定点坐标为中心画一个小半径的圆形，并填充其颜色来充当点
+     * @param srcImagePath	原图片路径
+     * @param pointList	点列表
+     * @param width	宽度
+     * @param height		高度
+     * @param ovalColor 填充颜色
+     * @param imageFormat	写入图片颜色
+     * @param toPath	写入路径
+     * @throws IOException
+     */
+    public void drawPoints(String srcImagePath,List pointList,int width,int height,Color ovalColor,String imageFormat,String toPath) throws IOException{
+    	FileOutputStream fos = null;
+		try {
+			//获取源图片
+			BufferedImage image = ImageIO.read(new File(srcImagePath));
+			//根据xy点坐标绘制连接线
+			Graphics2D g2d = image.createGraphics();
+			g2d.setColor(ovalColor);
+			//填充一个椭圆形
+			if(pointList != null){
+				for(int i=0;i&lt;pointList.size();i++){
+					Point point = (Point)pointList.get(i);
+					int x = (int) point.getX();
+					int y = (int) point.getY();
+					g2d.fillOval(x, y, width, height);
+				}
+			}
+			fos = new FileOutputStream(toPath);
+			ImageIO.write(image, imageFormat, fos);	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			if(fos!=null){
+    			fos.close();
+    		}
+		}
+    }
+    
+    /**
+     * 画线段
+     * @param srcImagePath	源图片路径
+     * @param x1	第一个点x坐标
+     * @param y1	第一个点y坐标
+     * @param x2	第二个点x坐标
+     * @param y2	第二个点y坐标
+     * @param lineColor 线条颜色
+     * @param toPath	图像写入路径
+     * @param imageFormat	图像写入格式
+     * @throws IOException	
+     */
+    public void drawLine(String srcImagePath,int x1,int y1,int x2,int y2, Color lineColor,String toPath,String imageFormat) throws IOException{
+    	FileOutputStream fos = null;
+		try {
+			//获取源图片
+			BufferedImage image = ImageIO.read(new File(srcImagePath));
+			//根据xy点坐标绘制连接线
+			Graphics2D g2d = image.createGraphics();
+			g2d.setColor(lineColor);
+			g2d.drawLine( x1, y1, x2, y2);
+			fos = new FileOutputStream(toPath);
+			ImageIO.write(image, imageFormat, fos);	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			if(fos!=null){
+    			fos.close();
+    		}
+		}
+    }
+    
+    /**
+     * 画折线 / 线段
+     * ---- 2个点即画线段，多个点画折线
+     * @param srcImagePath	源图片路径
+     * @param xPoints	x坐标数组
+     * @param yPoints	y坐标数组
+     * @param nPoints	点的数量
+     * @param lineColor	线条颜色
+     * @param toPath	图像写入路径
+     * @param imageFormat	图片写入格式
+     * @throws IOException	
+     */
+    public void drawPolyline(String srcImagePath,int[] xPoints, int[] yPoints, int nPoints,Color lineColor,String toPath,String imageFormat) throws IOException{
+    	FileOutputStream fos = null;
+		try {
+			//获取源图片
+			BufferedImage image = ImageIO.read(new File(srcImagePath));
+			//根据xy点坐标绘制连接线
+			Graphics2D g2d = image.createGraphics();
+			//设置线条颜色
+			g2d.setColor(lineColor);
+			g2d.drawPolyline(xPoints, yPoints, nPoints);
+			//图像写出路径
+			fos = new FileOutputStream(toPath);
+			ImageIO.write(image, imageFormat, fos);	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			if(fos!=null){
+    			fos.close();
+    		}
+		}
+    }
+    
+    /**
+     * 绘制折线，并突出显示转折点
+     * @param srcImagePath	源图片路径
+     * @param xPoints	x坐标数组
+     * @param yPoints	y坐标数组
+     * @param nPoints	点的数量
+     * @param lineColor	连线颜色
+     * @param width	点的宽度
+     * @param height		点的高度
+     * @param ovalColor	点的填充颜色
+     * @param toPath	图像写入路径
+     * @param imageFormat	图像写入格式
+     * @throws IOException
+     */
+    public void drawPolylineShowPoints(String srcImagePath,int[] xPoints, int[] yPoints, int nPoints,Color lineColor,int width,int height,Color ovalColor,String toPath,String imageFormat) throws IOException{
+    	FileOutputStream fos = null;
+		try {
+			//获取源图片
+			BufferedImage image = ImageIO.read(new File(srcImagePath));
+			//根据xy点坐标绘制连接线
+			Graphics2D g2d = image.createGraphics();
+			//设置线条颜色
+			g2d.setColor(lineColor);
+			//画线条
+			g2d.drawPolyline(xPoints, yPoints, nPoints);
+			//设置圆点颜色
+			g2d.setColor(ovalColor);
+			//画圆点
+			if(xPoints != null){
+				for(int i=0;i&lt;xPoints.length;i++){
+					int x = xPoints[i];
+					int y = yPoints[i];
+					g2d.fillOval(x, y, width, height);
+				}
+			}
+			//图像写出路径
+			fos = new FileOutputStream(toPath);
+			ImageIO.write(image, imageFormat, fos);	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			if(fos!=null){
+    			fos.close();
+    		}
+		}
+    }
+    
+    
+    /** 
+     * 绘制一个由 x 和 y 坐标数组定义的闭合多边形
+     * @param srcImagePath 源图片路径
+     * @param xPoints	x坐标数组
+     * @param yPoints	y坐标数组
+     * @param nPoints	坐标点的个数
+     * @param polygonColor	线条颜色
+     * @param imageFormat	图像写入格式
+     * @param toPath	图像写入路径
+     * @throws IOException 
+     */
+    public void drawPolygon(String srcImagePath,int[] xPoints,int[] yPoints,int nPoints,Color polygonColor,String imageFormat,String toPath) throws IOException {
+    	FileOutputStream fos = null;
+    	try {
+    		//获取图片
+    		BufferedImage image = ImageIO.read(new File(srcImagePath));
+			//根据xy点坐标绘制闭合多边形
+			Graphics2D g2d = image.createGraphics();
+			g2d.setColor(polygonColor);
+			g2d.drawPolygon(xPoints, yPoints, nPoints);
+			fos = new FileOutputStream(toPath);
+			ImageIO.write(image, imageFormat, fos);	
+			g2d.dispose();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+					if(fos!=null){
+						fos.close();
+					} 
+			}
+    }
+    
+    /**
+     * 绘制并填充多边形
+     * @param srcImagePath	源图像路径
+     * @param xPoints	x坐标数组
+     * @param yPoints	y坐标数组
+     * @param nPoints	坐标点个数
+     * @param polygonColor	多边形填充颜色
+     * @param alpha	多边形部分透明度
+     * @param imageFormat	写入图形格式
+     * @param toPath	写入图形路径
+     * @throws IOException
+     */
+    public void drawAndAlphaPolygon(String srcImagePath,int[] xPoints,int[] yPoints,int nPoints,Color polygonColor,float alpha,String imageFormat,String toPath) throws IOException{
+    	FileOutputStream fos = null;
+    	try {
+    		//获取图片
+    		BufferedImage image = ImageIO.read(new File(srcImagePath));
+			//根据xy点坐标绘制闭合多边形
+			Graphics2D g2d = image.createGraphics();
+			g2d.setColor(polygonColor);
+			//设置透明度
+	    	AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
+	    	g2d.setComposite(ac);
+			g2d.fillPolygon(xPoints, yPoints, nPoints);
+			fos = new FileOutputStream(toPath);
+			ImageIO.write(image, imageFormat, fos);	
+			g2d.dispose();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+					if(fos!=null){
+						fos.close();
+					} 
+			}
+    }
+    
+    
+    public static void main(String[] args)throws Exception{
+        OperateImage imageObj = new OperateImage();
+        
+        /*String srcPath = "D:/test/fileSource/004.jpg";
+    	String toPath = "D:/test/desk/+e004.jpg";
+    	int x = 200;
+    	int y = 300;
+    	int width = 300;
+    	int height = 200 ;
+    	String readImageFormat = "jpg";
+    	String writeImageFormat = "jpg"*/;
+        //imageObj.cropImage(srcPath, toPath, x, y, width, height,readImageFormat,writeImageFormat);//剪切图片
+        //imageObj.resizeImage(srcPath, toPath, 400, 400);//按指定的长宽重置图形大小
+       //imageObj.reduceImageByRatio(srcPath, toPath, 3, 3);//按指定长和宽的比例缩小图形
+       //imageObj.enlargementImageByRatio(srcPath, toPath, 2, 2);//按指定长和宽的比例放大图形
+       //imageObj.reduceImageEqualProportion(srcPath, toPath, 4);//长高等比例缩小
+        //imageObj.enlargementImageEqualProportion(srcPath, toPath, 2);//长高等比例放大
+       /* String negativeImagePath = "D:/test/fileSource/004.jpg";
+        String additionImagePath = "D:/test/fileSource/005.jpg";
+        int x = 200;
+        int y = 200;
+        String toPath = "D:/test/desk/004+005-rightcenter.jpg";*/
+        //imageObj.mergeBothImage(negativeImagePath, additionImagePath, x, y, toPath); //按指定坐标合并图片
+        //imageObj.mergeBothImageTopleftcorner(negativeImagePath, additionImagePath, toPath);//合并到左上角
+        //imageObj.mergeBothImageToprightcorner(negativeImagePath, additionImagePath, toPath);//合并到右上角
+        //imageObj.mergeBothImageLeftbottom(negativeImagePath, additionImagePath, toPath);//合并到左下角
+        //imageObj.mergeBothImageRightbottom(negativeImagePath, additionImagePath, toPath);//合并到右下角
+        //imageObj.mergeBothImageCenter(negativeImagePath, additionImagePath, toPath);//合并到正中央
+        //imageObj.mergeBothImageTopcenter(negativeImagePath, additionImagePath, toPath);//合并到上边中央
+        //imageObj.mergeBothImageBottomcenter(negativeImagePath, additionImagePath, toPath);//合并到下边中央
+        //imageObj.mergeBothImageLeftcenter(negativeImagePath, additionImagePath, toPath);//合并到左边中央
+        //imageObj.mergeBothImageRightcenter(negativeImagePath, additionImagePath, toPath);//合并到右边中央
+    	
+    	/*
+    	String srcImage = "D:/test/fileSource/001.jpg";
+    	String toPath = "D:/test/desk/001-gray.jpg";
+    	String imageFormat = "jpg";
+    	imageObj.grayImage(srcImage, toPath, imageFormat);//图片灰化
+    	 */    
+    	
+    	/*
+    	String firstSrcImagePath = "D:/test/desk/003.jpg";
+    	String secondSrcImagePath = "D:/test/desk/004.jpg";
+    	String imageFormat = "jpg";
+    	String toPath = "D:/test/desk/003-004-join.jpg";
+    	imageObj.joinImagesHorizontal(firstSrcImagePath, secondSrcImagePath, imageFormat, toPath);//横向拼接图片
+    	*/
+    	
+    	/*
+    	String firstSrcImagePath = "D:/test/desk/001-002-join.jpg";
+    	String secondSrcImagePath = "D:/test/desk/003-004-join.jpg";
+    	String imageFormat = "jpg";
+    	String toPath = "D:/test/desk/all-join.jpg";
+    	imageObj.joinImagesVertical(firstSrcImagePath, secondSrcImagePath, imageFormat, toPath);//纵向拼接图片
+    	*/
+    	
+    	/*String srcImagePath = "D:/test/fileSource/002.jpg";
+    	int[] xPoints = {20,100,160,270,500}; 
+    	int[] yPoints = {30,150,172,295,615};
+    	int nPoints = 5; 
+    	String toPath = "D:/test/desk/polygon-002.png";
+    	imageObj.drawPolygon(srcImagePath, xPoints, yPoints, nPoints, Color.MAGENTA, "jpg", toPath); //根据坐标数组绘制多边形
+    	*/
+
+    	/*String srcImagePath = "D:/test/fileSource/004.jpg";
+    	String appendImagePath = "D:/test/fileSource/005.jpg";
+    	float alpha = 0.2F;
+    	String  font = "宋体";
+    	int fontStyle = Font.PLAIN;
+    	int fontSize = 32;
+    	Color color = Color.RED;
+    	String inputWords = "图片上设置水印文字 ---- 宋体 普通字体 32号字 红色 透明度0.5";
+    	int x = 20;
+    	int y = 40;
+    	String imageFormat = "jpg";
+    	String toPath = "D:/test/desk/alphaI2I-001.png";*/
+    	//imageObj.alphaWords2Image(srcImagePath, alpha, font, fontStyle, fontSize, color, inputWords, x, y, imageFormat, toPath); //设置文字水印
+    	//imageObj.alphaImage2Image(srcImagePath, appendImagePath, alpha, x, y, 300, 200, imageFormat, toPath);//设置图片水印
+    	
+    	/*
+    	String srcImagePath = "D:/test/fileSource/003.jpg";
+    	int[] xPoints = {100,150,200,240,300};
+    	int[] yPoints = {200,60,280,160,100};
+    	int nPoints = 5;
+    	Color lineColor = Color.RED;
+    	String toPath = "D:/test/desk/polyline-003.jpg";
+    	String imageFormat = "jpg";
+    	imageObj.drawPolyline(srcImagePath, xPoints, yPoints, nPoints, lineColor,toPath, imageFormat);//画折线
+    	 */    	
+    	
+    	/*
+    	int x1 = 50;
+    	int y1 = 100;
+    	int x2 = 600;
+    	int y2 = 150;
+    	Color lineColor = Color.BLUE;
+    	imageObj.drawLine(srcImagePath, x1, y1, x2, y2, lineColor,toPath, imageFormat);//画线段
+    	 */    	
+    	
+    	/*
+    	String srcImagePath = "D:/test/fileSource/002.jpg";
+    	int x = 400;
+    	int y = 500;
+    	int width = 10;
+    	int height = 10;
+    	Color ovalColor = Color.RED;
+    	String imageFormat = "jpg";
+    	String toPath = "D:/test/desk/point-002.jpg";
+    	imageObj.drawPoint(srcImagePath, x, y, width, height, ovalColor, imageFormat, toPath);//画一个圆点
+    	*/
+    	
+    	/*List pointList = new ArrayList();
+    	Point p1 = new Point(60,80);
+    	pointList.add(p1);
+    	Point p2 = new Point(160,80);
+    	pointList.add(p2);
+    	Point p3 = new Point(60,180);
+    	pointList.add(p3);
+    	Point p4 = new Point(260,180);
+    	pointList.add(p4);
+    	Point p5 = new Point(460,380);
+    	pointList.add(p5);
+    	String srcImagePath = "D:/test/fileSource/004.jpg";
+    	int width = 10;
+    	int height = 10;
+    	Color ovalColor = Color.RED;
+    	String imageFormat = "jpg";
+    	String toPath = "D:/test/desk/points-004.jpg";
+    	imageObj.drawPoints(srcImagePath, pointList, width, height, ovalColor, imageFormat, toPath);//画出一组（多个）点
+    	 */   
+    	
+    	/*
+    	int[] xPoints = {50,100,180,400,600};
+    	int[] yPoints = {200,100,160,300,640};
+    	int nPoints = 5;
+    	Color lineColor = Color.PINK;
+    	String srcImagePath = "D:/test/fileSource/003.jpg";
+    	String toPath = "D:/test/desk/showpoints-003.jpg";
+    	imageObj.drawPolylineShowPoints(srcImagePath, xPoints, yPoints, nPoints, lineColor, width, height, ovalColor, toPath, imageFormat);//画折线并突出显示点
+    	 */   
+    	
+    	/*
+    	String srcImagePath ="D:/test/fileSource/004.jpg"; 
+    	int[] xPoints ={50,90,180,320,640};
+    	int[] yPoints ={200,300,120,240,360};
+    	int nPoints = 5;
+    	Color polygonColor = Color.PINK;
+    	float alpha = (float) 0.2;
+    	String imageFormat ="jpg";
+    	String toPath ="D:/test/desk/drawalpha-004.jpg";
+    	imageObj.drawAndAlphaPolygon(srcImagePath, xPoints, yPoints, nPoints, polygonColor, alpha, imageFormat, toPath);
+    	*/
+    	/*
+    	String negativeImagePath = "D:/test/fileSource/001.jpg";
+    	String additionImagePath = "D:/test/fileSource/006.png";
+    	String  toPath = "D:/test/fileSource/001.jpg";
+    	long start = System.currentTimeMillis();
+    	for(int i=0;i&lt;1000;i++){
+    		Random rand = new Random();
+    		int x = rand.nextInt(1024);
+    		int y =  rand.nextInt(768);
+    		imageObj.mergeBothImage(negativeImagePath, additionImagePath, x, y, toPath);//每次附加合并一张图片(循环若干次)
+    	}
+    	long end = System.currentTimeMillis();
+    	System.out.println(end-start);*/
+    	//100 -- 45844
+    	//1000 -- 411156
+    	/*改进思路：将mergeBothImage方法 修改为mergeImageList方法，
+    	通过将图片的坐标点装入list容器，然后再取出一来在方法中一次性与图片合并,
+    	不再每次都打开底图、保存合成图片，关闭流*/
+
+    	//叠加组合图像
+    	/*String negativeImagePath = "D:/test/fileSource/001.jpg";
+    	String  toPath = "D:/test/fileSource/001.jpg";
+    	String additionImagePath = "D:/test/fileSource/007.png";
+    	List additionImageList = new ArrayList();
+    	int count = 0;
+    	for(int i=0;i&lt;100;i++){//为什么总是连续生成一样的随机数？？？
+    		Random rand = new Random();
+    		int x = rand.nextInt(1020);
+    		String xStr = x+"";
+    		int y =  rand.nextInt(760);
+    		String yStr = y +"";
+    		String[] str = {xStr,yStr,additionImagePath};
+    		additionImageList.add(str);
+    		count++;
+    		//System.out.println(xStr+"   :     "+yStr);
+    	}
+    	System.out.println(count);
+    	long start = System.currentTimeMillis();
+    	imageObj.mergeImageList(negativeImagePath, additionImageList,"jpg", toPath);
+    	long end = System.currentTimeMillis();
+    	System.out.println(end-start);*/
+    	//                                第一次        第二次      第三次
+    	//100张耗时(毫秒)		--2003			1792			1869           1747        	1871        	1793
+    	//1000张耗时(毫秒)	--15334			15200		15236         15903			16028		15545
+    	//10000张耗时(毫秒)	--153010		153340 		152673       154978  		156506 		154854                               
+    	//如果list.size()&lt;=100,则调用此方法，
+    	//如果list.size()&gt;100,则调用Jmagick的方法。
+    	
+    	/*List iamgePathList = new ArrayList();		// D:/test/16a/
+    	iamgePathList.add("D:/test/16a/12384_2492.jpg");
+    	iamgePathList.add("D:/test/16a/12384_2493.jpg");
+    	iamgePathList.add("D:/test/16a/12384_2494.jpg");
+    	iamgePathList.add("D:/test/16a/12384_2495.jpg");
+    	iamgePathList.add("D:/test/16a/12384_2496.jpg");
+    	iamgePathList.add("D:/test/16a/12384_2497.jpg");
+    	iamgePathList.add("D:/test/16a/12384_2498.jpg");
+    	iamgePathList.add("D:/test/16a/12384_2499.jpg");
+    	iamgePathList.add("D:/test/16a/12384_2500.jpg");
+    	iamgePathList.add("D:/test/16a/12384_2501.jpg");
+    	iamgePathList.add("D:/test/16a/12384_2502.jpg");*/
+    	//String imageFormat = "jpg";
+    	//String toPath = "D:/test/desk/16a_v1.jpg";
+    	//imageObj.joinImageListHorizontal(iamgePathList, imageFormat, toPath);
+    	
+    	/*String imageFormat = "jpg";
+    	String[] pics1 = {"D:/test/16a/12384_2502.jpg","D:/test/16a/12384_2501.jpg",
+    			"D:/test/16a/12384_2500.jpg","D:/test/16a/12384_2499.jpg","D:/test/16a/12384_2498.jpg",
+    			"D:/test/16a/12384_2497.jpg","D:/test/16a/12384_2496.jpg","D:/test/16a/12384_2495.jpg",
+    			"D:/test/16a/12384_2494.jpg","D:/test/16a/12384_2493.jpg","D:/test/16a/12384_2492.jpg"};
+    	
+    	String[] pics2 = {"D:/test/16a/12385_2502.jpg","D:/test/16a/12385_2501.jpg",
+    			"D:/test/16a/12385_2500.jpg","D:/test/16a/12385_2499.jpg","D:/test/16a/12385_2498.jpg",
+    			"D:/test/16a/12385_2497.jpg","D:/test/16a/12385_2496.jpg","D:/test/16a/12385_2495.jpg",
+    			"D:/test/16a/12385_2494.jpg","D:/test/16a/12385_2493.jpg","D:/test/16a/12385_2492.jpg"};
+    	
+    	String[] pics3 = {"D:/test/16a/12386_2502.jpg","D:/test/16a/12386_2501.jpg",
+    			"D:/test/16a/12386_2500.jpg","D:/test/16a/12386_2499.jpg","D:/test/16a/12386_2498.jpg",
+    			"D:/test/16a/12386_2497.jpg","D:/test/16a/12386_2496.jpg","D:/test/16a/12386_2495.jpg",
+    			"D:/test/16a/12386_2494.jpg","D:/test/16a/12386_2493.jpg","D:/test/16a/12386_2492.jpg"};
+    	
+    	String[] pics4 = {"D:/test/16a/12387_2502.jpg","D:/test/16a/12387_2501.jpg",
+    			"D:/test/16a/12387_2500.jpg","D:/test/16a/12387_2499.jpg","D:/test/16a/12387_2498.jpg",
+    			"D:/test/16a/12387_2497.jpg","D:/test/16a/12387_2496.jpg","D:/test/16a/12387_2495.jpg",
+    			"D:/test/16a/12387_2494.jpg","D:/test/16a/12387_2493.jpg","D:/test/16a/12387_2492.jpg"};
+    	
+    	String[] pics5 = {"D:/test/16a/12388_2502.jpg","D:/test/16a/12388_2501.jpg",
+    			"D:/test/16a/12388_2500.jpg","D:/test/16a/12388_2499.jpg","D:/test/16a/12388_2498.jpg",
+    			"D:/test/16a/12388_2497.jpg","D:/test/16a/12388_2496.jpg","D:/test/16a/12388_2495.jpg",
+    			"D:/test/16a/12388_2494.jpg","D:/test/16a/12388_2493.jpg","D:/test/16a/12388_2492.jpg"};
+    	
+    	String[] pics6 = {"D:/test/16a/12389_2502.jpg","D:/test/16a/12389_2501.jpg",
+    			"D:/test/16a/12389_2500.jpg","D:/test/16a/12389_2499.jpg","D:/test/16a/12389_2498.jpg",
+    			"D:/test/16a/12389_2497.jpg","D:/test/16a/12389_2496.jpg","D:/test/16a/12389_2495.jpg",
+    			"D:/test/16a/12389_2494.jpg","D:/test/16a/12389_2493.jpg","D:/test/16a/12389_2492.jpg"};
+    	
+    	String toPath1 = "D:/test/desk/16a_v1.jpg";
+    	String toPath2 = "D:/test/desk/16a_v2.jpg";
+    	String toPath3 = "D:/test/desk/16a_v3.jpg";
+    	String toPath4 = "D:/test/desk/16a_v4.jpg";
+    	String toPath5 = "D:/test/desk/16a_v5.jpg";
+    	String toPath6 = "D:/test/desk/16a_v6.jpg";
+    	
+    	String[] pics7 = {toPath1,toPath2,toPath3,toPath4,toPath5,toPath6};
+    	String toPath7 = "D:/test/desk/16a_h1.jpg";
+    	
+    	long start = System.currentTimeMillis();
+    	imageObj.joinImageListVertical(pics1, imageFormat, toPath1);
+    	imageObj.joinImageListVertical(pics2, imageFormat, toPath2);
+    	imageObj.joinImageListVertical(pics3, imageFormat, toPath3);
+    	imageObj.joinImageListVertical(pics4, imageFormat, toPath4);
+    	imageObj.joinImageListVertical(pics5, imageFormat, toPath5);
+    	imageObj.joinImageListVertical(pics6, imageFormat, toPath6);
+    	
+    	imageObj.joinImageListHorizontal(pics7, imageFormat, toPath7);
+    	long end = System.currentTimeMillis();
+    	System.out.println(end-start);*/
+    	
+    	String str = "北京\n上海\n广州\n深圳";
+    	System.out.println(str);
+    	String path = "c:/relevantdata.txt";
+    	FileOutputStream fops = new FileOutputStream(path);
+    	fops.write(str.getBytes());
+    	
+    	BufferedReader inputStream = new BufferedReader(new FileReader(new File(path)));
+    	String mrMsg = "";
+    	while((mrMsg = inputStream.readLine())!=null){
+    	System.out.println(mrMsg);
+    	}
+    	}
+    	//数量		11			11x6
+    	//纵向		375		
+    	//横向		391		3250
+}
+</PRE><BR>
+以上为个人对java 
+ImageIO处理图形的一些常用的方法进行的封装。全部测试通过，main方法中的均为测试代码，如果想用这个图像处理类，可以参考mian方法的例子。
+<P></P>
+<P>另外代码中有些地方需要改进，效率也需要进一步提高。</P>
+<P>希望给大家带来方便~</P>
+<P><BR></P></DIV><!-- Baidu Button BEGIN -->
+<DIV style="float: right;" class="bdsharebuttonbox tracking-ad" data-mod="popu_172">
+<A style='background-image: url("http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png") !important;' 
+class="bds_more" href="http://blog.csdn.net/hu_shengyang/article/details/7433988#" 
+data-cmd="more"></A><A style="background-position: 0px -52px !important;" class="bds_qzone" 
+title="分享到QQ空间" href="http://blog.csdn.net/hu_shengyang/article/details/7433988#" 
+data-cmd="qzone"></A><A style="background-position: 0px -104px !important;" 
+class="bds_tsina" title="分享到新浪微博" href="http://blog.csdn.net/hu_shengyang/article/details/7433988#" 
+data-cmd="tsina"></A><A style="background-position: 0px -260px !important;" 
+class="bds_tqq" title="分享到腾讯微博" href="http://blog.csdn.net/hu_shengyang/article/details/7433988#" 
+data-cmd="tqq"></A><A style="background-position: 0px -208px !important;" class="bds_renren" 
+title="分享到人人网" href="http://blog.csdn.net/hu_shengyang/article/details/7433988#" 
+data-cmd="renren"></A><A style="background-position: 0px -1612px !important;" 
+class="bds_weixin" title="分享到微信" href="http://blog.csdn.net/hu_shengyang/article/details/7433988#" 
+data-cmd="weixin"></A></DIV>
+<SCRIPT>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</SCRIPT>
+<!-- Baidu Button END --><LINK rel="stylesheet" href="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/blog_detail.css"><!--172.16.140.11--><!-- Baidu Button BEGIN -->
+<SCRIPT id="bdshare_js" type="text/javascript" data="type=tools&amp;uid=1536434"></SCRIPT>
+
+<SCRIPT id="bdshell_js" type="text/javascript"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</SCRIPT>
+<!-- Baidu Button END -->
+<DIV id="digg" ArticleId="7433988">
+<DL id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+  <DT>顶</DT>
+  <DD>18</DD></DL>
+<DL id="btnBury" class="digg digg_disable" onclick="btnburya();">
+  <DT>踩</DT>
+  <DD>1</DD></DL></DIV>
+<DIV class="tracking-ad" data-mod="popu_222"><A 
+href="javascript:void(0);">&nbsp;</A></DIV>
+<DIV class="tracking-ad" data-mod="popu_223"> <A 
+href="javascript:void(0);">&nbsp;</A></DIV>
+<SCRIPT type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </SCRIPT>
+
+<UL class="article_next_prev">
+  <LI class="prev_article"><SPAN onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='/hu_shengyang/article/details/7433832';">上一篇</SPAN><A 
+  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])" 
+  href="http://blog.csdn.net/hu_shengyang/article/details/7433832">通过java后台拼接json字符串修改页面样式----一页多用 
+  + 双引号(")和单引号(')截断字符串解决方案</A></LI>
+  <LI class="next_article"><SPAN onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='/hu_shengyang/article/details/7441983';">下一篇</SPAN><A 
+  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])" 
+  href="http://blog.csdn.net/hu_shengyang/article/details/7441983">spring管理hibernate事务报异常--Transaction 
+  not successfully started解决方法</A></LI></UL>
+<DIV style="height: 10px; clear: both;"></DIV>
+<DIV style="display: none;" class="similar_article">
+<H4>我的同类文章</H4>
+<DIV style="margin: 20px 0px 0px;" class="similar_c">
+<DIV class="similar_c_t"><LABEL class="similar_cur"><SPAN style="cursor: pointer;" 
+onclick="GetCategoryArticles('469773','hu_shengyang','foot','7433988');">【CoreJava】<EM>（37）</EM></SPAN></LABEL><LABEL><SPAN 
+style="cursor: pointer;" onclick="GetCategoryArticles('1088527','hu_shengyang','foot','7433988');">【图像处理】<EM>（5）</EM></SPAN></LABEL></DIV>
+<DIV style="max-height: 195px;" class="similar_wrap tracking-ad" data-mod="popu_141"><A 
+style="display: none;" href="http://blog.csdn.net/">http://blog.csdn.net/</A>
+<UL class="similar_list fl"></UL>
+<UL class="similar_list fr"></UL></DIV></DIV></DIV>
+<SCRIPT type="text/javascript">
+        $(function () {
+            GetCategoryArticles('469773', 'hu_shengyang','foot','7433988');
+        });
+    </SCRIPT>
+</DIV>
+<DIV id="suggest"></DIV>
+<SCRIPT language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/hu_shengyang/svc/GetSuggestContent/7433988",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </SCRIPT>
+
+<STYLE>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</STYLE>
+<LINK rel="stylesheet" href="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/replace.css">
+<DIV id="relate" class="tracking-ad" data-mod="popu_218">
+<DIV class="relate_t">
+<H3><SPAN>参考知识库</SPAN></H3></DIV>
+<DIV class="relate_c"></DIV></DIV>
+<DL id="res-relatived" class="blog-ass-articl">
+  <DIV style="display: none;" id="libkeyparent" class="embody embody_b"><SPAN 
+  class="embody_t">更多资料请参考：</SPAN>
+  <DIV id="libkey" class="embody_c"></DIV></DIV>
+  <DT><SPAN>猜你在找</SPAN></DT>
+  <DIV style="width: 42%; float: left;" id="adCollege">
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/job_reco.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "7433988",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </SCRIPT>
+  </DIV>
+  <DIV style="width: 42%; margin-right: 30px; float: left;" id="res" class="tracking-ad" 
+  data-mod="popu_36"></DIV></DL>
+<SCRIPT type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'java ImageIO处理图像的封装' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </SCRIPT>
+
+<DIV id="ad_cen"><!-- 广告位开始 --><INS data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57" 
+data-revive-zoneid="71"></INS><!-- 广告位结束 --></DIV>
+<DIV class="comment_class">
+<DIV id="comment_title" class="panel_head"><SPAN 
+class="see_comment">查看评论</SPAN><A name="comments"></A></DIV>
+<DIV id="comment_list"></DIV>
+<DIV id="comment_bar"></DIV>
+<DIV id="comment_form"></DIV>
+<DIV class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<A name="reply"></A><A 
+name="quote"></A></DIV></DIV>
+<SCRIPT type="text/javascript">var fileName = '7433988';
+    var commentscount = 12;
+    var islock = false
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/comment.js"></SCRIPT>
+
+<DIV id="ad_bot"></DIV>
+<DIV id="report_dialog"></DIV>
+<DIV style="bottom: 60px;" id="d-top"><A style="display: none;" id="quick-reply" 
+class="btn btn-top q-reply" title="快速回复"><IMG alt="快速回复" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/blog-icon-reply.png"></A><A 
+style="display: none;" id="d-top-a" class="btn btn-top backtop" title="返回顶部" 
+onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])"><IMG 
+alt="TOP" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/top.png"></A>
+</DIV>
+<SCRIPT type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</SCRIPT>
+
+<STYLE type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</STYLE>
+
+<DIV style="display: none;" class="tag_list"></DIV>
+<SCRIPT language="javascript" type="text/javascript">     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/hu_shengyang/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </SCRIPT>
+
+<DIV style="background: 0px 0px rgb(255, 255, 255); border: 1px solid rgb(220, 220, 220); left: 630px; top: 222.5px; display: none; position: absolute; z-index: 10000; opacity: 1;" 
+id="pop_win"></DIV>
+<DIV id="popup_mask"></DIV>
+<STYLE>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</STYLE>
+
+<SCRIPT type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</SCRIPT>
+
+<SCRIPT language="javascript" type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/async_new.js"></SCRIPT>
+
+<DIV class="clear"></DIV></DIV></DIV>
+<DIV id="side">
+<DIV class="side">
+<DIV id="panel_Search" class="panel">
+<UL class="panel_head"><SPAN>文章搜索</SPAN></UL>
+<UL class="panel_body">
+  <FORM id="frmSearch" class="form_search" action="http://so.csdn.net/search" 
+  target="_blank"><SPAN><INPUT id="inputSearch" class="blogsearch" title="请输入关键字" 
+  type="text"></SPAN><INPUT id="btnSubmit" title="search in blog" value="搜索" type="button"><INPUT 
+  id="inputQ" name="q" type="hidden"><INPUT name="t" value="blog" 
+  type="hidden"><A id="btnSearchBlog" target="_blank"></A></FORM></UL></DIV>
+<SCRIPT type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</SCRIPT>
+
+<DIV id="panel_Profile" class="panel">
+<UL class="panel_head"><SPAN>个人资料</SPAN></UL>
+<UL class="panel_body profile">
+  <DIV id="blog_userface"><A href="http://my.csdn.net/hu_shengyang" target="_blank"><IMG 
+  style="max-width: 90%;" title="访问我的空间" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/1_hu_shengyang.jpg"></A><BR><SPAN><A 
+  class="user_name" href="http://my.csdn.net/hu_shengyang" 
+  target="_blank">hu_shengyang</A></SPAN></DIV>
+  <DIV class="interact"><A id="span_add_follow" class="attent" title="[加关注]" 
+  href="javascript:void(0);"></A><A class="letter" title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=hu_shengyang','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])" 
+  href="javascript:void(0);"></A></DIV>
+  <DIV id="blog_medal">
+  <DIV id="bms_box"></DIV></DIV>
+  <UL id="blog_rank">
+    <LI>访问：<SPAN>778368次</SPAN></LI>
+    <LI>积分：<SPAN>8583</SPAN> </LI>
+    <LI>等级： <SPAN 
+    style="display: inline-block; position: relative; z-index: 1;"><IMG style="vertical-align: middle;" 
+    id="leveImg" alt="" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/blog6.png">
+    <DIV style="border: 2px solid rgb(221, 221, 221); left: -24px; top: 25px; width: 101px; height: 32px; text-align: center; line-height: 32px; display: none; position: absolute; z-index: 999; box-shadow: none; background-color: rgb(255, 255, 255);" 
+    id="smallTittle">
+    <DIV style="left: 42%; top: -8px; width: 0px; height: 0px; border-right-color: transparent; border-bottom-color: rgb(234, 234, 234); border-left-color: transparent; border-right-width: 10px; border-bottom-width: 8px; border-left-width: 10px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; position: absolute;"></DIV> 
+               积分：8583 </DIV></SPAN></LI>
+    <LI>排名：<SPAN>第1396名</SPAN></LI></UL>
+  <UL id="blog_statistics">
+    <LI>原创：<SPAN>190篇</SPAN></LI>
+    <LI>转载：<SPAN>49篇</SPAN></LI>
+    <LI>译文：<SPAN>0篇</SPAN></LI>
+    <LI>评论：<SPAN>113条</SPAN></LI></UL></UL></DIV>
+<DIV id="panel_Category" class="panel">
+<UL class="panel_head"><SPAN>文章分类</SPAN></UL>
+<UL class="panel_body">
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/884875">【Android】</A><SPAN>(1)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/469773">【CoreJava】</A><SPAN>(38)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/1304768">【CSS/HTML】</A><SPAN>(4)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/797872">【其它】</A><SPAN>(6)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/797845">【笔试面试|认证考试】</A><SPAN>(4)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/796326">【Spring】</A><SPAN>(18)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/796325">【Struts 
+  1.x】</A><SPAN>(6)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/1383410">【Struts 
+  2.x】</A><SPAN>(1)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/796327">【Hibernate】</A><SPAN>(14)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/803396">【JDBC】</A><SPAN>(11)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/797867">【JSP/Servlet】</A><SPAN>(15)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/824776">【jQuery】</A><SPAN>(32)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/724829">【JavaScript】</A><SPAN>(31)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/469779">【native 
+  SQL】</A><SPAN>(2)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/796328">【Oracle】</A><SPAN>(19)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/801913">【PL/SQL】</A><SPAN>(1)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/796330">【MySQL】</A><SPAN>(1)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/796329">【SQL 
+  Server】</A><SPAN>(6)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/1863489">【Java 
+  Sockt】</A><SPAN>(0)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/797864">【开源组件】</A><SPAN>(23)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/1318608">【JavaScript 
+  SOAP Client】</A><SPAN>(0)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/1126810">【WebService】</A><SPAN>(5)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/797840">【设计模式】</A><SPAN>(5)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/799423">【Linux】</A><SPAN>(0)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/797863">【开发环境与工具配置】</A><SPAN>(11)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/1088527">【图像处理】</A><SPAN>(6)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/1359765">【xml/xsl/xQuery】</A><SPAN>(7)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/1118243">【json】</A><SPAN>(5)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/2456873">【redis】</A><SPAN>(1)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/1378064">【算法与数据结构】</A><SPAN>(4)</SPAN></LI>
+  <LI><A onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); " 
+  href="http://blog.csdn.net/hu_shengyang/article/category/469774">【计算机应用】</A><SPAN>(3)</SPAN></LI>
+</UL></DIV>
+<DIV id="panel_Archive" class="panel">
+<UL class="panel_head"><SPAN>文章存档</SPAN></UL>
+<UL class="panel_body">
+  <DIV id="archive_list"><!--归档统计-->
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2014/09">2014年09月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2014/08">2014年08月</A><SPAN>(7)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2014/07">2014年07月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2014/05">2014年05月</A><SPAN>(2)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2014/04">2014年04月</A><SPAN>(2)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2014/02">2014年02月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2014/01">2014年01月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2013/11">2013年11月</A><SPAN>(3)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2013/10">2013年10月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2013/09">2013年09月</A><SPAN>(3)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2013/08">2013年08月</A><SPAN>(7)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2013/04">2013年04月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2013/03">2013年03月</A><SPAN>(10)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2013/01">2013年01月</A><SPAN>(6)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/12">2012年12月</A><SPAN>(4)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/11">2012年11月</A><SPAN>(2)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/10">2012年10月</A><SPAN>(5)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/09">2012年09月</A><SPAN>(6)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/08">2012年08月</A><SPAN>(18)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/07">2012年07月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/06">2012年06月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/05">2012年05月</A><SPAN>(8)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/04">2012年04月</A><SPAN>(7)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/03">2012年03月</A><SPAN>(5)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/02">2012年02月</A><SPAN>(6)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2012/01">2012年01月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2011/12">2011年12月</A><SPAN>(2)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2011/11">2011年11月</A><SPAN>(7)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2011/10">2011年10月</A><SPAN>(12)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2011/09">2011年09月</A><SPAN>(19)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2011/08">2011年08月</A><SPAN>(24)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2011/06">2011年06月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2011/05">2011年05月</A><SPAN>(9)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2011/04">2011年04月</A><SPAN>(5)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2011/03">2011年03月</A><SPAN>(18)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2009/02">2009年02月</A><SPAN>(1)</SPAN></LI>
+  <LI><A 
+  href="http://blog.csdn.net/hu_shengyang/article/month/2008/10">2008年10月</A><SPAN>(31)</SPAN></LI>
+  </DIV></UL></DIV>
+<DIV id="hotarticls" class="panel">
+<UL class="panel_head"><SPAN>阅读排行    </SPAN></UL>
+<UL class="panel_body itemlist">
+  <LI><A title="SQL Server中截取字符串常用函数" href="http://blog.csdn.net/hu_shengyang/article/details/10536881">SQL 
+  Server中截取字符串常用函数</A><SPAN>(51536)</SPAN></LI>
+  <LI><A title="fastJson在java后台转换json格式数据探究（二）--处理数组/List/Map" href="http://blog.csdn.net/hu_shengyang/article/details/8447787">fastJson在java后台转换json格式数据探究（二）--处理数组/List/Map</A><SPAN>(37706)</SPAN>
+  </LI>
+  <LI><A title="Java设置session超时（失效）的三种方式" href="http://blog.csdn.net/hu_shengyang/article/details/8021435">Java设置session超时（失效）的三种方式</A><SPAN>(31301)</SPAN>
+  </LI>
+  <LI><A title="java日志处理组件log4j--log4j.xml配置详解" href="http://blog.csdn.net/hu_shengyang/article/details/6754031">java日志处理组件log4j--log4j.xml配置详解</A><SPAN>(31262)</SPAN>
+  </LI>
+  <LI><A title="fastJson在java后台转换json格式数据探究（一）" href="http://blog.csdn.net/hu_shengyang/article/details/8447213">fastJson在java后台转换json格式数据探究（一）</A><SPAN>(25749)</SPAN>
+  </LI>
+  <LI><A title="jsp页面引入（包含）其他页面的三种实现方式" href="http://blog.csdn.net/hu_shengyang/article/details/7381230">jsp页面引入（包含）其他页面的三种实现方式</A><SPAN>(25042)</SPAN>
+  </LI>
+  <LI><A title="eCharts使用图表简单示例" href="http://blog.csdn.net/hu_shengyang/article/details/39028943">eCharts使用图表简单示例</A><SPAN>(21392)</SPAN>
+  </LI>
+  <LI><A title="java ImageIO处理图像的封装" href="http://blog.csdn.net/hu_shengyang/article/details/7433988">java 
+  ImageIO处理图像的封装</A><SPAN>(20525)</SPAN></LI>
+  <LI><A title="js调用浏览器打印功能" href="http://blog.csdn.net/hu_shengyang/article/details/6437698">js调用浏览器打印功能</A><SPAN>(18605)</SPAN>
+  </LI>
+  <LI><A title="CXF实现webService服务（一）" href="http://blog.csdn.net/hu_shengyang/article/details/38384597">CXF实现webService服务（一）</A><SPAN>(18112)</SPAN>
+  </LI></UL></DIV>
+<DIV id="hotarticls2" class="panel">
+<UL class="panel_head"><SPAN>评论排行</SPAN></UL>
+<UL class="panel_body itemlist">
+  <LI><A title="Jxls导出excel的若干方式总结（一）-- Jdbc方式( ResultSetCollection )" href="http://blog.csdn.net/hu_shengyang/article/details/6736553">Jxls导出excel的若干方式总结（一）-- 
+  Jdbc方式( ResultSetCollection )</A><SPAN>(15)</SPAN></LI>
+  <LI><A title="java ImageIO处理图像的封装" href="http://blog.csdn.net/hu_shengyang/article/details/7433988">java 
+  ImageIO处理图像的封装</A><SPAN>(12)</SPAN></LI>
+  <LI><A title="java日志处理组件log4j--log4j.xml配置详解" href="http://blog.csdn.net/hu_shengyang/article/details/6754031">java日志处理组件log4j--log4j.xml配置详解</A><SPAN>(10)</SPAN>
+  </LI>
+  <LI><A title="CXF实现webService服务（一）" href="http://blog.csdn.net/hu_shengyang/article/details/38384597">CXF实现webService服务（一）</A><SPAN>(6)</SPAN>
+  </LI>
+  <LI><A title="eCharts使用图表简单示例" href="http://blog.csdn.net/hu_shengyang/article/details/39028943">eCharts使用图表简单示例</A><SPAN>(6)</SPAN>
+  </LI>
+  <LI><A title="fastJson在java后台转换json格式数据探究（一）" href="http://blog.csdn.net/hu_shengyang/article/details/8447213">fastJson在java后台转换json格式数据探究（一）</A><SPAN>(5)</SPAN>
+  </LI>
+  <LI><A title="spring HibernateTemplate调用存储过程" href="http://blog.csdn.net/hu_shengyang/article/details/7433804">spring 
+  HibernateTemplate调用存储过程</A><SPAN>(4)</SPAN></LI>
+  <LI><A title="利用JavaScript SOAP Client直接调用webService --完整的前后台配置与调用示例" href="http://blog.csdn.net/hu_shengyang/article/details/8465379">利用JavaScript 
+  SOAP Client直接调用webService --完整的前后台配置与调用示例</A><SPAN>(4)</SPAN></LI>
+  <LI><A title="spring配置数据源连接池" href="http://blog.csdn.net/hu_shengyang/article/details/7900481">spring配置数据源连接池</A><SPAN>(4)</SPAN>
+  </LI>
+  <LI><A title="Jmagick图形图像处理" href="http://blog.csdn.net/hu_shengyang/article/details/7307920">Jmagick图形图像处理</A><SPAN>(3)</SPAN>
+  </LI></UL></DIV>
+<DIV id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<UL class="panel_head"><SPAN>推荐文章</SPAN></UL>
+<UL id="ad_commend" class="panel_body">
+  <UL>
+    <LI><A href="http://blog.csdn.net/sahadev_/article/details/51654668" target="_blank">*Android官方开发文档Training系列课程中文版：网络操作之XML解析</A></LI>
+    <LI><A href="http://blog.csdn.net/zivensonice/article/details/51639763" 
+    target="_blank">* Android内存泄露检测工具---LeakCanary的前世今生</A></LI>
+    <LI><A href="http://blog.csdn.net/pangpang123654/article/details/51553224" 
+    target="_blank">* 通过Android源码分析再探观察者模式(二)</A></LI>
+    <LI><A href="http://blog.csdn.net/qianweifeng123/article/details/51555998" 
+    target="_blank">* 浅析ZeroMQ工作原理及其特点</A></LI>
+    <LI><A href="http://blog.csdn.net/hanhailong726188/article/details/50687466" 
+    target="_blank">* Rebound-Android的弹簧动画库</A></LI>
+    <LI><A href="http://blog.csdn.net/huashen1621y/article/details/51594148" 
+    target="_blank">* 大型网站架构系列：缓存在分布式系统中的应用（二）</A></LI></UL></UL></DIV>
+<DIV id="newcomments" class="panel">
+<UL class="panel_head"><SPAN>最新评论</SPAN></UL>
+<UL class="panel_body itemlist">
+  <LI><A href="http://blog.csdn.net/hu_shengyang/article/details/8465379#comments">利用JavaScript 
+  SOAP Client直接调用webService --完整的前后台配置与调用示例</A>
+  <P style="margin: 0px;"><A class="user_name" href="http://blog.csdn.net/t151songqc">t151songqc</A>:
+  楼主，能发我一份页面引用的那几个js吗，我QQ:675048332    </P></LI>
+  <LI><A href="http://blog.csdn.net/hu_shengyang/article/details/38384597#comments">CXF实现webService服务（一）</A>
+  <P style="margin: 0px;"><A class="user_name" href="http://blog.csdn.net/longforever1990">longforever1990</A>:
+  为什么我的applicationContext.xml第一行报错呢    </P></LI>
+  <LI><A href="http://blog.csdn.net/hu_shengyang/article/details/38384597#comments">CXF实现webService服务（一）</A>
+  <P style="margin: 0px;"><A class="user_name" href="http://blog.csdn.net/q286127285">q286127285</A>:
+  很详细，对于初学者很有帮助，谢谢    </P></LI>
+  <LI><A href="http://blog.csdn.net/hu_shengyang/article/details/38384597#comments">利用JavaScript 
+  SOAP Client直接调用webService --完整的前后台配置与调用示例</A>
+  <P style="margin: 0px;"><A class="user_name" href="http://blog.csdn.net/u011106669">u011106669</A>:
+  楼主您好，你这个内容感觉相当不错，我照着你界面的内容做了一部分，能把您这篇日志的项目发我一份吗？有一...    </P></LI>
+  <LI><A href="http://blog.csdn.net/hu_shengyang/article/details/39028943#comments">eCharts使用图表简单示例</A>
+  <P style="margin: 0px;"><A class="user_name" href="http://blog.csdn.net/xinxiaolin">xinxiaolin</A>:
+  能把你这个练习eCharts图表的源码给我发下吗？89593434@qq.com谢谢！    </P></LI>
+  <LI><A href="http://blog.csdn.net/hu_shengyang/article/details/3016379#comments">jsp 
+  分页封装</A>
+  <P style="margin: 0px;"><A class="user_name" href="http://blog.csdn.net/ivocmn">ivocmn</A>: 
+     </P></LI>
+  <LI><A href="http://blog.csdn.net/hu_shengyang/article/details/3016379#comments">jsp 
+  分页封装</A>
+  <P style="margin: 0px;"><A class="user_name" href="http://blog.csdn.net/ivocmn">ivocmn</A>:
+  好东西！    </P></LI>
+  <LI><A href="http://blog.csdn.net/hu_shengyang/article/details/3016379#comments">CXF实现webService服务（一）</A>
+  <P style="margin: 0px;"><A class="user_name" href="http://blog.csdn.net/bigablecat">bigablecat</A>:
+  项目非常详尽，亲测可用，博主很细心也很认真。如果运行时发现有错，请检查运行环境、项目名称、包名等是否...    </P></LI>
+  <LI><A href="http://blog.csdn.net/hu_shengyang/article/details/7433804#comments">spring 
+  HibernateTemplate调用存储过程</A>
+  <P style="margin: 0px;"><A class="user_name" href="http://blog.csdn.net/baidu_24587899">baidu_24587899</A>:
+  找了半天了，终于找到个能用的，3Q    </P></LI>
+  <LI><A href="http://blog.csdn.net/hu_shengyang/article/details/8447213#comments">fastJson在java后台转换json格式数据探究（一）</A>
+  <P style="margin: 0px;"><A class="user_name" href="http://blog.csdn.net/huhui806">huhui806</A>:
+  受益了，感谢lz    </P></LI></UL></DIV></DIV>
+<DIV class="clear"></DIV></DIV>
+<DIV class="clear"></DIV></DIV>
+<SCRIPT type="text/javascript" src=""></SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/newblog.min.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/showblogmedal.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/JavaScript1.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/login.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</SCRIPT>
+
+<SCRIPT type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/counter.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src=""></SCRIPT>
+
+<SCRIPT type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</SCRIPT>
+</DIV><!--new top-->
+<SCRIPT id="csdn-toolbar-id" type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/toolbar.js" subCount="5" count="5" wrapId="note1" btnId="header_notice_num"></SCRIPT>
+<!--new top--><LINK rel="stylesheet" type="text/css" href="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/ask_float_block.css">
+<SCRIPT language="JavaScript" type="text/javascript" src=""></SCRIPT>
+
+<SCRIPT language="JavaScript" type="text/javascript" src=""></SCRIPT>
+
+<SCRIPT language="JavaScript" type="text/javascript" src=""></SCRIPT>
+
+<SCRIPT language="JavaScript" type="text/javascript" src="java%20ImageIO处理图像的封装%20-%20hu_shengyang的专栏%20-%20博客频道%20-%20CSDN_NET_files/ask_float_block.js"></SCRIPT>
+
+<DIV style="width: 1px; height: 1px; display: none;" id="a52b5334d">
+<SCRIPT id="adJs52b5334"></SCRIPT>
+
+<SCRIPT>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</SCRIPT>
+</DIV></BODY></HTML>

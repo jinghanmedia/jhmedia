@@ -1,0 +1,865 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0026)http://www.worldhello.net/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>World Hello - WorldHello</title>
+    <link rel="stylesheet" href="./World Hello - WorldHello_files/master.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="./World Hello - WorldHello_files/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <script src="./World Hello - WorldHello_files/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./World Hello - WorldHello_files/jquery.github.js" type="text/javascript" charset="utf-8"></script>
+  <script async="" type="text/javascript" src="./World Hello - WorldHello_files/count.js"></script></head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <h1><a href="./World Hello - WorldHello_files/World Hello - WorldHello.html">World Hello</a></h1>
+        
+        <div id="menu">
+          <ul>
+            <li><a href="./World Hello - WorldHello_files/World Hello - WorldHello.html" id="home-link" title="Home">首页</a></li>
+            <li><a href="http://www.worldhello.net/blog.html" id="blog-link" title="Blog">博客</a></li>
+            <li><a href="http://www.worldhello.net/doc/" id="docs-link" title="Docs">文章</a></li>
+            <li><a href="http://www.worldhello.net/about.html" id="about-link" title="About">关于</a></li>
+            <li><a href="http://github.com/gotgit" target="_blank" title="GitHub" rel="me" id="github-link">GitHub</a></li>
+            <li><a href="http://weibo.com/gotgit" title="微博" target="_blank" id="weibo-link">微博</a></li>
+          </ul>
+        </div>
+      </div>
+      <div id="content">
+        <div class="home-box" id="home-left">
+  <h2><a href="http://www.worldhello.net/atom.xml" class="float-right"><img src="./World Hello - WorldHello_files/subscribe-icon.gif" alt="Subscribe"></a>最新博客（<a href="http://www.worldhello.net/blog.html">更多</a>）</h2>
+  
+
+  <div class="post">
+    <span class="date">2016-02-29</span>
+    <h1><a href="http://www.worldhello.net/2016/02/29/git-bisect-on-git.html">二分查找捉虫记</a></h1>
+    <div class="body"><h2>1. 问题现象</h2>
+
+<p>Git 2.8.0 版本即将发布，今天把本地的 Git 版本升级到 <code>2.8.0-rc0</code>，结果悲剧了。所有使用 HTTP 协议的公司内部 Git 仓库都无法正常访问！</p>
+
+<p>在确认不是网络和公司 Git 服务器问题之后，自然怀疑到了 HTTP 代理。果然清空了 <code>http_proxy</code> 环境变量后，Git 命令工作正常了：</p>
+
+<pre><code>http_proxy= git ls-remote http://server.name/git/repo.git
+</code></pre>
+
+<p>然而一旦通过 <code>http_proxy=bad_proxy</code> 环境变量设置了一个错误的代理，即便通过 <code>no_proxy=*</code> 期望绕过代理，Git 2.8.0 却无法正常工作：</p>
+
+<pre><code>$ http_proxy=bad_proxy no_proxy=* git ls-remote http://server.name/git/repo.git
+fatal: unable to access 'http://server.name/git/repo.git/': Couldn't resolve proxy 'bad_proxy'
+</code></pre>
+
+<p>可是我记得升级之前 Git 工作是正常的啊！于是在 Git 2.7.0 下进行了尝试。</p>
+
+<p>将版本切换到 <code>v2.7.0</code>，编译安装 Git。（注意一定要安装，而不是执行当前目录下的 Git。这是因为该命令执行过程中会依次调用 <code>git-ls-remote</code>
+和 <code>git-remote-http</code> 命令，而这两个命令是位于安装路径中的。）</p>
+
+<pre><code>$ git checkout v2.7.0
+$ make -j8 &amp;&amp; make install # 我的工作站是四核CPU，故此使用 -j8 两倍并发执行编译
+</code></pre>
+
+<p>测试发现 Git 2.7.0 能够通过 <code>no_proxy</code> 变量绕过错误的 <code>http_proxy</code> 环境变量：</p>
+
+<pre><code>$ http_proxy=bad_proxy no_proxy=* git ls-remote http://server.name/git/repo.git
+206b4906c197e76fcc63d7a453f9e3aa00dfb3da        HEAD
+206b4906c197e76fcc63d7a453f9e3aa00dfb3da        refs/heads/master
+</code></pre>
+
+<p>显然一定是 <code>v2.7.0</code> 和 <code>v2.8.0-rc0</code> 中间的某个版本引入的 Bug！</p>
+
+<h2>2. 二分查找</h2>
+
+<p>想必大家都玩过猜数字游戏吧：一个人在1到100的数字中随意选择一个，另外一个人来猜，小孩子总是一个挨着一个地猜，
+懂得折半查找的大人总是获胜者。Git 提供的 git bisect 这一命令，就是采用这样的二分查找快速地在提交中定位 Bug，
+少则几次，多则十几次就会定位到引入Bug的提交。</p>
+
+<ol>
+<li><p>首先执行下面命令启用二分查找。</p>
+
+<pre><code> $ git bisect start
+</code></pre></li>
+<li><p>标记一个好版本。下面的命令使用 tag（v2.7.0）来标记 Git 2.7.0 版本是好版本，换做40位的提交号也行。</p>
+
+<pre><code> $ git bisect good v2.7.0
+</code></pre></li>
+<li><p>标记 Git 2.8.0-rc0 是一个坏版本。注意：马上就是见证奇迹的时刻。</p>
+
+<pre><code> $ git bisect bad v2.8.0-rc0
+ Bisecting: 297 revisions left to test after this (roughly 8 steps)
+ [563e38491eaee6e02643a22c9503d4f774d6c5be] Fifth batch for 2.8 cycle
+</code></pre>
+
+<p>看到了么？当完成对一个好版本和一个坏版本的标记后，Git 切换到一个中间版本（<code>563e384</code>），并告诉我们大概需要8步可以找到元凶。</p></li>
+<li><p>在这个版本下执行前面的测试操作：</p>
+
+<pre><code> $ make -j8 &amp;&amp; make install
+ $ git --version
+ git version 2.7.0.297.g563e384
+ $ http_proxy=bad_proxy no_proxy=* git ls-remote http://server.name/git/repo.git
+ fatal: unable to access 'http://server.name/git/repo.git/': Couldn't resolve proxy 'bad_proxy'
+</code></pre></li>
+<li><p>对这个版本进行标记。</p>
+
+<p>这是一个坏版本：</p>
+
+<pre><code> $ git bisect bad
+ Bisecting: 126 revisions left to test after this (roughly 7 steps)
+ [e572fef9d459497de2bd719747d5625a27c9b41d] Merge branch 'ep/shell-command-substitution-style'
+</code></pre></li>
+</ol>
+
+
+<p>我们可以机械地重复上面4、5的步骤，直到最终定位。但是人工操作很容易出错。如果对版本标记错了，把 good 写成了 bad 或者相反，
+就要执行 <code>git bisect reset</code> 重来。（小窍门：git bisect log 可以显示 git bisect 标记操作日志）</p>
+
+<p>于是决定剩下的二分查找使用脚本来完成。</p>
+
+<h2>3. 自动化的二分查找</h2>
+
+<p>Git 二分查找允许提供一个测试脚本，Git 会根据这个测试脚本的返回值，决定如何来标记提交：</p>
+
+<ul>
+<li>返回值为 0：这个提交是一个好提交。</li>
+<li>返回值为 125：这个提交无法测试（例如编译不过去），忽略这个提交。</li>
+<li>返回值为 1-127（125除外）：这个提交是一个坏提交。</li>
+<li>其他返回值：二分查找出错，终止二分查找操作。</li>
+</ul>
+
+
+<p>那么就我们先来看看 <code>git ls-remote</code> 的返回值：</p>
+
+<ul>
+<li><p>正确执行的返回值是 0:</p>
+
+<pre><code>  $ http_proxy= git ls-remote http://server.name/git/repo.git
+  206b4906c197e76fcc63d7a453f9e3aa00dfb3da        HEAD
+  206b4906c197e76fcc63d7a453f9e3aa00dfb3da        refs/heads/master
+  $ echo $?
+  0
+</code></pre></li>
+<li><p>错误执行的返回值是 128！</p>
+
+<pre><code>  $ http_proxy=bad_proxy git ls-remote http://server.name/git/repo.git
+  fatal: unable to access 'http://server.name/git/repo.git/': Couldn't resolve proxy 'bad_proxy'
+  $ echo $?
+  128
+</code></pre></li>
+</ul>
+
+
+<p>于是创建一个测试脚本 <code>git-proxy-bug-test.sh</code>，内容如下：</p>
+
+<pre><code>#!/bin/sh
+
+make -j8 &amp;&amp; make install &amp;&amp; \
+git --version &amp;&amp; \
+http_proxy=bad_proxy no_proxy=* \
+git ls-remote http://server.name/git/repo.git
+
+case $? in
+0)
+    exit 0
+    ;;
+128)
+    exit 1
+    ;;
+*)
+    exit 128
+    ;;
+esac
+</code></pre>
+
+<p>然后敲下如下命令，开始自动执行二分查找：</p>
+
+<pre><code>$ git bisect run sh git-proxy-bug-test.sh
+</code></pre>
+
+<p>自动化查找过程可能需要几分钟，站起来走走，休息一下眼睛。再回到座位，最终的定位结果就展现在了眼前：</p>
+
+<pre><code>372370f1675c2b935fb703665358dd5567641107 is the first bad commit
+commit 372370f1675c2b935fb703665358dd5567641107
+Author: Knut Franke &lt;k.franke@science-computing.de&gt;
+Date:   Tue Jan 26 13:02:48 2016 +0000
+
+    http: use credential API to handle proxy authentication
+
+    Currently, the only way to pass proxy credentials to curl is by including them
+    in the proxy URL. Usually, this means they will end up on disk unencrypted, one
+    way or another (by inclusion in ~/.gitconfig, shell profile or history). Since
+    proxy authentication often uses a domain user, credentials can be security
+    sensitive; therefore, a safer way of passing credentials is desirable.
+
+    If the configured proxy contains a username but not a password, query the
+    credential API for one. Also, make sure we approve/reject proxy credentials
+    properly.
+
+    For consistency reasons, add parsing of http_proxy/https_proxy/all_proxy
+    environment variables, which would otherwise be evaluated as a fallback by curl.
+    Without this, we would have different semantics for git configuration and
+    environment variables.
+
+    Helped-by: Junio C Hamano &lt;gitster@pobox.com&gt;
+    Helped-by: Eric Sunshine &lt;sunshine@sunshineco.com&gt;
+    Helped-by: Elia Pinto &lt;gitter.spiros@gmail.com&gt;
+    Signed-off-by: Knut Franke &lt;k.franke@science-computing.de&gt;
+    Signed-off-by: Elia Pinto &lt;gitter.spiros@gmail.com&gt;
+    Signed-off-by: Junio C Hamano &lt;gitster@pobox.com&gt;
+
+:040000 040000 de69688dd93e4466c11726157bd2f93e47e67330 d19d021e8d1c2a296b521414112be0966bd9f09a M      Documentation
+:100644 100644 f46bfc43f9e5e8073563be853744262a1bb4c5d6 dfc53c1e2554e76126459d6cb1f098facac28593 M      http.c
+:100644 100644 4f97b60b5c8abdf5ab0610382a6d6fa289df2605 f83cfa686823728587b2a803c3e84a8cd4669220 M      http.h
+二分查找运行成功
+</code></pre>
+
+<h2>4. 解决问题</h2>
+
+<p>既然我们知道引入 Bug 的提交，让我们看看这个提交：</p>
+
+<pre><code>$ git show --oneline --stat 372370f1675c2b935fb703665358dd5567641107
+372370f http: use credential API to handle proxy authentication
+ Documentation/config.txt | 10 +++++--
+ http.c                   | 77 ++++++++++++++++++++++++++++++++++++++++++++++++
+ http.h                   |  1 +
+ 3 files changed, 85 insertions(+), 3 deletions(-)
+</code></pre>
+
+<p>相比很多人一个提交动辄改动几百、几千行的代码，这个提交的改动算得上简短了。小提交的好处就是易于阅读、易于问题定位、易于回退。</p>
+
+<p>最终参照上面定位到的问题提交，我的 Bugfix  如下（为了下面的一节叙述方便，给代码补丁增加了行号）：</p>
+
+<pre><code>01  diff --git a/http.c b/http.c
+02  index 1d5e3bb..69da445 100644
+03  --- a/http.c
+04  +++ b/http.c
+05  @@ -70,6 +70,7 @@ static long curl_low_speed_limit = -1;
+06   static long curl_low_speed_time = -1;
+07   static int curl_ftp_no_epsv;
+08   static const char *curl_http_proxy;
+09  +static const char *curl_no_proxy;
+10   static const char *http_proxy_authmethod;
+12   static struct {
+13      const char *name;
+13  @@ -624,6 +625,11 @@ static CURL *get_curl_handle(void)
+15          }
+16
+17          curl_easy_setopt(result, CURLOPT_PROXY, proxy_auth.host);
+18  +#if LIBCURL_VERSION_NUM &gt;= 0x071304
+19  +       var_override(&amp;curl_no_proxy, getenv("NO_PROXY"));
+20  +       var_override(&amp;curl_no_proxy, getenv("no_proxy"));
+21  +       curl_easy_setopt(result, CURLOPT_NOPROXY, curl_no_proxy);
+22  +#endif
+23      }
+24      init_curl_proxy_auth(result);
+25
+26  --
+27  2.8.0.rc0
+</code></pre>
+
+<h2>5. 写提交说明</h2>
+
+<p>这个提交是要贡献给 Git 上游的，评审者可能会问我如下问题：</p>
+
+<ol>
+<li><p>Bug 的现象是什么？</p>
+
+<p>“系统的 no_proxy 变量不起作用，git 可能无法访问 http 协议的仓库。”</p></li>
+<li><p>从什么版本引入这个 Bug？</p>
+
+<p>“我们定位到的这个提交引入的 Bug。之所以会引入这个 Bug，是因为这个提交读取了 <code>http_proxy</code> 等环境变量，
+自动通过 <code>git-credential</code> 获取的信息补齐 <code>http_proxy</code> 的缺失的代理认证口令，并显示设置 libcurl 的参数。”</p></li>
+<li><p>之前的版本为什么没有出现这个问题？什么条件下会出现？</p>
+
+<p>“之前的版本也会出现问题，但是只有在用户主动设置了 <code>http.proxy</code> 配置变量才会出现。
+用户很少会去设置 <code>http.proxy</code> 配置变量，而通常是使用 <code>http_proxy</code> 环境变量。”</p></li>
+<li><p>你是如何解决的？你的解决方案是否最佳？</p>
+
+<p>“读取 <code>no_proxy</code> 环境变量，并为 <code>libcurl</code> 配置相应参数。因为 <code>libcurl</code> 只在 <code>7.19.4</code> 之后才引入 <code>CURLOPT_NOPROXY</code>，因此需要添加条件编译。”</p></li>
+</ol>
+
+
+<p>实际上，前面的 Bugfix 原本是没有那个条件编译的。即补丁的第18行、22行一开始是没有的，
+在回答第4个问题的时候，我仔细查看了 <a href="https://curl.haxx.se/libcurl/c/CURLOPT_NOPROXY.html">libcurl API</a>，
+发现只有在 <code>7.19.4</code> 版本之后，才支持 <code>CURLOPT_NOPROXY</code> 参数，因此如果不添加这个编译条件，
+在特定的平台可能会导致 Git 无法编译通过。</p>
+
+<p>下面就是最终的提交说明：</p>
+
+<pre><code>http: honor no_http env variable to bypass proxy
+
+Curl and its families honor several proxy related environment variables:
+
+* http_proxy and https_proxy define proxy for http/https connections.
+* no_proxy (a comma separated hosts) defines hosts bypass the proxy.
+
+This command will bypass the bad-proxy and connect to the host directly:
+
+    no_proxy=* https_proxy=http://bad-proxy/ \
+    curl -sk https://google.com/
+
+Before commit 372370f (http: use credential API to handle proxy auth...),
+Environment variable "no_proxy" will take effect if the config variable
+"http.proxy" is not set.  So the following comamnd won't fail if not
+behind a firewall.
+
+    no_proxy=* https_proxy=http://bad-proxy/ \
+    git ls-remote https://github.com/git/git
+
+But commit 372370f not only read git config variable "http.proxy", but
+also read "http_proxy" and "https_proxy" environment variables, and set
+the curl option using:
+
+    curl_easy_setopt(result, CURLOPT_PROXY, proxy_auth.host);
+
+This caused "no_proxy" environment variable not working any more.
+
+Set extra curl option "CURLOPT_NOPROXY" will fix this.
+
+Signed-off-by: Jiang Xin &lt;xin.jiang@huawei.com&gt;
+</code></pre>
+
+<h2>6. 贡献给上游</h2>
+
+<p>Git 项目本身是通过邮件列表参与代码贡献的，基本的操作流程是将代码转换为补丁文件，然后邮件发送。
+基本上就是两条命令：<code>git format-patch</code> 和 <code>git send-email</code>。</p>
+
+<p>下面的链接就是 Git 社区关于我这个提交的讨论。Junio已经确认这个提交是 2.8.0 的一个 regression，相信会合入2.8.0的发布版。</p>
+
+<ul>
+<li>[2/29] <a href="http://thread.gmane.org/gmane.comp.version-control.git/287843/focus=287888">向社区提交补丁，及相关讨论的邮件存档</a>。</li>
+<li>[3/04] <a href="http://article.gmane.org/gmane.comp.version-control.git/288276">What's cooking in git.git (Mar 2016, #02; Fri, 4)</a>：该补丁处于待 review 状态，代码停留在 <code>pu</code> 分支。</li>
+</ul>
+
+</div>
+    <a href="http://www.worldhello.net/2016/02/29/git-bisect-on-git.html#disqus_thread">View Comments</a>
+  </div>
+
+  <div class="post">
+    <span class="date">2015-12-23</span>
+    <h1><a href="http://www.worldhello.net/2015/12/23/taste-of-a-programmer.html">做一个有品位的程序员</a></h1>
+    <div class="body"><p>——“能够写出漂亮代码的程序员就是有品味的程序员么？”</p>
+
+<p>——“还不够。品味来自于每一个细节，有品位的程序员会把每一次提交做小、做对、做好，尽量做到整个开发的过程的无可挑剔，这样才够逼格，才可以称为有品位。”</p>
+
+<p>熟练使用 Git，会让程序员更有品味。</p>
+
+<h2>提交做小</h2>
+
+<p>写小提交就是将问题解耦：“Do one thing and do it well”。开源项目的提交通常都很小，每个提交只修改一个到几个文件，每次只修改几行到几十行。
+找一个你熟悉的开源项目，在仓库中执行下面的命令，可以很容易地统计出来每个提交的修改量。</p>
+
+<pre><code>$ git log --no-merges --pretty="" --shortstat
+2 files changed, 25 insertions(+), 4 deletions(-)
+1 file changed, 4 insertions(+), 12 deletions(-)
+2 files changed, 30 insertions(+), 1 deletion(-)
+3 files changed, 15 insertions(+), 5 deletions(-)
+</code></pre>
+
+<p>而我看到的很多公司内外的项目则不是这样，动辄成百上千的文件修改，一次改动成千上万行源代码。试问这样的提交能拿来给人看么？</p>
+
+<p>可是在开发过程中，程序员一旦进入状态，往往才思如泉涌，写出一个大提交。比如我又一次向 Git 贡献代码时，
+提交还不算太大，就被 Git 的维护者 Junio 吐槽，要我拆分提交，便于评审：</p>
+
+<pre><code>TODO
+</code></pre>
+
+<p>那么如何将提交拆分为若干个小提交呢？</p>
+
+<h3>拆分当前提交（松耦合）</h3>
+
+<p>先以拆分最新的提交为例，可以如下操作：</p>
+
+<ol>
+<li><p>将当前提交撤销，重置到上一次提交。撤销提交的改动保留在工作区中。</p>
+
+<pre><code> $ git reset HEAD^
+</code></pre></li>
+<li><p>通过补丁块拣选方式选择要提交的修改。Git 会逐一显示工作区更改，如果确认此处改动要提交，输入“y“。</p>
+
+<pre><code> $ git add -p
+</code></pre></li>
+<li><p>以撤销提交的提交说明为蓝本，撰写新的提交。</p>
+
+<pre><code> $ git commit -e -C HEAD@{1}
+</code></pre></li>
+<li><p>对于工作区其余的修改进行提交，完成一个提交拆分为两个的操作。</p>
+
+<pre><code> $ git add -u
+ $ git commit
+</code></pre></li>
+</ol>
+
+
+<h3>拆分当前提交（紧耦合）</h3>
+
+<p>如果要拆分的提交，不同的实现逻辑耦合在一起，难以通过补丁块拣选（<code>git add -p</code>）的方式修改提交，怎么办？这时可以
+直接编辑文件，删除要剥离出此次提交的修改，然后执行：</p>
+
+<pre><code>$ git commit --amend
+</code></pre>
+
+<p>然后执行下面的命令，还原原有的文件修改，然后再提交。如下：</p>
+
+<pre><code>$ git checkout HEAD@{1} -- .
+$ git commit
+</code></pre>
+
+<p>同样完成了一个提交拆分为两个提交的操作。</p>
+
+<h3>拆分历史某个提交</h3>
+
+<p>如果要拆分的是历史提交（如提交 54321），而非当前提交，则可以执行交互式变基（<code>git rebase -i</code>），如下：</p>
+
+<pre><code>$ git rebase -i 54321^
+</code></pre>
+
+<p>Git 会自动将参与变基的提交写在一个动作文件中，还会自动打开编辑器（比如 vi 编辑器）。在编辑器中显示内容示例如下：</p>
+
+<pre><code>pick 54321 要拆分的提交
+pick ...   其他参与变基的提交
+</code></pre>
+
+<p>将要拆分的提交 54321 前面的关键字 <code>pick</code> 修改为 <code>edit</code>，保存并退出。变基操作随即开始执行。</p>
+
+<p>首先会在提交 54321 处停下来，这时要拆分的提交成为了当前提交，参照前面“拆分当前提交”的方法对提交 54321 进行拆分。拆分结束再执行
+<code>git rebase --continue</code> 完成整个变基操作。</p>
+
+<h2>提交做对</h2>
+
+<p>“好的文章不是写出来的，而是改出来的。” 代码提交也是如此。</p>
+
+<p>程序员写完代码，往往迫不及待地敲下：<code>git commit</code>，然后发现提交中少了一个文件，或者提交了多余的文件，或者发现提交中包含错误无法编译，或者提交说明中出现了错别字。</p>
+
+<p>Git 提供了一个修改当前提交的快捷命令：<code>git commit --amend</code>，相信很多人都用过，不再赘述。</p>
+
+<p>如果你发现错误出现在上一个提交或其他历史提交中怎么办呢？我有一个小窍门，在《Git权威指南》里我没有写到哦。</p>
+
+<p>比如发现历史提交 <code>54321</code> 中包含错误，直接在当前工作区中针对这个错误进行修改，然后执行下面命令。</p>
+
+<pre><code>git commit --fixup 54321
+</code></pre>
+
+<p>你会发现使用了 <code>--fixup</code> 参数的提交命令，不再询问你提交说明怎么写，而是直接把错误提交 <code>54321</code>
+的提交说明的第一行拿来，在前面增加一个前缀“fixup!”，如下：</p>
+
+<pre><code>fixup! 原提交说明
+</code></pre>
+
+<p>如果一次没有改对，还可以再接着改，甚至你还可以针对这个修正提交进行 fixup，产生如下格式的提交说明：</p>
+
+<pre><code>fixup! fixup! 原提交说明
+</code></pre>
+
+<p>当开发工作完成后，待推送/评审的提交中出现大量的包含“fixup!”前缀的提交该如何处理呢？</p>
+
+<p>如果你执行过一次下面的命令，即针对错误提交 54321 及其后面所有提交执行交互式变基（注意其中的 <code>--autosquash</code> 参数），你就会惊叹 Git 设计的是这么巧妙：</p>
+
+<pre><code>$ git rebase -i --autosquash 54321^
+</code></pre>
+
+<p>交互式变基弹出的编辑器内自动对提交进行排序，将提交 54321 连同它的所有修正提交压缩为一个提交。</p>
+
+<p>对于“提交做对”，很多开源项目还通过单元测试用例提供保障。对于这样的项目，在提交代码时往往要求提供相应的测试用例。
+Git 项目本身就对测试用例有着很高的要求，其测试框架也非常有意思。我曾经针对Git的单元测试框架写过博客，参见：
+<a href="http://www.worldhello.net/2013/10/26/test-gistore-using-git-test-framework.html">复用 git.git 测试框架</a>。</p>
+
+<h2>提交做好</h2>
+
+<p>仅仅做到提交做小、提交做对，往往还不够，还要通过撰写详细的提交说明让评审者信服，这样才能够让提交尽快通过评审合入项目仓库中。</p>
+
+<p>例如今年7月份在华为公司内部的 Git 服务器上发现一个异常，最终将问题定位到 Git 工具本身。整个代码改动只有区区一行：</p>
+
+<ul>
+<li>提交：<a href="https://github.com/git/git/commit/b112b14d7869bf3c000abb84cd22e57dd811d031">receive-pack: crash when checking with non-exist HEAD</a></li>
+</ul>
+
+
+<p>你能猜到提交说明写了多少么？写了20多行！</p>
+
+<pre><code>receive-pack: crash when checking with non-exist HEAD
+
+If HEAD of a repository points to a conflict reference, such as:
+
+* There exist a reference named 'refs/heads/jx/feature1', but HEAD
+  points to 'refs/heads/jx', or
+
+* There exist a reference named 'refs/heads/feature', but HEAD points
+  to 'refs/heads/feature/bad'.
+
+When we push to delete a reference for this repo, such as:
+
+        git push /path/to/bad-head-repo.git :some/good/reference
+
+The git-receive-pack process will crash.
+
+This is because if HEAD points to a conflict reference, the function
+`resolve_refdup("HEAD", ...)` does not return a valid reference name,
+but a null buffer.  Later matching the delete reference against the null
+buffer will cause git-receive-pack crash.
+
+Signed-off-by: Jiang Xin &lt;worldhello.net@gmail.com&gt;
+Signed-off-by: Junio C Hamano &lt;gitster@pobox.com&gt;
+</code></pre>
+
+<p>Git 对于提交说明的格式有着如下约定俗成的规定：</p>
+
+<ul>
+<li><p>提交主题</p>
+
+<p>提交说明第一行是提交主题，是整个提交的概要性描述。可以在提交主题中添加所更改的模块名称作为前缀（如：receive-pack:）。
+提交主题（即提交说明的第一行）尽量保持在50字节以内（Gerrit 的commit_log检查插件似乎有着稍微宽泛一些的要求）。
+这是因为对于像 Linux、Git 这样的开源项目，是以邮件列表作为代码评审的平台，提交主题要作为邮件的标题，而邮件标题本身有长度上的限制。</p></li>
+<li><p>提交主题后的空行</p>
+
+<p>必须要在提交说明的第一行和后续的提交说明中间留一个空行！如果没有这个空行，很多 Git 客户端会将连续几行的提交说明合在一起作为提交描述。这样显然太糟了。</p></li>
+<li><p>提交说明主体</p>
+
+<p>提交主题之外的提交说明也有长度的限制，最好以72字节为限，超过则断行。因为 GitHub 在显示提交说明时支持 Markdown 语法，
+所以作为一个有品位的程序员学些 Markdown 的语法，让你的提交说明的可读性变得更强吧。</p>
+
+<p>我总结过一个 Markdown 和其他文本标记语言的语法说明，可供参考：</p>
+
+<ul>
+<li><a href="http://www.worldhello.net/gotgithub/appendix/markups.html">轻量级标记语言语法参考</a></li>
+</ul>
+</li>
+<li><p>签名区</p>
+
+<p>在提交说明最后是签名区。签名区可以看出这个提交的参与者、评审记录等等。</p></li>
+</ul>
+
+
+<p>最后，让我们一起学习成为一名有品位的程序员吧。并依靠你对代码的品味，高质量严要求，守护你的项目吧。</p>
+</div>
+    <a href="http://www.worldhello.net/2015/12/23/taste-of-a-programmer.html#disqus_thread">View Comments</a>
+  </div>
+
+  <div class="post">
+    <span class="date">2014-04-24</span>
+    <h1><a href="http://www.worldhello.net/2014/04/24/svn-migrate-with-git-svn.html">使用 git-svn 和 git-filter-branch 整理 SVN 版本库</a></h1>
+    <div class="body"><p>SVN 本身提供了如下版本库整理工具：</p>
+
+<ul>
+<li>svnadmin dump</li>
+<li>svndumpfilter include</li>
+<li>svndumpfilter exclude</li>
+<li>svnadmin load</li>
+</ul>
+
+
+<p>其中 <code>svnadmin dump</code> 将整个版本库或部分提交导出为一个导出文件； <code>svndumpfilter</code>
+基于配置项的路径（SVN 1.7的 svndumpfilter 还支持通配符路径）对导出文件进行过滤，
+过滤结果保存为新的导出文件； <code>svnadmin load</code> 将导出文件导入到另外的版本库中，
+导入过程有两个选择——维持路径不变，或导入到某个路径之下。</p>
+
+<p>相对于Git提供的用于整理提交的 <code>git filter-branch</code> 命令，SVN的版本库整理工具能做的实在不多。
+而且SVN的相关工具容错性太差，操作过程经常被中断，可谓步步惊心。</p>
+
+<p>最近遇到的一个案例，需要将两个 SVN 版本库（bar 和 baz）的全部历史导入到另外一个 SVN 版本库（foo）中。
+并要求版本库 bar 和 baz 的目录结构统一采用 foo 中规定的目录结构。面对要导入的近 20GB 数据（绝大部分是Word、Excel、PDF文档），
+决定采用Git提供的工具集进行SVN版本库整理。整理过程和过程中开发的脚本记录如下。</p>
+
+<h2>将 bar 和 baz 版本库转换为本地Git库</h2>
+
+<p>以 bar 为例，将两个版本库（bar 和 baz）转换为本地的 Git 版本库，以便使用强大的
+<code>git filter-branch</code> 命令对提交逐一进行修改（如修改版本库中的文件路径）。</p>
+
+<pre><code>$ git init git/bar
+$ cd git/bar
+$ git svn init --no-metadata file:///path/to/svn/bar
+$ git svn fetch
+</code></pre>
+
+<p>说明：</p>
+
+<ul>
+<li>SVN 版本库 bar 位于本机的路径 /path/to/svn/bar 下。</li>
+<li>导出的 Git 版本库位于 git/bar 目录下。</li>
+<li>因为版本库 bar 并未使用分支（未采用 trunk、branches、tags目录结构），因此执行 <code>git svn</code> 时并未使用 <code>-s</code> 等参数。</li>
+</ul>
+
+
+<h2>源版本库中文件名过长的问题</h2>
+
+<p>Windows和Linux下文件名长度限制不同，前者255个Unicode字符，后者为255个字节。
+在此次转换中就遇到 bar 版本库中存在若干文件名超长的文件，导致无法在 Linux 平台上检出。
+为避免后续操作中出现错误，对其进行重命名。</p>
+
+<p>首先创建一个脚本 <code>rename.sh</code>，该脚本将提供给 <code>git filter-branch</code> 命令对版本库中超长文件名进行重命名操作。</p>
+
+<pre><code>#!/bin/sh
+
+git ls-files -s | \
+sed \
+    -e "s#\(\t.*/file-name-is-too-long\).*\.pdf#\1-blahblah.pdf#"  \
+| GIT_INDEX_FILE=$GIT_INDEX_FILE.new git update-index --index-info &amp;&amp; \
+mv "$GIT_INDEX_FILE.new" "$GIT_INDEX_FILE"
+</code></pre>
+
+<p>然后执行下面命令对版本库整理：</p>
+
+<pre><code>$ cd git/bar
+$ git filter-branch --index-filter 'sh /path/to/rename.sh'
+</code></pre>
+
+<h2>删除空白提交</h2>
+
+<p>从SVN转换的Git版本库可能存在空白提交，例如一些仅修改了SVN属性的提交不被 <code>git-svn</code> 支持，转换成了空提交。
+这些空提交会对后续操作造成干扰，执行如下命令删除空白提交：</p>
+
+<pre><code>$ cd git/bar
+$ git  filter-branch -f --commit-filter '
+  if [ "$(git rev-parse $GIT_COMMIT^^{tree} 2&gt;/dev/null)" = "$(git rev-parse $GIT_COMMIT^{tree})" ];
+  then
+      skip_commit "$@";
+  else
+      git commit-tree "$@";
+  fi' HEAD
+</code></pre>
+
+<h2>向Git日志中添加MetaData</h2>
+
+<p>执行 <code>git log</code> 操作可以看到转换后的提交保持了原有SVN提交的用户名和提交时间，还记录了对应SVN的提交编号信息。
+但是后续操作（<code>git svn dcommit</code>）会改变Git提交，破坏其中包含的原有SVN提交的提交者和提交时间，
+因此需要用其他方法将这些信息记录下来，以便补救。</p>
+
+<p>使用 <code>git filter-branch</code> 的 <code>--msg-filter</code> 过滤器逐一向提交插入原有SVN的提交者和提交时间的元信息。</p>
+
+<pre><code>$ cd git/bar
+$ git filter-branch -f --msg-filter '
+  cat &amp;&amp;
+  echo "From: REPO-NAME, author: $GIT_AUTHOR_NAME, date: $GIT_AUTHOR_DATE"' HEAD
+</code></pre>
+
+<h2>根据需要对版本库目录重新组织</h2>
+
+<p><code>git filter-branch</code> 至少有两个过滤器可以对提交中的目录和文件进行组织。一个是 <code>--tree-filter</code> ，
+一个是 <code>--index-filter</code> 。前者的过滤器脚本写起来简单，但执行起来较后者慢至少一个数量级。</p>
+
+<p>根据路径转换的需求，编写过滤器脚本，如脚本 <code>transform.sh</code> ：</p>
+
+<pre><code>#!/bin/sh
+
+if test -z "$GIT_INDEX_FILE"; then
+    GIT_INDEX_FILE=.git/index
+fi
+
+git ls-files -s | \
+sed \
+    -e "s#\(\t\)#\1new-root/#"  \
+    -e "s#\(\tnew-root\)\(/old-path-1/\)#\1/new-path-1/#" \
+    -e "s#\(\tnew-root\)\(/old-path-2/\)#\1/new-path-2/#" \
+    -e "s#\(\tnew-root\)\(/old-path-3/\)#\1/new-path-3/#" \
+| GIT_INDEX_FILE=$GIT_INDEX_FILE.new git update-index --index-info &amp;&amp; \
+mv "$GIT_INDEX_FILE.new" "$GIT_INDEX_FILE"
+</code></pre>
+
+<p>然后执行如下命令对提交进行逐一过滤，将老的目录结构转换为新的目录结构：</p>
+
+<pre><code>$ cd git/bar
+$ git filter-branch --index-filter 'sh /path/to/transform.sh'
+</code></pre>
+
+<h2>用git-svn克隆目标版本库（foo）</h2>
+
+<p>执行如下命令将导入的目标版本库转换为本地的 Git 版本库，如下：</p>
+
+<pre><code>$ git init git/foo
+$ cd git/foo
+$ git svn init --no-metadata file:///path/to/svn/foo
+$ git svn fetch
+</code></pre>
+
+<p>然后将 bar 整理好的分支变基到当前的 master 分支上：</p>
+
+<pre><code>$ cd git/foo
+$ git fetch ../../git/bar
+$ git branch bar/master FETCH_HEAD
+$ git co bar/master
+$ git rebase -k --onto master --root
+</code></pre>
+
+<p>说明：</p>
+
+<ul>
+<li>使用 -k 参数，执行效率更高，因为会直接调用 cherry-pick 进行变基，而不需要执行 <code>git format-patch</code> 命令将提交预先转换为补丁文件。</li>
+</ul>
+
+
+<p>在执行过程中遇到冲突中断的情况，这时需要解决冲突后执行：</p>
+
+<pre><code>$ git cherry-pick --continue
+</code></pre>
+
+<p>然后执行如下命令将不在SVN版本库中的Git提交提交到SVN版本库 foo 中。</p>
+
+<pre><code>$ git svn dcommit --rmdir 
+</code></pre>
+
+<p>说明：</p>
+
+<ul>
+<li>使用 <code>--rmdir</code> 命令是为了避免在 SVN 版本库中残留由于目录移动产生的空目录。</li>
+<li>使用 <code>git svn dcommit</code> 在SVN版本库中创建的新提交，其提交者是当前登录用户，提交时间是当前时间。
+即新的SVN提交丢失了原有SVN提交的用户名和时间信息。马上利用之前在提交说明中添加的元信息进行补救。</li>
+</ul>
+
+
+<h2>修正提交时间和提交者</h2>
+
+<p>编写如下脚本 <code>parse-git-log.rb</code>，读取Git日志对元信息进行处理。</p>
+
+<pre><code>#!/usr/bin/ruby
+
+require 'date'
+
+def to_iso8601(date)
+    if date =~ /^[0-9]{10}/
+      DateTime.strptime(date, '%s').iso8601.gsub(/\+[0-9]*:[0-9]*$/, '.000000Z')
+    else
+      raise "Error: wrong date format: #{date}"
+    end
+end
+
+def parse_git_log(io)
+  svndict={}
+  commit, author, date, log, rev = []
+  io.each_line do |line|
+    line.strip!
+    if line =~ /^commit ([0-9a-f]{40})/
+      commit = $1
+      author, date, log, rev = []
+    elsif line =~ /^From: .*, author: (.*), date: @([0-9]+)/
+      author = $1
+      date = $2
+    elsif line =~ /git-svn-id: .+@([0-9]+) .*/
+      rev = $1
+      if author.nil? or author.empty?
+        STDERR.puts "Warning: no author for commit: #{commit}"
+        next
+      elsif date.nil? or date.empty?
+        STDERR.puts "Warning: no author for commit: #{commit}"
+        next
+      end
+      svndict[rev] = {}
+      svndict[rev][:author] = author
+      svndict[rev][:date] = to_iso8601 date
+    end
+  end
+  svndict
+end
+
+url = 'file:///path/to/svn/foo'
+svndict = {}
+
+if ARGV.size == 1
+  if File.exist? ARGV[0]
+    File.open(ARGV[0]) do |io|
+      svndict = parse_git_log io
+    end
+  else
+    STDERR.puts "Read git log from STDIN"
+    url = ARGV[0]
+    svndict = parse_git_log STDIN
+  end
+else
+  puts &lt;&lt;-EOF
+  Usage:
+      #{File.basename $0} git-log.txt
+      #{File.basename $0} url-of-svn &lt; git-log.txt
+  EOF
+  exit 0
+end
+
+svndict.keys.map{|x| x.to_i}.sort.reverse.each do |rev|
+  author = svndict[rev.to_s][:author]
+  date = svndict[rev.to_s][:date]
+  puts "svn ps --revprop -r #{rev} svn:date   \"#{date}\" #{url}"
+  puts "svn ps --revprop -r #{rev} svn:author \"#{author}\" #{url}"
+end
+</code></pre>
+
+<p>然后执行如下命令，读取Git日志，将Git提交中的元信息转换为修正 SVN 提交历史的命令脚本 <code>fix-svn-log.sh</code>。</p>
+
+<pre><code>$ cd git/foo
+$ git log | ruby parse-git-log.rb file:///path/to/svn/foo &gt; fix-svn-log.sh
+</code></pre>
+
+<p>然后执行如下命令修改 SVN 的属性，还原原有SVN的提交用户和提交实现信息：</p>
+
+<pre><code>$ sh fix-svn-log.sh
+</code></pre>
+
+<p>因为此操作实际上执行 <code>svn ps --revprop</code> 命令，需要SVN版本库 foo 中创建一个可执行的 <code>pre-revprop-change</code> 钩子脚本。</p>
+
+<p>至此版本库转换完毕。怎么样 <code>git filter-branch</code> 命令够强大吧。</p>
+</div>
+    <a href="http://www.worldhello.net/2014/04/24/svn-migrate-with-git-svn.html#disqus_thread">View Comments</a>
+  </div>
+
+
+</div>
+
+<div class="home-box" id="home-right">
+  <h2>我的书</h2>
+  <div class="sidebar">
+    <div class="sidebar-item">
+      <a href="http://www.worldhello.net/gotgit/"><img src="./World Hello - WorldHello_files/gotgit.jpg" alt="Cover of GitGit"><br></a>
+      <h3><a href="http://www.worldhello.net/gotgit/"> 《Git权威指南》 </a></h3>
+      <ul>
+        <li>机械工业出版社，2011.6</li>
+        <li>ISBN 978-7-111-34967-9</li>
+      </ul>
+      感谢支持，购买请访问：<a href="http://www.worldhello.net/gotgit/">GotGit</a>。
+    </div>
+    <div class="sidebar-item">
+      <a href="http://www.worldhello.net/gotgithub/"><img src="./World Hello - WorldHello_files/gotgithub.jpg" alt="Cover of GitGitHub"><br></a>
+      <h3><a href="http://www.worldhello.net/gotgithub/">《GotGitHub》</a></h3>
+      <ul>
+        <li>一本以 Creative Commons 协议发布的电子书</li>
+        <li>您可以用GitHub方式 <a href="https://github.com/gotgit/gotgithub">参与维护</a></li>
+        <li>阅读本书：<a href="http://www.worldhello.net/gotgithub">GotGitHub</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>联系方式</h2>
+  <div class="sidebar">
+    <div class="sidebar-item">
+    <dl>
+      <dt>邮件：</dt>
+      <dd>worldhello.net AT gmail.com </dd>
+
+      <dt>微博：</dt>
+      <dd><a href="http://weibo.com/gotgit">http://weibo.com/gotgit</a></dd>
+
+      <dt>公司：</dt>
+      <dd><a href="http://www.ossxp.com/">http://www.ossxp.com</a></dd>
+
+    </dl>
+
+    </div>
+  </div>
+
+</div>
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div id="footer">
+      Copyright © 2011 Jiang Xin. Hosted by <a href="http://github.com/gotgit/gotgit.github.com/" target="_blank">GitHub</a> and powered by <a href="http://github.com/mojombo/jekyll">Jekyll</a>. Templates from <a href="http://github.com/mbleigh/mbleigh.github.com/" target="_blank">Michael Bleigh</a>.
+    </div>
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'worldhello'; // required: replace example with your forum shortname
+    
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+
+  
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.worldhello.net/#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.worldhello.net/#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.worldhello.net/#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./World Hello - WorldHello_files/yun6.html" style="border: none; display: none; z-index: 2147483645; background: transparent;"></iframe><script src="./World Hello - WorldHello_files/pv.gif"></script></body></html>

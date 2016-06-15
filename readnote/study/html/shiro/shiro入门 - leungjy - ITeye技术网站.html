@@ -1,0 +1,705 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0039)http://l28554768.iteye.com/blog/1786404 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>shiro入门 - leungjy - ITeye技术网站</title>
+    <meta name="description" content="  一、 介绍：    shiro是apache提供的强大而灵活的开源安全框架，它主要用来处理身份认证，授权，企业会话管理和加密。  shiro功能：用户验证、用户执�� ...">
+    <meta name="keywords" content="shiro shiro入门">
+    <link rel="shortcut icon" href="http://l28554768.iteye.com/images/favicon.ico" type="image/x-icon">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://l28554768.iteye.com/open_search.xml" title="ITeye">
+    <link href="http://l28554768.iteye.com/rss" rel="alternate" title="leungjy" type="application/rss+xml">
+    <link href="./shiro入门 - leungjy - ITeye技术网站_files/blog.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./shiro入门 - leungjy - ITeye技术网站_files/blue.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="./shiro入门 - leungjy - ITeye技术网站_files/ga.js"></script><script src="./shiro入门 - leungjy - ITeye技术网站_files/application.js" type="text/javascript"></script>    
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+      <link href="./shiro入门 - leungjy - ITeye技术网站_files/SyntaxHighlighter.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./shiro入门 - leungjy - ITeye技术网站_files/shCoreCommon.js" type="text/javascript"></script>
+<script src="./shiro入门 - leungjy - ITeye技术网站_files/hotkey.js" type="text/javascript"></script>
+  <script src="./shiro入门 - leungjy - ITeye技术网站_files/code_favorites.js" type="text/javascript"></script>
+<script src="./shiro入门 - leungjy - ITeye技术网站_files/weiboshare.js" type="text/javascript"></script>
+    
+  <style type="text/css">.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style type="text/css">.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-default .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style></head>
+  <body>
+    <div id="header">
+      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="http://l28554768.iteye.com/blog/1786404#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">知识库</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+      <div id="user_nav">
+      <a href="http://l28554768.iteye.com/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="http://l28554768.iteye.com/login">登录</a>
+    <a href="http://l28554768.iteye.com/signup" class="nobg">注册</a>
+  </div>
+
+    </div>
+
+    <div id="page">
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="http://l28554768.iteye.com/">leungjy</a></h1>
+        </div>
+        <div id="fd"></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class="blog_navbar_for"><a href="http://l28554768.iteye.com/"><strong>博客</strong></a></li>
+            <li><a href="http://l28554768.iteye.com/weibo">微博</a></li>
+            <li><a href="http://l28554768.iteye.com/album">相册</a></li>
+            <li><a href="http://l28554768.iteye.com/link">收藏</a></li>
+            <li><a href="http://l28554768.iteye.com/blog/guest_book">留言</a></li>
+            <li><a href="http://l28554768.iteye.com/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="http://l28554768.iteye.com/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="">
+              <input class="submit_search" type="submit" value="">
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style="display:none">
+  <a href="http://l28554768.iteye.com/" class="p-author" target="_blank">l28554768</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="./shiro入门 - leungjy - ITeye技术网站_files/shiro入门 - leungjy - ITeye技术网站.html">shiro入门</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class="blog_categories"><strong>博客分类：</strong> <li><a href="http://l28554768.iteye.com/category/266442">shiro</a></li> </ul>
+        <div class="news_tag"><a href="http://www.iteye.com/blogs/tag/shiro">shiro</a></div>
+    	  
+    	
+    	
+  		
+      </div>
+
+  <div id="blog_content" class="blog_content">
+    <div style="font-size: 14px;" class="iteye-blog-content-contain">
+<p>一、 介绍：</p>
+<div style="font-size: 14px;" class="iteye-blog-content-contain">
+<p>shiro是apache提供的强大而灵活的开源安全框架，它主要用来处理身份认证，授权，企业会话管理和加密。</p>
+<p>shiro功能：用户验证、用户执行访问权限控制、在任何环境下使用session API，如cs程序。可以使用多数据源如同时使用oracle、mysql。单点登录(sso)支持。remember me服务。详细介绍还请看官网的使用手册：<a href="http://shiro.apache.org/reference.html">http://shiro.apache.org/reference.html</a></p>
+<p>与spring security区别，个人觉得二者的主要区别是：</p>
+<p>1、shiro灵活性强，易学易扩展。同时，不仅可以在web中使用，可以工作在任务环境内中。</p>
+<p>2、acegi灵活性较差，比较难懂，同时与spring整合性好。</p>
+<p>如果对权限要求比较高的项目，个人建议使用shiro，主要原因是可以很容易按业务需求进行扩展。</p>
+<p>附件是对与shiro集成的jar整合及源码。</p>
+<p>二、shiro与spring集成</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shiro默认的配置，主要是加载ini文件进行初始化工作，具体配置，还请看官网的使用手册（<a href="http://shiro.apache.org/web.html">http://shiro.apache.org/web.html</a>）init文件不支持与spring的集成。此处主要是如何与spring及springmvc集成。</p>
+<p>&nbsp;&nbsp;&nbsp; 1、web.xml中配置shiro过滤器，web.xml中的配置类使用了spring的过滤代理类来完成。</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Xml代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%3Cfilter%3E%0A%20%20%20%3Cfilter-name%3EshiroFilter%3C%2Ffilter-name%3E%0A%20%20%20%20%3Cfilter-class%3E%0A%20%20%20%20%20%20%20%20org.springframework.web.filter.DelegatingFilterProxy%0A%20%20%20%20%3C%2Ffilter-class%3E%09%09%0A%3C%2Ffilter%3E%0A%3Cfilter-mapping%3E%0A%20%20%20%20%3Cfilter-name%3EshiroFilter%3C%2Ffilter-name%3E%0A%20%20%20%20%3Curl-pattern%3E%2F*%3C%2Furl-pattern%0A%3C%2Ffilter-mapping%3E" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./shiro入门 - leungjy - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./shiro入门 - leungjy - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-xml"><li><span><span class="tag">&lt;</span><span class="tag-name">filter</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>shiroFilter</span><span class="tag">&lt;/</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.springframework.web.filter.DelegatingFilterProxy&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">filter-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">filter</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;</span><span class="tag-name">filter-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>shiroFilter</span><span class="tag">&lt;/</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/*</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">filter-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre class="xml" name="code" codeable_id="" codeable_type="BlogComment" source_url="http://l28554768.iteye.com/blog/1786404#" pre_index="0" title="shiro入门" style="display: none;">&lt;filter&gt;
+   &lt;filter-name&gt;shiroFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;
+        org.springframework.web.filter.DelegatingFilterProxy
+    &lt;/filter-class&gt;		
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;shiroFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern
+&lt;/filter-mapping&gt;</pre>
+&nbsp;&nbsp;&nbsp; 2、在spring中的application.xml文件中添加shiro配置：</div>
+<div style="font-size: 14px;" class="iteye-blog-content-contain">
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Xml代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%3C!--securityManager%E6%98%AFshiro%E7%9A%84%E6%A0%B8%E5%BF%83%EF%BC%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E6%97%B6%E5%8D%8F%E8%B0%83%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E8%BF%90%E8%A1%8C--%3E%0A%3Cbean%20id%3D%22securityManager%22%20class%3D%22org.apache.shiro.web.mgt.DefaultWebSecurityManager%22%3E%0A%20%20%20%3C!--%E5%8D%95%E4%B8%AArealm%E4%BD%BF%E7%94%A8realm%2C%E5%A6%82%E6%9E%9C%E6%9C%89%E5%A4%9A%E4%B8%AArealm%EF%BC%8C%E4%BD%BF%E7%94%A8realms%E5%B1%9E%E6%80%A7%E4%BB%A3%E6%9B%BF--%3E%20%0A%20%20%20%3Cproperty%20name%3D%22realm%22%20ref%3D%22leopardRealm%22%20%2F%3E%0A%20%20%20%3Cproperty%20name%3D%22cacheManager%22%20ref%3D%22shiroEhcacheManager%22%20%2F%3E%0A%3C%2Fbean%3E%0A%20%20%20%20%3C!--realm%E9%85%8D%E7%BD%AE%EF%BC%8Crealm%E6%98%AFshiro%E7%9A%84%E6%A1%A5%E6%A2%81%EF%BC%8C%E5%AE%83%E4%B8%BB%E8%A6%81%E6%98%AF%E7%94%A8%E6%9D%A5%E5%88%A4%E6%96%ADsubject%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E5%8F%8A%E6%9D%83%E9%99%90%E7%AD%89--%3E%0A%20%20%20%20%3Cbean%20id%3D%22leopardRealm%22%20class%3D%22com.leopard.shiro.realm.LeopardRealm%22%20%2F%3E%0A%20%20%20%20%3C!--shiro%E8%BF%87%E6%BB%A4%E5%99%A8%E9%85%8D%E7%BD%AE%EF%BC%8Cbean%E7%9A%84id%E5%80%BC%E9%A1%BB%E4%B8%8Eweb%E4%B8%AD%E7%9A%84filter-name%E7%9A%84%E5%80%BC%E7%9B%B8%E5%90%8C--%3E%0A%20%20%20%20%3Cbean%20id%3D%22shiroFilter%22%20class%3D%22org.apache.shiro.spring.web.ShiroFilterFactoryBean%22%3E%0A%09%3Cproperty%20name%3D%22securityManager%22%20ref%3D%22securityManager%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%3C!--%20%E6%B2%A1%E6%9C%89%E6%9D%83%E9%99%90%E6%88%96%E8%80%85%E5%A4%B1%E8%B4%A5%E5%90%8E%E8%B7%B3%E8%BD%AC%E7%9A%84%E9%A1%B5%E9%9D%A2%20--%3E%0A%09%20%3Cproperty%20name%3D%22loginUrl%22%20value%3D%22%2Flogin%2Flogin.jsp%22%20%2F%3E%20%0A%09%20%3Cproperty%20name%3D%22successUrl%22%20value%3D%22%2Fmain%2Findex.jsp%22%20%2F%3E%0A%09%20%3Cproperty%20name%3D%22unauthorizedUrl%22%20value%3D%22%2Flogin%2Funauthorized%22%20%2F%3E%0A%09%09%3Cproperty%20name%3D%22filterChainDefinitions%22%3E%0A%09%09%09%3Cvalue%3E%0A%09%09%09%09%2Flogin%2Flogout%3Dlogout%0A%09%09%09%09%2Flogin%2F**%3Danon%0A%09%09%09%09%2F**%3Dauthc%2Crest%0A%09%09%09%3C%2Fvalue%3E%0A%09%09%3C%2Fproperty%3E%0A%09%3C%2Fbean%3E%0A%09%3C!--%20%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83%2F%E8%AE%A4%E8%AF%81%E4%BF%A1%E6%81%AFCache%2C%20%E9%87%87%E7%94%A8EhCache%20%E7%BC%93%E5%AD%98%20--%3E%0A%09%3Cbean%20id%3D%22shiroEhcacheManager%22%20class%3D%22org.apache.shiro.cache.ehcache.EhCacheManager%22%3E%0A%09%09%3Cproperty%20name%3D%22cacheManagerConfigFile%22%20value%3D%22classpath%3Aehcache-shiro.xml%22%2F%3E%0A%09%3C%2Fbean%3E" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./shiro入门 - leungjy - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./shiro入门 - leungjy - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-xml"><li><span><span class="comments">&lt;!--securityManager是shiro的核心，初始化时协调各个模块运行--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;</span><span class="tag-name">bean</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"securityManager"</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"org.apache.shiro.web.mgt.DefaultWebSecurityManager"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--单个realm使用realm,如果有多个realm，使用realms属性代替--&gt;</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"realm"</span><span>&nbsp;</span><span class="attribute">ref</span><span>=</span><span class="attribute-value">"leopardRealm"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"cacheManager"</span><span>&nbsp;</span><span class="attribute">ref</span><span>=</span><span class="attribute-value">"shiroEhcacheManager"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">bean</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--realm配置，realm是shiro的桥梁，它主要是用来判断subject是否可以登录及权限等--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">bean</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"leopardRealm"</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"com.leopard.shiro.realm.LeopardRealm"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--shiro过滤器配置，bean的id值须与web中的filter-name的值相同--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">bean</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"shiroFilter"</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"org.apache.shiro.spring.web.ShiroFilterFactoryBean"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"securityManager"</span><span>&nbsp;</span><span class="attribute">ref</span><span>=</span><span class="attribute-value">"securityManager"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;没有权限或者失败后跳转的页面&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"loginUrl"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"/login/login.jsp"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"successUrl"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"/main/index.jsp"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"unauthorizedUrl"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"/login/unauthorized"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"filterChainDefinitions"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/login/<span class="attribute-value">logout</span><span class="attribute">logout</span><span>=logout&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/login/**=anon&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**=authc,rest&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">bean</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;用户授权/认证信息Cache,&nbsp;采用EhCache&nbsp;缓存&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">bean</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"shiroEhcacheManager"</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"org.apache.shiro.cache.ehcache.EhCacheManager"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"cacheManagerConfigFile"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"classpath:ehcache-shiro.xml"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">bean</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre class="xml" name="code" codeable_id="" codeable_type="BlogComment" source_url="http://l28554768.iteye.com/blog/1786404#" pre_index="1" title="shiro入门" style="display: none;">&lt;!--securityManager是shiro的核心，初始化时协调各个模块运行--&gt;
+&lt;bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager"&gt;
+   &lt;!--单个realm使用realm,如果有多个realm，使用realms属性代替--&gt; 
+   &lt;property name="realm" ref="leopardRealm" /&gt;
+   &lt;property name="cacheManager" ref="shiroEhcacheManager" /&gt;
+&lt;/bean&gt;
+    &lt;!--realm配置，realm是shiro的桥梁，它主要是用来判断subject是否可以登录及权限等--&gt;
+    &lt;bean id="leopardRealm" class="com.leopard.shiro.realm.LeopardRealm" /&gt;
+    &lt;!--shiro过滤器配置，bean的id值须与web中的filter-name的值相同--&gt;
+    &lt;bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"&gt;
+	&lt;property name="securityManager" ref="securityManager" /&gt;
+         &lt;!-- 没有权限或者失败后跳转的页面 --&gt;
+	 &lt;property name="loginUrl" value="/login/login.jsp" /&gt; 
+	 &lt;property name="successUrl" value="/main/index.jsp" /&gt;
+	 &lt;property name="unauthorizedUrl" value="/login/unauthorized" /&gt;
+		&lt;property name="filterChainDefinitions"&gt;
+			&lt;value&gt;
+				/login/logout=logout
+				/login/**=anon
+				/**=authc,rest
+			&lt;/value&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+	&lt;!-- 用户授权/认证信息Cache, 采用EhCache 缓存 --&gt;
+	&lt;bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"&gt;
+		&lt;property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/&gt;
+	&lt;/bean&gt;</pre>
+&nbsp;配置说明：</div>
+<div style="font-size: 14px;" class="iteye-blog-content-contain">
+<ul>
+<li>&nbsp;securityManager是shiro的核心，初始化时协调各个模块运行。</li>
+<li>realm是shiro的桥梁，进行数据源配置，shrio提供了常用的realm数据源配置，如LDAP的JndiLdapRealm，JDBC的JdbcRealm，ini文件的IniRealm，properties文件的PropertiesRealm等，也可以插入自己的 Realm实现来代表自定义的数据源。此处使用了自定义的leopardRealm进行配置，java代码如下：
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=public%20class%20LeopardRealm%20extends%20AuthorizingRealm%20%7B%0A%09%2F**%0A%09%20*%20%E6%8E%88%E6%9D%83%E6%96%B9%E6%B3%95%EF%BC%8C%E5%9C%A8%E9%85%8D%E6%9C%89%E7%BC%93%E5%AD%98%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E5%8F%AA%E5%8A%A0%E8%BD%BD%E4%B8%80%E6%AC%A1%E3%80%82%0A%09%20*%2F%0A%09protected%20AuthorizationInfo%20doGetAuthorizationInfo(PrincipalCollection%20principals)%20%7B%0A%09%09SimpleAuthorizationInfo%20info%20%3D%20new%20SimpleAuthorizationInfo()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E7%9A%84%E6%89%80%E6%9C%89%E8%B5%84%E6%96%99%EF%BC%8C%E5%A6%82%E6%9D%83%E9%99%90%E8%A7%92%E8%89%B2%E7%AD%89.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2Finfo.setStringPermissions(%E6%9D%83%E9%99%90%E9%9B%86%E5%90%88)%3B%0A%09%09%2F%2Finfo.setRoles(%E8%A7%92%E8%89%B2%E9%9B%86%E5%90%88)%3B%0A%09%09return%20info%3B%0A%09%7D%0A%09%2F**%0A%09%20*%20%E7%99%BB%E9%99%86%E8%AE%A4%E8%AF%81%0A%09%20*%2F%0A%09%40Override%0A%09protected%20AuthenticationInfo%20doGetAuthenticationInfo(AuthenticationToken%20token)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20throws%20AuthenticationException%20%7B%0A%09%20%20%20%20UsernamePasswordToken%20usernamePasswordToke%20%3D%20(UsernamePasswordToken)token%3B%0A%09%20%20%20%20String%20username%20%3D%20usernamePasswordToke.getUsername()%3B%0A%09%20%20%20%20return%20new%20SimpleAuthenticationInfo(new%20ShiroUser(%22admin%22%2C%20%22admin%22)%2C%20%22admin%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20ByteSource.Util.bytes(%22admin%22)%2C%20getName())%3B%0A%09%09%0A%09%7D%0A%7D" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./shiro入门 - leungjy - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./shiro入门 - leungjy - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;LeopardRealm&nbsp;</span><span class="keyword">extends</span><span>&nbsp;AuthorizingRealm&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;授权方法，在配有缓存的情况下，只加载一次。</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">protected</span><span>&nbsp;AuthorizationInfo&nbsp;doGetAuthorizationInfo(PrincipalCollection&nbsp;principals)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SimpleAuthorizationInfo&nbsp;info&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;SimpleAuthorizationInfo();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//获取用户信息的所有资料，如权限角色等.</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//info.setStringPermissions(权限集合);</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//info.setRoles(角色集合);</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;info;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;登陆认证</span>&nbsp;</span></li><li><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">protected</span><span>&nbsp;AuthenticationInfo&nbsp;doGetAuthenticationInfo(AuthenticationToken&nbsp;token)&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">throws</span><span>&nbsp;AuthenticationException&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UsernamePasswordToken&nbsp;usernamePasswordToke&nbsp;=&nbsp;(UsernamePasswordToken)token;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;username&nbsp;=&nbsp;usernamePasswordToke.getUsername();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">new</span><span>&nbsp;SimpleAuthenticationInfo(</span><span class="keyword">new</span><span>&nbsp;ShiroUser(</span><span class="string">"admin"</span><span>,&nbsp;</span><span class="string">"admin"</span><span>),&nbsp;</span><span class="string">"admin"</span><span>,&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ByteSource.Util.bytes(<span class="string">"admin"</span><span>),&nbsp;getName());&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" codeable_id="" codeable_type="BlogComment" source_url="http://l28554768.iteye.com/blog/1786404#" pre_index="2" title="shiro入门" style="display: none;">public class LeopardRealm extends AuthorizingRealm {
+	/**
+	 * 授权方法，在配有缓存的情况下，只加载一次。
+	 */
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+                 //获取用户信息的所有资料，如权限角色等.
+                 //info.setStringPermissions(权限集合);
+		//info.setRoles(角色集合);
+		return info;
+	}
+	/**
+	 * 登陆认证
+	 */
+	@Override
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
+               throws AuthenticationException {
+	    UsernamePasswordToken usernamePasswordToke = (UsernamePasswordToken)token;
+	    String username = usernamePasswordToke.getUsername();
+	    return new SimpleAuthenticationInfo(new ShiroUser("admin", "admin"), "admin",
+                        ByteSource.Util.bytes("admin"), getName());
+		
+	}
+}</pre>
+</li>
+</ul>
+<ul>
+<li>&nbsp;shiroFilter：shiro的权限过滤器配置，可自定义过滤器并关联至filterChainDefinitions中。shiro过滤器说明：<br>shiro过滤器对应的类：<br>
+过滤器名称
+对应的java类
+<table style="table-layout: fixed; min-width: 400px; max-width: 650px;" class="confluenceTable">
+<tbody><tr></tr>
+<tr>
+<td class="confluenceTd">anon</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/authc/AnonymousFilter.html">org.apache.shiro.web.filter.authc.AnonymousFilter</a></td>
+</tr>
+<tr>
+<td class="confluenceTd">authc</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/authc/FormAuthenticationFilter.html">org.apache.shiro.web.filter.authc.FormAuthenticationFilter</a></td>
+</tr>
+<tr>
+<td class="confluenceTd">authcBasic</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/authc/BasicHttpAuthenticationFilter.html">org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter</a></td>
+</tr>
+<tr>
+<td class="confluenceTd">logout</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/authc/LogoutFilter.html">org.apache.shiro.web.filter.authc.LogoutFilter</a></td>
+</tr>
+<tr>
+<td class="confluenceTd">noSessionCreation</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/session/NoSessionCreationFilter.html">org.apache.shiro.web.filter.session.NoSessionCreationFilter</a></td>
+</tr>
+<tr>
+<td class="confluenceTd">perms</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/authz/PermissionsAuthorizationFilter.html">org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter</a></td>
+</tr>
+<tr>
+<td class="confluenceTd">port</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/authz/PortFilter.html">org.apache.shiro.web.filter.authz.PortFilter</a></td>
+</tr>
+<tr>
+<td class="confluenceTd">rest</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/authz/HttpMethodPermissionFilter.html">org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter</a></td>
+</tr>
+<tr>
+<td class="confluenceTd">roles</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/authz/RolesAuthorizationFilter.html">org.apache.shiro.web.filter.authz.RolesAuthorizationFilter</a></td>
+</tr>
+<tr>
+<td class="confluenceTd">ssl</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/authz/SslFilter.html">org.apache.shiro.web.filter.authz.SslFilter</a></td>
+</tr>
+<tr>
+<td class="confluenceTd">user</td>
+<td class="confluenceTd"><a class="external-link" href="http://shiro.apache.org/static/current/apidocs/org/apache/shiro/web/filter/authc/UserFilter.html">org.apache.shiro.web.filter.authc.UserFilter</a></td>
+</tr>
+</tbody></table>
+<p>&nbsp;</p>
+anon:例子/admins/**=anon 没有参数，表示可以匿名使用。<br>authc:例如/admins/user/**=authc表示需要认证(登录)才能使用，没有参数。<br>authcBasic：例如/admins/user/**=authcBasic没有参数表示httpBasic认证。<br>roles：例子/admins/user/**=roles[admin],参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割，当有多个参数时，例如admins/user/**=roles["admin,guest"],每个参数通过才算通过，相当于hasAllRoles()方法。<br>perms：例子/admins/user/**=perms[user:add:*],参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割，例如/admins/user/**=perms["user:add:*,user:modify:*"]，当有多个参数时必须每个参数都通过才通过，想当于isPermitedAll()方法。<br>rest：例子/admins/user/**=rest[user],根据请求的方法，相当于/admins/user/**=perms[user:method] ,其中method为post，get，delete等。<br>port：例子/admins/user/**=port[8081],当请求的url的端口不是8081是跳转到schemal://serverName:8081?queryString,其中schmal是协议http或https等，serverName是你访问的host,8081是url配置里port的端口，queryString是你访问的url里的？后面的参数。<br>ssl:例子/admins/user/**=ssl没有参数，表示安全的url请求，协议为https<br>user:例如/admins/user/**=user没有参数表示必须存在用户，当登入操作时不做检查<br style="font-size: 18px;"><div class="O">
+<br>注：这些过滤器中anon，authcBasic，auchc，user是认证过滤器，perms，roles，ssl，rest，port是授权过滤器<span style="font-size: 18px;"><br></span>
+</div>
+至此配置工作已完成。</li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 简单登录操作：</div>
+<div style="font-size: 14px;" class="iteye-blog-content-contain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; login.jsp代码<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Jsp代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%3C%25%40%20page%20language%3D%22java%22%20pageEncoding%3D%22UTF-8%22%25%3E%0A%3Chtml%3E%0A%3Cbody%3E%0A%09%3Cform%20%20action%3D%22%24%7BpageContext.request.contextPath%7D%2Flogin%22%20method%3D%22post%22%3E%0A%09%09%E7%94%A8%E6%88%B7%E5%90%8D%EF%BC%9A%3Cinput%20id%3D%22username%22%20name%3D%22username%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%E5%AF%86%E7%A0%81%EF%BC%9A%3Cinput%20id%3D%22password%22%20type%3D%22password%22%20name%3D%22password%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%09%E8%AE%B0%E4%BD%8F%E6%88%91%EF%BC%9A%3Cinput%20type%3D%22checkbox%22%20name%3D%22rememberMe%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cinput%20type%3D%22submit%22%20name%3D%22submit%22%20value%3D%22submit%22%2F%3E%0A%09%3C%2Fform%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./shiro入门 - leungjy - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./shiro入门 - leungjy - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-default"><li><span><span>&lt;%@&nbsp;page&nbsp;language=</span><span class="string">"java"</span><span>&nbsp;pageEncoding=</span><span class="string">"UTF-8"</span><span>%&gt;&nbsp;&nbsp;</span></span></li><li><span>&lt;html&gt;&nbsp;&nbsp;</span></li><li><span>&lt;body&gt;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;form&nbsp;&nbsp;action=<span class="string">"${pageContext.request.contextPath}/login"</span><span>&nbsp;method=</span><span class="string">"post"</span><span>&gt;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户名：&lt;input&nbsp;id=<span class="string">"username"</span><span>&nbsp;name=</span><span class="string">"username"</span><span>&nbsp;/&gt;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：&lt;input&nbsp;id=<span class="string">"password"</span><span>&nbsp;type=</span><span class="string">"password"</span><span>&nbsp;name=</span><span class="string">"password"</span><span>&nbsp;/&gt;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;记住我：&lt;input&nbsp;type=<span class="string">"checkbox"</span><span>&nbsp;name=</span><span class="string">"rememberMe"</span><span>&nbsp;/&gt;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=<span class="string">"submit"</span><span>&nbsp;name=</span><span class="string">"submit"</span><span>&nbsp;value=</span><span class="string">"submit"</span><span>/&gt;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;&nbsp;&nbsp;</span></li><li><span>&lt;/body&gt;&nbsp;&nbsp;</span></li><li><span>&lt;/html&gt;&nbsp;&nbsp;</span></li></ol></div><pre class="jsp" name="code" codeable_id="" codeable_type="BlogComment" source_url="http://l28554768.iteye.com/blog/1786404#" pre_index="3" title="shiro入门" style="display: none;">&lt;%@ page language="java" pageEncoding="UTF-8"%&gt;
+&lt;html&gt;
+&lt;body&gt;
+	&lt;form  action="${pageContext.request.contextPath}/login" method="post"&gt;
+		用户名：&lt;input id="username" name="username" /&gt;
+                密码：&lt;input id="password" type="password" name="password" /&gt;
+         	记住我：&lt;input type="checkbox" name="rememberMe" /&gt;
+                &lt;input type="submit" name="submit" value="submit"/&gt;
+	&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+&nbsp;&nbsp; springMVC控制层代码：<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=import%20javax.servlet.http.HttpServletRequest%3B%0Aimport%20javax.servlet.http.HttpServletResponse%3B%0Aimport%20org.apache.shiro.SecurityUtils%3B%0Aimport%20org.apache.shiro.authc.AuthenticationException%3B%0Aimport%20org.apache.shiro.authc.IncorrectCredentialsException%3B%0Aimport%20org.apache.shiro.authc.UnknownAccountException%3B%0Aimport%20org.apache.shiro.authc.UsernamePasswordToken%3B%0Aimport%20org.apache.shiro.subject.Subject%3B%0Aimport%20org.springframework.stereotype.Controller%3B%0Aimport%20org.springframework.web.bind.annotation.RequestMapping%3B%0Aimport%20org.springframework.web.servlet.ModelAndView%3B%0A%40Controller(%22loginAction%22)%0A%40RequestMapping(%22%2Flogin%22)%0Apublic%20class%20LoginAction%20%20%7B%0A%09%40RequestMapping(%22%22)%0A%20%20%20%20%20%20%20%2F%2F%E7%99%BB%E5%BD%95%0A%09public%20ModelAndView%20execute(HttpServletRequest%20request%2C%0A%09%09%09HttpServletResponse%20response%2CString%20username%2CString%20password)%20%7B%0A%09%09UsernamePasswordToken%20token%20%3D%20new%20UsernamePasswordToken(username%2Cpassword)%3B%0A%09%09%2F%2F%E8%AE%B0%E5%BD%95%E8%AF%A5%E4%BB%A4%E7%89%8C%0A%09%09token.setRememberMe(false)%3B%0A%09%09%2F%2Fsubject%E6%9D%83%E9%99%90%E5%AF%B9%E8%B1%A1%0A%09%09Subject%20subject%20%3D%20SecurityUtils.getSubject()%3B%0A%09%09try%20%7B%0A%09%09%09subject.login(token)%3B%0A%09%09%7D%20catch%20(UnknownAccountException%20ex)%20%7B%2F%2F%E7%94%A8%E6%88%B7%E5%90%8D%E6%B2%A1%E6%9C%89%E6%89%BE%E5%88%B0%0A%09%09%09ex.printStackTrace()%3B%0A%09%09%7D%20catch%20(IncorrectCredentialsException%20ex)%20%7B%2F%2F%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E4%B8%8D%E5%8C%B9%E9%85%8D%0A%09%09%09ex.printStackTrace()%3B%0A%09%09%7Dcatch%20(AuthenticationException%20e)%20%7B%2F%2F%E5%85%B6%E4%BB%96%E7%9A%84%E7%99%BB%E5%BD%95%E9%94%99%E8%AF%AF%0A%09%09%09e.printStackTrace()%3B%0A%09%09%7D%0A%09%09%0A%09%09%2F%2F%E9%AA%8C%E8%AF%81%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E7%99%BB%E5%BD%95%E7%9A%84%E6%96%B9%E6%B3%95%0A%09%09if%20(subject.isAuthenticated())%20%7B%0A%09%09%09return%20new%20ModelAndView(%22%2Fmain%2Findex.jsp%22)%3B%0A%09%09%7D%0A%09%09return%20new%20ModelAndView(%22%2Flogin%2Flogin.jsp%22)%3B%0A%09%7D%0A%09%0A%20%20%20%20%20%20%20%20%2F%2F%E9%80%80%E5%87%BA%0A%09%40RequestMapping(%22%2Flogout%22)%0A%09public%20void%20logout()%20%7B%0A%09%09Subject%20subject%20%3D%20SecurityUtils.getSubject()%3B%0A%09%09subject.logout()%3B%0A%09%7D%0A%7D" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./shiro入门 - leungjy - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./shiro入门 - leungjy - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">import</span><span>&nbsp;javax.servlet.http.HttpServletRequest;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;javax.servlet.http.HttpServletResponse;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;org.apache.shiro.SecurityUtils;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;org.apache.shiro.authc.AuthenticationException;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;org.apache.shiro.authc.IncorrectCredentialsException;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;org.apache.shiro.authc.UnknownAccountException;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;org.apache.shiro.authc.UsernamePasswordToken;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;org.apache.shiro.subject.Subject;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;org.springframework.stereotype.Controller;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;org.springframework.web.bind.annotation.RequestMapping;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;org.springframework.web.servlet.ModelAndView;&nbsp;&nbsp;</span></span></li><li><span><span class="annotation">@Controller</span><span>(</span><span class="string">"loginAction"</span><span>)&nbsp;&nbsp;</span></span></li><li><span><span class="annotation">@RequestMapping</span><span>(</span><span class="string">"/login"</span><span>)&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;LoginAction&nbsp;&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span><span>(</span><span class="string">""</span><span>)&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//登录</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;ModelAndView&nbsp;execute(HttpServletRequest&nbsp;request,&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HttpServletResponse&nbsp;response,String&nbsp;username,String&nbsp;password)&nbsp;{&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UsernamePasswordToken&nbsp;token&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;UsernamePasswordToken(username,password);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//记录该令牌</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;token.setRememberMe(<span class="keyword">false</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//subject权限对象</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subject&nbsp;subject&nbsp;=&nbsp;SecurityUtils.getSubject();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subject.login(token);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">catch</span><span>&nbsp;(UnknownAccountException&nbsp;ex)&nbsp;{</span><span class="comment">//用户名没有找到</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.printStackTrace();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">catch</span><span>&nbsp;(IncorrectCredentialsException&nbsp;ex)&nbsp;{</span><span class="comment">//用户名密码不匹配</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.printStackTrace();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword">catch</span><span>&nbsp;(AuthenticationException&nbsp;e)&nbsp;{</span><span class="comment">//其他的登录错误</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//验证是否成功登录的方法</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(subject.isAuthenticated())&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">new</span><span>&nbsp;ModelAndView(</span><span class="string">"/main/index.jsp"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">new</span><span>&nbsp;ModelAndView(</span><span class="string">"/login/login.jsp"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//退出</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span><span>(</span><span class="string">"/logout"</span><span>)&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;logout()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subject&nbsp;subject&nbsp;=&nbsp;SecurityUtils.getSubject();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subject.logout();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" codeable_id="" codeable_type="BlogComment" source_url="http://l28554768.iteye.com/blog/1786404#" pre_index="4" title="shiro入门" style="display: none;">import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+@Controller("loginAction")
+@RequestMapping("/login")
+public class LoginAction  {
+	@RequestMapping("")
+       //登录
+	public ModelAndView execute(HttpServletRequest request,
+			HttpServletResponse response,String username,String password) {
+		UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+		//记录该令牌
+		token.setRememberMe(false);
+		//subject权限对象
+		Subject subject = SecurityUtils.getSubject();
+		try {
+			subject.login(token);
+		} catch (UnknownAccountException ex) {//用户名没有找到
+			ex.printStackTrace();
+		} catch (IncorrectCredentialsException ex) {//用户名密码不匹配
+			ex.printStackTrace();
+		}catch (AuthenticationException e) {//其他的登录错误
+			e.printStackTrace();
+		}
+		
+		//验证是否成功登录的方法
+		if (subject.isAuthenticated()) {
+			return new ModelAndView("/main/index.jsp");
+		}
+		return new ModelAndView("/login/login.jsp");
+	}
+	
+        //退出
+	@RequestMapping("/logout")
+	public void logout() {
+		Subject subject = SecurityUtils.getSubject();
+		subject.logout();
+	}
+}</pre>
+&nbsp;最后启动服务登录，实验证明，失败返回登录页，成功进入主页。</div>
+<div style="font-size: 14px;" class="iteye-blog-content-contain">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+</div>
+  </div>
+
+  
+  <div class="attachments">
+    
+      
+        <ul>
+          <li><a href="http://dl.iteye.com/topics/download/a257c5b5-b3d5-3c67-aad0-17bd541332cc">shiro-all-1.2.1.jar</a> (521.5 KB)</li>
+          
+          <li>下载次数: 248</li>
+        </ul>
+      
+    
+      
+        <ul>
+          <li><a href="http://dl.iteye.com/topics/download/a8213eff-a50b-30ac-a525-440cd205e501">shiro-all-1.2.1-source.jar</a> (719.6 KB)</li>
+          
+          <li>下载次数: 295</li>
+        </ul>
+      
+    
+    
+  </div>
+
+
+  
+  <ins data-revive-zoneid="171" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+  
+
+  <div id="bottoms" class="clearfix">
+    
+    <div id="share_weibo">分享到：
+      <a data-type="sina" href="javascript:;" title="分享到新浪微博"><img src="./shiro入门 - leungjy - ITeye技术网站_files/sina.jpg"></a>
+      <a data-type="qq" href="javascript:;" title="分享到腾讯微博"><img src="./shiro入门 - leungjy - ITeye技术网站_files/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      
+      
+      <a href="http://l28554768.iteye.com/blog/1757323" class="pre" title="springmvc对jsr303验证">springmvc对jsr303验证</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2013-02-03 00:48</li>
+      <li>浏览 16551</li>
+      <li><a href="http://l28554768.iteye.com/blog/1786404#comments">评论(5)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/opensource">开源软件</a></li>      
+      <li class="last"><a href="http://www.iteye.com/wiki/blog/1786404" target="_blank" class="more">相关推荐</a></li>
+    </ul>    
+  </div>
+  
+		    
+		
+<div class="boutique-curr-box blog_comment">
+	  <div class="boutique-curr clearfix">
+	    <h5 class="h3titles">参考知识库</h5>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/swift"><img src="./shiro入门 - leungjy - ITeye技术网站_files/1452496101906_906.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/swift" classs="title">Swift知识库</a>
+              <span>
+                 <em>2114</em>&nbsp;&nbsp;关注 <i>|</i> <em>385</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/operatingsystem"><img src="./shiro入门 - leungjy - ITeye技术网站_files/1464938192555_555.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/operatingsystem" classs="title">操作系统知识库</a>
+              <span>
+                 <em>411</em>&nbsp;&nbsp;关注 <i>|</i> <em>1706</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/redis"><img src="./shiro入门 - leungjy - ITeye技术网站_files/1464683375884_884.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/redis" classs="title">Redis知识库</a>
+              <span>
+                 <em>960</em>&nbsp;&nbsp;关注 <i>|</i> <em>603</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/embeddeddevelopment"><img src="./shiro入门 - leungjy - ITeye技术网站_files/1464164053876_876.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/embeddeddevelopment" classs="title">嵌入式开发知识库</a>
+              <span>
+                 <em>467</em>&nbsp;&nbsp;关注 <i>|</i> <em>604</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	  </div>
+</div>
+ 		
+      
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc2389551">
+  <div class="comment_title">
+    5 楼
+    <a href="http://zhuhe422.iteye.com/" target="_blank" title="zhuhe422">zhuhe422</a>
+    2016-05-13&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">没有源码啊，看不到缓存部分</div>
+</div>
+
+<div id="bc2384491">
+  <div class="comment_title">
+    4 楼
+    <a href="http://sp42.iteye.com/" target="_blank" title="sp42">sp42</a>
+    2016-01-23&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">非常有用，感谢！<img src="./shiro入门 - leungjy - ITeye技术网站_files/icon_idea.gif"> </div>
+</div>
+
+<div id="bc2383176">
+  <div class="comment_title">
+    3 楼
+    <a href="http://arrays9.iteye.com/" target="_blank" title="Arrays9">Arrays9</a>
+    2015-12-24&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><img src="./shiro入门 - leungjy - ITeye技术网站_files/icon_lol.gif"> </div>
+</div>
+
+<div id="bc2383175">
+  <div class="comment_title">
+    2 楼
+    <a href="http://arrays9.iteye.com/" target="_blank" title="Arrays9">Arrays9</a>
+    2015-12-24&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><strong><img src="./shiro入门 - leungjy - ITeye技术网站_files/icon_confused.gif"> </strong></div>
+</div>
+
+<div id="bc2373711">
+  <div class="comment_title">
+    1 楼
+    <a href="http://wtaisi.iteye.com/" target="_blank" title="wtaisi">wtaisi</a>
+    2015-06-18&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><img src="./shiro入门 - leungjy - ITeye技术网站_files/icon_cry.gif"> </div>
+</div>
+
+
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="http://l28554768.iteye.com/login" style="background-color:white;"> <img src="./shiro入门 - leungjy - ITeye技术网站_files/login_icon.png" style="vertical-align:middle; margin-right: 10px;"></a><a href="http://l28554768.iteye.com/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 1786404;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'shiro入门');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'shiro入门');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href="http://l28554768.iteye.com/"><img alt="l28554768的博客" class="logo" src="./shiro入门 - leungjy - ITeye技术网站_files/e18b2993-43a1-4c0d-98bb-4d2e53db5d3f.bmp" title="l28554768的博客: leungjy" width=""></a></div>
+  <div id="blog_owner_name">l28554768</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 20275 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="./shiro入门 - leungjy - ITeye技术网站_files/icon_minigender_1.gif" title="男"></li>
+              <li>来自: 湖南</li>
+              <li><img src="./shiro入门 - leungjy - ITeye技术网站_files/offline.gif"></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style="font-weight:normal;font-size:12px;padding-left:30px;"><a href="http://l28554768.iteye.com/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://chenweichu.iteye.com/" target="_blank"><img alt="chenweichu的博客" class="logo" src="./shiro入门 - leungjy - ITeye技术网站_files/user-logo-thumb.gif" title="chenweichu的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://chenweichu.iteye.com/" target="_blank" title="chenweichu">chenweichu</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://675529396.iteye.com/" target="_blank"><img alt="Stone枫的博客" class="logo" src="./shiro入门 - leungjy - ITeye技术网站_files/user-logo-thumb.gif" title="Stone枫的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://675529396.iteye.com/" target="_blank" title="Stone枫">Stone枫</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://344676074.iteye.com/" target="_blank"><img alt="卖火柴的小驴子的博客" class="logo" src="./shiro入门 - leungjy - ITeye技术网站_files/user-logo-thumb.gif" title="卖火柴的小驴子的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://344676074.iteye.com/" target="_blank" title="卖火柴的小驴子">卖火柴的小驴子</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://nuo1115.iteye.com/" target="_blank"><img alt="nuo1115的博客" class="logo" src="./shiro入门 - leungjy - ITeye技术网站_files/user-logo-thumb.gif" title="nuo1115的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://nuo1115.iteye.com/" target="_blank" title="nuo1115">nuo1115</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="http://l28554768.iteye.com/">全部博客 (3)</a></li>
+                
+                  <li><a href="http://l28554768.iteye.com/category/259395">mongodb (1)</a></li>
+                
+                  <li><a href="http://l28554768.iteye.com/category/266442">shiro (1)</a></li>
+                
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="http://l28554768.iteye.com/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="http://l28554768.iteye.com/blog/post">我的论坛</a> (3)
+                </li>
+                <li><a href="http://l28554768.iteye.com/blog/answered_problems">我的问答</a> (0)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="http://l28554768.iteye.com/blog/monthblog/2013-02">2013-02</a> (1)</li>
+                
+                  <li><a href="http://l28554768.iteye.com/blog/monthblog/2012-12">2012-12</a> (2)</li>
+                
+                <li><a href="http://l28554768.iteye.com/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href="http://zhuhe422.iteye.com/" target="_blank" title="zhuhe422">zhuhe422</a>： 
+                  没有源码啊，看不到缓存部分<br>
+                  <a href="http://l28554768.iteye.com/blog/1786404#bc2389551">shiro入门</a>
+                </li>
+                
+                <li>
+                  <a href="http://sp42.iteye.com/" target="_blank" title="sp42">sp42</a>： 
+                  非常有用，感谢！<br>
+                  <a href="http://l28554768.iteye.com/blog/1786404#bc2384491">shiro入门</a>
+                </li>
+                
+                <li>
+                  <a href="http://arrays9.iteye.com/" target="_blank" title="Arrays9">Arrays9</a>： 
+                   ...<br>
+                  <a href="http://l28554768.iteye.com/blog/1786404#bc2383176">shiro入门</a>
+                </li>
+                
+                <li>
+                  <a href="http://arrays9.iteye.com/" target="_blank" title="Arrays9">Arrays9</a>： 
+                   ...<br>
+                  <a href="http://l28554768.iteye.com/blog/1786404#bc2383175">shiro入门</a>
+                </li>
+                
+                <li>
+                  <a href="http://wtaisi.iteye.com/" target="_blank" title="wtaisi">wtaisi</a>： 
+                   ...<br>
+                  <a href="http://l28554768.iteye.com/blog/1786404#bc2373711">shiro入门</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+      </div>
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br>
+          © 2003-2016 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script><img src="./shiro入门 - leungjy - ITeye技术网站_files/saved_resource" width="0" height="0">
+
+<script src="./shiro入门 - leungjy - ITeye技术网站_files/tracking.js" type="text/javascript"></script>
+
+    
+    
+    <script language="javascript" type="text/javascript" src="./shiro入门 - leungjy - ITeye技术网站_files/async_new.js"></script>
+<script src="./shiro入门 - leungjy - ITeye技术网站_files/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">var $csdn_iteye_jq = jQuery.noConflict();// 解决jq与prototype.js命名空间冲突的问题</script>
+<script src="./shiro入门 - leungjy - ITeye技术网站_files/tracking(1).js" type="text/javascript"></script>
+    
+	    
+	    <script src="./shiro入门 - leungjy - ITeye技术网站_files/web-storage-cache.min.js" type="text/javascript"></script>
+	    <script src="./shiro入门 - leungjy - ITeye技术网站_files/replace.min.js" type="text/javascript"></script>
+    
+    
+  
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://l28554768.iteye.com/blog/1786404#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://l28554768.iteye.com/blog/1786404#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://l28554768.iteye.com/blog/1786404#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./shiro入门 - leungjy - ITeye技术网站_files/yun6.html" style="border: none; display: none; z-index: 2147483645; background: transparent;"></iframe><script src="./shiro入门 - leungjy - ITeye技术网站_files/pv.gif"></script></body></html>

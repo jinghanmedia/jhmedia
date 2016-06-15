@@ -1,0 +1,819 @@
+.pleft {
+	width: 712px; overflow: hidden; float: left;
+}
+.pleft .place {
+	background: rgb(242, 252, 254); width: 712px; height: 24px; color: rgb(204, 204, 204); line-height: 24px; text-indent: 12px; overflow: hidden; border-top-color: rgb(224, 236, 243); border-bottom-color: rgb(224, 236, 243); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid;
+}
+.pleft .place strong {
+	color: rgb(57, 124, 190); letter-spacing: 1px; font-weight: normal;
+}
+.pleft .place a {
+	margin: 0px 2px; color: rgb(57, 124, 190);
+}
+.pleft .place a:hover {
+	color: rgb(70, 156, 242); text-decoration: none;
+}
+.pleft .place small {
+	background: url("../images/ico-3.gif") no-repeat 2px 8px; width: 8px; height: 20px; overflow: hidden; font-size: 0px; vertical-align: middle; display: inline-block;
+}
+.pright {
+	width: 240px; overflow: hidden; float: right;
+}
+.dede_pages {
+	
+}
+.dede_pages ul {
+	padding: 12px 0px 12px 16px; float: left;
+}
+.dede_pages ul li {
+	line-height: 17px; font-family: Tahoma; margin-right: 6px; float: left;
+}
+.dede_pages ul li a {
+	padding: 2px 4px; color: rgb(85, 85, 85); border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: solid; float: left;
+}
+.dede_pages ul li a:hover {
+	padding: 2px 4px 1px; color: rgb(102, 153, 0); text-decoration: none; border-bottom-color: rgb(102, 153, 0); border-bottom-width: 2px; border-bottom-style: solid;
+}
+.dede_pages ul li.thisclass a {
+	padding: 2px 4px 1px; color: rgb(255, 102, 51); font-weight: bold; border-bottom-color: rgb(255, 102, 51); border-bottom-width: 2px; border-bottom-style: solid;
+}
+.pagebox ul li.thisclass a:hover {
+	padding: 2px 4px 1px; color: rgb(255, 102, 51); font-weight: bold; border-bottom-color: rgb(255, 102, 51); border-bottom-width: 2px; border-bottom-style: solid;
+}
+.dede_pages .pageinfo {
+	padding: 12px 10px 12px 16px; color: rgb(153, 153, 153); line-height: 21px;
+}
+.dede_pages .pageinfo strong {
+	margin: 0px 2px; color: rgb(85, 85, 85); font-weight: normal;
+}
+.index .bignews {
+	background: url("../images/headbg-top.gif") repeat-x; border: 1px solid rgb(223, 242, 245); width: 424px; height: 400px; overflow: hidden; float: right;
+}
+.index .bignews a {
+	color: rgb(85, 85, 85);
+}
+.index .bignews .onenews {
+	margin: 0px 3px; padding: 7px 6px; border-bottom-color: rgb(235, 235, 235); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.index .bignews .onenews h2 {
+	height: 32px; text-align: center; line-height: 28px; display: block;
+}
+.index .bignews .onenews h2 a {
+	font-size: 16px;
+}
+.index .bignews .onenews p {
+	color: rgb(102, 102, 102); line-height: 19px;
+}
+.index .bignews div.newarticle {
+	color: rgb(255, 255, 255); font-size: 15px;
+}
+.index .bignews div.d1 {
+	padding: 6px 10px; width: 406px; overflow: hidden; clear: both;
+}
+.index .bignews div.d1arc {
+	width: 190px; height: 24px; line-height: 24px; overflow: hidden; margin-right: 12px; float: left;
+}
+.index .bignews div.d1arc a {
+	
+}
+.index .bignews ul.c2 {
+	padding: 0px 4px; width: 416px; overflow: hidden; clear: both;
+}
+.index .bignews ul.c2 a {
+	font-size: 13px;
+}
+.index .flashnews {
+	width: 280px; height: 192px; overflow: hidden; float: left;
+}
+.index .latestnews {
+	width: 280px; height: 200px; margin-top: 8px; float: left;
+}
+.index .latestnews dl dd {
+	padding: 2px 5px;
+}
+.index .latestnews ul a {
+	color: rgb(85, 85, 85);
+}
+.index .picnews {
+	width: 712px; overflow: hidden; clear: both; margin-top: 10px; float: left;
+}
+.index .listbox {
+	width: 720px; overflow: hidden; clear: both; float: left;
+}
+.index .listbox dl {
+	width: 352px; margin-top: 8px; margin-right: 8px; float: left;
+}
+.index .listbox ul a {
+	color: rgb(102, 102, 102);
+}
+.index .usercenter .tbox dd {
+	height: 370px; display: none;
+}
+.index .usercenter .tbox dd#loading {
+	text-align: center; color: rgb(153, 153, 153); line-height: 200px; letter-spacing: 2px; display: block;
+}
+.index .userlogin {
+	padding-top: 10px;
+}
+.index .userlogin .fb {
+	height: 37px;
+}
+.index .userlogin .fb span {
+	width: 60px; text-align: right; color: rgb(136, 136, 136); padding-right: 6px; float: left;
+}
+.index .userlogin .fb img {
+	margin-left: 5px; vertical-align: middle;
+}
+.index .userlogin .submit {
+	text-align: center; padding-top: 3px;
+}
+.index .userlogin .submit a {
+	color: rgb(0, 51, 0); margin-left: 7px;
+}
+.index .userinfo {
+	
+}
+.index .userinfo .welcome {
+	background: rgb(249, 249, 249); margin: 12px auto; width: 220px; height: 24px; color: rgb(102, 102, 102); line-height: 23px; text-indent: 10px; border-top-color: rgb(238, 238, 238); border-bottom-color: rgb(238, 238, 238); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid;
+}
+.index .userinfo .welcome strong {
+	color: rgb(255, 102, 0); font-weight: bold;
+}
+.index .userinfo .userface {
+	width: 60px; height: 64px; overflow: hidden; padding-top: 2px; padding-left: 16px; float: left;
+}
+.index .userinfo .userface a {
+	margin: 0px auto; text-align: center; display: block;
+}
+.index .userinfo .userface a img {
+	margin: 0px auto 6px; padding: 2px; border: 1px solid rgb(221, 221, 221); width: 52px; height: 52px; display: block;
+}
+.index .userinfo .mylink {
+	width: 144px; overflow: hidden; float: left;
+}
+.index .userinfo .mylink ul {
+	
+}
+.index .userinfo .mylink ul li {
+	width: 72px; line-height: 21px; text-indent: 12px; float: left;
+}
+.index .userinfo .mylink ul li a {
+	color: rgb(85, 85, 85);
+}
+.index .userinfo .uclink {
+	height: 31px; text-align: center; color: rgb(221, 221, 221); line-height: 31px; overflow: hidden; clear: both;
+}
+.index .userinfo .uclink a {
+	margin: 0px 2px; color: rgb(102, 153, 0);
+}
+.index .latestlogin {
+	padding-top: 16px;
+}
+.index .latestlogin strong {
+	background: rgb(255, 255, 255); width: 102px; color: rgb(85, 85, 85); line-height: 21px; letter-spacing: 1px; padding-left: 6px; display: block; position: relative; z-index: 5;
+}
+.index .latestlogin ul {
+	margin: -12px auto 0px; width: 224px; padding-top: 20px; border-top-color: rgb(197, 221, 188); border-top-width: 1px; border-top-style: solid; z-index: 3;
+}
+.index .commend dl dd {
+	padding-top: 0px;
+}
+.index .hot dl dd {
+	padding-top: 0px;
+}
+.index .hot dl dd .c1 li {
+	width: 210px; overflow: hidden;
+}
+.index .vote dl dd strong {
+	margin: 0px 4px; color: rgb(57, 124, 190); line-height: 27px; letter-spacing: 1px; padding-left: 8px; border-bottom-color: rgb(218, 237, 248); border-bottom-width: 1px; border-bottom-style: solid; display: block;
+}
+.index .vote dl dd .fb {
+	height: 21px; color: rgb(85, 85, 85); padding-top: 10px; padding-left: 10px;
+}
+.index .vote dl dd .fb input {
+	margin-right: 4px;
+}
+.index .vote dl dd .submit {
+	height: 35px; text-align: center; padding-top: 8px;
+}
+.index .vote dl dd .submit button {
+	margin-right: 10px;
+}
+.index .vote dl dd .submit a {
+	color: rgb(0, 51, 0);
+}
+.channel .flashnews {
+	background: rgb(255, 0, 0); width: 280px; height: 192px; overflow: hidden; float: left;
+}
+.channel .topcommand {
+	width: 424px; overflow: hidden; float: right;
+}
+.channel .topcommand dl dd {
+	height: 162px;
+}
+.channel .topcommand a {
+	color: rgb(102, 102, 102);
+}
+.channel .topcommand .onenews {
+	padding: 3px 12px; border-bottom-color: rgb(235, 235, 235); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.channel .topcommand .onenews h2 {
+	height: 28px; line-height: 25px; display: block;
+}
+.channel .topcommand .onenews h2 a {
+	font-size: 16px;
+}
+.channel .topcommand .onenews p {
+	color: rgb(102, 102, 102); line-height: 19px;
+}
+.channel .picnews {
+	width: 712px; overflow: hidden; clear: both; margin-top: 8px; float: left;
+}
+.channel .listbox {
+	width: 720px; overflow: hidden; clear: both; float: left;
+}
+.channel .listbox dl {
+	width: 352px; margin-top: 8px; margin-right: 8px; float: left;
+}
+.channel .listbox ul a {
+	color: rgb(102, 102, 102);
+}
+.viewbox {
+	width: 712px; overflow: hidden; padding-bottom: 8px;
+}
+.viewbox .title {
+	height: 56px; text-align: center; line-height: 56px; overflow: hidden; padding-top: 10px;
+}
+.viewbox .title h2 {
+	color: rgb(51, 102, 153); font-size: 24px;
+}
+.viewbox .info {
+	height: 24px; text-align: center; color: rgb(102, 102, 102); line-height: 17px; overflow: hidden;
+}
+.viewbox .info small {
+	color: rgb(153, 153, 153); font-size: 12px; margin-right: 3px; margin-left: 8px;
+}
+.viewbox .info a {
+	color: rgb(102, 153, 0);
+}
+.viewbox .intro {
+	background: rgb(250, 253, 254); padding: 8px 16px; border: 1px solid rgb(221, 221, 221); color: rgb(85, 85, 85); line-height: 25px; font-size: 14px; margin-top: 8px;
+}
+.viewbox .infolist {
+	width: 368px; float: left;
+}
+.viewbox .infolist small {
+	width: 100px; height: 31px; text-align: right; color: rgb(153, 153, 153); line-height: 31px; overflow: hidden; clear: left; font-size: 12px; float: left; display: block;
+}
+.viewbox .infolist span {
+	width: 200px; height: 31px; line-height: 30px; overflow: hidden; float: left;
+}
+.viewbox .picview {
+	width: 320px; padding-top: 16px; padding-right: 24px; float: right;
+}
+.viewbox .labeltitle {
+	background: url("../images/view-labeltitle-bg.gif") repeat-x left 10px; margin: 0px auto; height: 23px; overflow: hidden; padding-top: 10px; clear: both;
+}
+.viewbox .labeltitle strong {
+	background: url("../images/view-labeltitle-bg.gif") no-repeat left -44px; width: 80px; height: 23px; text-align: center; color: rgb(255, 255, 255); line-height: 23px; letter-spacing: 1px; overflow: hidden; float: left; display: block;
+}
+.viewbox .content {
+	padding: 12px 16px; color: rgb(51, 51, 51); line-height: 25px; font-size: 14px;
+}
+.viewbox .dede_pages {
+	width: 712px; text-align: center; overflow: hidden; float: none;
+}
+.viewbox .dede_pages ul {
+	margin: 0px auto; text-align: center; overflow: hidden; clear: both; float: none; white-space: nowrap;
+}
+.viewbox .dede_pages ul li {
+	float: none; display: inline;
+}
+.viewbox .dede_pages ul li a {
+	float: none; display: inline;
+}
+.viewbox .boxoff {
+	background: url("../images/boxoff.gif") repeat-x left 15px; margin: 4px auto; height: 10px; overflow: hidden; padding-top: 10px; clear: both;
+}
+.viewbox .boxoff strong {
+	background: url("../images/boxoff.gif") no-repeat right -10px; width: 8px; height: 10px; line-height: 100px; overflow: hidden; font-size: 0px; float: left; display: block;
+}
+.viewbox .newdigg {
+	margin: 8px auto; width: 710px; height: 90px; overflow: hidden; padding-left: 8px; clear: both;
+}
+.viewbox .diggbox {
+	width: 195px; height: 51px; overflow: hidden; margin-right: 8px; float: left; cursor: pointer;
+}
+.viewbox .diggbox .digg_act {
+	height: 29px; line-height: 31px; text-indent: 32px; overflow: hidden; font-size: 14px; font-weight: bold; float: left;
+}
+.viewbox .diggbox .digg_num {
+	line-height: 29px; text-indent: 5px; float: left;
+}
+.viewbox .diggbox .digg_percent {
+	width: 180px; overflow: hidden; padding-left: 10px; clear: both;
+}
+.viewbox .diggbox .digg_percent .digg_percent_bar {
+	background: rgb(232, 232, 232); width: 100px; height: 7px; overflow: hidden; margin-top: 3px; border-right-color: rgb(204, 204, 204); border-right-width: 1px; border-right-style: solid; float: left;
+}
+.viewbox .diggbox .digg_percent .digg_percent_num {
+	padding-left: 10px; font-size: 10px; float: left;
+}
+.viewbox .diggbox .digg_percent .digg_percent_bar span {
+	background: rgb(0, 0, 0); height: 5px; overflow: hidden; display: block;
+}
+.viewbox .newdigg .digg_good {
+	background: url("../images/newdigg-bg.png") no-repeat left top;
+}
+.viewbox .newdigg .digg_bad {
+	background: url("../images/newdigg-bg.png") no-repeat right top;
+}
+.viewbox .newdigg .digg_good .digg_act {
+	color: rgb(204, 51, 0);
+}
+.viewbox .newdigg .digg_good .digg_num {
+	color: rgb(204, 102, 51);
+}
+.viewbox .newdigg .digg_bad .digg_act {
+	color: rgb(51, 102, 204);
+}
+.viewbox .newdigg .digg_bad .digg_num {
+	color: rgb(51, 153, 204);
+}
+.viewbox .newdigg .digg_good .digg_percent .digg_percent_bar span {
+	background: rgb(255, 197, 53); border: 1px solid rgb(227, 127, 36);
+}
+.viewbox .newdigg .digg_bad .digg_percent .digg_percent_bar span {
+	background: rgb(148, 192, 228); border: 1px solid rgb(104, 154, 204);
+}
+.viewbox .handle {
+	height: 59px; overflow: hidden; padding-top: 12px; clear: both;
+}
+.viewbox .handle .digg {
+	background: url("../images/digg-bg.gif") no-repeat; width: 59px; height: 59px; margin-right: 12px; float: left;
+}
+.viewbox .handle .digg .digg_num {
+	width: 56px; height: 34px; text-align: center; color: rgb(107, 145, 105); line-height: 34px; overflow: hidden; font-size: 20px;
+}
+.viewbox .handle .digg .digg_act {
+	width: 56px; height: 22px; line-height: 23px; overflow: hidden;
+}
+.viewbox .handle .digg .digg_act a {
+	color: rgb(102, 102, 102); margin-left: 11px; float: left;
+}
+.viewbox .handle .context {
+	float: left;
+}
+.viewbox .handle .context ul li {
+	color: rgb(136, 136, 136); line-height: 29px;
+}
+.viewbox .actbox {
+	width: 260px; text-align: center; padding-top: 20px; padding-right: 10px; float: right;
+}
+.viewbox .actbox ul li {
+	padding-left: 22px; margin-right: 10px; display: inline; background-image: url("../images/actbox-ico.gif"); background-repeat: no-repeat;
+}
+.viewbox .actbox ul li a {
+	color: rgb(102, 102, 102);
+}
+.viewbox .actbox ul li#act-fav {
+	background-position: 4px 0px;
+}
+.viewbox .actbox ul li#act-err {
+	background-position: 4px -37px;
+}
+.viewbox .actbox ul li#act-pus {
+	background-position: 4px -73px;
+}
+.viewbox .actbox ul li#act-pnt {
+	background-position: 4px -109px;
+}
+.viewbox .downurllist {
+	width: 100%; overflow: hidden; clear: both;
+}
+.viewbox .downurllist li {
+	background: url("../images/downurl-bg.gif") no-repeat right top; height: 27px; overflow: hidden; padding-right: 4px; margin-top: 10px; margin-right: 10px; float: left;
+}
+.viewbox .downurllist li a {
+	background: url("../images/downurl-bg.gif") no-repeat left top; height: 27px; color: rgb(85, 85, 85); line-height: 27px; text-indent: 30px; padding-right: 5px; font-size: 12px; float: left; display: block;
+}
+.viewbox .downurllist li a:hover {
+	color: rgb(255, 102, 51); text-decoration: none;
+}
+.viewbox .picbox {
+	width: 100%; text-align: center; line-height: 31px; overflow: hidden; padding-top: 10px; font-size: 14px;
+}
+.viewbox .picbox img {
+	margin: 16px auto 6px; display: block;
+}
+.viewbox .picbox ul.e8 {
+	line-height: normal; font-size: 12px;
+}
+.viewbox .picbox ul.e8 li .pic {
+	border: 1px solid rgb(238, 238, 238); overflow: hidden;
+}
+.viewbox .picbox ul.e8 img {
+	margin: 3px; border: currentColor;
+}
+.viewbox .picbox ul.e8 li .title {
+	padding-top: 0px;
+}
+.specialpic {
+	width: 200px; overflow: hidden; padding-top: 10px; margin-right: 20px; float: left;
+}
+.specialpic img {
+	width: 200px; display: block;
+}
+.speciallist {
+	width: 720px; overflow: hidden;
+}
+.speciallist dl.tbox {
+	width: 352px; margin-top: 8px; margin-right: 8px; float: left;
+}
+.storypic {
+	width: 160px; overflow: hidden; padding-top: 10px; margin-right: 20px; float: left;
+}
+.storypic img {
+	width: 160px; display: block;
+}
+.infos_userinfo {
+	width: 240px; overflow: hidden;
+}
+.infos_userinfo dd {
+	background: rgb(255, 255, 255); padding: 12px; overflow: hidden;
+}
+.infos_userinfo dd .userface {
+	padding: 1px; border: 1px solid rgb(221, 221, 221); width: 52px; height: 52px; overflow: hidden; margin-right: 8px; float: left;
+}
+.infos_userinfo dd .userface img {
+	width: 52px; height: 52px; overflow: hidden; display: block;
+}
+.infos_userinfo dd .username {
+	height: 19px; color: rgb(255, 102, 0); line-height: 19px; overflow: hidden; font-weight: bold; display: block;
+}
+.infos_userinfo dd .useract {
+	width: 140px; height: 44px; overflow: hidden; padding-left: 4px; float: left;
+}
+.infos_userinfo dd .useract-pm {
+	width: 70px; height: 19px; line-height: 19px; overflow: hidden; float: left;
+}
+.infos_userinfo dd .useract-af {
+	width: 70px; height: 19px; line-height: 19px; overflow: hidden; float: left;
+}
+.infos_userinfo dd .useract-vi {
+	height: 19px; color: rgb(102, 102, 102); line-height: 19px; overflow: hidden; clear: both; display: block;
+}
+.infos_userinfo dd .userinfo-sp {
+	height: 25px; line-height: 25px; padding-left: 10px; clear: both; display: block;
+}
+.infos_userinfo dd .userinfo-sp small {
+	color: rgb(170, 170, 170); font-size: 12px; margin-right: 5px;
+}
+.infos_search dd {
+	padding: 4px 4px 12px 8px;
+}
+.infos_search dd select {
+	margin-top: 8px; margin-left: 4px;
+}
+.infos_search dd input {
+	margin-top: 8px; margin-left: 4px;
+}
+.infos_search dd button {
+	margin-top: 8px; margin-left: 4px;
+}
+.infos_search dd select {
+	font-size: 14px;
+}
+.tags_list dd {
+	padding: 4px 12px; line-height: 220%;
+}
+.tags_list dd a {
+	margin-right: 10px; white-space: nowrap;
+}
+.tagc1 {
+	color: rgb(102, 102, 102); font-size: 12px;
+}
+.tagc2 {
+	color: rgb(85, 85, 85); font-size: 14px; font-weight: bold;
+}
+.sp-title {
+	background: rgb(250, 250, 250); padding: 4px 12px; color: rgb(136, 136, 136); margin-bottom: 8px; border-top-color: rgb(238, 238, 238); border-bottom-color: rgb(238, 238, 238); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid;
+}
+.sp-title h2 {
+	line-height: 27px; font-size: 16px;
+}
+.sp-title h2 a {
+	margin-left: 6px;
+}
+.sp-title .more {
+	margin: -27px 0px; line-height: 27px; float: right;
+}
+.linkbox {
+	padding: 10px 8px; border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.linkbox h3 {
+	color: rgb(102, 153, 51); font-size: 14px;
+}
+.linkbox h3 a {
+	color: rgb(102, 153, 51); font-size: 14px;
+}
+.buycar {
+	
+}
+.buycar h2 {
+	color: rgb(255, 102, 0); line-height: 31px; font-size: 14px;
+}
+.buycar .flow {
+	width: 100%; margin-bottom: 16px; border-top-color: rgb(222, 231, 158); border-right-color: rgb(222, 231, 158); border-left-color: rgb(222, 231, 158); border-top-width: 1px; border-right-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-left-style: solid;
+}
+.buycar .flow td {
+	background: rgb(248, 250, 235); height: 23px; text-align: center; color: rgb(136, 136, 136); line-height: 19px; letter-spacing: 3px; overflow: hidden; border-top-color: rgb(255, 255, 255); border-right-color: rgb(239, 243, 207); border-bottom-color: rgb(239, 243, 207); border-top-width: 3px; border-right-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid;
+}
+.buycar .flow td.thisclass {
+	background: rgb(255, 255, 255); color: rgb(51, 51, 51); font-weight: bold; border-top-color: rgb(248, 250, 235); border-bottom-color: rgb(255, 255, 255); border-top-width: 3px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid;
+}
+.flinkbox {
+	padding: 4px 10px;
+}
+.formbox {
+	margin: 0px auto; width: 90%;
+}
+.formbox .fb {
+	margin: 0px auto; width: 100%; overflow: hidden; padding-top: 10px; clear: both;
+}
+.formbox .fb .name {
+	width: 180px; height: 31px; text-align: right; color: rgb(102, 102, 102); line-height: 31px; padding-right: 10px; font-size: 14px; float: left; display: block;
+}
+.formbox .fb .value {
+	float: left;
+}
+.formbox .fb .value img {
+	vertical-align: middle;
+}
+.dede_comment {
+	padding-bottom: 6px;
+}
+.dede_comment .decmt-box {
+	margin: 0px auto; padding: 6px 5px 8px; width: 98%; overflow: hidden; clear: both; border-bottom-color: rgb(229, 229, 229); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.dede_comment .decmt-box .decmt-title {
+	color: rgb(153, 153, 153); line-height: 19px; font-family: Tahoma;
+}
+.dede_comment .decmt-box .decmt-title span {
+	margin-right: 2px; vertical-align: middle;
+}
+.dede_comment .decmt-box .decmt-title .moodico {
+	width: 18px; height: 18px; display: inline-block;
+}
+.dede_comment .decmt-box .decmt-title .username {
+	color: rgb(102, 102, 153);
+}
+.dede_comment .decmt-box .decmt-title .username a {
+	color: rgb(102, 102, 153);
+}
+.dede_comment .decmt-box .decmt-title .username a:hover {
+	color: rgb(102, 153, 0); text-decoration: none;
+}
+.dede_comment .decmt-box .decmt-title .ip {
+	color: rgb(102, 102, 153); font-size: 11px;
+}
+.dede_comment .decmt-box .decmt-title .date {
+	color: rgb(85, 85, 85); font-size: 11px;
+}
+.dede_comment .decmt-box .decmt-act {
+	color: rgb(153, 153, 153); padding-right: 10px; clear: both; margin-top: -18px; float: right; position: relative;
+}
+.dede_comment .decmt-box .decmt-act span {
+	margin-right: 7px;
+}
+.dede_comment .decmt-box .decmt-act span a {
+	color: rgb(136, 136, 136);
+}
+.dede_comment .decmt-box .decmt-content {
+	margin: 2px auto 0px; width: 99%; color: rgb(85, 85, 85); line-height: 21px; clear: both;
+}
+.dede_comment .decmt-box .decmt-content img {
+	vertical-align: middle;
+}
+.dede_comment .decmt-box .decmt-box {
+	background: rgb(255, 255, 238); margin: 6px auto; border: 1px solid rgb(204, 204, 204);
+}
+.dede_comment .decmt-box .decmt-box .decmt-title {
+	text-indent: 4px;
+}
+.dede_comment .decmt-box .decmt-box .decmt-content {
+	color: rgb(85, 85, 85);
+}
+.nocomment {
+	padding: 10px; color: rgb(102, 102, 102);
+}
+.dede_comment_post {
+	padding: 5px;
+}
+.dcmp-title {
+	line-height: 25px;
+}
+.dcmp-title strong {
+	color: rgb(68, 68, 68); font-weight: normal;
+}
+.dcmp-title small {
+	color: rgb(153, 153, 153); font-size: 12px;
+}
+.dcmp-stand {
+	color: rgb(153, 153, 153); padding-right: 10px; clear: both; margin-top: -18px; float: right; position: relative;
+}
+.dcmp-stand strong {
+	color: rgb(68, 68, 68); font-weight: normal;
+}
+.dcmp-stand input {
+	margin-right: 2px;
+}
+.dcmp-stand img {
+	margin-right: 2px; vertical-align: middle;
+}
+.dcmp-content {
+	padding-top: 8px;
+}
+.dcmp-content textarea {
+	width: 96%; height: 60px;
+}
+.dcmp-mood {
+	width: 80%; height: 25px; overflow: hidden; padding-top: 12px; clear: both;
+}
+.dcmp-mood strong {
+	color: rgb(68, 68, 68); line-height: 25px; font-weight: normal; float: left;
+}
+.dcmp-mood ul {
+	float: left;
+}
+.dcmp-mood ul li {
+	margin-right: 8px; float: left;
+}
+.dcmp-mood ul li input {
+	margin-right: 4px; vertical-align: middle;
+}
+.dcmp-mood ul li img {
+	margin-right: 4px; vertical-align: middle;
+}
+.dcmp-post {
+	height: 35px; color: rgb(68, 68, 68); overflow: hidden; clear: both;
+}
+.dcmp-post .dcmp-userinfo {
+	margin-right: 6px; float: left;
+}
+.dcmp-post .dcmp-userinfo input {
+	height: 13px; padding-right: 0px;
+}
+.dcmp-post .dcmp-userinfo input {
+	margin: 5px; vertical-align: middle;
+}
+.dcmp-post .dcmp-userinfo img {
+	margin: 5px; vertical-align: middle;
+}
+.dcmp-post .dcmp-submit {
+	padding-top: 6px; float: left;
+}
+.dcmp-post .dcmp-submit input {
+	vertical-align: middle;
+}
+.dcmp-post .dcmp-submit button {
+	vertical-align: middle;
+}
+.dcmp-post .dcmp-submit button {
+	background: url("../images/btn-bg2.gif") no-repeat; border: currentColor; width: 70px; height: 25px; color: rgb(68, 68, 68); line-height: 25px; letter-spacing: 1px; overflow: hidden; margin-left: 5px; cursor: pointer;
+}
+pre {
+	background: rgb(247, 247, 247); margin: 0px 0px 1em; width: 99%; overflow: auto; font-family: "Courier New" , Monospace; font-size: 12px;
+}
+pre ol {
+	margin: 0px; padding: 0px; border: currentColor;
+}
+pre ol li {
+	margin: 0px; padding: 0px; border: currentColor;
+}
+pre ol li span {
+	margin: 0px; padding: 0px; border: currentColor;
+}
+pre a {
+	margin: 0px; padding: 0px; border: currentColor;
+}
+pre a:hover {
+	margin: 0px; padding: 0px; border: currentColor;
+}
+pre ol {
+	background: rgb(247, 247, 247); list-style: decimal; margin: 0px 0px 1px 3em !important; padding: 5px 0px; color: rgb(92, 92, 92); border-left-color: rgb(20, 107, 0); border-left-width: 3px; border-left-style: solid;
+}
+pre ol li {
+	margin: 0px !important; padding: 0px 3px 0px 10px !important; color: rgb(92, 92, 92); line-height: 1.3em; list-style-type: decimal-leading-zero; list-style-position: outside !important; list-style-image: none;
+}
+pre ol li.alt {
+	color: inherit;
+}
+pre ol li span {
+	color: black; background-color: inherit;
+}
+pre .comment {
+	color: rgb(0, 130, 0); background-color: inherit;
+}
+pre .comments {
+	color: rgb(0, 130, 0); background-color: inherit;
+}
+pre .string {
+	color: blue; background-color: inherit;
+}
+pre .keyword {
+	color: rgb(0, 102, 153); font-weight: bold; background-color: inherit;
+}
+pre .preprocessor {
+	color: gray; background-color: inherit;
+}
+pre .dp-xml .cdata {
+	color: rgb(255, 20, 147);
+}
+pre .dp-xml .tag {
+	color: rgb(0, 102, 153); font-weight: bold;
+}
+pre .dp-xml .tag-name {
+	color: rgb(0, 102, 153); font-weight: bold;
+}
+pre .dp-xml .attribute {
+	color: red;
+}
+pre .dp-xml .attribute-value {
+	color: blue;
+}
+pre .dp-sql .func {
+	color: rgb(255, 20, 147);
+}
+pre .dp-sql .op {
+	color: rgb(128, 128, 128);
+}
+pre .dp-rb .symbol {
+	color: rgb(170, 119, 0);
+}
+pre .dp-rb .variable {
+	color: rgb(170, 119, 0); font-weight: bold;
+}
+pre .dp-py .builtins {
+	color: rgb(255, 20, 147);
+}
+pre .dp-py .magicmethods {
+	color: rgb(128, 128, 128);
+}
+pre .dp-py .exceptions {
+	color: brown;
+}
+pre .dp-py .types {
+	color: brown; font-style: italic;
+}
+pre .dp-py .commonlibs {
+	color: rgb(138, 43, 226); font-style: italic;
+}
+pre .dp-j .annotation {
+	color: rgb(100, 100, 100);
+}
+pre .dp-j .number {
+	color: rgb(192, 0, 0);
+}
+pre .dp-delphi .number {
+	color: blue;
+}
+pre .dp-delphi .directive {
+	color: rgb(0, 130, 132);
+}
+pre .dp-delphi .vars {
+	color: rgb(0, 0, 0);
+}
+pre .dp-css .value {
+	color: black;
+}
+pre .dp-css .important {
+	color: red;
+}
+pre .dp-c .vars {
+	color: rgb(221, 0, 0);
+}
+pre .dp-cpp .datatypes {
+	color: rgb(46, 139, 87); font-weight: bold;
+}
+#commetpages {
+	text-align: center; line-height: 28px;
+}
+#commetpages a {
+	padding: 0px 3px; border: 1px solid rgb(100, 177, 223);
+}
+.d99 {
+	padding: 4px 0px;
+}
+.d99 li {
+	height: 27px; line-height: 22px; overflow: hidden; font-size: 14px;
+}
+.d99 li span {
+	color: rgb(119, 119, 119); padding-right: 10px; font-size: 14px; margin-left: 10px; float: right;
+}
+.d99 li a {
+	overflow: hidden;
+}
+#xuxian {
+	height: 1px; overflow: hidden; border-top-color: rgb(51, 180, 236); border-top-width: 1px; border-top-style: dashed;
+}

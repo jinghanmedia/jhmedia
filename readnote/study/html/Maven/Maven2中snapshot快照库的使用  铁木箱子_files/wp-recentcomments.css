@@ -1,0 +1,54 @@
+#sidebar .rc_item {
+	padding: 2px 0px; line-height: 145%;
+}
+#sidebar #rc_nav {
+	padding: 2px 0px; line-height: 145%;
+}
+#sidebar #rc_nav {
+	height: 16px;
+}
+.rc_item .rc_avatar {
+	line-height: 1px;
+}
+.rc_item .rc_avatar img {
+	background: rgb(255, 255, 255); padding: 1px; border: 1px solid rgb(153, 153, 153);
+}
+.rc_item .rc_left {
+	padding-right: 7px !important; float: left; display: inline;
+}
+.rc_item .rc_right {
+	padding-left: 7px !important; float: right; display: inline;
+}
+.rc_item .rc_info .author_name {
+	font-weight: bold;
+}
+#sidebar #rc_nav {
+	padding-top: 5px;
+}
+#rc_newest {
+	padding-right: 10px; float: left;
+}
+#rc_newer {
+	float: left;
+}
+#rc_older {
+	float: right;
+}
+.rc_fixed {
+	clear: both;
+}
+.rc_expand {
+	font-size: 10px;
+}
+.rc_label {
+	font-size: 10px; font-weight: bolder;
+}
+.rc_back {
+	float: left;
+}
+.rc_datetime {
+	float: right;
+}
+.rc_ajax_loader {
+	background: url("img/ajax-loader.gif") no-repeat left; height: 16px; line-height: 16px; padding-left: 22px; display: block;
+}

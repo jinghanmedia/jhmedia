@@ -1,0 +1,673 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0035)http://kdboy.iteye.com/blog/1169637 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站</title>
+    <meta name="description" content="Apache Shiro的配置主要分为四部分： 对象和属性的定义与配置 URL的过滤器配置 静态用户配置 静态角色配置 其中，由于用户、角色一般由后台进行操作的动态数据，因此Shiro配置一般仅包含前两项的配置。 Apache Shiro的大多数组件是基于POJO的，因此我们可以使用POJO兼容的任何配置机制进行配置，例如：Java代码、Sping XML、YAML、JSON、ini文件等等。下面， ...">
+    <meta name="keywords" content="安全框架, Shiro Apache Shiro 使用手册（五）Shiro 配置说明">
+    <link rel="shortcut icon" href="http://kdboy.iteye.com/images/favicon.ico" type="image/x-icon">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://kdboy.iteye.com/open_search.xml" title="ITeye">
+    <link href="http://kdboy.iteye.com/rss" rel="alternate" title="kdboy" type="application/rss+xml">
+    <link href="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/blog.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/black.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/ga.js"></script><script type="text/javascript" async="" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/ga.js"></script><script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/application.js" type="text/javascript"></script>    
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+      <link href="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/SyntaxHighlighter.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/shCoreCommon.js" type="text/javascript"></script>
+<script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/hotkey.js" type="text/javascript"></script>
+  <script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/code_favorites.js" type="text/javascript"></script>
+<script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/weiboshare.js" type="text/javascript"></script>
+    
+  <style type="text/css">.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style type="text/css">.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style></head>
+  <body>
+    <div id="header">
+      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="http://kdboy.iteye.com/blog/1169637#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">知识库</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+      <div id="user_nav">
+      <a href="http://kdboy.iteye.com/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="http://kdboy.iteye.com/login">登录</a>
+    <a href="http://kdboy.iteye.com/signup" class="nobg">注册</a>
+  </div>
+
+    </div>
+
+    <div id="page">
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="http://kdboy.iteye.com/">kdboy</a></h1>
+        </div>
+        <div id="fd"></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class="blog_navbar_for"><a href="http://kdboy.iteye.com/"><strong>博客</strong></a></li>
+            <li><a href="http://kdboy.iteye.com/weibo">微博</a></li>
+            <li><a href="http://kdboy.iteye.com/album">相册</a></li>
+            <li><a href="http://kdboy.iteye.com/link">收藏</a></li>
+            <li><a href="http://kdboy.iteye.com/blog/guest_book">留言</a></li>
+            <li><a href="http://kdboy.iteye.com/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="http://kdboy.iteye.com/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="">
+              <input class="submit_search" type="submit" value="">
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style="display:none">
+  <a href="http://kdboy.iteye.com/" class="p-author" target="_blank">kdboy</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站.html">Apache Shiro 使用手册（五）Shiro 配置说明</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class="blog_categories"><strong>博客分类：</strong> <li><a href="http://kdboy.iteye.com/category/35212">开发</a></li> </ul>
+        <div class="news_tag"><a href="http://www.iteye.com/blogs/tag/%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6">安全框架</a><a href="http://www.iteye.com/blogs/tag/Shiro">Shiro</a>&nbsp;</div>
+    	  
+    	
+    	
+  		
+      </div>
+
+  <div id="blog_content" class="blog_content">
+    Apache Shiro的配置主要分为四部分：
+<br><ul>
+<li>对象和属性的定义与配置
+</li><li>URL的过滤器配置
+</li><li>静态用户配置
+</li><li>静态角色配置
+</li></ul>其中，由于用户、角色一般由后台进行操作的动态数据，因此Shiro配置一般仅包含前两项的配置。
+<br>
+<br>Apache Shiro的大多数组件是基于POJO的，因此我们可以使用POJO兼容的任何配置机制进行配置，例如：Java代码、Sping XML、YAML、JSON、ini文件等等。下面，以Spring XML的配置方式为例，并且对其中的一些配置参数进行一些简单说明。
+<br>
+<br><strong><span style="color: darkblue;">Shiro对象的配置：</span></strong>
+<br>主要是对Shiro各个组件的实现进行定义配置，主要组件在前文已做过简单介绍，这里不再一一说明。
+<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Xml代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%3Cbean%20id%3D%22securityManager%22%20class%3D%22org.apache.shiro.mgt.DefaultSecurityManager%22%3E%0A%20%20%20%20%20%20%20%20%3Cproperty%20name%3D%22cacheManager%22%20ref%3D%22cacheManager%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cproperty%20name%3D%22sessionMode%22%20value%3D%22native%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C!--%20Single%20realm%20app.%20%20If%20you%20have%20multiple%20realms%2C%20use%20the%20&#39;realms&#39;%20property%20instead.%20--%3E%0A%20%20%20%20%20%20%20%20%3Cproperty%20name%3D%22realm%22%20ref%3D%22myRealm%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cproperty%20name%3D%22sessionManager%22%20ref%3D%22sessionManager%22%2F%3E%20%0A%3C%2Fbean%3E" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-xml"><li><span><span class="tag">&lt;</span><span class="tag-name">bean</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"securityManager"</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"org.apache.shiro.mgt.DefaultSecurityManager"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"cacheManager"</span><span>&nbsp;</span><span class="attribute">ref</span><span>=</span><span class="attribute-value">"cacheManager"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"sessionMode"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"native"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;Single&nbsp;realm&nbsp;app.&nbsp;&nbsp;If&nbsp;you&nbsp;have&nbsp;multiple&nbsp;realms,&nbsp;use&nbsp;the&nbsp;'realms'&nbsp;property&nbsp;instead.&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"realm"</span><span>&nbsp;</span><span class="attribute">ref</span><span>=</span><span class="attribute-value">"myRealm"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"sessionManager"</span><span>&nbsp;</span><span class="attribute">ref</span><span>=</span><span class="attribute-value">"sessionManager"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">bean</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="xml" codeable_id="" codeable_type="BlogComment" source_url="http://kdboy.iteye.com/blog/1169637#" pre_index="0" title="Apache Shiro 使用手册（五）Shiro 配置说明" style="display: none;">&lt;bean id="securityManager" class="org.apache.shiro.mgt.DefaultSecurityManager"&gt;
+        &lt;property name="cacheManager" ref="cacheManager"/&gt;
+        &lt;property name="sessionMode" value="native"/&gt;
+        &lt;!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. --&gt;
+        &lt;property name="realm" ref="myRealm"/&gt;
+        &lt;property name="sessionManager" ref="sessionManager"/&gt; 
+&lt;/bean&gt;</pre>
+<br>
+<br><strong><span style="color: darkblue;">Shiro过滤器的配置</span></strong>
+<br>Shiro主要是通过URL过滤来进行安全管理，这里的配置便是指定具体授权规则定义。
+<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Xml代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%3Cbean%20id%3D%22shiroFilter%22%20class%3D%22org.apache.shiro.spring.web.ShiroFilterFactoryBean%22%3E%0A%20%20%20%20%3Cproperty%20name%3D%22securityManager%22%20ref%3D%22securityManager%22%2F%3E%0A%20%20%20%20%3Cproperty%20name%3D%22loginUrl%22%20value%3D%22%2Flogin.jsp%22%2F%3E%0A%20%20%20%20%3Cproperty%20name%3D%22successUrl%22%20value%3D%22%2Fhome.jsp%22%2F%3E%0A%20%20%20%20%3Cproperty%20name%3D%22unauthorizedUrl%22%20value%3D%22%2Funauthorized.jsp%22%2F%3E%20--%3E%0A%20%20%20%20%3Cproperty%20name%3D%22filterChainDefinitions%22%3E%0A%20%20%20%20%20%20%20%20%3Cvalue%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20some%20example%20chain%20definitions%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%2Fadmin%2F**%20%3D%20authc%2C%20roles%5Badmin%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2Fdocs%2F**%20%3D%20authc%2C%20perms%5Bdocument%3Aread%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F**%20%3D%20authc%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20more%20URL-to-FilterChain%20definitions%20here%0A%20%20%20%20%20%20%20%20%3C%2Fvalue%3E%0A%20%20%20%20%3C%2Fproperty%3E%0A%3C%2Fbean%3E" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-xml"><li><span><span class="tag">&lt;</span><span class="tag-name">bean</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"shiroFilter"</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"org.apache.shiro.spring.web.ShiroFilterFactoryBean"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"securityManager"</span><span>&nbsp;</span><span class="attribute">ref</span><span>=</span><span class="attribute-value">"securityManager"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"loginUrl"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"/login.jsp"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"successUrl"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"/home.jsp"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"unauthorizedUrl"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"/unauthorized.jsp"</span><span class="tag">/&gt;</span><span>&nbsp;--</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"filterChainDefinitions"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;some&nbsp;example&nbsp;chain&nbsp;definitions:&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/admin/**&nbsp;=&nbsp;authc,&nbsp;roles[admin]&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/docs/**&nbsp;=&nbsp;authc,&nbsp;perms[document:read]&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;=&nbsp;authc&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;more&nbsp;URL-to-FilterChain&nbsp;definitions&nbsp;here&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li><span><span class="tag">&lt;/</span><span class="tag-name">bean</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="xml" codeable_id="" codeable_type="BlogComment" source_url="http://kdboy.iteye.com/blog/1169637#" pre_index="1" title="Apache Shiro 使用手册（五）Shiro 配置说明" style="display: none;">&lt;bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"&gt;
+    &lt;property name="securityManager" ref="securityManager"/&gt;
+    &lt;property name="loginUrl" value="/login.jsp"/&gt;
+    &lt;property name="successUrl" value="/home.jsp"/&gt;
+    &lt;property name="unauthorizedUrl" value="/unauthorized.jsp"/&gt; --&gt;
+    &lt;property name="filterChainDefinitions"&gt;
+        &lt;value&gt;
+            # some example chain definitions:
+            /admin/** = authc, roles[admin]
+            /docs/** = authc, perms[document:read]
+            /** = authc
+            # more URL-to-FilterChain definitions here
+        &lt;/value&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;</pre>
+<br><span style="color: darkblue;"><strong>URL过滤器配置说明：</strong></span>
+<br>Shiro可以通过配置文件实现基于URL的授权验证。FilterChain定义格式：
+<br>URL_Ant_Path_Expression = Path_Specific_Filter_Chain
+<br>每个URL配置，表示匹配该URL的应用程序请求将由对应的过滤器进行验证。
+<br>例如：
+<br>[urls]
+<br>/index.html = anon
+<br>/user/create = anon
+<br>/user/** = authc
+<br>/admin/** = authc, roles[administrator]
+<br>/rest/** = authc, rest
+<br>/remoting/rpc/** = authc, perms["remote:invoke"]
+<br>
+<br><span style="color: darkblue;"><strong>URL表达式说明</strong></span>
+<br>1、URL目录是基于HttpServletRequest.getContextPath()此目录设置
+<br>2、URL可使用通配符，**代表任意子目录
+<br>3、Shiro验证URL时，URL匹配成功便不再继续匹配查找。所以要注意配置文件中的URL顺序，尤其在使用通配符时。
+<br>
+<br><span style="color: darkblue;"><strong>Filter Chain定义说明</strong></span>
+<br>1、一个URL可以配置多个Filter，使用逗号分隔
+<br>2、当设置多个过滤器时，全部验证通过，才视为通过
+<br>3、部分过滤器可指定参数，如perms，roles
+<br>
+<br><span style="color: darkblue;"><strong>Shiro内置的FilterChain</strong></span>
+<br><table class="bbcode"><tbody><tr><td>Filter Name</td><td>Class</td></tr><tr><td>anon</td><td>org.apache.shiro.web.filter.authc.AnonymousFilter</td></tr><tr><td>authc</td><td>org.apache.shiro.web.filter.authc.FormAuthenticationFilter</td></tr><tr><td>authcBasic</td><td>org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter</td></tr><tr><td>perms</td><td>org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter</td></tr><tr><td>port</td><td>org.apache.shiro.web.filter.authz.PortFilter</td></tr><tr><td>rest</td><td>org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter</td></tr><tr><td>roles</td><td>org.apache.shiro.web.filter.authz.RolesAuthorizationFilter</td></tr><tr><td>ssl</td><td>org.apache.shiro.web.filter.authz.SslFilter</td></tr><tr><td>user</td><td>org.apache.shiro.web.filter.authc.UserFilter</td></tr></tbody></table>
+  </div>
+
+  
+
+  
+  <ins data-revive-zoneid="171" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+  
+
+  <div id="bottoms" class="clearfix">
+    <div id="digg_bottom" class="clearfix"><div class="digged"><strong>32</strong> <br>顶</div><div class="digged"><strong>2</strong> <br>踩</div></div>
+    <div id="share_weibo">分享到：
+      <a data-type="sina" href="javascript:;" title="分享到新浪微博"><img src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/sina.jpg"></a>
+      <a data-type="qq" href="javascript:;" title="分享到腾讯微博"><img src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      
+      
+      <a href="http://kdboy.iteye.com/blog/1169631" class="pre" title="Apache Shiro 使用手册（四）Realm 实现">Apache Shiro 使用手册（四）Realm 实现</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2011-09-09 22:23</li>
+      <li>浏览 41211</li>
+      <li><a href="http://kdboy.iteye.com/blog/1169637#comments">评论(15)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/opensource">开源软件</a></li>      
+      <li class="last"><a href="http://www.iteye.com/wiki/blog/1169637" target="_blank" class="more">相关推荐</a></li>
+    </ul>    
+  </div>
+  
+		    
+		
+<div class="boutique-curr-box blog_comment">
+	  <div class="boutique-curr clearfix">
+	    <h5 class="h3titles">参考知识库</h5>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/swift"><img src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/1452496101906_906.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/swift" classs="title">Swift知识库</a>
+              <span>
+                 <em>2115</em>&nbsp;&nbsp;关注 <i>|</i> <em>385</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/operatingsystem"><img src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/1464938192555_555.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/operatingsystem" classs="title">操作系统知识库</a>
+              <span>
+                 <em>412</em>&nbsp;&nbsp;关注 <i>|</i> <em>1706</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/redis"><img src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/1464683375884_884.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/redis" classs="title">Redis知识库</a>
+              <span>
+                 <em>961</em>&nbsp;&nbsp;关注 <i>|</i> <em>603</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/embeddeddevelopment"><img src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/1464164053876_876.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/embeddeddevelopment" classs="title">嵌入式开发知识库</a>
+              <span>
+                 <em>467</em>&nbsp;&nbsp;关注 <i>|</i> <em>604</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	  </div>
+</div>
+ 		
+      
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc2384494">
+  <div class="comment_title">
+    15 楼
+    <a href="http://sp42.iteye.com/" target="_blank" title="sp42">sp42</a>
+    2016-01-23&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">非常不错，谢谢<img src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/icon_idea.gif"> </div>
+</div>
+
+<div id="bc2373883">
+  <div class="comment_title">
+    14 楼
+    <a href="http://kongbinheng.iteye.com/" target="_blank" title="kongbinheng">kongbinheng</a>
+    2015-06-23&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">非常好，请问能给转发一份整合好的ssi和shiro吗？最好里面还有shiro的Demo(QQ：355815741)，谢谢！</div>
+</div>
+
+<div id="bc2329067">
+  <div class="comment_title">
+    13 楼
+    <a href="http://coffeemvpcom.iteye.com/" target="_blank" title="coffeemvpcom">coffeemvpcom</a>
+    2013-10-23&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">it158 写道</div><div class="quote_div">shrio 的ssl 你配置过没？为什么我声明了ssl。代码是 /user/** =ssl, authc 但是跳转到/user/** 的时候直接504了</div><br>请问能给转发一份整合好的ＳＳＩ和ｓｈｉｒｏ吗？最好里面还有shiro的Demo(QQ：308056797)</div>
+</div>
+
+<div id="bc2323391">
+  <div class="comment_title">
+    12 楼
+    <a href="http://rainbowdesert.iteye.com/" target="_blank" title="zhangzi">zhangzi</a>
+    2013-08-23&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">有具体demo实例吗？</div>
+</div>
+
+<div id="bc2319079">
+  <div class="comment_title">
+    11 楼
+    <a href="http://brightfox.iteye.com/" target="_blank" title="brightfox">brightfox</a>
+    2013-07-18&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">不知楼主有没有尝试过在开源的jeecms中应用shiro</div>
+</div>
+
+<div id="bc2317337">
+  <div class="comment_title">
+    10 楼
+    <a href="http://gbanana.iteye.com/" target="_blank" title="gbanana">gbanana</a>
+    2013-07-03&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">讲的非常详细，受益匪浅，非常感谢。</div>
+</div>
+
+<div id="bc2317255">
+  <div class="comment_title">
+    9 楼
+    <a href="http://jayyunfei.iteye.com/" target="_blank" title="jayyunfei">jayyunfei</a>
+    2013-07-03&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">其实我想问楼主=号后面的参数都是什么意思，能解答一下吗？</div>
+</div>
+
+<div id="bc2317238">
+  <div class="comment_title">
+    8 楼
+    <a href="http://elan1986.iteye.com/" target="_blank" title="elan1986">elan1986</a>
+    2013-07-03&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">mark!</div>
+</div>
+
+<div id="bc2309857">
+  <div class="comment_title">
+    7 楼
+    <a href="http://it158.iteye.com/" target="_blank" title="it158">it158</a>
+    2013-05-02&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">shrio 的ssl 你配置过没？为什么我声明了ssl。代码是 /user/** =ssl, authc 但是跳转到/user/** 的时候直接504了</div>
+</div>
+
+<div id="bc2277254">
+  <div class="comment_title">
+    6 楼
+    <a href="http://kdboy.iteye.com/" target="_blank" title="kdboy">kdboy</a>
+    2012-08-19&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">可以参考springside中的mini-web项目：<br>https://github.com/springside/springside4</div>
+</div>
+
+<div id="bc2276789">
+  <div class="comment_title">
+    5 楼
+    <a href="http://itsnothing.iteye.com/" target="_blank" title="itsnothing">itsnothing</a>
+    2012-08-16&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">同求demo啊. 楼主,能发一下到我邮箱么.&nbsp; 谢谢了 .&nbsp; 136356123@qq.com</div>
+</div>
+
+<div id="bc2256847">
+  <div class="comment_title">
+    4 楼
+    <a href="http://llfc.iteye.com/" target="_blank" title="llfc">llfc</a>
+    2012-05-07&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">楼主，能把demo给我(315108928@qq.com)发下吗？谢谢了！</div>
+</div>
+
+<div id="bc2253240">
+  <div class="comment_title">
+    3 楼
+    <a href="http://alan2012.iteye.com/" target="_blank" title="alan2012">alan2012</a>
+    2012-04-16&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">楼主，如果能把demo发给我0858.178@163.com，太是感谢了！</div>
+</div>
+
+<div id="bc2244300">
+  <div class="comment_title">
+    2 楼
+    <a href="http://nothing0318.iteye.com/" target="_blank" title="nothing0318">nothing0318</a>
+    2012-02-23&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">同求demo&nbsp; nothing890318@gmail.com&nbsp; 谢谢！</div>
+</div>
+
+<div id="bc2216815">
+  <div class="comment_title">
+    1 楼
+    <a href="http://binghejinjun.iteye.com/" target="_blank" title="binghejinjun">binghejinjun</a>
+    2011-09-14&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">楼主,你能贴出登录界面的代码吗,或者给提供个demo(359387306@qq.com),登录页面提交给谁?请求怎样到达自定义realm的认证方法的?困扰了很久了,不胜感激!</div>
+</div>
+
+
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="http://kdboy.iteye.com/login" style="background-color:white;"> <img src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/login_icon.png" style="vertical-align:middle; margin-right: 10px;"></a><a href="http://kdboy.iteye.com/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 1169637;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'Apache Shiro 使用手册（五）Shiro 配置说明');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'Apache Shiro 使用手册（五）Shiro 配置说明');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href="http://kdboy.iteye.com/"><img alt="kdboy的博客" class="logo" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/user-logo.gif" title="kdboy的博客: kdboy" width=""></a></div>
+  <div id="blog_owner_name">kdboy</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 547947 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/icon_minigender_1.gif" title="男"></li>
+              <li>来自: 北京</li>
+              <li><img src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/offline.gif"></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style="font-weight:normal;font-size:12px;padding-left:30px;"><a href="http://kdboy.iteye.com/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://izbk.iteye.com/" target="_blank"><img alt="izbk的博客" class="logo" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/user-logo-thumb.gif" title="izbk的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://izbk.iteye.com/" target="_blank" title="izbk">izbk</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://excaliburace.iteye.com/" target="_blank"><img alt="excaliburace的博客" class="logo" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/user-logo-thumb.gif" title="excaliburace的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://excaliburace.iteye.com/" target="_blank" title="excaliburace">excaliburace</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://ruoli.iteye.com/" target="_blank"><img alt="v若离v的博客" class="logo" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/25a0b447-3308-3a39-9a72-c2558b97222b-thumb.jpg" title="v若离v的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://ruoli.iteye.com/" target="_blank" title="v若离v">v若离v</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://xyzdr.iteye.com/" target="_blank"><img alt="xyzdr的博客" class="logo" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/user-logo-thumb.gif" title="xyzdr的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://xyzdr.iteye.com/" target="_blank" title="xyzdr">xyzdr</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="http://kdboy.iteye.com/">全部博客 (25)</a></li>
+                
+                  <li><a href="http://kdboy.iteye.com/category/35212">开发 (19)</a></li>
+                
+                  <li><a href="http://kdboy.iteye.com/category/36676">算法 (3)</a></li>
+                
+                  <li><a href="http://kdboy.iteye.com/category/36182">软件 (1)</a></li>
+                
+                  <li><a href="http://kdboy.iteye.com/category/67265">服务器 (1)</a></li>
+                
+                  <li><a href="http://kdboy.iteye.com/category/73606">工作 (1)</a></li>
+                
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="http://kdboy.iteye.com/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="http://kdboy.iteye.com/blog/post">我的论坛</a> (1)
+                </li>
+                <li><a href="http://kdboy.iteye.com/blog/answered_problems">我的问答</a> (2)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="http://kdboy.iteye.com/blog/monthblog/2011-09">2011-09</a> (2)</li>
+                
+                  <li><a href="http://kdboy.iteye.com/blog/monthblog/2011-08">2011-08</a> (3)</li>
+                
+                  <li><a href="http://kdboy.iteye.com/blog/monthblog/2011-06">2011-06</a> (1)</li>
+                
+                <li><a href="http://kdboy.iteye.com/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href="http://rebecca-zhong.iteye.com/" target="_blank" title="RebeccaZhong">RebeccaZhong</a>： 
+                  实现多个realm时，能不能让程序在运行时指定只走一个real ...<br>
+                  <a href="http://kdboy.iteye.com/blog/1169631#bc2389006">Apache Shiro 使用手册（四）Realm 实现</a>
+                </li>
+                
+                <li>
+                  <a href="http://fengxuewushang.iteye.com/" target="_blank" title="风雪无殇">风雪无殇</a>： 
+                  请教一个问题： &nbsp; 我在 shiro－spring 与异步通信 ...<br>
+                  <a href="http://kdboy.iteye.com/blog/1103794#bc2387985">基于Spring框架的Shiro配置</a>
+                </li>
+                
+                <li>
+                  <a href="http://sp42.iteye.com/" target="_blank" title="sp42">sp42</a>： 
+                  非常不错，谢谢<br>
+                  <a href="http://kdboy.iteye.com/blog/1169637#bc2384494">Apache Shiro 使用手册（五）Shiro 配置说明</a>
+                </li>
+                
+                <li>
+                  <a href="http://mu-xiaoxia.iteye.com/" target="_blank" title="mu_xiaoxia">mu_xiaoxia</a>： 
+                  如果login方法执行完毕且没有抛出任何异常信息，那么便认为用 ...<br>
+                  <a href="http://kdboy.iteye.com/blog/1154652#bc2376928"> Apache Shiro 使用手册（二）Shiro 认证</a>
+                </li>
+                
+                <li>
+                  <a href="http://chao-1990.iteye.com/" target="_blank" title="chao_1990">chao_1990</a>： 
+                  学习中、以后加入到自己的项目中<br>
+                  <a href="http://kdboy.iteye.com/blog/1154644#bc2376420">Apache Shiro 使用手册（一）Shiro架构介绍</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+      </div>
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br>
+          © 2003-2016 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script><img src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/saved_resource" width="0" height="0">
+
+<script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/tracking.js" type="text/javascript"></script>
+
+    
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5644947-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+      
+    
+    <script language="javascript" type="text/javascript" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/async_new.js"></script>
+<script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">var $csdn_iteye_jq = jQuery.noConflict();// 解决jq与prototype.js命名空间冲突的问题</script>
+<script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/tracking(1).js" type="text/javascript"></script>
+    
+	    
+	    <script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/web-storage-cache.min.js" type="text/javascript"></script>
+	    <script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/replace.min.js" type="text/javascript"></script>
+    
+    
+  
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://kdboy.iteye.com/blog/1169637#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://kdboy.iteye.com/blog/1169637#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://kdboy.iteye.com/blog/1169637#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/yun6.html" style="border: none; display: none; z-index: 2147483645; background: transparent;"></iframe><script src="./Apache Shiro 使用手册（五）Shiro 配置说明 - kdboy - ITeye技术网站_files/pv.gif"></script></body></html>

@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://www.jb51.net/os/RedHat/1348_3.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><script type="text/javascript" charset="utf-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/changyan.js"></script>
+<meta charset="gb2312">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+<title>LINUX 常见问题1000个详细解答_RedHat/Centos_操作系统_脚本之家</title>
+<meta name="keywords" content="">
+<meta name="description" content="LINUX 常见问题1000个详细解答
+
+一、 如何建立多用户
+　　提醒大家一句，别一直使用root用户，因为root用户在系统中有着至高无上的权力，一不小心
+就可能破坏系统。比如我们想删除/temp目录下的文件却将命令不小心输成“rm / temp（在‘/’后
+
+多了">
+<link rel="alternate" media="only screen and(max-width: 640px)" href="http://m.jb51.net/os/RedHat/1348.html">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.jb51.net/os/RedHat/1348.html">
+<meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.jb51.net/os/RedHat/1348.html">
+<script type="text/javascript">
+var tougao="1";var downlm="art";
+(function(){if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){window.location.href="http://m.jb51.net/os/RedHat/1348.html"}})();
+</script>
+<link type="text/css" href="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/base.css" rel="stylesheet">
+<link type="text/css" href="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/home.css" rel="stylesheet">
+<script type="text/javascript" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/jquery.min.js"></script>
+<script type="text/javascript" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/base.js"></script>
+<style type="text/css">div#logo_m,div#logo_r,div#tldown,[style*="width:1000px;"][style*="height:60px;"],dd#down2,li#down3,[style*="width: 1000px;"][style*="height: 60px;"][style*="top: 400px;"][style*="left: 0px;"],dd#softr1,div[class="main mb10 clearfix"],div[class="r300 clearfix mt10"],div[id^="BAIDU_SSP__wrapper_u"],div[class="r300 clearfix"]{display:none !important;}</style><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/version-v3.js"></script><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/cookie"></script><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/adapter.min.js"></script><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/cyrHH3dwi"></script><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/version.js"></script><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/cookie(1)"></script><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/cyrHH3dwi(1)"></script><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/event"></script><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/sea.v2.2.0.js"></script><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/app-build.js"></script><link rel="stylesheet" type="text/css" href="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/upload-img.css"><style id="changyanCss">#SOHUCS{clear:both;min-height:320;_height:320px;overflow:visible;}#SOHUCS iframe{width:100%;min-height:320px;_height:320px;}</style><link charset="utf-8" rel="stylesheet" href="http://changyan.itc.cn/v2.5/v20160405176/src/css/changyan2.css?20160405176"><link charset="utf-8" rel="stylesheet" href="http://changyan.itc.cn/v2.5/v20160405176/src/css/scs/default.css?20160405176"><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/main.js"></script><script type="text/javascript" charset="UTF-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/render-pc.js"></script></head>
+<body>
+<!--head Star -->
+<div id="head">
+  <div class="toolBar">
+  <div class="main">
+    <!--topNav Star -->
+    <div class="topNav clearfix">
+      <ul class="navList fl">
+        <li>
+          <div class="one"><a href="http://www.jb51.net/" target="_blank">脚本之家</a></div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/softs/" target="_blank">软件下载<i class="icon"></i></a></div>
+          <div class="two">
+                <a href="http://www.jb51.net/softs/android.html" target="_blank">android软件</a> <a href="http://www.jb51.net/softs/mac.html" target="_blank">MAC软件</a> <a href="http://www.jb51.net/qudong/" target="_blank">驱动下载</a> <a href="http://www.jb51.net/fonts/" target="_blank">字体下载</a> <a href="http://www.jb51.net/dll/" target="_blank">DLL下载</a> </div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/codes/" target="_blank">源码下载<i class="icon"></i></a></div>
+          <div class="two"> <a href="http://www.jb51.net/codes/asp.html" target="_blank">asp源码</a> <a href="http://www.jb51.net/codes/php.html" target="_blank">php源码</a> <a href="http://www.jb51.net/codes/aspnet.html" target="_blank">asp.net源码</a> <a href="http://www.jb51.net/codes/jsp.html" target="_blank">jsp源码</a> <a href="http://www.jb51.net/codes/editor.html" target="_blank">网页编辑器</a> <a href="http://www.jb51.net/codes/list123_1.html" target="_blank">数据库管理</a> <a href="http://www.jb51.net/jiaoben/" target="_blank">脚本下载</a> </div>
+        </li>
+        <li>
+          <div class="one"><a href="http://tools.jb51.net/" target="_blank">在线工具<i class="icon"></i></a></div>
+          <div class="two"> <a href="http://www.jb51.net/shouce/" target="_blank">在线手册</a> <a href="http://www.jb51.net/tools/cssyasuo.shtml" target="_blank">CSS格式化</a> <a href="http://tools.jb51.net/tools/js_geshihua.asp" target="_blank">JS格式化</a> <a href="http://www.jb51.net/tools/html-js.htm" target="_blank">Html转化为Js</a> <a href="http://tools.jb51.net/regex/javascript" target="_blank">js正则表达式</a> </div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/w3school/" target="_blank">网页教程基础</a></div>
+        </li>
+			<li>
+          <div class="one"><a href="http://s.jb51.net/" target="_blank">服务器常用软件</a></div>
+        </li>
+		<li>
+          <div class="one"><a href="http://m.jb51.net/" target="_blank">手机版</a></div>
+          <div class="two"><img src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/m.jb51.net.png" data-baiduimageplus-ignore=""></div>      
+        </li>
+        <li class="watch">
+          <div class="one"><a href="http://weibo.com/jb51net" target="_blank" rel="nofollow"><i class="icon"></i>关注微信</a></div>
+          <div class="two"><img src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/weixin_200.gif" data-baiduimageplus-ignore=""></div>
+        </li>
+      </ul>
+      <div class="navUser mt5 fr" id="jb51_topbar"> </div>
+    </div>
+    <!--topNav End -->
+  </div>
+</div>
+
+  <div class="main clearfix">
+    <div class="mtb10 clearfix">
+      <div class="logo"><a href="http://www.jb51.net/"><img src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/logo.gif" title="脚本之家" alt="脚本之家"></a></div>
+      <div class="logom fl"><span id="logo_m" class="jbTestPos"></span></div>
+      <div class="logor fr"><span id="logo_r" class="jbTestPos"></span></div>
+    </div>
+<!-- 导航-->
+<div class="nav_top clearfix">
+<ul>
+<li><a href="http://www.jb51.net/web/">网页制作</a></li>
+<li><a href="http://www.jb51.net/list/index_1.htm">网络编程</a></li>
+<li><a href="http://www.jb51.net/list/index_96.htm">脚本专栏</a></li>
+<li><a href="http://www.jb51.net/jiaoben/">脚本下载</a></li>
+<li><a href="http://www.jb51.net/list/index_104.htm">数据库</a></li>
+<li><a href="http://www.jb51.net/cms/">CMS教程</a></li>
+<li><a href="http://www.jb51.net/books/">电子书籍</a></li>
+<li><a href="http://www.jb51.net/pingmian/">平面设计</a></li>
+<li><a href="http://www.jb51.net/media/">媒体动画</a></li>
+<li><a href="http://www.jb51.net/os/">操作系统</a></li>
+<li><a href="http://www.jb51.net/yunying/">网站运营</a></li>
+<li><a href="http://www.jb51.net/hack/">网络安全</a></li>
+<li class="last"><a href="http://www.jb51.net/shouce/">在线手册</a></li>
+</ul>
+</div>
+
+<!--导航结束-->
+<div class="NavBar clearfix ptb10">
+<div class="fl w690">
+<div class="box mb15 mt10"><i class="icon"></i>您的位置： 
+				<a href="http://www.jb51.net/">主页</a> &gt; <a href="http://www.jb51.net/os/">操作系统</a> &gt; <a href="http://www.jb51.net/os/RedHat/">RedHat/Centos</a> &gt; </div>
+</div>
+<div class="fr w300"><div class="search">
+<form action="http://so.jb51.net/cse/search" target="_blank">
+    <input type="hidden" name="s" value="10520733385329581432">
+    <input type="hidden" name="ie" value="gbk">
+    <input type="text" name="q" class="key_input">
+    <input type="submit" value="搜索" class="c_btn">
+</form></div></div>
+  </div>
+</div>
+<!--head End -->
+<div class="main mb10 clearfix">
+<div class="clearfix"><span id="tonglan1" class="jbTestPos"></span></div>
+</div>
+
+<!--content Star -->
+<div id="contents">
+ <div class="main clearfix">
+      <div class="w690 fl">
+      <div class="article-content border">
+      <div class="title">
+            <h1 class="YaHei">LINUX 常见问题1000个详细解答</h1>
+            <p>作者：佚名  字体：[<a href="javascript:turnbig()">增加</a> <a href="javascript:turnsmall()">减小</a>] 来源：互联网 时间：09-08 17:09:41<a href="http://www.jb51.net/os/RedHat/1348_3.html#comments"> 我要评论</a></p>
+        </div>
+        <div class="art_desc mt10">LINUX 常见问题1000个详细解答
+
+一、 如何建立多用户
+　　提醒大家一句，别一直使用root用户，因为root用户在系统中有着至高无上的权力，一不小心
+就可能破坏系统。比如我们想删除/temp目录下的文件却将命令不小心输成“rm / temp（在‘/’后
+
+多了</div>
+        <div id="con_all">
+<div id="con_da1"><span id="gg_l" class="jbTestPos"></span></div>
+<div id="con_da2"><span id="gg_r" class="jbTestPos"></span></div>
+</div>
+        <div id="content">
+
+<p>二十三.将 man page 转成 HTML 格式</p>
+<p>使用 man2html 这个指令，就可以将 man page 转成 HTML 格式了。用法是：</p>
+<p>man2html filename &gt; htmlfile.html</p>
+<p>二十四.如何在gnome和kde之间切换。 <br>
+如果你是以图形登录方式登录linux，那么点击登录界面上的session（任务）即可以选择gnome和kde。</p>
+<p>如果你是以文本方式登录，那执行switchdesk gnome或switchdesk kde，然后再startx就可以进入gnome或kde。</p>
+<p>25...tar，.tar.gz，.bz2，.tar.bz2，.bz，.gz是什么文件，如何解开他们？ <br>
+他们都是文件(压缩)包。 <br>
+.tar：把文件打包，不压缩：tar cvf *.tar dirName 解开：tar xvf *.tar <br>
+.tar.gz：把文件打包并压缩：tar czvf *.tar.gz dirName 解开：tar xzvf *.tar.gz <br>
+.bz2：解开：bzip2 -d *.bz2 <br>
+.bz：解开：bzip -d *.bz <br>
+.gz：解开：gzip -d *.gz</p>
+<p>26.linux下如何解开.zip，.rar压缩文件？ <br>
+rh8下有一个图形界面的软件file-roller可以做这件事。令外可以用unzip *.zip解开zip文件，unrar *.rar解</p>
+<p>开rar文件，不过unrar一般<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>不自带，要到网上下载。</p>
+<p>27.linux下如何浏览.iso光盘镜像文件？ <br>
+a.建一个目录，如：mkdir a <br>
+b.把iso文件挂载到该目录上：mount -o loop xxxx.iso a <br>
+现在目录a里的内容就是iso文件里的内容了。</p>
+<p>28.linux下如何配置<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">网络</a>？ <br>
+用netconfig。“IP address:”就是要配置的IP地址，子网掩</p>
+<p>码，“Default gateway (IP):”网关，“Primary nameserver:”DNS服务器IP。</p>
+<p>29.如何让鼠标支持滚轮？</p>
+<p>在配置鼠标时，选择微软的鼠标，并正确选择端口如ps2,usb等</p>
+<p>30.如何让控制台支持中文显示？</p>
+<p><a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>zhcon。zhcon需要libimm_server.so和libpth.so.13这两个库支持。</p>
+<p>一般的中文输入法应该都有libimm_server.so。libpth.so.13出自pth-1.3.x。把这两个文件放到/usr/lib下就行了。</p>
+<p>31.如何配置grub？</p>
+<p>修改/boot/grub/grub.conf文件。其中 <br>
+“default=n”(n是个数字)是grub引导菜单默认被选中的项，n从0开始，0表示第一项，1表示第二项，依此类推。 <br>
+“timeout=x”(x是一个数)是超时时间，单位是妙。也就是引导菜单显示后，如果x秒内用户不进行选择，</p>
+<p>那么grub将启动默认项。 <br>
+“splashimage =xxxxxx”，这是引导菜单的背景图，先不理他。 <br>
+其它常用项我用下面的例子来说明： <br>
+title Red Hat 8.0 <br>
+root (hd1,6) <br>
+kernel /boot/vmlinuz-2.4.18-14 ro root=/dev/hdb7 <br>
+initrd /boot/initrd-2.4.18-14.img <br>
+其中"Red Hat 8.0"是在启动菜单列表里显示的名字 <br>
+root (hdx,y)用来指定你的boot分区位置，如果你没有分boot分区（本例就没分boot分区），那就指向根分区</p>
+<p>就行了，hdx是linux所在硬盘，hd0是第一块硬盘，hd1是第二块，依此类推。y是分区位置，从0开始，也就是</p>
+<p>等于分区号减一，比如你要指向的分区是hdx7，那么y就是6，如果是hdx1，那y就是0。注意root后面要有一个</p>
+<p>空格。 <br>
+kernel /boot/vmlinuz-2.4.18-14，其中"/boot/vmlinuz-2.4.18-14"是你要用的内核路径，如果你编译了心内</p>
+<p>核，把它改成你的新内核的路径就行了。</p>
+<p>ro就不用管，写上不会有错。</p>
+<p>root=/dev/hdxx指定根分区，本例是hdb7，所以root=/dev/hdb7</p>
+<p>initrd xxxxxxxxxxxxx这行不要也行，目前我还不清楚它是做什么用的。</p>
+<p>上面是linux的，下面是windows的</p>
+<p>title windows 98</p>
+<p>rootnoverify (hd0,0) <br>
+chainloader +1 <br>
+title xxxxxxx不用解释了，上面有解释。 <br>
+rootnoverify (hdx,y)用来指定windows所在分区，x，y跟上面一样，注意rootnoverify后有空格。 <br>
+chainloader +1照抄就行，注意空格。</p>
+<p>32.如何配置lilo？ <br>
+修改/etc/lilo.conf文件，然后运行lilo命令。</p>
+<p>33.如何让linux启动后自动挂载制定分区？ <br>
+编辑/etc/fstab文件，在里面加入相应的行，如果你对/etc/fstab的配置不熟悉，你可以用ptm，一个自动配</p>
+<p>置fstab的软件，在公社里应该有下载。</p>
+<p>34.如何定制linux启动时启动的<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">服务</a>？ <br>
+在控制台或终端下运行ntsysv，然后把要启动的<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">服务</a>选上，如果要开机不启动某个那就把他的选中去掉。</p>
+<p>35.没有软驱如何修复grub/lilo引导菜单？ <br>
+a.把第一张linux安装盘里的dosutils目录复制到windows盘中。如果是iso可以用winrar3提取。</p>
+<p>b.进入纯dos，进入dosutils目录，执行loadlin autoboot/vmlinuz root=/dev/hdxx()hdxx是你的linux根分区。</p>
+<p>这样就能进入linux。 <br>
+c.执行grub-install /dev/hdx(x=a,b,c,d) 或lilo即可以重写引导。 <br>
+另外还可以参考：<a href="http://www.linuxfans.org/nuke/modul...iewtopic&t=5101">http://www.linuxfans.org/nuke/modul...iewtopic&amp;t=5101</a></p>
+<p>36.如何配置鼠标？ <br>
+打开一个终端或进入控制台，运行mouseconfig命令即可配置鼠标！</p>
+<p>37.如何从dos下进入linux？ <br>
+首先你需要loadlin.exe这个程序，linux第一张<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>盘里的dosutils目录里有，另外你需要的就是linux内</p>
+<p>核，/boot/vmlinuz-2.4.xx-xx就是，把他弄到windows盘中，并把他重命名为vmlinuz（主<br>
+??牴???&nbsp; ?????<br>
+要是vmlinuz-2.4.xx-xx在dos下显示有点问题），另外dosutils目录里的autoboot里也有一</p>
+<p>个vmlinuz，也是linux内核，凑合能用，但很多设备不支持，如果linux引导程序或linux启动配置</p>
+<p>有问题，进不了linux，可以用这个内核进去修复linux。 <br>
+然后用loadlin vmlinuz root=/dev/hdxx （hdxx是你的linux根分区），另外</p>
+<p>用loadlin vmlinuz root=/dev/hdxx single还可以实现单用户模式。</p>
+<p>38.root密码丢失<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">解决</a> <br>
+GRUB:在引导装载程序菜单上，键入 [e] 来进入编辑模式。 <br>
+你会面对一个引导项目列表。查找其中类似以下输出 的句行： <br>
+kernel /vmlinuz-2.4.18-0.4 ro root=/dev/hda2 <br>
+按箭头键直到这一行被突出显示，然后按 [e]。 <br>
+你现在可在文本结尾处空一格再添加 single 来告诉 GRUB 引导单用户 Linux 模式。按 [Enter] 键来</p>
+<p>使编辑结果生效。 <br>
+你会被带会编辑模式屏幕，从这里，按 ， GRUB 就会引导单用户 Linux 模式。 结束载入后，你会面对</p>
+<p>一个与以下相似的 shell 提示： <br>
+sh-2.05# <br>
+现在，你便可以改变根命令，键入： <br>
+bash# passwd root <br>
+你会被要求重新键入口令来校验。结束后， 口令就会被改变，你便可以在提示下键入 reboot 来重新引导；</p>
+<p>然后，象平常一样登录为根用户。</p>
+<p>LILO:当<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>启动到出现LILO引导画面时，对于图形引导方式按TAB键进入文本方式，然后在LILO处</p>
+<p>输入linux single回车即可进入免密码的控制台，进入以后使用passwd命令修改root的密码</p>
+<p>即可</p>
+<p><br>
+0001 <br>
+修改主机名 <br>
+vi /etc/sysconfig/network，修改HOSTNAME一行为HOSTNAME=主机名，重启后也能生效</p>
+<p>0002 <br>
+Ret Hat Linux启动到文字界面(不启动xwindow) <br>
+将/etc/inittab中 id:5:initdefault: 一行中的5改为3</p>
+<p>0003 <br>
+redhat的自动升级更新问题(hutuworm) <br>
+在<a href="http://www.redhat.com/corp/support/errata/">www.redhat.com/corp/support/errata/</a>...略夭⑼瓿砂沧啊?/a&gt; <br>
+升级除kernel外的rpm: up2date -u <br>
+升级包括kernel在内的rpm: up2date -u -f</p>
+<p>0004 <br>
+windows下看linux分区的软件 <br>
+Paragon.Ext2FS.Anywhere.2.5.rar和explore2fs-1.00-pre4.zip</p>
+<p>0005 <br>
+mount用法 <br>
+fat32的分区 mount -o codepage=936,iocharset=cp936 /dev/hda7 /mnt/cdrom <br>
+iso文件 mount -o loop /abc.iso /mnt/cdrom <br>
+软盘 mount /dev/fd0 /mnt/floppy <br>
+USB闪存 mount /dev/sda1 /mnt/cdrom <br>
+所有/etc/fstab内容 mount -a <br>
+可以指定文件格式"-t 格式", 格式可以为vfat, ext2, ext3等.</p>
+<p>0006 <br>
+在vmware的LINUX中使用本地硬盘的FAT分区 <br>
+将本地的FAT分区共享，然后在VMWARE中使用SMBFS挂上。可以将如下的行放到/etc/fstab中： <br>
+$ /mnt/d_ip/D smbfs defaults,auto,username=win_name,password=win_pass,codepage=936,</p>
+<p>iocharest=gb2312 0 0</p>
+<p>其中win_ip是你的windows的IP地址；</p>
+<p>$是你的windows里面共享的D盘的共享名；D</p>
+<p>/mnt/d是要将该分区mount到linux的目录；</p>
+<p>win_name和win_pass是你的WINDOWS里面可以读取该分区的用户，比如你的管理员名和密码。</p>
+<p>如果你运行了/etc/rc.d/init.d/netfs，那么在启动的时候就会自动挂载这个分区。</p>
+<p><br>
+0007.a <br>
+删除名为-a的文件 <br>
+rm ./-a <br>
+rm -- -a 告诉rm这是最后一个选项，参见getopt <br>
+ls -i 列出inum，然后用find . -inum inum_of_thisfile -exec rm {} ;</p>
+<p>0007.b <br>
+删除名为a的??牴????&nbsp; ?文件 <br>
+rm \a</p>
+<p>0007.c <br>
+删除名字带的/和‘文件</p>
+<p>这些字符是正常文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>所不允许的字符，但可能在文件名中产生，如unix下的NFS文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>在Mac系统上使用</p>
+<p>1.<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">解决</a>的<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">方法</a>，把NFS文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>在挂到不过滤/字符的<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>下删除含特殊文件名的文件。</p>
+<p>2.也可，将错误文件名的目录其它文件移走，ls -id 显示含该文件目录的inum，umount 文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>，</p>
+<p>clri清除该目录的inum，fsck，mount，check your lost+found，rename the file in it.</p>
+<p>最好是通过WINDOWS FTP过去就可以删除任何文件名的文件了!</p>
+<p>0007.d</p>
+<p>删除名字带不可见字符的文件</p>
+<p>列出文件名并转储到文件：ls -l &gt;aaa</p>
+<p>然后编辑文件的内容加入rm命令使其内容成为删除上述文件的格式：</p>
+<p>vi aaa <br>
+[rm -r ******* <br>
+] <br>
+把文件加上执行权限 chmod +x aaa <br>
+$aaa执行&nbsp;</p>
+<p>0007.e <br>
+删除文件大小为零的文件 <br>
+rm -i `find ./ -size 0` <br>
+find ./ -size 0 -exec rm {} ; <br>
+find ./ -size |xargs rm -f &amp;非常有效 <br>
+for file in * #自己定义需要删除的文件类型 <br>
+do <br>
+${file}if [ ! -s&nbsp; ] <br>
+then <br>
+${file}rm&nbsp; <br>
+$file Success!"echo "rm&nbsp; <br>
+fi <br>
+done</p>
+<p>0008 <br>
+redhat设置滚轮鼠标(mc1011) <br>
+进入X后，选择鼠标的配置，选择wheel mouse(ps/2)就可以耍?<br>
+如果鼠标表现异常，重启计算机即可。</p>
+<p>0009 <br>
+加装xwindow <br>
+用linux光盘启动，选择升级，然后单独选择包，<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>即可</p>
+<p>0010 <br>
+删除linux分区 <br>
+做一张partition magic的启动软盘,启动后删除. 或者用win2000的启动光盘启动,然后删除.</p>
+<p>0011 <br>
+如何退出man <br>
+q</p>
+<p>0012 <br>
+不编译内核，mount ntfs分区 <br>
+原装rh8，未升级或编译内核 <br>
+1. 上google.com搜索并下载 kernel-ntfs-2.4.18-14.i686.rpm <br>
+2. rpm -ivh kernel-ntfs-2.4.18-14.i686.rpm <br>
+3. mkdir /mnt/c <br>
+4. mount -t ntfs /dev/hda1 /mnt/c</p>
+<p>0013 <br>
+redhat 8.0中用xmms听mp3 <br>
+下载<a href="http://www.gurulabs.com/files/xmms-mp3-1.2.7-13.p.i386.rpm">www.gurulabs.com/files/xmms-mp3-1.2.7-13.p.i386.rpm</a>
+		<br>
+rpm -Uvh xmms-mp3-1.2.7-13.p.i386.rpm</p>
+<p>0014 <br>
+找回忘记了的root口令（lilo/grub） <br>
+三种办法： <br>
+1.在<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>进入单用户状态，直接用passwd root去更改 <br>
+2.用<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>光盘引导<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>，进行linux rescue状态，将原来/分区挂接上来,作法如下： <br>
+cd /mnt <br>
+mkdir hd <br>
+mount -t auto /dev/hdaX(原来/分区所在的分区号） hd <br>
+cd hd <br>
+chroot ./ <br>
+passwd root <br>
+这样可以搞定 <br>
+3.将本机的硬盘拿下来，挂到其他的linux系统上，采用的办法与第二种相同 <br>
+rh8中 <br>
+一. lilo <br>
+1. 在出现 lilo: 提示时键入 linux single <br>
+画面显示 lilo: linux single <br>
+2. 回车可直接进入linux命令行 <br>
+3. #vi /etc/shadow <br>
+将第一行，即以root开头的一行中root:后和下一个:前的内容删除， <br>
+第一行将类似于 <br>
+root::...... <br>
+保存 <br>
+4. #reboot重启，root密码为空 <br>
+二. grub <br>
+1. 在出现grub画面时，用上下键选中你平时启动linux的那一项(别选dos哟)，然后按e键 <br>
+2. 再次用上下键选中你平时启动linux的那一项(类似于kernel /boot/vmlinuz-2.4.18-14 ro root=LABEL=/)，</p>
+<p>然后按e键</p>
+<p>3. 修改你现在见到的命令行，加入single，结果如下：</p>
+<p>kernel /boot/vmlinuz-2.4.18-14 single ro root=LABEL=/</p>
+<p>4. 回车返回，然后按b键启动，即可直接进入linux命令行</p>
+<p>5. #v??牴????&nbsp; ?i /etc/shadow <br>
+将第一行，即以root开头的一行中root:后和下一个:前的内容删除， <br>
+第一行将类似于 <br>
+root::...... <br>
+保存 <br>
+6. #reboot重启，root密码为空</p>
+<p>0015</p>
+<p>使ctrl + alt + del失效 <br>
+vi /etc/inittab <br>
+将ca::ctrlaltdel:/sbin/shutdown -t3 -r now这行注释掉，就可以了</p>
+<p>0016 <br>
+如何看出redhat的版本是7还是8(hutuworm) <br>
+cat /proc/version或者cat /etc/redhat-release或者cat /etc/issue</p>
+<p>0017 <br>
+文件在哪个rpm中(无双) <br>
+上<a href="http://www.rpmfind.net/">http://www.rpmfind.net/</a>上搜，或者rpm -qf 文件名得到</p>
+<p>0018 <br>
+把man或info的信息存为文本文件 <br>
+以 tcsh 为例： <br>
+man tcsh | col -b &gt; tcsh.txt <br>
+info tcsh -o tcsh.txt -s</p>
+<p>0019 <br>
+利用现存两个文件，生成一个新的文件 <br>
+1. 取出两个文件的并集(重复的行只保留一份) <br>
+2. 取出两个文件的交集(只留下同时存在于两个文件中的文件) <br>
+3. 删除交集，留下其他的行 <br>
+1. cat file1 file2 | sort | uniq <br>
+2. cat file1 file2 | sort | uniq -d <br>
+3. cat file1 file2 | sort | uniq -u</p>
+<p>0020 <br>
+<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">设置</a>com1口，让超级终端通过com1口进行登录 <br>
+确认有/sbin/agetty，编辑/etc/inittab，添加 <br>
+7:2345:respawn:/sbin/agetty /dev/ttyS0 9600 <br>
+9600bps是因为联路由器缺省一般都是这种速率，也可以设成 <br>
+19200、38400、57600、115200 <br>
+修改/etc/securetty，添加一行：ttyS0，确保root用户能登录 <br>
+重启机器，就可以拔掉鼠标键盘显示器（启动时最好还是要看看输出信息）了</p>
+<p>0021 <br>
+删除目录下所有文件包括子目录 <br>
+rm -rf 目录名</p>
+<p>0022 <br>
+查看<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>信息 <br>
+cat /proc/cpuinfo - CPU (i.e. vendor, Mhz, flags like mmx) <br>
+cat /proc/interrupts - 中断 <br>
+cat /proc/ioports - 设备IO端口 <br>
+cat /proc/meminfo - 内存信息(i.e. mem used, free, swap size) <br>
+cat /proc/partitions - 所有设备的所有分区 <br>
+cat /proc/pci - PCI设备的信息 <br>
+cat /proc/swaps - 所有Swap分区的信息 <br>
+cat /proc/version - Linux的版本号 相当于 uname -r <br>
+uname -a - 看<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>内核等信息</p>
+<p>0023 <br>
+去掉多余的回车符 <br>
+sed s/^M// test.sh &gt; back.sh， 注意^M是敲ctrl_v ctrl-m得到的 <br>
+或者 dos2unix filename</p>
+<p>0024 <br>
+切换X桌面(lnx3000) <br>
+switchdesk KDE或者switchdesk GNOME</p>
+<p>0025 <br>
+通用的声卡驱动程序(lnx3000) <br>
+OSS <a href="http://www.opensound.com/">www.opensound.com/</a> ALSA <a href="http://www.alsa-project.org/">www.alsa-project.org/</a></p>
+<p>0026 <br>
+改变redhat的<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>语言/字符集(beming/mc1011) <br>
+修改 /etc/sysconfig/i18n 文件，如 <br>
+LANG="en_US"，xwindow会显示英文界面， <br>
+LANG="zh_CN.GB18030"，xwindow会显示中文界面。 <br>
+还有一种<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">方法</a> <br>
+$HOME/.i18ncp /etc/sysconfig/i18n&nbsp; <br>
+$HOME/.i18n 文件，如修改&nbsp; <br>
+LANG="en_US"，xwindow会显示英文界面， <br>
+LANG="zh_CN.GB18030"，xwindow会显示中文界面。 <br>
+这样就可以改变个人的界面语言，而不影响别的用户</p>
+<p>0027 <br>
+把屏幕<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">设置</a>为90列 <br>
+stty cols 90</p>
+<p>0028 <br>
+使用md5sum文件 <br>
+md5sum isofile &gt; hashfile, 将 md5sum 档案与 hashfile 档案内容比对, 验证杂凑值 <br>
+是否一致 md5sum –c hashfile</p>
+<p>002??牴????&nbsp; ?9 <br>
+一次解压多个zip文件 <br>
+unzip "*"，注意引号不能少</p>
+<p>0030 <br>
+看pdf文件 <br>
+使用xpdf或者<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>acrobat reader for linux</p>
+<p>0031 <br>
+查找权限位为S的文件 <br>
+find . -type f ( -perm -04000 -o -perm -02000 ) -exec ls -lg {} ;</p>
+<p>0032 <br>
+装中文输入法 <br>
+以redhat8为例,xwindow及其终端下的不用说了吧,缺省就<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>了,用ctrl-space呼出。 <br>
+现在讨论纯console,请下载zhcon.gnuchina.org/download/src/zhcon-0.2.1.tar.gz, <br>
+放在任一目录中,tar xvfz zhcon-0.2.1.tar.gz, cd zhcon-0.2.1, ./configure, <br>
+make, make install。<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>结束，要想使用，请运行zhcon，想退出，运行exit。</p>
+<p>0033 <br>
+把弹出的光盘收回来(beike) <br>
+#eject －t</p>
+<p>0034 <br>
+cd光盘做成iso文件(弱智) <br>
+cp /dev/cdrom xxxx.iso</p>
+<p>0035 <br>
+快速观看开机的硬件检测(弱智) <br>
+dmesg | more</p>
+<p>0036 <br>
+查看硬盘的使用情况 <br>
+df -k 以K为单位显示 <br>
+df -h 以人性化单位显示，可以是b,k,m,g,t..</p>
+<p>0037 <br>
+查看目录的大小 <br>
+du -sh dirname <br>
+-s 仅显示总计 <br>
+-h 以K、M、G为单位，提高信息的可读性。KB、MB、GB是以1024为换算单 位， -H以1000为换算单位。</p>
+<p>0038 <br>
+查找或删除正在使用某文件的进程(wwwzc) <br>
+fuser filename <br>
+fuser -k filename</p>
+<p>0039 <br>
+<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>软件 <br>
+rpm -ivh aaa.rpm <br>
+tar xvfz aaa.tar.gz; cd aaa; ./configure; make; make install</p>
+<p>0040 <br>
+字符模式下<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">设置</a>/删除环境变量 <br>
+bash下 <br>
+<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">设置</a>：export 变量名=变量值 <br>
+删除：unset 变量名 <br>
+csh下 <br>
+<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">设置</a>：setenv 变量名 变量值 <br>
+删除：unsetenv 变量名</p>
+<p>0041 <br>
+ls如何看到.开头的文件 <br>
+ls -a</p>
+<p>0042 <br>
+rpm中的文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>到哪里去了 <br>
+rpm -qpl aaa.rpm</p>
+<p>0043 <br>
+使用src.rpm <br>
+rpmbuild --rebuild *.src.rpm</p>
+<p>0044 <br>
+vim中显示颜色或不显示颜色 <br>
+vi ~/.vimrc; 如果有syntax on，则显示颜色，syntax off，则不显示颜色</p>
+<p>0045 <br>
+linux是实时还是分时<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">操作</a><a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a> <br>
+分时</p>
+<p>0046 <br>
+make bzImage -j的j是什么意思(wind521) <br>
+-j主要是用在当你的<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>硬件资源比较大的时候，比较富裕的时候，用这个可以来加快编译的速度，如-j 3</p>
+<p>0047 <br>
+源码包怎么没有 <br>
+你没有<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>源代码，你把你光盘上rpm -i *kernel*source*.rpm装上，就可以看到你的源代码了。</p>
+<p>0048 <br>
+修改<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>时间 <br>
+date -s “2003-04-14 cst”，cst指时区，时间设定用date -s 18:10</p>
+<p>0049 <br>
+开机就mount上windows下的分区 <br>
+自动将windows的d盘挂到/mnt/d上，用vi打开/etc/fstab，加入以下一行 <br>
+/dev/hda5 /mnt/d vfat defaults,codepage=936,iocharset=cp936 0 0 <br>
+注意，先得手工建立一个/mnt/d目录</p>
+<p>0050 <br>
+linux怎么用这么多内存 <br>
+为了提高<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>性能和不浪费内存，linux把多的内存做了cache，以提高io速度</p>
+<p>0051 <br>
+FSTAB 最后的配置项里边最后两个数字是什么意思(lnx3000) <br>
+第一个叫fs_freq,用来决定哪一个文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>需要执行dump操作，0就是不需要； <br>
+第二个叫fs_passno,是<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>重启时fsck程序检测磁盘的顺序号 <br>
+1 是root文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>，2 是别的文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>。fsck按序号检测磁盘，0表示该文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>不被检测 <br>
+dump 执行ext2的文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>的备份<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">操作</a> <br>
+fsck 检测和修复文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a></p>
+<p>0052 <br>
+linux中让用户的密码必须有一定的长度,并且符合复杂度(eapass) <br>
+vi /etc/login.defs，改P??牴????&nbsp; ?ASS_MIN_LEN</p>
+<p>0053 <br>
+linux中的翻译软件 <br>
+星际译王 xdict</p>
+<p>0054 <br>
+不让显示器休眠 <br>
+setterm -blank 0 <br>
+setterm -blank n (n为等待时间)</p>
+<p>0055 <br>
+用dat查询昨天的日期(gadfly) <br>
+date --date=yesterday</p>
+<p>0056 <br>
+xwindow下如何截屏 <br>
+Ksnapshot或者gimp</p>
+<p>0057 <br>
+解压小全 <br>
+tar xvfj example.tar.bz2 <br>
+tar xvfz example.tar.gz <br>
+tar xvfz example.tgz <br>
+tar xvf example.tar <br>
+unzip example.zip</p>
+<p>0058 <br>
+在多级目录中查找某个文件的<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">方法</a>(青海湖) <br>
+find /dir -name filename.ext <br>
+du -a | grep filename.ext <br>
+locate filename.ext</p>
+<p>0059 <br>
+不让普通用户自己改密码(myxfc) <br>
+[root@xin_fc etc]# chmod 511 /usr/bin/passwd <br>
+又想让普通用户自己改密码 <br>
+[root@xin_fc etc]# chmod 4511 /usr/bin/passwd</p>
+<p>0060 <br>
+显卡实在配不上怎么办(win_bigboy) <br>
+去 <a href="http://www.redflag-linux.com/">http://www.redflag-linux.com/</a>，下了xfree86 4.3安装就可以了.</p>
+<p>0061 <br>
+超强删除格式化工具(弱智) <br>
+比PQMagic安全的、建立删除格式化的小工具：sfdisk.exe for msdos <br>
+<a href="http://www.wushuang.net/soft/sfdisk.zip">http://www.wushuang.net/soft/sfdisk.zip</a></p>
+<p>0062 <br>
+如何让xmms播放列表里显示正确的中文(myxfc) <br>
+-*-*-*-*-*-iso8859-1,-misc-simsun-medium-r-normal--12-*-*-*-*-*-gbk-0,*-r- <br>
+把这个东西完全拷贝到你的字体里面 <br>
+<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">操作</a><a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">方法</a>: <br>
+右键单击xmms播放工具的任何地方 <br>
+会看到一个"选项",然后选择"功能设定"选择"fonts" <br>
+然后把上面的字体完整的拷贝到"播放清单"和 "user x font</p>
+<p>0063 <br>
+linux下听MP3(hehhb) <br>
+redhat光盘原带的xmms不能播放MP3(无声), 要下载<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>一个RPM包:xmms-mp3-1.2.7-13.p.i386.rpm安装即</p>
+<p>可.打开xmms,ctl-p,在font栏中</p>
+<p>先在上半部的小框内打勾，再选择 “fixed(misc) gbk-0 13”号字 <br>
+体即可显示中文歌曲名。在音频输出插件中选择 "开放音频<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>驱动 <br>
+程序 1.2.7 [lioOSS.so]即可正常播放MP3文件.</p>
+<p>0064 <br>
+<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>中文字体(hehhb) <br>
+先下载 <a href="http://freshair.netchina.com.cn/~George/sm.sh">http://freshair.netchina.com.cn/~George/sm.sh</a>
+		<br>
+(参考文献: <a href="http://www.linuxeden.com/edu/doctext.php?docid=2679">http://www.linuxeden.com/edu/doctext.php?docid=2679</a>) <br>
+SimSun18030.ttc在微软网站可下载，<a href="http://www.microsoft.com/china/windows2000/downloads/18">http://www.microsoft.com/china/windows2000/downloads/18</a>
+		<br>
+030.asp　它是个msi文件，在 mswindows中<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>用的，装好后在windows目录下的fonts <br>
+目录里面就可以找到它。把simsun.ttc，SimSun18030.ttc，tahoma.ttf，tahomabd.ttf <br>
+拷贝到/usr/local/temp，然后下载的shell文件也放到这个目录里，然后打开终端 <br>
+cd /usr/local/temp <br>
+chmod 755 sm.sh <br>
+./sm.sh</p>
+<p>0065 <br>
+装载windows分区的FAT32、FAT16文件<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">系统</a>(hehhb) <br>
+以root身份进入KDE，点击桌面上的“起点”图标，在/mnt目录下建立如下文件夹：c,d,e,f,g,usb.分别用</p>
+<p>作windows下各分区和usb闪盘。 <br>
+　　用文本编辑器打开/etc/fstab 文件.加入如下: <br>
+/dev/hda1 /mnt/c vfat iocharset=gb2312,umask=0,codepage=936 0 0 <br>
+/dev/hda5 /mnt/d vfat iocharset=gb2312,umask=0,codepage=936 0 0 <br>
+/dev/hda6 /mnt/e vfat iocharset=gb2??牴????&nbsp; ?312,umask=0,codepage=936 0 0 <br>
+/dev/hda7 /mnt/f vfat iocharset=gb2312,umask=0,codepage=936 0 0 <br>
+/dev/hda8 /mnt/g vfat iocharset=gb2312,umask=0,codepage=936 0 0 <br>
+/dev/cdrom /mnt/cdrom udf,iso9660 noauto,iocharset=gb2312,owner,kudzu,ro 0 0 <br>
+/dev/sda1 /mnt/usb vfat iocharset=gb2312,umask=0,codepage=936 0 0 <br>
+存盘退出. 重新启动后即可正常访问FAT32或FAT16格式分区,<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">解决</a>显示WINDOWS分区下和光盘中文文件名乱码 <br>
+问题.其****六列，每列用Tab键分开。注意此<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">方法</a>只能mount上Fat 分区格式.sda1是闪盘。</p>
+<p>0066 <br>
+在X下使用五笔和拼音,区位输入法(hmkart) <br>
+从<a href="http://www.fcitx.org/">http://www.fcitx.org/</a>上下载fcitx的rpm包<a target="_blank" href="http://www.jb51.net/" class="UBBWordLink">安装</a>即可</p>
+<p>0067 <br>
+在Linux下如何解压RAR文件(hmkart) <br>
+<a href="http://www.linuxeden.com/download/s....php?softid=883">http://www.linuxeden.com/download/s....php?softid=883</a>
+		<br>
+下载RAR for Linux 3.2.0，解压揭开后make <br>
+然后可以用unrar e youfilename.rar解压rar文件</p>
+
+                                              
+			
+<div class="cupage"><a href="http://www.jb51.net/os/RedHat/1348_2.html">上一页</a> <a href="http://www.jb51.net/os/RedHat/1348.html">1</a> <a href="http://www.jb51.net/os/RedHat/1348_2.html">2</a> <strong>3</strong><a href="http://www.jb51.net/os/RedHat/1348_4.html">4</a> <a href="http://www.jb51.net/os/RedHat/1348_5.html">5</a> <a href="http://www.jb51.net/os/RedHat/1348_4.html">下一页</a> </div>
+</div><!--endmain-->
+<div class="lbd clearfix">
+<span id="art_down" class="jbTestPos"></span>
+</div>
+<div id="shoucang">
+
+</div>
+<div class="tags mt10">
+
+</div>
+<div class="relatedarticle clearfix mt5">
+<h2>相关文章</h2>
+<ul>
+<li><span>2016-05-03</span><a href="http://www.jb51.net/os/RedHat/456557.html" target="_blank">CentOS中无线网卡的驱动安装与基本操作命令教程</a></li><li><span>2016-05-03</span><a href="http://www.jb51.net/os/RedHat/456538.html" target="_blank">CentOS中Xen虚拟机的安装与基本操作教程 </a></li><li><span>2016-04-26</span><a href="http://www.jb51.net/os/RedHat/454724.html" target="_blank">CentOS系统中GitLab客户端的安装教程</a></li><li><span>2016-04-26</span><a href="http://www.jb51.net/os/RedHat/454703.html" target="_blank">CentOS系统上搭建Git版本控制服务器的教程</a></li><li><span>2016-04-26</span><a href="http://www.jb51.net/os/RedHat/454670.html" target="_blank">CentOS中Git客户端的安装和基础配置教程</a></li><li><span>2016-04-22</span><a href="http://www.jb51.net/os/RedHat/453679.html" target="_blank">详解VPS上给CentOS添加硬盘而不用重启服务器的方法</a></li><li><span>2016-04-21</span><a href="http://www.jb51.net/os/RedHat/453214.html" target="_blank">CentOS系统中安装使用图形化界面的教程</a></li><li><span>2016-04-21</span><a href="http://www.jb51.net/os/RedHat/453196.html" target="_blank">CentOS服务器端配置SSH远程连接的教程</a></li><li><span>2016-04-15</span><a href="http://www.jb51.net/os/RedHat/451296.html" target="_blank">全面讲解RedHat系Linux中的rpm包管理系统</a></li><li><span>2016-04-14</span><a href="http://www.jb51.net/os/RedHat/450919.html" target="_blank">CentOS系统中挂载光盘镜像ISO文件的教程</a></li><li><span>2016-04-14</span><a href="http://www.jb51.net/os/RedHat/450895.html" target="_blank">在RHEL(Redhat)系统中挂载U盘与光盘ISO镜像的方法</a></li><li><span>2016-04-14</span><a href="http://www.jb51.net/os/RedHat/450872.html" target="_blank">CentOS 7系统中的时间日期设置全攻略</a></li>
+</ul>
+</div>
+<div class="lbd clearfix mt5">
+<span id="art_down2" class="jbTestPos"></span>
+</div>
+<a href="http://www.jb51.net/os/RedHat/1348_3.html#comments"></a>
+<div id="comments">
+<div id="SOHUCS" sid="1348" style="width: 100%; height: auto;"><div id="SOHU_MAIN"><div id="SOHU-comment-main" class="sohu-comment-wrapper"><div id="article_info_sohu">        <div class="reset-g clear-g section-title-w  section-title-logoutStyle">
+            <div class="title-join-w">
+                <div class="join-wrap-w join-wrap-b"><strong class="wrap-name-w wrap-name-b">评论</strong><span class="wrap-join-w wrap-join-b">(<em class="join-strong-gw join-strong-bg">0</em><span node-type="involved">人参与</span><i class="gap-b">，</i><em class="join-strong-gw join-strong-bg">0</em><span node-type="comments">条评论</span>)</span></div>
+            </div>
+            <div class="title-user-w">
+                <div node-type="sohu-pact" class="title-link-w" style="display: none;"><a href="http://zt.pinglun.sohu.com/s2014/sljyhgy/index.shtml" target="_blank">搜狐“我来说两句”用户公约</a></div>
+            </div>
+        </div>
+        </div><div id="login_sohu"></div><div id="comment_sohu"><div node-type="cbox-wrapper" class="reset-g section-cbox-w"><div style="width:1px;height:1px;overflow:hidden;"><img src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/vcode.jpg" style="visibility:hidden;width:1px;height:1px;"></div><div class="clear-g cbox-block-w">
+            <div class="block-head-w">
+                <div class="head-img-w">
+                                        <a node-type="user-avatar" href="javascript:void(0)" target="_self"><img src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/pic42_null.gif" onerror="SOHUCS.isImgErr(this)" width="42" height="42" alt=""></a>
+                    </div>
+                <!--
+                -->
+            </div>
+        <div class="block-post-w block-post-default-e"><div class="post-wrap-w post-wrap-b"><div class="wrap-area-w"><div class="area-textarea-w" style="position:relative;zoom:1;z-index:9;"><textarea name="" class="textarea-fw textarea-bf">来说两句吧...</textarea></div></div><div class="clear-g wrap-action-w wrap-action-b"><div class="action-function-w action-function-b relative-z-w"><ul class="clear-g"><li class="function-face-w"><a href="javascript:void(0)" class="effect-w" title="表情"><i class="face-b"></i></a></li><li class="function-uploadimg-w"><a href="javascript:void(0)" class="effect-w" title="上传图片"><i class="uploadimg-b"></i></a><div class="uploadimg-file-w"><input class="file-fw" id="img_upload" name="file" type="file" accept="image/*"></div><div class="img-btn-cover" style="width:40px;height:40px;margin-top:-40px;z-index:-1;position: relative;"></div></li><!--<li class="function-at-w"><a href="javascript:void(0)" class="effect-w"><i class="at-b"></i></a></li>--></ul></div><div class="clear-g action-issue-w"><div class="issue-btn-w"><a href="javascript:void(0)"><button class="btn-fw btn-bf btn-fw-main">发布</button></a></div></div></div></div>
+                                    <div node-type="login-list" class="post-login-w">
+                <ul class="clear-g">
+                                                            <li style="display:block">
+                        <div class="login-wrap-w login-wrap-b">
+                            <a data-key="sina" target="_self" href="javascript:;" title="新浪微博" alt="新浪微博">
+                                <span class="wrap-icon-w icon30-sina-b"></span><span class="wrap-name-w wrap-name-b">微博登录</span>
+                            </a>
+                        </div>
+                    </li>
+                                        <li style="display:block">
+                        <div class="login-wrap-w login-wrap-b">
+                            <a data-key="qq" target="_self" href="javascript:;" title="QQ" alt="QQ">
+                                <span class="wrap-icon-w icon30-qq-b"></span><span class="wrap-name-w wrap-name-b">QQ登录</span>
+                            </a>
+                        </div>
+                    </li>
+                                        <li>
+                        <div class="login-wrap-w login-wrap-b login-wrap-phone-b">
+                            <a data-key="phone" target="_self" href="javascript:void(0)">
+                                <span class="wrap-icon-w icon30-phone-b"></span><span class="wrap-name-w wrap-name-b">手机登录</span>
+                            </a>
+                        </div>
+                    </li>
+                    </ul>
+            </div>
+            </div></div><div node-type="prompt-no-privilege" class="cbox-prompt-w" style="display: none;">
+            <span class="prompt-empty-w prompt-empty-b">等级不够，发表评论升至指定级别才能获得该特权。详情请参见<a node-type="privilege-intro" href="javascript:;">等级说明</a>。</span>
+        </div></div></div><div id="list_sort_sohu"></div><div id="list_sohu" topicid="557056244">
+        <div class="reset-g section-list-w">
+            <div class="list-comment-empty-w">
+                <div class="empty-prompt-w"><span class="prompt-null-w prompt-null-b">还没有评论，快来抢沙发吧！</span></div>
+            </div>
+        </div></div><div id="list_hot"></div><div id="page_sohu"></div><div id="more_list_sohu"></div><div id="powerby_sohu">        <div class="reset-g section-service-w">
+            <div class="service-wrap-w service-wrap-b"><a node-type="powered-by" href="http://changyan.sohu.com/?from=changyan" target="_blank">Powered by 畅言</a></div>
+        </div></div></div></div></div>
+</div>
+      </div><!--endborder-->
+      </div><!--end fl-->
+      
+<div class="w300 fr">
+<div class="r300 clearfix"><span id="r1gg" class="jbTestPos"></span></div>
+<div class="subcate bord mt10">
+                        	<div class="asidetit cl">
+                            	<h3>文章分类</h3>
+                            </div>
+                            <div class="subcatec">
+                            	<ul>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/list682_1.html" target="_blank">bios</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/list490_1.html" target="_blank">系统安装</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/list685_1.html" target="_blank">系统进程</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/windows/" target="_blank">Windows系列</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/LINUXjishu/" target="_blank">LINUX</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/RedHat/" target="_blank">RedHat/Centos</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/Ubuntu/" target="_blank">Ubuntu/Debian</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/Fedora/" target="_blank">Fedora</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/Solaris/" target="_blank">Solaris</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/qilin/" target="_blank">麒麟系统</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/hongqi/" target="_blank">红旗Linux</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/Unix/" target="_blank">Unix/BSD</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/MAC/" target="_blank">苹果MAC</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/list381_1.html" target="_blank">注册表</a></li>
+
+                                    <li><i></i><a href="http://www.jb51.net/os/other/" target="_blank">其它系统</a></li>
+
+<div class="clearfix"></div>
+                                </ul>
+                            </div>
+                        </div>
+<div class="r300 clearfix mt10"><span id="idctu" class="jbTestPos"></span></div>                        
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">大家感兴趣的内容</h4>
+<ul class="newsList newList-in">
+<li><em class="no1">1</em><a href="http://www.jb51.net/os/RedHat/1109.html" target="_blank">linux的mount（挂载）命令详解</a></li><li><em class="no2">2</em><a href="http://www.jb51.net/os/RedHat/2461.html" target="_blank">linux下svn命令大全</a></li><li><em class="no3">3</em><a href="http://www.jb51.net/os/RedHat/1334.html" target="_blank">Linux关机命令详解</a></li><li><em class="no4">4</em><a href="http://www.jb51.net/os/RedHat/1114.html" target="_blank">查看linux版本的三种常用方法</a></li><li><em class="no5">5</em><a href="http://www.jb51.net/os/RedHat/1307.html" target="_blank">linux下find查找命令用法</a></li><li><em class="no6">6</em><a href="http://www.jb51.net/os/RedHat/9467.html" target="_blank">linux kill 关闭进程命令</a></li><li><em class="no7">7</em><a href="http://www.jb51.net/os/RedHat/1285.html" target="_blank">linux进入图形界面的方法</a></li><li><em class="no8">8</em><a href="http://www.jb51.net/os/RedHat/1077.html" target="_blank">REDHAT企业版LINUX5.0安装过程图解教程</a></li><li><em class="no9">9</em><a href="http://www.jb51.net/os/RedHat/1335.html" target="_blank">linux防火墙iptables详细教程</a></li><li><em class="no10">10</em><a href="http://www.jb51.net/os/RedHat/1218.html" target="_blank">Linux查看磁盘剩余空间方法</a></li>
+</ul>
+</div>
+</div>
+<div class="r300 clearfix mt10"><span id="idctu1" class="jbTestPos"></span></div>
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">最近更新的内容</h4>
+<ul class="newsListA">
+<li><a href="http://www.jb51.net/os/RedHat/448592.html" target="_blank">CentOS上搭建基于PPTP协议的VPN服务的流程详解</a></li><li><a href="http://www.jb51.net/os/RedHat/456557.html" target="_blank">CentOS中无线网卡的驱动安装与基本操作命令教程</a></li><li><a href="http://www.jb51.net/os/RedHat/456538.html" target="_blank">CentOS中Xen虚拟机的安装与基本操作教程 </a></li><li><a href="http://www.jb51.net/os/RedHat/454724.html" target="_blank">CentOS系统中GitLab客户端的安装教程</a></li><li><a href="http://www.jb51.net/os/RedHat/454703.html" target="_blank">CentOS系统上搭建Git版本控制服务器的教程</a></li><li><a href="http://www.jb51.net/os/RedHat/454670.html" target="_blank">CentOS中Git客户端的安装和基础配置教程</a></li><li><a href="http://www.jb51.net/os/RedHat/453679.html" target="_blank">详解VPS上给CentOS添加硬盘而不用重启服务器的方法</a></li><li><a href="http://www.jb51.net/os/RedHat/453214.html" target="_blank">CentOS系统中安装使用图形化界面的教程</a></li><li><a href="http://www.jb51.net/os/RedHat/453196.html" target="_blank">CentOS服务器端配置SSH远程连接的教程</a></li><li><a href="http://www.jb51.net/os/RedHat/451296.html" target="_blank">全面讲解RedHat系Linux中的rpm包管理系统</a></li>
+</ul>
+</div>
+</div>
+<div class="r300 clearfix mt10">
+<span id="bd200" class="jbTestPos"></span>
+</div>
+<div class="r300 clearfix mt10"><span id="idctu2" class="jbTestPos"></span></div>
+<div class="mt10 rFixedBox">
+<span id="r_2" class="jbTestPos"></span>
+</div>
+      
+      
+      </div><!--end fr-->
+      </div>
+</div><!--end content-->
+<div id="footer">
+<div class="main">
+<p>
+<a href="http://www.jb51.net/about.htm" target="_blank">关于我们</a> - 
+<a href="http://www.jb51.net/support.htm" target="_blank">广告合作</a> - 
+<a href="http://www.jb51.net/linkus.htm" target="_blank">联系我们</a> -  
+<a href="http://www.jb51.net/sm.htm" target="_blank">免责声明</a> -  
+<a href="http://www.jb51.net/sitemap.htm" target="_blank">网站地图</a> - 
+<a href="tencent://message/?uin=461478385&Site=http://www.jb51.net" target="_blank">投诉建议</a> - 
+<a href="http://www.jb51.net/up.htm" target="_blank">在线投稿</a>
+</p>
+<p>&#169;CopyRight 2006-2016 JB51.Net Inc All Rights Reserved. 脚本之家 版权所有</p>
+</div>
+</div><!--end footer-->
+<script type="text/javascript"> 
+if (top.location != self.location)top.location=self.location;
+$('#content').find('img').each(function(){
+        var img = this;
+        if (img.width >= 650){
+            img.style.width = "650px";
+            img.style.height = "auto";
+            //$(img).removeAttr('height');
+            var aTag = document.createElement('a');
+            aTag.href = img.src;
+			aTag.target="_blank";
+            $(aTag).addClass('bPic')
+            .insertAfter(img).append(img)
+          }
+    });
+ $(window).scroll(function()
+    {	
+    	//rFixedBox跟随滚动
+    	var h = $(window).height();
+        var top = $(window).scrollTop();
+    	var rFixedBox = $('.rFixedBox').prev().offset();
+        var fixedTop = rFixedBox.top;
+		
+        if(top>=fixedTop+344)
+        {
+			var h1 = parseInt($('#content').children('.main').height());
+			if(parseInt(top) + 340 < h1){
+				$('.rFixedBox').css({'position':'fixed','top': 0});
+			}else{
+				$('.rFixedBox').css({'position':'absolute','top': h1-510});
+			}
+        }
+        else
+        {
+            $('.rFixedBox').css({'position':'static', 'top':0});   
+        }	
+       /* return true;*/
+    });
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script type="text/javascript" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/jbLoader.js"></script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<div id="tongji">
+<script type="text/javascript" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/tongji2.js"></script>
+<script src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/count.php" language="javascript" type="text/javascript"></script>
+</div>
+<script>
+(function(){
+var appid = 'cyrHH3dwi',
+conf = 'prod_1dc5dc80970106099d43fe242b7465fc';
+var doc = document,
+s = doc.createElement('script'),
+h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+s.type = 'text/javascript';
+s.charset = 'utf-8';
+s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+h.insertBefore(s,h.firstChild);
+window.SCS_NO_IFRAME = true;
+})();
+
+</script>
+<script type="text/javascript" charset="utf-8" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/saved_resource"></script>
+
+</div><div class="sogoutip" style="z-index: 2147483645; visibility: hidden;"></div><div class="sogoubottom" id="sougou_bottom" style="display: block;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.jb51.net/os/RedHat/1348_3.html#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.jb51.net/os/RedHat/1348_3.html#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.jb51.net/os/RedHat/1348_3.html#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/yun6.html" style="border: none; display: block; z-index: 2147483645; background: transparent;"></iframe><script src="./LINUX 常见问题1000个详细解答_RedHat Centos_操作系统_脚本之家_files/pv.gif"></script></body></html>

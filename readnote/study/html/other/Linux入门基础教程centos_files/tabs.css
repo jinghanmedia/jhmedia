@@ -1,0 +1,24 @@
+.sonMenu {
+	height: 42px;
+}
+.sonMenu ul {
+	height: 42px;
+}
+.sonMenu ul li {
+	float: left;
+}
+.sonMenu ul li a {
+	padding: 2px 10px; color: rgb(32, 162, 217); line-height: 42px; font-size: 13px;
+}
+.sonMenu ul li a:hover {
+	color: rgb(255, 255, 255); background-color: rgb(72, 181, 228);
+}
+#mytop {
+	height: 148px;
+}
+.threead {
+	padding: 0px; border: 1px solid rgb(190, 223, 248); width: 958px; height: 90px; margin-top: 4px;
+}
+.threead a {
+	padding: 2px; float: left; display: block;
+}

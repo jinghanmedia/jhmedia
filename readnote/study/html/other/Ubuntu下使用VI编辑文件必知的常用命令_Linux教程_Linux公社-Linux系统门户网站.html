@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0047)http://www.linuxidc.com/Linux/2009-04/19489.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站</title>
+
+<link rel="icon" href="http://www.linuxidc.com/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://www.linuxidc.com/favicon.ico" type="image/x-icon">
+<meta name="description" content="Ubuntu下使用VI编辑文件必知的常用命令进入vi的命令vi filename :打开或新建文件，并将光标置于第一行首vi +n filename ：打开文">
+<meta name="keywords" content="Ubuntu教程,Ubuntu下使用VI编辑文件必知的常用命令,Linux,Linux教程,Linux系统,Linux安装,Ubuntu,Fedora,RedHat,SUSE,CentOS,红旗Linux">
+<link rel="canonical" href="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站.html">
+<meta name="generator" content="Linux公社">
+<meta name="generator" content="Linux">
+<link rel="stylesheet" href="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/style.css" type="text/css">
+<meta name="generator" content="专业的Linux网站">
+<script type="text/javascript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/jquery.js"></script>
+<script type="text/javascript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/iwms.js"></script>
+<script type="text/javascript">iwms.urlPrefix="../../";</script>
+
+<script type="text/javascript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/show.js"></script>
+<script src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/share.js"></script><link rel="stylesheet" href="http://bdimg.share.baidu.com/static/api/css/share_style0_24.css"></head>
+<body>
+<div class="topBar">
+	<div class="twidth">
+	
+	<div style="float:right">
+		<script type="text/javascript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/language.js"></script> <a id="StranLink" href="javascript:StranBody()" title="點擊以繁體中文方式浏覽">繁體</a>
+	</div>
+	
+	<div id="topUser">你好，游客 <a href="http://www.linuxidc.com/Linux/2009-04/19489.htm#" onclick="iwms.logPop()">登录</a>
+	<a href="http://www.linuxidc.com/memberreg.aspx" rel="nofollow">注册</a>
+	<a href="http://www.linuxidc.com/search.aspx" rel="nofollow">搜索</a>
+	</div>
+	</div>
+</div>
+<div class="twidth">
+<div id="sitehead">
+<div class="l"></div>
+<div class="r"></div>
+<div class="m">
+	<table width="100%">
+	<tbody><tr align="center"><td width="160">
+	<a href="http://www.linuxidc.com/"><img style="filter: chroma(color=#FFFFFF);" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/logo.jpg" alt="Linux公社" width="155" height="53" border="0"></a>
+	</td><td>
+	<div align="center"><script src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux.js" type="text/javascript" language="javaScript"></script></div>
+	</td>
+	</tr></tbody></table>
+</div>
+</div>
+<div id="navbar">
+<div class="l"></div>
+<div class="r"></div>
+<div class="m">
+	<a href="http://www.linuxidc.com/index.htm" class="first">首页</a><a href="http://www.linuxidc.com/it/">Linux新闻</a><a href="http://www.linuxidc.com/Linuxit/" class="thisclass">Linux教程</a><a href="http://www.linuxidc.com/MySql/">数据库技术</a><a href="http://www.linuxidc.com/RedLinux/">Linux编程</a><a href="http://www.linuxidc.com/Apache/">服务器应用</a><a href="http://www.linuxidc.com/Unix/">Linux安全</a><a href="http://www.linuxidc.com/download/">Linux下载</a><a href="http://www.linuxidc.com/Linuxrz/">Linux认证</a><a href="http://www.linuxidc.com/theme/">Linux主题</a><a href="http://www.linuxidc.com/Linuxwallpaper/">Linux壁纸</a><a href="http://www.linuxidc.com/linuxsoft/">Linux软件</a><a href="http://www.linuxidc.com/digi/">数码</a><a href="http://www.linuxidc.com/mobile/">手机</a><a href="http://www.linuxidc.com/diannao/">电脑</a>
+
+</div>
+</div>
+
+<div id="navsub">
+<div class="l"></div>
+<div class="r"></div>
+<div class="m">
+	<a href="http://www.linuxidc.com/index.htm">首页</a> → <a href="http://www.linuxidc.com/Linuxit/">Linux教程</a>
+</div>
+</div>
+<div class="linuxe1"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linuxe1.js"></script></div>
+<div class="linux1"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux1.js"></script></div>
+<div class="linuxa"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linuxa.js"></script></div>
+<div class="linuxa1"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linuxa1.js"></script></div>
+<table id="middle" width="100%" cellspacing="0" cellpadding="0" style="table-layout:fixed">
+<tbody><tr valign="top"><td>
+
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<div class="moreR">
+			背景：<script type="text/javascript">WriteBg()</script><img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#EDF0F5" alt="#EDF0F5" onclick="ContentBg(&quot;#EDF0F5&quot;)"> <img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#FAFBE6" alt="#FAFBE6" onclick="ContentBg(&quot;#FAFBE6&quot;)"> <img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#FFF2E2" alt="#FFF2E2" onclick="ContentBg(&quot;#FFF2E2&quot;)"> <img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#FDE6E0" alt="#FDE6E0" onclick="ContentBg(&quot;#FDE6E0&quot;)"> <img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#F3FFE1" alt="#F3FFE1" onclick="ContentBg(&quot;#F3FFE1&quot;)"> <img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#DAFAF3" alt="#DAFAF3" onclick="ContentBg(&quot;#DAFAF3&quot;)"> <img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#EAEAEF" alt="#EAEAEF" onclick="ContentBg(&quot;#EAEAEF&quot;)"> <img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/b.gif" style="cursor:pointer;width:7px;height:6px;border:1px solid #999;background:#FFF" alt="默认" onclick="ContentBg(&quot;&quot;)"> 
+		</div>
+		<span class="tt">阅读新闻</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm" id="bodyTd">
+		<div id="printBody" style="word-break:break-all;">
+			<div style="text-align:center"><h1 class="aTitle">Ubuntu下使用VI编辑文件必知的常用命令</h1></div>
+			
+			<table width="97%" align="center">
+				<tbody><tr>
+				<td width="140">[日期：2009-04-18]</td>
+				<td align="center">来源：Linux社区&nbsp;
+				作者：Ubuntu整理</td>
+				<td width="160" align="right">[字体：<a href="javascript:ContentSize(16)">大</a> <a href="javascript:ContentSize(0)">中</a> <a href="javascript:ContentSize(12)">小</a>]
+				</td></tr>
+			</tbody></table>
+<div id="li_all">
+<div id="li_1"><script type="text/javascript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux201.js"></script></div>
+<div id="li_2"><script type="text/javascript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux2.js"></script></div>
+</div>
+			<div id="content" style="overflow-x: hidden; word-break: break-all;"><div class="linux19"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux19.js"></script></div> <p><strong><a href="http://www.linuxidc.com/topicnews.aspx?tid=2" target="_blank" title="Ubuntu">Ubuntu</a>下使用VI编辑文件必知的常用命令</strong></p>
+<p>进入vi的命令<br>vi filename :打开或新建文件，并将光标置于第一行首<br>vi +n filename ：打开文件，并将光标置于第n行首<br>vi + filename ：打开文件，并将光标置于最后一行首<br>vi +/pattern filename：打开文件，并将光标置于第一个与pattern匹配的串处<br>vi -r filename ：在上次正用vi编辑时发生系统崩溃，恢复filename<br>vi filename....filename ：打开多个文件，依次进行编辑</p>
+<p>移动光标类命令<br>h ：光标左移一个字符<br>l ：光标右移一个字符<br>space：光标右移一个字符<br>Backspace：光标左移一个字符<br>k或Ctrl+p：光标上移一行<br>j或Ctrl+n ：光标下移一行<br>Enter ：光标下移一行<br>w或W ：光标右移一个字至字首<br>b或B ：光标左移一个字至字首<br>e或E ：光标右移一个字至字尾<br>) ：光标移至句尾<br>( ：光标移至句首<br>}：光标移至段落开头<br>{：光标移至段落结尾<br>nG：光标移至第n行首<br>n+：光标下移n行<br>n-：光标上移n行<br>n$：光标移至第n行尾<br>H ：光标移至屏幕顶行<br>M ：光标移至屏幕中间行<br>L ：光标移至屏幕最后行<br>0：（注意是数字零）光标移至当前行首<br>$：光标移至当前行尾</p>
+<p>屏幕翻滚类命令<br>Ctrl+u：向文件首翻半屏<br>Ctrl+d：向文件尾翻半屏<br>Ctrl+f：向文件尾翻一屏<br>Ctrl＋b；向文件首翻一屏<br>nz：将第n行滚至屏幕顶部，不指定n时将当前行滚至屏幕顶部。</p>
+<p>插入文本类命令<br>i ：在光标前<br>I ：在当前行首<br>a：光标后<br>A：在当前行尾<br>o：在当前行之下新开一行<br>O：在当前行之上新开一行<br>r：替换当前字符<br>R：替换当前字符及其后的字符，直至按ESC键<br>s：从当前光标位置处开始，以输入的文本替代指定数目的字符<br>S：删除指定数目的行，并以所输入文本代替之<br>ncw或nCW：修改指定数目的字<br>nCC：修改指定数目的行</p>
+<p>删除命令<br>ndw或ndW：删除光标处开始及其后的n-1个字<br>do：删至行首<br>d$：删至行尾<br>ndd：删除当前行及其后n-1行<br>x或X：删除一个字符，x删除光标后的，而X删除光标前的<br>Ctrl+u：删除输入方式下所输入的文本</p>
+<p>搜索及替换命令<br>/pattern：从光标开始处向文件尾搜索pattern<br>?pattern：从光标开始处向文件首搜索pattern<br>n：在同一方向重复上一次搜索命令<br>N：在反方向上重复上一次搜索命令<br>：s/p1/p2/g：将当前行中所有p1均用p2替代<br>：n1,n2s/p1/p2/g：将第n1至n2行中所有p1均用p2替代<br>：g/p1/s//p2/g：将文件中所有p1均用p2替换</p>
+<p>选项设置<br>all：列出所有选项设置情况<br>term：设置终端类型<br>ignorance：在搜索中忽略大小写<br>list：显示制表位(Ctrl+I)和行尾标志（$)<br>number：显示行号<br>report：显示由面向行的命令修改过的数目<br>terse：显示简短的警告信息<br>warn：在转到别的文件时若没保存当前文件则显示NO write信息<br>nomagic：允许在搜索模式中，使用前面不带“\”的特殊字符<br>nowrapscan：禁止vi在搜索到达文件两端时，又从另一端开始<br>mesg：允许vi显示其他用户用write写到自己终端上的信息</p>
+<p>最后行方式命令<br>：n1,n2 co n3：将n1行到n2行之间的内容拷贝到第n3行下<br>：n1,n2 m n3：将n1行到n2行之间的内容移至到第n3行下<br>：n1,n2 d ：将n1行到n2行之间的内容删除<br>：w ：保存当前文件<br>：e filename：打开文件filename进行编辑<br>：x：保存当前文件并退出<br>：q：退出vi<br>：q!：不保存文件并退出vi<br>：!command：执行shell命令command<br>：n1,n2 w!command：将文件中n1行至n2行的内容作为command的输入并执行之，若不指定n1，n2，则表示将整个文件内容作为command的输入<br>：r!command：将命令command的输出结果放到当前行</p>
+<p>寄存器操作<br>"?nyy：将当前行及其下n行的内容保存到寄存器？中，其中?为一个字母，n为一个数字<br>"?nyw：将当前行及其下n个字保存到寄存器？中，其中?为一个字母，n为一个数字<br>"?nyl：将当前行及其下n个字符保存到寄存器？中，其中?为一个字母，n为一个数字<br>"?p：取出寄存器？中的内容并将其放到光标位置处。这里？可以是一个字母，也可以是一个数字<br>ndd：将当前行及其下共n行文本删除，并将所删内容放到1号删除寄存器中。 </p><a href="http://www.linuxidc.com/" target="_blank"><img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/logo.gif" alt="linux" width="15" height="17"></a></div><a href="http://www.linuxidc.com/" target="_blank">
+<div class="linux301"><script type="text/javascript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux301.js"></script></div>
+<div class="linux3"><script type="text/javascript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux3.js"></script></div>
+<div class="linux302"><script type="text/javascript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux302.js"></script></div>		
+			
+			
+		</a></div><a href="http://www.linuxidc.com/" target="_blank">
+		</a><div style="padding:0 15px"><a href="http://www.linuxidc.com/" target="_blank">
+			</a><ul id="digg" class="digg"><a href="http://www.linuxidc.com/" target="_blank">
+				<li class="digg1">1</li>
+				</a><li class="digg2"><a href="http://www.linuxidc.com/" target="_blank"></a><a href="http://www.linuxidc.com/Linux/2009-04/19489.htm###" onclick="iwms.diggIt(this,iwms.aId)">顶一下</a></li>
+			</ul>	
+		</div>
+<div class="linuxfx"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/fx.js"></script><div class="bdsharebuttonbox bdshare-button-style0-24" data-bd-bind="1465803208758"><a class="bds_more" href="http://share.baidu.com/code#" data-cmd="more"></a><a title="分享到QQ空间" class="bds_qzone" href="http://share.baidu.com/code#" data-cmd="qzone"></a><a title="分享到新浪微博" class="bds_tsina" href="http://share.baidu.com/code#" data-cmd="tsina"></a><a title="分享到腾讯微博" class="bds_tqq" href="http://share.baidu.com/code#" data-cmd="tqq"></a><a title="分享到人人网" class="bds_renren" href="http://share.baidu.com/code#" data-cmd="renren"></a><a title="分享到百度新首页" class="bds_bdhome" href="http://share.baidu.com/code#" data-cmd="bdhome"></a><a title="分享到微信" class="bds_weixin" href="http://share.baidu.com/code#" data-cmd="weixin"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</div>	
+<div class="linux8"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux8.js"></script></div>
+<div class="linux801"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux801.js"></script></div>
+		<div class="nearNews">
+			<div class="prevNews"><a href="http://www.linuxidc.com/Linux/2009-04/19484.htm">Ubuntu 9.04 ( Jaunty Jackalope ) RC候选测试版海量截图</a></div>
+			<div class="nextNews"><a href="http://www.linuxidc.com/Linux/2009-04/19490.htm">Ubuntu 8.10 T61启用指纹功能</a></div>
+		</div>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+	
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">相关资讯</span> &nbsp; &nbsp; &nbsp;
+		<a href="http://www.linuxidc.com/search.aspx?where=nkey&keyword=5769" target="_blank">Ubuntu教程</a>&nbsp; 
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<table width="100%"><tbody><tr><td width="50%" valign="top"><ul class="nl"><li><a href="http://www.linuxidc.com/Linux/2013-12/94158.htm" target="_blank" title="Ubuntu教程 - 使用Ubuntu拷贝CD和DVD光盘">Ubuntu教程 - 使用Ubuntu拷贝CD和</a>&nbsp; <span class="gray">(12/18/2013 14:38:16)</span></li>
+<li><a href="http://www.linuxidc.com/Linux/2012-11/74223.htm" target="_blank" title="让Ubuntu 12.10支持RAR和7Z文件解压缩">让Ubuntu 12.10支持RAR和7Z文件解</a>&nbsp; <span class="gray">(11/15/2012 18:51:50)</span></li>
+<li><a href="http://www.linuxidc.com/Linux/2012-11/73500.htm" target="_blank" title="Windows 7硬盘安装Ubuntu 12.10图文教程">Windows 7硬盘安装Ubuntu 12.10图</a>&nbsp; <span class="gray">(11/03/2012 19:22:47)</span></li>
+</ul></td><td width="50%" valign="top"><ul class="nl"><li><a href="http://www.linuxidc.com/Linux/2012-11/74921.htm" target="_blank" title="完美安装Ubuntu 12.10最新AMD显卡驱动实战">完美安装Ubuntu 12.10最新AMD显卡</a>&nbsp; <span class="gray">(11/27/2012 08:17:47)</span></li>
+<li><a href="http://www.linuxidc.com/Linux/2012-11/73574.htm" target="_blank">Win 7硬盘安装Ubuntu 12.10</a>&nbsp; <span class="gray">(11/05/2012 13:30:34)</span></li>
+<li><a href="http://www.linuxidc.com/Linux/2012-10/72192.htm" target="_blank" title="虚拟机上Ubuntu 11.10升级到12.04后没有声音">虚拟机上Ubuntu 11.10升级到12.04</a>&nbsp; <span class="gray">(10/12/2012 20:00:38)</span></li>
+</ul></td></tr></tbody></table>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">图片资讯</span> &nbsp; &nbsp; &nbsp;
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+<div class="imgList"><ul><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2013-12/94158.htm" target="_blank" title="Ubuntu教程 - 使用Ubuntu拷贝CD和DVD光盘"><img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/131218144270721t.jpg" alt="Ubuntu教程 - 使用Ubuntu拷贝CD和DVD光盘" width="120" height="90">Ubuntu教程 - 使用</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2012-11/74223.htm" target="_blank" title="让Ubuntu 12.10支持RAR和7Z文件解压缩"><img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/12111518572699t.jpg" alt="让Ubuntu 12.10支持RAR和7Z文件解压缩" width="120" height="90">让Ubuntu 12.10支持</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2012-11/73574.htm" target="_blank" title="Win 7硬盘安装Ubuntu 12.10"><img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/12110513356346t.jpg" alt="Win 7硬盘安装Ubuntu 12.10" width="120" height="90">Win 7硬盘安装Ubuntu </a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2012-11/73500.htm" target="_blank" title="Windows 7硬盘安装Ubuntu 12.10图文教程"><img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/12110320117650t.jpg" alt="Windows 7硬盘安装Ubuntu 12.10图文教程" width="120" height="90">Windows 7硬盘安装</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2012-10/72192.htm" target="_blank" title="虚拟机上Ubuntu 11.10升级到12.04后没有声音"><img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/121012200372361t.jpg" alt="虚拟机上Ubuntu 11.10升级到12.04后没有声音" width="120" height="90">虚拟机上Ubuntu 11.10</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2012-07/64296.htm" target="_blank"><img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/120703094335111t.jpg" alt="Ubuntu手册" width="120" height="90">Ubuntu手册</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2012-06/63810.htm" target="_blank" title="Windows和Ubuntu双系统完全独立的安装方法"><img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/120626065240411t.jpg" alt="Windows和Ubuntu双系统完全独立的安装方法" width="120" height="90">Windows和Ubuntu双系</a></li><li style="width:25%"><a href="http://www.linuxidc.com/Linux/2012-06/61996.htm" target="_blank" title="Ubuntu 12.04下Mac主题的安装配置【Macbuntu】"><img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/12060419395401t.jpg" alt="Ubuntu 12.04下Mac主题的安装配置【Macbuntu】" width="120" height="90">Ubuntu 12.04下Mac主</a></li></ul></div>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+	
+	
+	<div class="mframe mR">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">本文评论</span>
+		 	　　<a href="http://www.linuxidc.com/remark.aspx?id=19489" target="_blank">查看全部评论</a> <span class="gray">(0)</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<table width="100%" style="margin:6px">		
+		<tbody><tr><td width="100%">
+			<form action="" name="fmRemarkSt" onsubmit="return remark.post(this);">
+			<input type="hidden" value="1" name="face" disabled="disabled">
+			表情： <img src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/b.gif" alt="表情" class="face1" style="cursor:pointer;vertical-align:middle" onclick="remark.dispFace(this)" onmouseout="remark.hideFace()">
+			姓名： <input type="text" name="username" value="" maxlength="15" style="width:60px" class="inputbg" disabled="disabled">
+			<input type="checkbox" id="rmAnonymitySt" onclick="remark.anony(this)" disabled="disabled"><label for="rmAnonymitySt">匿名</label>
+			字数 <input type="text" id="bodyLen" size="3" readonly="readonly" style="border-width:0;background:transparent;vertical-align:middle" value="0" disabled="disabled">
+			<br>
+			<textarea name="body" cols="40" rows="4" onkeydown="remark.dispLen(this)" onkeyup="remark.handle(event,this);remark.dispLen(this)" style="width:40em;height:100px;margin:3px 0;overflow-y:auto" disabled="disabled"></textarea>
+				<br>
+		　　　<input type="checkbox" checked="checked" id="rmAgreeSt" disabled="disabled"><label for="rmAgreeSt">同意评论声明</label>
+		　　　<button type="submit" style="width: 50px; padding: 0px;" disabled="disabled">请登录</button>
+			</form>
+		</td></tr>
+		<tr><td width="100%">
+			评论声明
+			<ul style="list-style-type:square;margin:5px 0 0 1em;padding:0">
+			<li>尊重网上道德，遵守中华人民共和国的各项有关法律法规</li>
+			<li>承担一切因您的行为而直接或间接导致的民事或刑事法律责任</li>
+			<li>本站管理人员有权保留或删除其管辖留言中的任意内容</li>
+			<li>本站有权在网站内转载或引用您的评论</li>
+			<li>参与本评论即表明您已经阅读并接受上述条款</li>
+			</ul>
+		</td></tr>
+		</tbody></table>
+		<script type="text/javascript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/remark.js"></script>
+		<script type="text/javascript">
+			remark.maxSize=500;
+			remark.minSize=2;
+			remark.sourceEle=$(document.fmRemarkSt).find("button").get(0);
+			iwms.vCode="D2BDA41E";
+			iwms.user.name.length==0 ? $i("rmAnonymitySt").click() : $i("rmAnonymitySt").form.username.value=iwms.user.name;
+		</script>
+		
+		<div class="reCont" id="reContainer"></div>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+	
+</td><td width="300" valign="top">
+<div class="linux901"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux901.js"></script></div>
+<div class="linux902"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux902.js"></script></div>
+<div class="linux903"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux903.js"></script></div>
+<div class="linux905"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux905.js"></script></div>
+	
+	<div class="lframe">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">最新资讯</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<ul class="nl">
+<li><a href="http://www.linuxidc.com/Linux/2015-08/121096.htm" target="_blank" title="什么是逻辑分区管理 LVM ，如何在Ubuntu中使用？">什么是逻辑分区管理 LVM ，如何在Ubuntu中使用</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-08/121095.htm" target="_blank" title="Bodhi Linux 3.1.0 Pre 发布下载，面向桌面的基于Ubuntu的发行">Bodhi Linux 3.1.0 Pre 发布下载，面向桌面的基</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-08/121094.htm" target="_blank">Simplicity Linux 15.7 发布下载</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-08/121093.htm" target="_blank" title="有钱、任性，Nico Gerard推双头腕表 Apple Watch 和普通手表">有钱、任性，Nico Gerard推双头腕表 Apple </a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-08/121092.htm" target="_blank">YouTube 全新HTML5桌面播放器已向所有人开放了</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-08/121091.htm" target="_blank" title="OS X 严重漏洞，让骇客无需密码即可攻击 Mac 电脑">OS X 严重漏洞，让骇客无需密码即可攻击 Mac 电</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-08/121090.htm" target="_blank">内部人士谈Google+的失败</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-08/121089.htm" target="_blank">微软开发出量子电脑也破解不了的TLS加密算法</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-08/121088.htm" target="_blank">在Ubuntu 14.04安装和使用Docker</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-08/121087.htm" target="_blank">在Ubuntu 14.04使用Cron实现作业自动化</a></li>
+</ul>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+
+	<div class="lframe">
+	<div class="tl"></div>
+	<div class="tr"></div>
+	<div class="tm">
+		<span class="tt">本周热门</span>
+	</div>
+	<div class="wrapper">
+	<div class="ml"></div>
+	<div class="mr"></div>
+	<div class="mm">
+		<ul class="nl">
+<li><a href="http://www.linuxidc.com/Linux/2014-04/100369.htm" target="_blank" class="highlight">Windows 7下硬盘安装Ubuntu 14.04图文教程</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2014-10/108430.htm" target="_blank">Windows 7下硬盘安装Ubuntu 14.10图文教程</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2013-05/84014.htm" target="_blank">Android 手机上安装并运行 Ubuntu 12.04</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2011-08/40437.htm" target="_blank">Linux常用命令大全</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2014-09/106230.htm" target="_blank">GitHub 使用教程图文详解</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-01/111958.htm" target="_blank">Android SDK Manager国内无法更新的解决方案</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2014-04/100645.htm" target="_blank">Ubuntu 14.04 LTS下安装Google Chrome浏览器</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2012-05/59663.htm" target="_blank">Ubuntu 12.04和Windows 7双系统安装图解</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2014-09/107092.htm" target="_blank">VMware安装RedHat6.4过程全程图解</a></li>
+<li><a href="http://www.linuxidc.com/Linux/2015-07/120815.htm" target="_blank" class="highlight">Linux操作系统入门教程</a></li>
+</ul>
+	</div>
+	</div>
+	<div class="bl"></div>
+	<div class="br"></div>
+	<div class="bm"></div>
+	</div>
+	<div class="linuxy9"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/y9.js"></script></div>	
+</td></tr>
+</tbody></table>
+<div class="linux906"><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linux906.js"></script></div>
+<div id="footer">
+<a href="http://www.linuxidc.com/aboutus.htm">Linux公社简介</a> - <a href="http://www.linuxidc.com/adsense.htm">广告服务</a> - <a href="http://www.linuxidc.com/sitemap.aspx">网站地图</a> - <a href="http://www.linuxidc.com/help.htm">帮助信息</a> - <a href="http://www.linuxidc.com/contactus.htm">联系我们</a><br>本站（LinuxIDC）所刊载文章不代表同意其说法或描述，仅为提供更多信息，也不构成任何建议。<br><script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/qq.js"></script><br>
+<script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/foot.js"></script><br>Copyright © 2006-2015　<a href="http://www.linuxidc.com/">Linux公社</a>　All rights reserved 沪ICP备15008072号-1号
+	<script type="text/javascript">iwms.aId=19489;$(function(){iwms.imgCont=$i('content');iwms.imgResize();InitContStyle();iwms.getVars();})</script>
+	
+</div>
+</div>
+<script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linuxren1.js"></script>
+<script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linuxren2.js"></script>
+<script type="text/javascript" language="javaScript" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/linuxren3.js"></script>
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden;"></div><div class="sogoubottom" id="sougou_bottom" style="display: block;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.linuxidc.com/Linux/2009-04/19489.htm#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.linuxidc.com/Linux/2009-04/19489.htm#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.linuxidc.com/Linux/2009-04/19489.htm#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/yun6.html" style="border: none; display: block; z-index: 2147483645; background: transparent;"></iframe><script src="./Ubuntu下使用VI编辑文件必知的常用命令_Linux教程_Linux公社-Linux系统门户网站_files/pv.gif"></script></body></html>

@@ -1,0 +1,1380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)http://blog.csdn.net/tonytfjing/article/details/39203121 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+   
+
+    <script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script><script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/repoAddr2.js"></script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/tonytfjing/article/details/39203121#">
+
+    <title>SpringMVC+MyBatis（最新） - tonytfjing的专栏
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta name="description" content="想要在Scrapy领域无限制畅游，做好伪装是第一步，于是乎，抓取代理IP成了很多教程的开始部分。我十分同意这个观点，既有实际用处，又能作为一个教学，当然，对于初次使用scrapy的我，很多东西也只是在摸索阶段，所以以下内容算不上教学，只能说是练手。完成代理IP抓取，总共分三个步骤：抓取网络上的代理IP和端口验证已经抓取的内容网络上的免费代理IP基本都有时效性，所以需要重">
+    <script src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+      <script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/jquery-version.js"></script>
+    <script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+        <!--new top-->
+       
+        <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/css/index.css">
+        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/tracking(1).js"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/style.css">
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/tonytfjing/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/blue.css">
+ 
+
+
+<script src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/share.js"></script><link rel="stylesheet" type="text/css" href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/job_reco.css"><script type="text/javascript" charset="utf-8" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/main.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/bdsstyle.css" rel="stylesheet" type="text/css"><script src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/logger.js"></script><style type="text/css">#Topic_Top,.AD,.box.hot,div[id^="fix_floater"],div[id^="BAIDU_UNION__wrapper_"],div[id^="BAIDU_SSP__wrapper_"],div[id^="cpro_u"]{display:none !important;}</style><link rel="stylesheet" href="http://bdimg.share.baidu.com/static/api/css/share_style0_16.css?v=6aba13f0.css"></head>
+<body><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;"></iframe>
+    <!-- 广告位开始 -->
+        <ins data-revive-zoneid="149" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/html.js" type="text/javascript"></script><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label">标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">摘要</label>                        <div class="col-sm-10">                          <textarea id="input-description" class="form-control description"></textarea>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="about:block" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/tonytfjing">tonytfjing的专栏</a></h2>
+            <h3> 梦想还是要有的,万一实现了呢 ！</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            
+                <li id="btnContents"><a href="http://blog.csdn.net/tonytfjing?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/tonytfjing?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/tonytfjing/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "tonytfjing";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/tonytfjing";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+<a href="http://edu.csdn.net/huiyiCourse/detail/130">
+<font color="red">【免费公开课】Gulp前端自动化教程
+</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://ask.csdn.net/subjects/8">
+<font color="blue">【专家问答】曹钟岩：探讨C#----新人入门到实战开发</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://blog.csdn.net/blogdevteam/article/details/51423859">
+<font color="red">【博客活动】有奖征文--走进VR开发世界</font></a>
+&nbsp;&nbsp;&nbsp;
+
+
+
+</div>                        </div>
+                        
+
+
+
+<!-- 广告位开始 -->
+<ins data-revive-zoneid="72" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+<!-- 广告位结束 -->
+
+  
+<link href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/comment1.css" type="text/css" rel="stylesheet">
+<link href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/style1.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/jquery.cookie.js"></script>
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/main(1).js"></script>
+<link rel="stylesheet" href="http://static.blog.csdn.net/public/res-min/markdown_views.css?v=1.0">
+<link rel="stylesheet" href="http://static.blog.csdn.net/css/category.css?v=1.0">
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/MathJax.js"></script>
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/web-storage-cache.min.js"></script>
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/replace.min.js"></script>
+
+<link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_code.css">
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/saveToCode.js"></script>
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+          
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET.html">
+        SpringMVC+MyBatis（最新）            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/springmvc" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">springmvc</a><a href="http://www.csdn.net/tag/mybatis" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">mybatis</a><a href="http://www.csdn.net/tag/%e6%a1%86%e6%9e%b6%e6%95%b4%e5%90%88" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">框架整合</a><a href="http://www.csdn.net/tag/druid" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">druid</a><a href="http://www.csdn.net/tag/logback" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">logback</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2014-09-11 10:22</span>
+            <span class="link_view" title="阅读次数">73947人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(28)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;SpringMVC+MyBatis（最新）&#39;,&#39;39203121&#39;);return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" onclick="javascript:report(39203121,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+    <div class="embody" style="display:none" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[]}"></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var lib = eval("("+$("#lib").attr("value")+")");
+            var html = "";
+            if (lib.err == 0) {
+                $.each(lib.data, function (i) {
+                    var obj = lib.data[i];
+                    //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                    html += ' <a href="' + obj.url + '" target="_blank">';
+                    html += ' <img src="' + obj.logo + '">';
+                    html += ' <em><b>' + obj.name + '</b></em>';
+                    html += ' </a>';
+                });
+                if (html != "") {
+                    setTimeout(function () {
+                        $("#lib").html(html);
+                        /*
+                        var testhtml = "";
+                        testhtml += '<a href="#">';
+                        testhtml += '<img src="http://img.knowledge.csdn.net/upload/base/1455589744328_328.jpg">';
+                        testhtml += '<em>Android知识库</em>';
+                        testhtml += '</a>';
+                        $(".embody_c").html(testhtml);
+                        */
+                        $("#embody").show();
+                    }, 100);
+                }
+            }          
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;2562243&#39;,&#39;tonytfjing&#39;,&#39;top&#39;,&#39;39203121&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">开源框架和工具<em>（6）</em></span>
+                      <img class="arrow-down" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/tonytfjing/article/category/2562243" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_2562243">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/category.js"></script>  
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div id="article_content" class="article_content">
+
+目前主流的Web MVC框架，除了Struts这个主力 外，还有Spring MVC，主要是由于Spring MVC配置比较简单，使用起来也十分明了，非常灵活，与Spring 集成较好，对RESTful API的支持也比struts要好。<br>
+MyBatis是ibatis的升级版，作为hibernate的老对手，它 是一个可以自定义SQL、存储过程和高级映射的持久层框架。<br>
+与hibernate的主要区别就是mybatis是半自动化的，而hibernate是全自动的，所以当应用需求越来越复杂的时候，自动化的sql显得比较笨拙。<br>
+由于前段时间接了个项目要用springmvc做，所以我抱着练手的态度，又玩起了整合框架的游戏。经常搭框架的人应该都清楚，框架搭建的核心就是配置文件。所以我主要贴下几个配置文件的代码。还是那句话，我都是写好配置文件之后，运行报错再加jar。这里列一下我用的jar包（应该是最少的）：<br>
+<img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/20140911100831872" alt="" height="400" width="240"><br>
+备注：上图有一些额外的jar，比如我用的数据库连接池是阿里巴巴的druid、日志框架式logback，所以引入了相关jar。关于这两个框架的使用和配置都是非常简单的，所以这里就不细说。<br>
+1.整合SpringMVC<br>
+springMybatis-servlet.xml：<br>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 764px; top: 1176px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;?</span><span class="tag-name">xml</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"1.0"</span><span>&nbsp;</span><span class="attribute">encoding</span><span>=</span><span class="attribute-value">"UTF-8"</span><span class="tag">?&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;</span><span class="tag-name">beans</span><span>&nbsp;</span><span class="attribute">xmlns</span><span>=</span><span class="attribute-value">"http://www.springframework.org/schema/beans"</span><span>&nbsp;</span><span class="attribute">xmlns:xsi</span><span>=</span><span class="attribute-value">"http://www.w3.org/2001/XMLSchema-instance"</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">xmlns:context</span><span>=</span><span class="attribute-value">"http://www.springframework.org/schema/context"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">xmlns:mvc</span><span>=</span><span class="attribute-value">"http://www.springframework.org/schema/mvc"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">xsi:schemaLocation</span><span>="http://www.springframework.org/schema/beans&nbsp;http://www.springframework.org/schema/beans/spring-beans.xsd&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.springframework.org/schema/context&nbsp;http://www.springframework.org/schema/context/spring-context.xsd&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.springframework.org/schema/mvc&nbsp;http://www.springframework.org/schema/mvc/spring-mvc.xsd"<span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;启用spring&nbsp;mvc&nbsp;注解--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">mvc:annotation-driven</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">mvc:annotation-driven</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;自动扫描的包名&nbsp;，使Spring支持自动检测组件，如注解的Controller--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">context:component-scan</span><span>&nbsp;</span><span class="attribute">base-package</span><span>=</span><span class="attribute-value">"com.alibaba.controller"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">context:component-scan</span><span>&nbsp;</span><span class="attribute">base-package</span><span>=</span><span class="attribute-value">"com.alibaba.service"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;视图解析器:定义跳转的文件的前后缀&nbsp;--&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">bean</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"viewResolver"</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"prefix"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"/WEB-INF/jsp/"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"suffix"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">".jsp"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span><span class="comments">&lt;!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑&nbsp;&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">bean</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--配置拦截器,&nbsp;多个拦截器,顺序执行&nbsp;--&gt;</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">mvc:interceptors</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">mvc:interceptor</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;匹配的是url路径&nbsp;&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">mvc:mapping</span><span>&nbsp;</span><span class="attribute">path</span><span>=</span><span class="attribute-value">"/"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">mvc:mapping</span><span>&nbsp;</span><span class="attribute">path</span><span>=</span><span class="attribute-value">"/user/**"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">mvc:mapping</span><span>&nbsp;</span><span class="attribute">path</span><span>=</span><span class="attribute-value">"/test/**"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">bean</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"com.alibaba.interceptor.CommonInterceptor"</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">bean</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">mvc:interceptor</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">mvc:interceptors</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span><span class="tag">&lt;/</span><span class="tag-name">beans</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  
+&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"&gt;
+    
+        &lt;!-- 启用spring mvc 注解--&gt;
+   	&lt;mvc:annotation-driven&gt; 
+   	&lt;/mvc:annotation-driven&gt;
+	
+	&lt;!-- 自动扫描的包名 ，使Spring支持自动检测组件，如注解的Controller--&gt;
+    &lt;context:component-scan base-package="com.alibaba.controller" /&gt;
+    &lt;context:component-scan base-package="com.alibaba.service"/&gt;
+    
+	
+	&lt;!-- 视图解析器:定义跳转的文件的前后缀 --&gt;  
+    &lt;bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;  
+        &lt;property name="prefix" value="/WEB-INF/jsp/" /&gt;  
+        &lt;property name="suffix" value=".jsp" /&gt;  &lt;!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑  --&gt;
+    &lt;/bean&gt;  
+
+	&lt;!--配置拦截器, 多个拦截器,顺序执行 --&gt; 
+	&lt;mvc:interceptors&gt;  
+		&lt;mvc:interceptor&gt;  
+			&lt;!-- 匹配的是url路径  --&gt;
+			&lt;mvc:mapping path="/" /&gt;
+			&lt;mvc:mapping path="/user/**" /&gt;
+			&lt;mvc:mapping path="/test/**" /&gt;
+			
+			&lt;bean class="com.alibaba.interceptor.CommonInterceptor"&gt;&lt;/bean&gt;  
+		&lt;/mvc:interceptor&gt;
+		&lt;!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 --&gt;
+	&lt;/mvc:interceptors&gt;
+      
+&lt;/beans&gt;   </pre>
+<p><br>
+</p>
+<p>2.整合Mybatis</p>
+spring-dao.xml:<br>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 764px; top: 2004px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;?</span><span class="tag-name">xml</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"1.0"</span><span>&nbsp;</span><span class="attribute">encoding</span><span>=</span><span class="attribute-value">"UTF-8"</span><span class="tag">?&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;</span><span class="tag-name">beans</span><span>&nbsp;</span><span class="attribute">xmlns</span><span>=</span><span class="attribute-value">"http://www.springframework.org/schema/beans"</span><span>&nbsp;</span><span class="attribute">xmlns:xsi</span><span>=</span><span class="attribute-value">"http://www.w3.org/2001/XMLSchema-instance"</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">xmlns:mybatis</span><span>=</span><span class="attribute-value">"http://mybatis.org/schema/mybatis-spring"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">xmlns:context</span><span>=</span><span class="attribute-value">"http://www.springframework.org/schema/context"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">xsi:schemaLocation</span><span>="http://www.springframework.org/schema/beans&nbsp;http://www.springframework.org/schema/beans/spring-beans.xsd&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://mybatis.org/schema/mybatis-spring&nbsp;http://mybatis.org/schema/mybatis-spring.xsd&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.springframework.org/schema/context&nbsp;http://www.springframework.org/schema/context/spring-context.xsd"<span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;该包下的类支持注解，表示会被当作{@code&nbsp;mybatis&nbsp;mapper}处理&nbsp;配置了之后表示可以自动引入mapper类--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">mybatis:scan</span><span>&nbsp;</span><span class="attribute">base-package</span><span>=</span><span class="attribute-value">"com.alibaba.dao"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--引入属性文件&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">context:property-placeholder</span><span>&nbsp;</span><span class="attribute">location</span><span>=</span><span class="attribute-value">"classpath:configuration.properties"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--数据库连接--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">bean</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"dataSource"</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"com.alibaba.druid.pool.DruidDataSource"</span><span>&nbsp;</span><span class="attribute">init-method</span><span>=</span><span class="attribute-value">"init"</span><span>&nbsp;</span><span class="attribute">destroy-method</span><span>=</span><span class="attribute-value">"close"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"url"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"${jdbc.url}"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"username"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"${jdbc.username}"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"password"</span><span>&nbsp;</span><span class="attribute">value</span><span>=</span><span class="attribute-value">"${jdbc.password}"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;配置初始化大小、最小、最大&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"initialSize"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>1</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"maxActive"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>5</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"minIdle"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>1</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;配置获取连接等待超时的时间&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"maxWait"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>60000</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;配置监控统计拦截的filters&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"filters"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>stat</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"timeBetweenEvictionRunsMillis"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>60000</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;配置一个连接在池中最小生存的时间，单位是毫秒&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"minEvictableIdleTimeMillis"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>300000</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"validationQuery"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>SELECT&nbsp;'x'</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"testWhileIdle"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>true</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"testOnBorrow"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>false</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"testOnReturn"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>false</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"poolPreparedStatements"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>true</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"maxOpenPreparedStatements"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">value</span><span class="tag">&gt;</span><span>20</span><span class="tag">&lt;/</span><span class="tag-name">value</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">property</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--<span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">bean</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;mybatis配置&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">bean</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"sqlSessionFactory"</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"org.mybatis.spring.SqlSessionFactoryBean"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">property</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"dataSource"</span><span>&nbsp;</span><span class="attribute">ref</span><span>=</span><span class="attribute-value">"dataSource"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">bean</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="tag">&lt;/</span><span class="tag-name">beans</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  
+&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt;
+    
+    &lt;!-- 该包下的类支持注解，表示会被当作{@code mybatis mapper}处理 配置了之后表示可以自动引入mapper类--&gt;
+    &lt;mybatis:scan base-package="com.alibaba.dao"/&gt;
+    &lt;!--引入属性文件 --&gt;
+    &lt;context:property-placeholder location="classpath:configuration.properties"/&gt;
+    
+    &lt;!--数据库连接--&gt;
+    &lt;bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"&gt; 
+	    &lt;property name="url" value="${jdbc.url}" /&gt;
+	    &lt;property name="username" value="${jdbc.username}"/&gt;
+	    &lt;property name="password" value="${jdbc.password}"/&gt;
+	    &lt;!-- 配置初始化大小、最小、最大 --&gt;
+	    &lt;property name="initialSize"&gt;&lt;value&gt;1&lt;/value&gt;&lt;/property&gt;
+	    &lt;property name="maxActive"&gt;&lt;value&gt;5&lt;/value&gt;&lt;/property&gt;
+	    &lt;property name="minIdle"&gt;&lt;value&gt;1&lt;/value&gt;&lt;/property&gt;
+	    &lt;!-- 配置获取连接等待超时的时间 --&gt;
+	    &lt;property name="maxWait"&gt;&lt;value&gt;60000&lt;/value&gt;&lt;/property&gt;
+	    &lt;!-- 配置监控统计拦截的filters --&gt;
+	    &lt;property name="filters"&gt;&lt;value&gt;stat&lt;/value&gt;&lt;/property&gt;
+	    &lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;
+	    &lt;property name="timeBetweenEvictionRunsMillis"&gt;&lt;value&gt;60000&lt;/value&gt;&lt;/property&gt;
+	    &lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;
+	    &lt;property name="minEvictableIdleTimeMillis"&gt;&lt;value&gt;300000&lt;/value&gt;&lt;/property&gt;
+	    &lt;!--
+	    &lt;property name="validationQuery"&gt;&lt;value&gt;SELECT 'x'&lt;/value&gt;&lt;/property&gt;
+	    &lt;property name="testWhileIdle"&gt;&lt;value&gt;true&lt;/value&gt;&lt;/property&gt;
+	    &lt;property name="testOnBorrow"&gt;&lt;value&gt;false&lt;/value&gt;&lt;/property&gt;
+	    &lt;property name="testOnReturn"&gt;&lt;value&gt;false&lt;/value&gt;&lt;/property&gt;
+	    &lt;property name="poolPreparedStatements"&gt;&lt;value&gt;true&lt;/value&gt;&lt;/property&gt;
+	    &lt;property name="maxOpenPreparedStatements"&gt;&lt;value&gt;20&lt;/value&gt;&lt;/property&gt;
+	     --&gt;
+ 	&lt;/bean&gt;
+ 	
+ 	&lt;!-- mybatis配置 --&gt;
+    &lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"&gt;
+        &lt;property name="dataSource" ref="dataSource" /&gt;
+    &lt;/bean&gt; 
+&lt;/beans&gt;   </pre>
+<p><br>
+</p>
+<p>3.web.xml整合SpringMVC和Mybatis</p>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 764px; top: 2950px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;?</span><span class="tag-name">xml</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"1.0"</span><span>&nbsp;</span><span class="attribute">encoding</span><span>=</span><span class="attribute-value">"UTF-8"</span><span class="tag">?&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;</span><span class="tag-name">web-app</span><span>&nbsp;</span><span class="attribute">xmlns:xsi</span><span>=</span><span class="attribute-value">"http://www.w3.org/2001/XMLSchema-instance"</span><span>&nbsp;</span><span class="attribute">xmlns</span><span>=</span><span class="attribute-value">"http://java.sun.com/xml/ns/javaee"</span><span>&nbsp;</span><span class="attribute">xmlns:web</span><span>=</span><span class="attribute-value">"http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"</span><span>&nbsp;</span><span class="attribute">xsi:schemaLocation</span><span>=</span><span class="attribute-value">"http://java.sun.com/xml/ns/javaee&nbsp;http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"3.0"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--　该servlet为tomcat,jetty等容器提供,将静态资源映射从/改为/static/目录，如原来访问　http://localhost/foo.css　,现在http://localhost/static/foo.css　--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;不拦截静态文件&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>default</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/js/*</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/css/*</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/images/*</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/fonts/*</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;配置字符集&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>encodingFilter</span><span class="tag">&lt;/</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-class</span><span class="tag">&gt;</span><span>org.springframework.web.filter.CharacterEncodingFilter</span><span class="tag">&lt;/</span><span class="tag-name">filter-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>encoding</span><span class="tag">&lt;/</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>UTF-8</span><span class="tag">&lt;/</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>forceEncoding</span><span class="tag">&lt;/</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>true</span><span class="tag">&lt;/</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">filter</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>encodingFilter</span><span class="tag">&lt;/</span><span class="tag-name">filter-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/*</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">filter-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;初始化&nbsp;DispatcherServlet时，该框架在&nbsp;web应用程序WEB-INF目录中寻找一个名为[servlet-名称]-servlet.xml的文件，&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;并在那里定义相关的Beans，重写在全局中定义的任何Beans&nbsp;--<span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>springMybatis</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-class</span><span class="tag">&gt;</span><span>org.springframework.web.servlet.DispatcherServlet</span><span class="tag">&lt;/</span><span class="tag-name">servlet-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">load-on-startup</span><span class="tag">&gt;</span><span>1</span><span class="tag">&lt;/</span><span class="tag-name">load-on-startup</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">servlet</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>springMybatis</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;所有的的请求，都会被DispatcherServlet处理&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">context-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>contextConfigLocation</span><span class="tag">&lt;/</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>/WEB-INF/config/spring-*.xml</span><span class="tag">&lt;/</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">context-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">listener</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">listener-class</span><span class="tag">&gt;</span><span>org.springframework.web.context.ContextLoaderListener</span><span class="tag">&lt;/</span><span class="tag-name">listener-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">listener</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">&lt;!--&nbsp;druid&nbsp;web&nbsp;监控&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>DruidStatView</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-class</span><span class="tag">&gt;</span><span>com.alibaba.druid.support.http.StatViewServlet</span><span class="tag">&lt;/</span><span class="tag-name">servlet-class</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">servlet</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>DruidStatView</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/druid/*</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">error-page</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">error-code</span><span class="tag">&gt;</span><span>404</span><span class="tag">&lt;/</span><span class="tag-name">error-code</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">location</span><span class="tag">&gt;</span><span>/error/404.jsp</span><span class="tag">&lt;/</span><span class="tag-name">location</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">error-page</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">error-page</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">error-code</span><span class="tag">&gt;</span><span>500</span><span class="tag">&lt;/</span><span class="tag-name">error-code</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">location</span><span class="tag">&gt;</span><span>/error/500.jsp</span><span class="tag">&lt;/</span><span class="tag-name">location</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">error-page</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="tag">&lt;/</span><span class="tag-name">web-app</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0"&gt;
+    &lt;!--　该servlet为tomcat,jetty等容器提供,将静态资源映射从/改为/static/目录，如原来访问　http://localhost/foo.css　,现在http://localhost/static/foo.css　--&gt;
+    &lt;!-- 不拦截静态文件 --&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;default&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/js/*&lt;/url-pattern&gt;
+        &lt;url-pattern&gt;/css/*&lt;/url-pattern&gt;
+        &lt;url-pattern&gt;/images/*&lt;/url-pattern&gt;
+        &lt;url-pattern&gt;/fonts/*&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+    
+    &lt;!-- 配置字符集 --&gt;
+    &lt;filter&gt;
+        &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;encoding&lt;/param-name&gt;
+            &lt;param-value&gt;UTF-8&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;forceEncoding&lt;/param-name&gt;
+            &lt;param-value&gt;true&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+    
+    &lt;!-- 初始化 DispatcherServlet时，该框架在 web应用程序WEB-INF目录中寻找一个名为[servlet-名称]-servlet.xml的文件，
+			并在那里定义相关的Beans，重写在全局中定义的任何Beans --&gt;
+  	&lt;servlet&gt;
+    	&lt;servlet-name&gt;springMybatis&lt;/servlet-name&gt;
+    	&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    	&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+  	&lt;/servlet&gt;
+  	&lt;servlet-mapping&gt;
+    	&lt;servlet-name&gt;springMybatis&lt;/servlet-name&gt;
+    	&lt;!-- 所有的的请求，都会被DispatcherServlet处理 --&gt;
+    	&lt;url-pattern&gt;/&lt;/url-pattern&gt;
+  	&lt;/servlet-mapping&gt;
+  	 
+  	&lt;context-param&gt;
+    	&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+    	&lt;param-value&gt;/WEB-INF/config/spring-*.xml&lt;/param-value&gt;
+  	&lt;/context-param&gt;
+  	&lt;listener&gt;
+    	&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+  	&lt;/listener&gt;
+  	&lt;!-- druid web 监控 --&gt;
+  	&lt;servlet&gt;
+    	&lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;
+		&lt;servlet-class&gt;com.alibaba.druid.support.http.StatViewServlet&lt;/servlet-class&gt;
+  	&lt;/servlet&gt;
+  	&lt;servlet-mapping&gt;
+  		&lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;
+  		&lt;url-pattern&gt;/druid/*&lt;/url-pattern&gt;
+  	&lt;/servlet-mapping&gt;
+  	
+  	&lt;error-page&gt;
+        &lt;error-code&gt;404&lt;/error-code&gt;
+        &lt;location&gt;/error/404.jsp&lt;/location&gt;
+    &lt;/error-page&gt;
+    &lt;error-page&gt;
+        &lt;error-code&gt;500&lt;/error-code&gt;
+        &lt;location&gt;/error/500.jsp&lt;/location&gt;
+    &lt;/error-page&gt;
+&lt;/web-app&gt;</pre><br>
+4.logback.xml日志配置<br>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 764px; top: 4382px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;?</span><span class="tag-name">xml</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"1.0"</span><span>&nbsp;</span><span class="attribute">encoding</span><span>=</span><span class="attribute-value">"UTF-8"</span><span class="tag">?&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;</span><span class="tag-name">configuration</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">appender</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"STDOUT"</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"ch.qos.logback.core.ConsoleAppender"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">encoder</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">pattern</span><span class="tag">&gt;</span><span>%d{HH:mm:ss.SSS}&nbsp;[%thread]&nbsp;%-5level&nbsp;%logger{36}&nbsp;-&nbsp;%msg%n</span><span class="tag">&lt;/</span><span class="tag-name">pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">encoder</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">appender</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">logger</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"test.LogbackTest"</span><span>&nbsp;</span><span class="attribute">level</span><span>=</span><span class="attribute-value">"TRACE"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">logger</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"com.alibaba.controller.TestController"</span><span>&nbsp;</span><span class="attribute">level</span><span>=</span><span class="attribute-value">"TRACE"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">logger</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"org.springframework.web.servlet.DispatcherServlet"</span><span>&nbsp;</span><span class="attribute">level</span><span>=</span><span class="attribute-value">"DEBUG"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">logger</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"druid.sql"</span><span>&nbsp;</span><span class="attribute">level</span><span>=</span><span class="attribute-value">"INFO"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span class="comments">&lt;!--&nbsp;如果spring-config里面没有配置slf4j,就不会显示sql日志，logback只是slf4j的一个实现&nbsp;--&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">root</span><span>&nbsp;</span><span class="attribute">level</span><span>=</span><span class="attribute-value">"debug"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">appender-ref</span><span>&nbsp;</span><span class="attribute">ref</span><span>=</span><span class="attribute-value">"STDOUT"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">root</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="tag">&lt;/</span><span class="tag-name">configuration</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;configuration&gt;
+
+  &lt;appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"&gt;
+    &lt;encoder&gt;  
+        &lt;pattern&gt;%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n&lt;/pattern&gt;
+    &lt;/encoder&gt;
+  &lt;/appender&gt;
+  
+  &lt;logger name="test.LogbackTest" level="TRACE"/&gt;
+  
+  &lt;logger name="com.alibaba.controller.TestController" level="TRACE"/&gt;
+  
+  &lt;logger name="org.springframework.web.servlet.DispatcherServlet" level="DEBUG" /&gt;
+  &lt;logger name="druid.sql" level="INFO" /&gt;&lt;!-- 如果spring-config里面没有配置slf4j,就不会显示sql日志，logback只是slf4j的一个实现 --&gt;
+  &lt;root level="debug"&gt;
+    &lt;appender-ref ref="STDOUT" /&gt;
+  &lt;/root&gt;
+&lt;/configuration&gt;</pre><br>
+<br>
+5.configuration.properties配置<br>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 764px; top: 4868px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_5" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_5" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=5&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="attribute">jdbc.url</span><span>=</span><span class="attribute-value">jdbc</span><span>\:mysql\://localhost\:3306/druid?useUnicode\=true&amp;characterEncoding\=UTF-8&amp;zeroDateTimeBehavior\=convertToNull&nbsp;&nbsp;</span></span></li><li class=""><span><span class="attribute">jdbc.username</span><span>=</span><span class="attribute-value">root</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="attribute">jdbc.password</span><span>=</span><span class="attribute-value">123456</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none;">jdbc.url=jdbc\:mysql\://localhost\:3306/druid?useUnicode\=true&amp;characterEncoding\=UTF-8&amp;zeroDateTimeBehavior\=convertToNull
+jdbc.username=root
+jdbc.password=123456</pre><br>
+<p>6.测试搭建是否成功，后台代码</p>
+<p>首先是登录，用了加密，可以去掉<br>
+</p>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 762px; top: 5066px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_6" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_6" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=6&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">package</span><span>&nbsp;com.alibaba.controller;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;javax.annotation.Resource;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;javax.servlet.http.HttpServletRequest;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;org.apache.commons.codec.digest.DigestUtils;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;org.slf4j.Logger;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;org.slf4j.LoggerFactory;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;org.springframework.stereotype.Controller;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;org.springframework.web.bind.annotation.RequestMapping;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;org.springframework.web.bind.annotation.RequestMethod;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;org.springframework.web.bind.annotation.RequestParam;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;com.alibaba.model.User;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;com.alibaba.service.UserService;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;com.alibaba.util.RequestUtil;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="comment">/**</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;*&nbsp;@author&nbsp;tfj</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;*&nbsp;2014-7-26</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="annotation">@Controller</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;SystemController&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;</span><span class="keyword">final</span><span>&nbsp;Logger&nbsp;log&nbsp;=&nbsp;LoggerFactory.getLogger(SystemController.</span><span class="keyword">class</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Resource</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;UserService&nbsp;userService;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span><span>(value&nbsp;=&nbsp;</span><span class="string">"/"</span><span>,method&nbsp;=&nbsp;RequestMethod.GET)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;home()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info(<span class="string">"返回首页！"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="string">"index"</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span><span>(value&nbsp;=&nbsp;</span><span class="string">"/test/hello"</span><span>,method&nbsp;=&nbsp;RequestMethod.GET)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;testHello()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info(<span class="string">"执行了testHello方法！"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="string">"testHello"</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span><span>(value&nbsp;=&nbsp;</span><span class="string">"/login"</span><span>,method&nbsp;=&nbsp;RequestMethod.POST)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;testLogin(HttpServletRequest&nbsp;request,</span><span class="annotation">@RequestParam</span><span>&nbsp;String&nbsp;username,&nbsp;</span><span class="annotation">@RequestParam</span><span>&nbsp;String&nbsp;password)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info(<span class="string">"执行了testLogin方法！"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User&nbsp;user&nbsp;=&nbsp;userService.findUserByName(username);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(user!=</span><span class="keyword">null</span><span>){&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(user.getPassword().equals(DigestUtils.md5Hex(password))){&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;request.getSession().setAttribute(<span class="string">"userId"</span><span>,&nbsp;user.getId());&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;request.getSession().setAttribute(<span class="string">"user"</span><span>,&nbsp;username);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="string">"redirect:"</span><span>&nbsp;+&nbsp;RequestUtil.retrieveSavedRequest();</span><span class="comment">//跳转至访问页面</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword">else</span><span>{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info(<span class="string">"密码错误"</span><span>);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;request.getSession().setAttribute(<span class="string">"message"</span><span>,&nbsp;</span><span class="string">"用户名密码错误，请重新登录"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="string">"login"</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword">else</span><span>{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info(<span class="string">"用户名不存在"</span><span>);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;request.getSession().setAttribute(<span class="string">"message"</span><span>,&nbsp;</span><span class="string">"用户名不存在，请重新登录"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="string">"login"</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" style="display: none;">package com.alibaba.controller;
+
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.alibaba.model.User;
+import com.alibaba.service.UserService;
+import com.alibaba.util.RequestUtil;
+
+/**
+ * @author tfj
+ * 2014-7-26
+ */
+@Controller
+public class SystemController {
+	private final Logger log = LoggerFactory.getLogger(SystemController.class);
+	@Resource
+	private UserService userService;
+	
+	@RequestMapping(value = "/",method = RequestMethod.GET)
+	public String home() {
+		log.info("返回首页！");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/test/hello",method = RequestMethod.GET)
+    public String testHello() {
+    	log.info("执行了testHello方法！");
+        return "testHello";
+    }
+	
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String testLogin(HttpServletRequest request,@RequestParam String username, @RequestParam String password) {
+    	log.info("执行了testLogin方法！");
+    	User user = userService.findUserByName(username);
+    	if(user!=null){
+    		if(user.getPassword().equals(DigestUtils.md5Hex(password))){
+    			request.getSession().setAttribute("userId", user.getId());  
+    			request.getSession().setAttribute("user", username);  
+        		return "redirect:" + RequestUtil.retrieveSavedRequest();//跳转至访问页面
+    		}else{
+    			log.info("密码错误");  
+        		request.getSession().setAttribute("message", "用户名密码错误，请重新登录");
+        		return "login"; 
+    		}
+    	}else{
+    		log.info("用户名不存在");  
+    		request.getSession().setAttribute("message", "用户名不存在，请重新登录");
+    		return "login"; 
+    	}
+    }
+}
+</pre><br>
+关于service和model就不写了，写一下mybatis的mapper类映射<br>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 764px; top: 6282px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_7" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_7" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=7&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;?</span><span class="tag-name">xml</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"1.0"</span><span>&nbsp;</span><span class="attribute">encoding</span><span>=</span><span class="attribute-value">"UTF-8"</span><span>&nbsp;</span><span class="tag">?&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&lt;!DOCTYPE&nbsp;mapper&nbsp;PUBLIC&nbsp;"-//mybatis.org//DTD&nbsp;Mapper&nbsp;3.0//EN"&nbsp;"http://mybatis.org/dtd/mybatis-3-mapper.dtd"<span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="tag">&lt;</span><span class="tag-name">mapper</span><span>&nbsp;</span><span class="attribute">namespace</span><span>=</span><span class="attribute-value">"com.alibaba.dao.UserMapper"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">select</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"findUserByName"</span><span>&nbsp;</span><span class="attribute">resultType</span><span>=</span><span class="attribute-value">"com.alibaba.model.User"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select&nbsp;id,&nbsp;username&nbsp;,&nbsp;password&nbsp;from&nbsp;sysuser&nbsp;where&nbsp;<span class="attribute">username</span><span>&nbsp;=&nbsp;#{username}&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">select</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="tag">&lt;/</span><span class="tag-name">mapper</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none;">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;
+&lt;mapper namespace="com.alibaba.dao.UserMapper"&gt;    
+	&lt;select id="findUserByName" resultType="com.alibaba.model.User"&gt;
+		select id, username , password from sysuser where username = #{username} 
+	&lt;/select&gt;
+&lt;/mapper&gt;
+</pre><br>
+<p>7.前台jsp主要是登录和登录成功的页面，就不写了</p>
+<p>贴一下截图：</p>
+<p><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/20140911102052467" alt=""><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/20140911102106180" alt="" height="194" width="466"></p>
+<p>到此，springmvc+mybatis整合成功。后续复杂的功能待添加<br>
+</p>
+<h4><strong>注意事项</strong></h4>
+<p>1.框架中关于druid和logback的配置都是从官网上copy下来的，所以都是最基本的，读者可以忽略，也可以换成读者熟悉的<a href="http://lib.csdn.net/base/mysql" class="replace_word" title="MySQL知识库" target="_blank" style="color:#df3434; font-weight:bold;">数据库</a>组件和日志框架，如c3p0和log4j。</p>
+<p>2.代码里加入了权限管理，即访问前需登录，登录后跳转至待访问页面，关于springmvc的权限管理请看：<a target="_blank" href="http://blog.csdn.net/tonytfjing/article/details/39207551">http://blog.csdn.net/tonytfjing/article/details/39207551</a></p>
+<p>3.本文是从我的测试代码里剥离出来的最简单的也是最基本的代码，有些没剥离干净的地方还请见谅。<br>
+</p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1465781700010">
+<a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important"></a>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important"></a>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important"></a>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important"></a>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css">
+
+    
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+        <div id="digg" articleid="39203121">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>9</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>13</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;/tonytfjing/article/details/39053357&#39;;">上一篇</span><a href="http://blog.csdn.net/tonytfjing/article/details/39053357" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">Maven入门篇（下）</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;/tonytfjing/article/details/39207551&#39;;">下一篇</span><a href="http://blog.csdn.net/tonytfjing/article/details/39207551" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">SpringMVC拦截器（资源和权限管理）</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article" style="">
+                <h4>我的同类文章</h4>
+                <div class="similar_c" style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span style="cursor:pointer" onclick="GetCategoryArticles(&#39;2562243&#39;,&#39;tonytfjing&#39;,&#39;foot&#39;,&#39;39203121&#39;);">开源框架和工具<em>（6）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141" style="max-height:195px;">
+                        <a href="http://blog.csdn.net/" style="display:none">http://blog.csdn.net</a>
+                        <ul class="similar_list fl"><li><em>•</em><a href="http://blog.csdn.net/tonytfjing/article/details/39251507" id="foot_aritcle_39251507undefined1724850640166551" target="_blank" title="springmvc缓存">springmvc缓存</a><span>2014-09-13</span><label><i>阅读</i><b>12673</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/tonytfjing/article/details/39207551" id="foot_aritcle_39207551undefined16081005008891225" target="_blank" title="SpringMVC拦截器（资源和权限管理）">SpringMVC拦截器（资源和权限管理）</a><span>2014-09-11</span><label><i>阅读</i><b>72158</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/tonytfjing/article/details/39006087" id="foot_aritcle_39006087undefined315940362168476" target="_blank" title="maven入门及使用myeclipse构建maven项目">maven入门及使用myeclipse构建maven项目</a><span>2014-09-02</span><label><i>阅读</i><b>4659</b></label></li> </ul>
+
+                        <ul class="similar_list fr"><li><em>•</em><a href="http://blog.csdn.net/tonytfjing/article/details/39230901" id="foot_aritcle_39230901undefined6005178061313927" target="_blank" title="springmvc+json">springmvc+json</a><span>2014-09-12</span><label><i>阅读</i><b>8329</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/tonytfjing/article/details/39053357" id="foot_aritcle_39053357undefined4131989781744778" target="_blank" title="Maven入门篇（下）">Maven入门篇（下）</a><span>2014-09-04</span><label><i>阅读</i><b>1490</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/tonytfjing/article/details/19244049" id="foot_aritcle_19244049undefined16307087964378297" target="_blank" title="SSH2+dwr">SSH2+dwr</a><span>2014-02-15</span><label><i>阅读</i><b>1397</b></label></li> </ul>
+                    </div>
+                </div>
+            </div>    
+    <script type="text/javascript">
+        $(function () {
+            GetCategoryArticles('2562243', 'tonytfjing','foot','39203121');
+        });
+    </script>
+      
+</div>
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/tonytfjing/svc/GetSuggestContent/39203121",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="http://static.blog.csdn.net/css/replace.css">
+
+<div id="relate" data-mod="popu_218" class="tracking-ad" style="display: block;">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c"><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/mysql"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/1454051093684_684.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/mysql">MySQL知识库</a></h4><p><label><span>9963</span><em>关注</em><i>|</i><span>1351</span><em>收录</em></label></p></dd></dl><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/javaee"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/1456818035722_722.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/javaee">Java EE知识库</a></h4><p><label><span>2754</span><em>关注</em><i>|</i><span>616</span><em>收录</em></label></p></dd></dl><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/javase"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/1453169124297_297.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/javase">Java SE知识库</a></h4><p><label><span>10847</span><em>关注</em><i>|</i><span>450</span><em>收录</em></label></p></dd></dl><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/javaweb"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/1453701371636_636.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/javaweb">Java Web知识库</a></h4><p><label><span>11218</span><em>关注</em><i>|</i><span>1121</span><em>收录</em></label></p></dd></dl></div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived"> 
+    <div class="embody embody_b" id="libkeyparent" style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "39203121",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    <div class="tracking-ad" data-mod="popu_84"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/1552" title="深入浅出Struts2" strategy="v3:content" target="_blank">深入浅出Struts2</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/390" title="经典JDBC+MyBatis学习视频" strategy="v3:content" target="_blank">经典JDBC+MyBatis学习视频</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/162" title="Qt基础与Qt on Android入门" strategy="v3:content" target="_blank">Qt基础与Qt on Android入门</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/1852" title="Web前端从零基础到高手之路" strategy="v3:content" target="_blank">Web前端从零基础到高手之路</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/207" title="韦东山嵌入式Linux第一期视频" strategy="v3:hot" target="_blank">韦东山嵌入式Linux第一期视频</a></dd></div></div>  
+
+    
+     <div id="res" data-mod="popu_36" class="tracking-ad" style="width: 42%; float: left; margin-right: 30px; display: none;"></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'SpringMVC+MyBatis（最新）' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+    <div id="ad_cen">        
+<!-- 广告位开始 -->
+<ins data-revive-zoneid="71" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+<!-- 广告位结束 -->    </div>  
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_6041806"><dt class="comment_head" floor="20">20楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_33303507" target="_blank">qq_33303507</a> <span class="ptime">2016-05-19 14:15发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6041806" username="qq_33303507"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_33303507" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_qq_33303507.jpg" width="40" height="40"></a></dd><dd class="comment_body">我只想说写的什么鬼</dd></dl><dl class="comment_item comment_topic" id="comment_item_5975253"><dt class="comment_head" floor="19">19楼 <span class="user"><a class="username" href="http://blog.csdn.net/q1107245967" target="_blank">q1107245967</a> <span class="ptime">2016-04-08 17:29发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5975253" username="q1107245967"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/q1107245967" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_q1107245967.jpg" width="40" height="40"></a></dd><dd class="comment_body">源代码有吗？可以给我发一份吗？这我邮箱：1107245967@qq.com</dd></dl><dl class="comment_item comment_topic" id="comment_item_5971711"><dt class="comment_head" floor="18">18楼 <span class="user"><a class="username" href="http://blog.csdn.net/xiami8" target="_blank">xiami8</a> <span class="ptime">2016-04-06 13:51发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5971711" username="xiami8"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiami8" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_xiami8.jpg" width="40" height="40"></a></dd><dd class="comment_body">要写为何不写完呢,你这样让新手情何以堪</dd></dl><dl class="comment_item comment_topic" id="comment_item_5967856"><dt class="comment_head" floor="17">17楼 <span class="user"><a class="username" href="http://blog.csdn.net/big_bow" target="_blank">big_bow</a> <span class="ptime">2016-04-01 22:53发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5967856" username="big_bow"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/big_bow" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_big_bow.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主你的myabtis.xml文件没贴出来啊</dd></dl><dl class="comment_item comment_topic" id="comment_item_5938694"><dt class="comment_head" floor="16">16楼 <span class="user"><a class="username" href="http://blog.csdn.net/sunweifeng1" target="_blank">sunweifeng1</a> <span class="ptime">2016-03-19 12:50发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5938694" username="sunweifeng1"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sunweifeng1" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_sunweifeng1.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主，我在等你答复呢？或者回复邮箱给我：627409739@qq.com</dd></dl><dl class="comment_item comment_topic" id="comment_item_5938417"><dt class="comment_head" floor="15">15楼 <span class="user"><a class="username" href="http://blog.csdn.net/sunweifeng1" target="_blank">sunweifeng1</a> <span class="ptime">2016-03-19 00:36发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5938417" username="sunweifeng1"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sunweifeng1" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_sunweifeng1.jpg" width="40" height="40"></a></dd><dd class="comment_body">希望楼主给我回复！谢谢</dd></dl><dl class="comment_item comment_topic" id="comment_item_5938415"><dt class="comment_head" floor="14">14楼 <span class="user"><a class="username" href="http://blog.csdn.net/sunweifeng1" target="_blank">sunweifeng1</a> <span class="ptime">2016-03-19 00:31发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5938415" username="sunweifeng1"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sunweifeng1" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_sunweifeng1.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主，怎么我运行成功后，访问不了！http://127.0.0.1:8080/SpringMvcDemo/login.jsp</dd></dl><dl class="comment_item comment_topic" id="comment_item_5729158"><dt class="comment_head" floor="13">13楼 <span class="user"><a class="username" href="http://blog.csdn.net/luhouxiang" target="_blank">luhouxiang</a> <span class="ptime">2015-12-18 11:09发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5729158" username="luhouxiang"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/luhouxiang" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_luhouxiang.jpg" width="40" height="40"></a></dd><dd class="comment_body">您好，代码下载下来了，&lt;script src="${path}/js/jquery-easyui-1.4/jquery.min.js" type="text/javascript"&gt;&lt;/script&gt;这儿，path是哪来的，一直没找到头绪，猜想应该是java全局变量什么的，因在很多地方看到${path}这样的代码，望明示，一般我们获取路径采用${pageContext.request.contextPath}，只是${path}更简洁，就是不知道怎么用</dd></dl><dl class="comment_item comment_topic" id="comment_item_5677549"><dt class="comment_head" floor="12">12楼 <span class="user"><a class="username" href="http://blog.csdn.net/zl453061296" target="_blank">zl453061296</a> <span class="ptime">2015-12-01 12:07发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5677549" username="zl453061296"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/zl453061296" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_zl453061296.jpg" width="40" height="40"></a></dd><dd class="comment_body">非常感谢，刚好可以练手。</dd></dl><dl class="comment_item comment_topic" id="comment_item_5619367"><dt class="comment_head" floor="11">11楼 <span class="user"><a class="username" href="http://blog.csdn.net/wangbo54979" target="_blank">wangbo54979</a> <span class="ptime">2015-11-17 14:19发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5619367" username="wangbo54979"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/wangbo54979" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_wangbo54979.jpg" width="40" height="40"></a></dd><dd class="comment_body">你可以写一个dao的工具类  然后把它注入到对应的类中,在这个类型继承SqlSessionDaoSupport  实现增删查改，以后所有的dao注解依赖注入的时候  直接住 这个工具类就行</dd></dl><dl class="comment_item comment_topic" id="comment_item_5588127"><dt class="comment_head" floor="10">10楼 <span class="user"><a class="username" href="http://blog.csdn.net/zyl_5426" target="_blank">zyl_5426</a> <span class="ptime">2015-11-03 16:48发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5588127" username="zyl_5426"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/zyl_5426" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_zyl_5426.jpg" width="40" height="40"></a></dd><dd class="comment_body">很好，最近一直愁于如何控制用户直接输入url来访问页面。尝试过一些方法，最终在这里找到答案，理解起来也是很容易。非常感谢！！</dd></dl><dl class="comment_item comment_topic" id="comment_item_5587131"><dt class="comment_head" floor="9">9楼 <span class="user"><a class="username" href="http://blog.csdn.net/apiaoyin" target="_blank">apiaoyin</a> <span class="ptime">2015-11-03 11:54发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5587131" username="apiaoyin"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/apiaoyin" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_apiaoyin.jpg" width="40" height="40"></a></dd><dd class="comment_body">学习了，但是好像没有配置spring的事物。</dd></dl><dl class="comment_item comment_topic" id="comment_item_5552319"><dt class="comment_head" floor="8">8楼 <span class="user"><a class="username" href="http://blog.csdn.net/u014549539" target="_blank">u014549539</a> <span class="ptime">2015-10-28 17:26发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5552319" username="u014549539"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u014549539" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_u014549539.jpg" width="40" height="40"></a></dd><dd class="comment_body">兄弟，请问一下<br>&lt;!-- mybatis配置 --&gt;  <br>    &lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"&gt;  <br>        &lt;property name="dataSource" ref="dataSource" /&gt;  <br>    &lt;/bean&gt;   <br>这块的sqlSessionFactory要不要再注入到哪个类里边，它和DAO具体是怎么联系在一起的？</dd></dl><dl class="comment_item comment_topic" id="comment_item_5434709"><dt class="comment_head" floor="7">7楼 <span class="user"><a class="username" href="http://blog.csdn.net/wjx_0820" target="_blank">wjx_0820</a> <span class="ptime">2015-09-24 13:31发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5434709" username="wjx_0820"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/wjx_0820" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_wjx_0820.jpg" width="40" height="40"></a></dd><dd class="comment_body">很好，很详细</dd></dl><dl class="comment_item comment_topic" id="comment_item_5426377"><dt class="comment_head" floor="6">6楼 <span class="user"><a class="username" href="http://blog.csdn.net/Vendal" target="_blank">Vendal</a> <span class="ptime">2015-09-21 11:08发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5426377" username="Vendal"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Vendal" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_vendal.jpg" width="40" height="40"></a></dd><dd class="comment_body">兄弟，缓存怎么能去掉啊！改了点页面都要重启tomcat，实在是开发太慢啊</dd></dl><dl class="comment_item comment_topic" id="comment_item_5284207"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_19255817" target="_blank">qq_19255817</a> <span class="ptime">2015-08-07 11:54发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5284207" username="qq_19255817"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_19255817" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_qq_19255817.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主 ，非常感谢啊！以后有问题希望可以多多指教。</dd></dl><dl class="comment_item comment_topic" id="comment_item_5271327"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/rhwan" target="_blank">rhwan</a> <span class="ptime">2015-08-02 10:40发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5271327" username="rhwan"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/rhwan" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_rhwan.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主能把数据库发我一份吗  谢谢 我邮箱1178436585@qq.com 谢谢了</dd></dl><dl class="comment_item comment_topic" id="comment_item_4875979"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/u012216395" target="_blank">u012216395</a> <span class="ptime">2015-03-25 16:57发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4875979" username="u012216395"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012216395" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_u012216395.jpg" width="40" height="40"></a></dd><dd class="comment_body">非常感谢！</dd></dl><dl class="comment_item comment_topic" id="comment_item_4835039"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/huwen_hua" target="_blank">huwen_hua</a> <span class="ptime">2015-03-09 17:12发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4835039" username="huwen_hua"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/huwen_hua" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_huwen_hua.jpg" width="40" height="40"></a></dd><dd class="comment_body">请问一下，WEB-INF下的JSP文件如何访问？</dd><dl class="comment_item comment_reply" id="comment_item_4836193"><dt class="comment_head" floor="2">Re: <span class="user"><a class="username" href="http://blog.csdn.net/tonytfjing" target="_blank">tonytfjing</a> <span class="ptime">2015-03-10 10:35发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4836193" username="tonytfjing"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/tonytfjing" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_tonytfjing.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复自律-：首先，web-inf下默认是不能直接访问的，你要想直接访问可以把jsp文件夹移到webRoot下。我把jsp放在web-inf下主要就是为了安全性；其次，访问方式。这里不是直接访问jsp的（你可以看看restful相关知识），访问路径是contoller里@RequestMapping对应的路径，访问后返回的结果在springMybatis-servlet.xml里定义了；最后，有些人说代码不能运行，我想问数据库建立了吗？配置文件里的用户名和密码修改了吗？不知道有没有解决你的疑问？^_^</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_4732953"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/huting0211" target="_blank">huting0211</a> <span class="ptime">2015-01-23 16:40发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4732953" username="huting0211"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/huting0211" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_huting0211.jpg" width="40" height="40"></a></dd><dd class="comment_body">你好，我这边刚好有需要把SpringMVC和Mybatis整合起来，目前SpringMVC程序已经搭建好了，想要一下你这个项目的源码学习整个Mybatis。<br>谢谢</dd><dl class="comment_item comment_reply" id="comment_item_4739631"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/tonytfjing" target="_blank">tonytfjing</a> <span class="ptime">2015-01-26 14:56发表</span>  <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4739631" username="tonytfjing"> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/tonytfjing" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/3_tonytfjing.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复huting0211：源码地址在这里， http://download.csdn.net/detail/tonytfjing/8302369。</dd></dl></dl><div class="clear"></div></div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Ftonytfjing%2Farticle%2Fdetails%2F39203121">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '39203121';
+    var commentscount = 28;
+    var islock = false
+</script>
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="">
+
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+<a title="全部主题" href="http://www.csdn.net/tag" target="_blank" onclick="LogClickCount(this,336);">全部主题</a>
+<a title="Hadoop" href="http://g.csdn.net/5272865" target="_blank" onclick="LogClickCount(this,336);">Hadoop</a>
+<a title="AWS" href="http://g.csdn.net/5272866" target="_blank" onclick="LogClickCount(this,336);">AWS</a>
+<a title="移动游戏" href="http://g.csdn.net/5272870" target="_blank" onclick="LogClickCount(this,336);">移动游戏</a>
+<a title="Java" href="http://g.csdn.net/5272871" target="_blank" onclick="LogClickCount(this,336);">Java</a>
+<a title="Android" href="http://g.csdn.net/5272872" target="_blank" onclick="LogClickCount(this,336);">Android</a>
+<a title="iOS" href="http://g.csdn.net/5272873" target="_blank" onclick="LogClickCount(this,336);">iOS</a>
+<a title="Swift" href="http://g.csdn.net/5272868" target="_blank" onclick="LogClickCount(this,336);">Swift</a>
+<a title="智能硬件" href="http://g.csdn.net/5272869" target="_blank" onclick="LogClickCount(this,336);">智能硬件</a>
+<a title="Docker" href="http://g.csdn.net/5272867" target="_blank" onclick="LogClickCount(this,336);">Docker</a>
+<a title="OpenStack" href="http://g.csdn.net/5272925" target="_blank" onclick="LogClickCount(this,336);">OpenStack</a>
+<a title="VPN" href="http://www.csdn.net/tag/vpn" target="_blank" onclick="LogClickCount(this,336);">VPN</a>
+<a title="Spark" href="http://g.csdn.net/5272924" target="_blank" onclick="LogClickCount(this,336);">Spark</a>
+<a title="ERP" href="http://www.csdn.net/tag/erp" target="_blank" onclick="LogClickCount(this,336);">ERP</a>
+<a title="IE10" href="http://www.csdn.net/tag/ie10" target="_blank" onclick="LogClickCount(this,336);">IE10</a>
+<a title="Eclipse" href="http://www.csdn.net/tag/eclipse" target="_blank" onclick="LogClickCount(this,336);">Eclipse</a>
+<a title="CRM" href="http://www.csdn.net/tag/crm" target="_blank" onclick="LogClickCount(this,336);">CRM</a>
+<a title="JavaScript" href="http://www.csdn.net/tag/javascript" target="_blank" onclick="LogClickCount(this,336);">JavaScript</a>
+<a title="数据库" href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93" target="_blank" onclick="LogClickCount(this,336);">数据库</a>
+<a title="Ubuntu" href="http://www.csdn.net/tag/ubuntu" target="_blank" onclick="LogClickCount(this,336);">Ubuntu</a>
+<a title="NFC" href="http://www.csdn.net/tag/nfc" target="_blank" onclick="LogClickCount(this,336);">NFC</a>
+<a title="WAP" href="http://www.csdn.net/tag/wap" target="_blank" onclick="LogClickCount(this,336);">WAP</a>
+<a title="jQuery" href="http://www.csdn.net/tag/jquery" target="_blank" onclick="LogClickCount(this,336);">jQuery</a>
+<a title="BI" href="http://www.csdn.net/tag/bi" target="_blank" onclick="LogClickCount(this,336);">BI</a>
+<a title="HTML5" href="http://www.csdn.net/tag/html5" target="_blank" onclick="LogClickCount(this,336);">HTML5</a>
+<a title="Spring" href="http://www.csdn.net/tag/spring" target="_blank" onclick="LogClickCount(this,336);">Spring</a>
+<a title="Apache" href="http://www.csdn.net/tag/apache" target="_blank" onclick="LogClickCount(this,336);">Apache</a>
+<a title=".NET" href="http://www.csdn.net/tag/.net" target="_blank" onclick="LogClickCount(this,336);">.NET</a>
+<a title="API" href="http://www.csdn.net/tag/api" target="_blank" onclick="LogClickCount(this,336);">API</a>
+<a title="HTML" href="http://www.csdn.net/tag/html" target="_blank" onclick="LogClickCount(this,336);">HTML</a>
+<a title="SDK" href="http://www.csdn.net/tag/sdk" target="_blank" onclick="LogClickCount(this,336);">SDK</a>
+<a title="IIS" href="http://www.csdn.net/tag/iis" target="_blank" onclick="LogClickCount(this,336);">IIS</a>
+<a title="Fedora" href="http://www.csdn.net/tag/fedora" target="_blank" onclick="LogClickCount(this,336);">Fedora</a>
+<a title="XML" href="http://www.csdn.net/tag/xml" target="_blank" onclick="LogClickCount(this,336);">XML</a>
+<a title="LBS" href="http://www.csdn.net/tag/lbs" target="_blank" onclick="LogClickCount(this,336);">LBS</a>
+<a title="Unity" href="http://www.csdn.net/tag/unity" target="_blank" onclick="LogClickCount(this,336);">Unity</a>
+<a title="Splashtop" href="http://www.csdn.net/tag/splashtop" target="_blank" onclick="LogClickCount(this,336);">Splashtop</a>
+<a title="UML" href="http://www.csdn.net/tag/uml" target="_blank" onclick="LogClickCount(this,336);">UML</a>
+<a title="components" href="http://www.csdn.net/tag/components" target="_blank" onclick="LogClickCount(this,336);">components</a>
+<a title="Windows Mobile" href="http://www.csdn.net/tag/windowsmobile" target="_blank" onclick="LogClickCount(this,336);">Windows Mobile</a>
+<a title="Rails" href="http://www.csdn.net/tag/rails" target="_blank" onclick="LogClickCount(this,336);">Rails</a>
+<a title="QEMU" href="http://www.csdn.net/tag/qemu" target="_blank" onclick="LogClickCount(this,336);">QEMU</a>
+<a title="KDE" href="http://www.csdn.net/tag/kde" target="_blank" onclick="LogClickCount(this,336);">KDE</a>
+<a title="Cassandra" href="http://www.csdn.net/tag/cassandra" target="_blank" onclick="LogClickCount(this,336);">Cassandra</a>
+<a title="CloudStack" href="http://www.csdn.net/tag/cloudstack" target="_blank" onclick="LogClickCount(this,336);">CloudStack</a>
+<a title="FTC" href="http://www.csdn.net/tag/ftc" target="_blank" onclick="LogClickCount(this,336);">FTC</a>
+<a title="coremail" href="http://www.csdn.net/tag/coremail" target="_blank" onclick="LogClickCount(this,336);">coremail</a>
+<a title="OPhone " href="http://www.csdn.net/tag/ophone" target="_blank" onclick="LogClickCount(this,336);">OPhone </a>
+<a title="CouchBase" href="http://www.csdn.net/tag/couchbase" target="_blank" onclick="LogClickCount(this,336);">CouchBase</a>
+<a title="云计算" href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97" target="_blank" onclick="LogClickCount(this,336);">云计算</a>
+<a title="iOS6" href="http://www.csdn.net/tag/iOS6" target="_blank" onclick="LogClickCount(this,336);">iOS6</a>
+<a title="Rackspace " href="http://www.csdn.net/tag/rackspace" target="_blank" onclick="LogClickCount(this,336);">Rackspace </a>
+<a title="Web App" href="http://www.csdn.net/tag/webapp" target="_blank" onclick="LogClickCount(this,336);">Web App</a>
+<a title="SpringSide" href="http://www.csdn.net/tag/springside" target="_blank" onclick="LogClickCount(this,336);">SpringSide</a>
+<a title="Maemo" href="http://www.csdn.net/tag/maemo" target="_blank" onclick="LogClickCount(this,336);">Maemo</a>
+<a title="Compuware" href="http://www.csdn.net/tag/compuware" target="_blank" onclick="LogClickCount(this,336);">Compuware</a>
+<a title="大数据" href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE" target="_blank" onclick="LogClickCount(this,336);">大数据</a>
+<a title="aptech" href="http://www.csdn.net/tag/aptech" target="_blank" onclick="LogClickCount(this,336);">aptech</a>
+<a title="Perl" href="http://www.csdn.net/tag/perl" target="_blank" onclick="LogClickCount(this,336);">Perl</a>
+<a title="Tornado" href="http://www.csdn.net/tag/tornado" target="_blank" onclick="LogClickCount(this,336);">Tornado</a>
+<a title="Ruby" href="http://www.csdn.net/tag/ruby" target="_blank" onclick="LogClickCount(this,336);">Ruby</a>
+<a title="Hibernate" href="http://www.csdn.net/hibernate" target="_blank" onclick="LogClickCount(this,336);">Hibernate</a>
+<a title="ThinkPHP" href="http://www.csdn.net/tag/thinkphp" target="_blank" onclick="LogClickCount(this,336);">ThinkPHP</a>
+<a title="HBase" href="http://www.csdn.net/tag/hbase" target="_blank" onclick="LogClickCount(this,336);">HBase</a>
+<a title="Pure" href="http://www.csdn.net/tag/pure" target="_blank" onclick="LogClickCount(this,336);">Pure</a>
+<a title="Solr" href="http://www.csdn.net/tag/solr" target="_blank" onclick="LogClickCount(this,336);">Solr</a>
+<a title="Angular" href="http://www.csdn.net/tag/angular" target="_blank" onclick="LogClickCount(this,336);">Angular</a>
+<a title="Cloud Foundry" href="http://www.csdn.net/tag/cloudfoundry" target="_blank" onclick="LogClickCount(this,336);">Cloud Foundry</a>
+<a title="Redis" href="http://www.csdn.net/tag/redis" target="_blank" onclick="LogClickCount(this,336);">Redis</a>
+<a title="Scala" href="http://www.csdn.net/tag/scala" target="_blank" onclick="LogClickCount(this,336);">Scala</a>
+<a title="Django" href="http://www.csdn.net/tag/django" target="_blank" onclick="LogClickCount(this,336);">Django</a>
+<a title="Bootstrap" href="http://www.csdn.net/tag/bootstrap" target="_blank" onclick="LogClickCount(this,336);">Bootstrap</a>
+    </div>
+
+</div>
+  <script language="javascript" type="text/javascript">     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/tonytfjing/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/async_new.js"></script>      
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/tonytfjing" target="_blank">
+    <img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/1_tonytfjing.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/tonytfjing" class="user_name" target="_blank">tonytfjing</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=tonytfjing&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>261493次</span></li>
+    <li>积分：<span>1439</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/blog4.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：1439 </div>
+        </span>  </li>
+    <li>排名：<span>第19250名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>23篇</span></li>
+    <li>转载：<span>4篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>91条</span></li>
+</ul>
+</ul>
+</div>
+
+
+
+
+<div id="custom_column_38428071" class="panel">
+<ul class="panel_head"><span>友情链接</span></ul>
+<ul class="panel_body">
+
+<a title="Tony&#39;s Blog" target="_blank" href="http://tony1991.github.io/">My Blog in github</a>
+
+</ul>
+</div><div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/tonytfjing/article/category/1897151" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">J2SE</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/tonytfjing/article/category/1897149" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">J2EE</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/tonytfjing/article/category/1897435" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">日常问题</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/tonytfjing/article/category/2562239" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">linux</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/tonytfjing/article/category/2562243" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">开源框架和工具</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/tonytfjing/article/category/2562245" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">DB</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/tonytfjing/article/category/2819043" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">随感</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/tonytfjing/article/category/3035627" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">数据结构和算法</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/tonytfjing/article/category/3035629" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">面试&amp;笔试经历</a><span>(1)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/tonytfjing/article/month/2015/08">2015年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/tonytfjing/article/month/2015/07">2015年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/tonytfjing/article/month/2015/03">2015年03月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/tonytfjing/article/month/2015/01">2015年01月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/tonytfjing/article/month/2014/12">2014年12月</a><span>(1)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/tonytfjing/article/month/2014/11">2014年11月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/tonytfjing/article/month/2014/10">2014年10月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/tonytfjing/article/month/2014/09">2014年09月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/tonytfjing/article/month/2014/02">2014年02月</a><span>(2)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET.html" title="SpringMVC+MyBatis（最新）">SpringMVC+MyBatis（最新）</a><span>(73882)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39207551" title="SpringMVC拦截器（资源和权限管理）">SpringMVC拦截器（资源和权限管理）</a><span>(72362)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/44497997" title="阿里巴巴2015暑期实习经历（吐血整理）">阿里巴巴2015暑期实习经历（吐血整理）</a><span>(20780)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/42167599" title="Centos6.5搭建java开发环境">Centos6.5搭建java开发环境</a><span>(16389)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39251507" title="springmvc缓存">springmvc缓存</a><span>(12702)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/38980015" title="Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password:YES) 解决方案">Access denied for user 'root'@'localhost' (using password:YES) 解决方案</a><span>(9290)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39230901" title="springmvc+json">springmvc+json</a><span>(8337)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/38980489" title="Caused by: java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getServletContext()Lja">Caused by: java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getServletContext()Lja</a><span>(6390)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/38979677" title="配置xml时一些jar和命名空间问题，如mvc:annotation-driven">配置xml时一些jar和命名空间问题，如mvc:annotation-driven</a><span>(5836)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39006087" title="maven入门及使用myeclipse构建maven项目">maven入门及使用myeclipse构建maven项目</a><span>(4666)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET.html" title="SpringMVC+MyBatis（最新）">SpringMVC+MyBatis（最新）</a><span>(28)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39207551" title="SpringMVC拦截器（资源和权限管理）">SpringMVC拦截器（资源和权限管理）</a><span>(26)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/44497997" title="阿里巴巴2015暑期实习经历（吐血整理）">阿里巴巴2015暑期实习经历（吐血整理）</a><span>(23)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/40001547" title="springmvc+easyui实现透视表-动态生成列">springmvc+easyui实现透视表-动态生成列</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/42468245" title="2014年总结">2014年总结</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/38980489" title="Caused by: java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getServletContext()Lja">Caused by: java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getServletContext()Lja</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39230901" title="springmvc+json">springmvc+json</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/44064733" title="hadoop开发环境搭建">hadoop开发环境搭建</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/42556271" title="J2EE文件上传与下载小结">J2EE文件上传与下载小结</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tonytfjing/article/details/39323843" title="编程的一些代码风格（JAVA）">编程的一些代码风格（JAVA）</a><span>(1)</span>
+</li>
+</ul>
+</div>
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#comments">SpringMVC+MyBatis（最新）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_33303507" class="user_name">qq_33303507</a>:
+我只想说写的什么鬼
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tonytfjing/article/details/47061783#comments">linux性能分析命令-扫盲贴</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/wenbin516" class="user_name">wenbin516</a>:
+水滴石穿~  慢慢学习中
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tonytfjing/article/details/47061783#comments">SpringMVC+MyBatis（最新）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/q1107245967" class="user_name">q1107245967</a>:
+源代码有吗？可以给我发一份吗？这我邮箱：1107245967@qq.com
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tonytfjing/article/details/47061783#comments">SpringMVC+MyBatis（最新）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/xiami8" class="user_name">xiami8</a>:
+要写为何不写完呢,你这样让新手情何以堪
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tonytfjing/article/details/47061783#comments">SpringMVC+MyBatis（最新）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/big_bow" class="user_name">big_bow</a>:
+楼主你的myabtis.xml文件没贴出来啊
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tonytfjing/article/details/47061783#comments">SpringMVC+MyBatis（最新）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sunweifeng1" class="user_name">sunweifeng1</a>:
+楼主，我在等你答复呢？或者回复邮箱给我：627409739@qq.com
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tonytfjing/article/details/47061783#comments">SpringMVC+MyBatis（最新）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sunweifeng1" class="user_name">sunweifeng1</a>:
+希望楼主给我回复！谢谢
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tonytfjing/article/details/47061783#comments">SpringMVC+MyBatis（最新）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sunweifeng1" class="user_name">sunweifeng1</a>:
+楼主，怎么我运行成功后，访问不了！http://127.0.0.1:8080/SpringMvcDe...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tonytfjing/article/details/39207551#comments">SpringMVC拦截器（资源和权限管理）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sl303714223" class="user_name">sl303714223</a>:
+好吧，好像是瞬间顿悟了。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tonytfjing/article/details/39207551#comments">SpringMVC拦截器（资源和权限管理）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sl303714223" class="user_name">sl303714223</a>:
+没有看明白登录完成之后是怎么进行跳转的之前请求的路径的？完全没看到有这样功能的代码呀。
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+ </div>   
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/cnick.js"></script>
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/JavaScript1.js"></script><link rel="stylesheet" type="text/css" href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&uin=2251809102&site=qq&menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-600-2320</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏乐知网络技术有限公司 提供商务支持</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2014, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display: none; position: absolute; z-index: 9990; width: 170px;">  <iframe src="about:blank" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/notify.js"></script>
+
+    <script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+<script type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/ad-blog.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+    </div><input type="hidden" id="aa_g_data_ids">
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/toolbar.js"></script>
+     <!--new top-->
+   
+    <link href="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/ask_float_block.css" type="text/css" rel="stylesheet">
+    <script language="JavaScript" type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/wmd.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/showdown.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/prettify.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/ask_float_block.js"></script>
+   
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/52b5334.js"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+
+   
+ <div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://blog.csdn.net/tonytfjing/article/details/39203121#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://blog.csdn.net/tonytfjing/article/details/39203121#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/yun6.html" style="border: none; display: none; z-index: 2147483645; background: transparent;"></iframe><script src="./SpringMVC+MyBatis（最新） - tonytfjing的专栏 - 博客频道 - CSDN.NET_files/pv.gif"></script></body></html>

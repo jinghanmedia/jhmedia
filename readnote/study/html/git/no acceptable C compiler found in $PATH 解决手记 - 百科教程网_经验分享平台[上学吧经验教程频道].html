@@ -1,0 +1,1638 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://www.shangxueba.com/jingyan/121655.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script charset="utf-8" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/s.js"></script><script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/push.js"></script><script>
+        (function(a, b) { if ((/AppleWebKit.*Mobile/i.test(a) || /Android|Windows Phone|webOS|iPhone|iPod|BlackBerry/i.test(a) || /MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(a)) && location.hash != '#m') window.location = b })(navigator.userAgent, '//m.shangxueba.com/jingyan/121655.html')
+    </script>
+    <title>
+	"no acceptable C compiler found in $PATH"解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]
+</title><meta name="classification" content="下载|考试|教育|图书|视频"><meta name="author" content="上学吧经验（shangxueba.com）"><meta name="copyright" content="上学吧经验（shangxueba.com）"><meta http-equiv="Content-Language" content="zh-CN"><meta http-equiv="pragma" content="no-cache"><meta name="keywords" content="Linux技术,Linux应用"><meta name="description" content="&gt;[root@server mysql-5.0.56]# ./configure --prefix=/usr/local/mysql --with-charset=gbk --with-extra-charset=all --enable-thread-safe-client --enable-local-infile --with-low-memorychecking build system "><link href="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/header.css" rel="stylesheet" type="text/css"><link rel="stylesheet" href="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/base.css" type="text/css"><link rel="stylesheet" href="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/nei.css" type="text/css"><link rel="stylesheet" type="text/css" href="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/ymPrompt.css">
+
+    <script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/ymPrompt_source.js"></script>
+
+    <script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/pubsearch.js"></script>
+
+    <script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/jquery-1.6.4.min.js"></script>
+
+    <script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/tab.js"></script>
+
+    <script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/new.js"></script>
+
+    <script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/shopcart.js"></script>
+
+    <script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/jyView.js"></script>
+
+<style type="text/css">div[id^="BAIDU_SSP__wrapper_u"],.tb-gg{display:none !important;}</style><script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/logger.js"></script><link href="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/bdsstyle.css" rel="stylesheet" type="text/css"><style>html #hm_t_undefined .hm-t-go-top {position:fixed;right:2px;bottom:2px;z-index:99998;cursor:pointer;width:40px;height:37px!important;text-align:center;white-space:normal;font-size:14px;line-height:17px;padding-top:3px;color:#fff;background:#404040;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEkAAAAXCAYAAABH92JbAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowMjgwMTE3NDA3MjA2ODExODA4M0UyNDA4ODdDRTZBQiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBQjc5RkRFNkI5ODMxMUUzQkZGNDhENEJFQjM2OTcyRiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBQjc5RkRFNUI5ODMxMUUzQkZGNDhENEJFQjM2OTcyRiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDI4MDExNzQwNzIwNjgxMTgwODNFMjQwODg3Q0U2QUIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDI4MDExNzQwNzIwNjgxMTgwODNFMjQwODg3Q0U2QUIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5HPYM5AAACC0lEQVR42uyZTSgEYRjH90NoqaVcpDblvKW2XOSkNh8H5Yac9sBBDqQokiJKSMpNTi5OPo6Ktsgu67JcUHIXWfK1u3b8Xx6Zxuzu+64dM83uv34zNfu8b8/8Z+d5P8YqSZLFJNLsRmyWvIRMKgVD4AhEwA3YAV0pzGwEqyAEwmAddIICHe7FqhnsdQM14FxKLj+ooFiGE2ykiD8GVbJ4I1ELAnTmasMODnAhpVcIFIMicMgRH6Z4IxnUAh4pP3Zu5TVpUOLXDJgWiB8wkEF9IK7IL07X05oUFLjpZ4JXQQOYYwfzafJcoDjVPqw43KE4lWtUTF+AQ8eBqQSsgTaO2E0apJ7URrdCDZOM62hQJfBzGmShOD+1+2XSiYaJ7utkkBsEgEewnYfauZUmzWmU6DuY0sEgLzgArgzbu6i992cu/1WclqXsa1iHIt0DYlnKP0b9fRZu5pWdZs7dWXqa7B80+s//oF5aMSjflGqBPq5BQnFtVv4UmGHjIPEH96PAZ6C5kVMwf6daPzbFKnqCqvx9Bk/yFjSBFTMvcL+1DerAmUA/p9Rm1+y7AHJdgnqwx9EHm1s0gKtc2CpR6gE00/ZHMm3RKxbJlf0kNb2BDrCk8hsbDdvBay5tuiUTGxL7waTs2iLw0YTR9BLZQRwDUVqwjuTS9q3VRB8C1OQUnM6UqdXX/IcADn0IMADs2AqDOPSutQAAAABJRU5ErkJggg==) no-repeat -42px center #666;*background-image:url(http://ecma.bdimg.com/holmes/t-popup-icons-png8.png);_position:absolute;_top:expression(eval(document.documentElement.scrollTop+(document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight-2));}</style></head>
+<body><iframe frameborder="0" style="display: none;"></iframe><div id="bdshare" style="right: 0px; top: 210.5px; position: fixed; height: 330px; overflow: hidden;"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/r1.gif" alt="" style="float:left;margin-top:58px;"><iframe id="bdsIfr" style="position:absolute;display:none;z-index:9999;" frameborder="0"></iframe><div id="bdshare_l" style="display: none; left: 24px;"><div id="bdshare_l_c"><h6>分享到</h6><ul><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_mshare mshare">一键分享</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_bdysc bdysc">百度云收藏</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_renren rrw">人人网</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_kaixin001 kxw">开心网</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_tqf txpy">腾讯朋友</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_tieba bdtb">百度贴吧</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_douban db">豆瓣网</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_tsohu shwb">搜狐微博</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_bdhome bdhome">百度新首页</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_sqq sqq">QQ好友</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_thx thx">和讯微博</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_more">更多...</a></li></ul><p><a href="http://www.shangxueba.com/jingyan/121655.html#" class="goWebsite">百度分享</a></p></div></div></div><div id="bdshare_s" style="display: block;"><iframe id="bdsIfr" style="position:absolute;display:none;z-index:9999;" frameborder="0"></iframe><div id="bdshare_l" style="display: none;"><div id="bdshare_l_c"><h6>分享到</h6><ul><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_mshare mshare">一键分享</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_bdysc bdysc">百度云收藏</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_renren rrw">人人网</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_kaixin001 kxw">开心网</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_tqf txpy">腾讯朋友</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_tieba bdtb">百度贴吧</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_douban db">豆瓣网</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_tsohu shwb">搜狐微博</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_bdhome bdhome">百度新首页</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_sqq sqq">QQ好友</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_thx thx">和讯微博</a></li><li><a href="http://www.shangxueba.com/jingyan/121655.html#" class="bds_more">更多...</a></li></ul><p><a href="http://www.shangxueba.com/jingyan/121655.html#" class="goWebsite">百度分享</a></p></div></div></div>
+    <form name="form1" method="post" action="http://www.shangxueba.com/jingyan/View.aspx?id=121655" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTI4MjExMzgxNGRk6qY60W5WqyPhiIdZHNMsS1qRHFs=">
+</div>
+
+    
+
+<script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/pubsearch.js"></script>
+
+<div id="topall_j" style="position:fixed;_position:absolute;top:0px;width:100%;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop));z-index:888;">
+<div class="wd960">
+<div class="top_r">
+<ul>
+<li>
+<div><a href="http://www.shangxueba.com/" target="_blank">首页</a></div>
+</li>
+<li class="split"></li>
+<li>
+<div><a style="color: Red;" href="http://www.shangxueba.com/news/kaoshiyueli.htm?g=1" target="_blank">考试日历</a>·<a href="http://www.shangxueba.com/news/kaoshizhinan.htm" target="_blank">考试大全</a></div>
+</li>
+<li class="split"></li>
+<li>
+<div><a href="http://so.csai.cn/link.htm?url=http://www.liyuu.com/landing/index?hmsr=xcwsy" target="_blank" style="color: Red;">注册领红包</a></div>
+</li>
+<li class="split"></li>
+<li>
+<div><a href="http://passport.shangxueba.com/" target="_blank">我的上学吧</a></div>
+</li>
+<li class="split"></li>
+<li>
+<div><a style="color: Red;" href="http://www.shangxueba.com/shiting/" target="_blank">免费视频</a></div>
+</li>
+<li class="split"></li>
+<li>
+<div><a href="http://passport.shangxueba.com/yeepayfund.aspx" target="_blank">充值</a></div>
+</li>
+<li class="split"></li>
+<li>
+<div><a style="color: Red;" href="http://www.shangxueba.com/fanxian.html?para=top" target="_blank">报名就送100现金</a></div>
+</li>
+<li class="split"></li>
+<li>
+<div><a href="http://www.shangxueba.com/faq/" target="_blank">帮助</a></div>
+</li>
+<li>
+<div style="padding-left: 15px;" id="topAllQQKf0">
+    <a target="blank" href="tencent://message/?uin=2634277110&Site=qq&Menu=yes">
+        <img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/topAllqq1.gif"></a>
+    <script type="text/javascript">
+        document.getElementById("topAllQQKf0").innerHTML = document.getElementById("divQQbox").innerHTML;
+    </script></div>
+</li>
+</ul>
+</div>
+<div class="top_l">
+<ul id="AllHeadLognUl"><li><div><a href="http://passport.shangxueba.com/user/userlogin.aspx?url=http%3A//www.shangxueba.com/jingyan/121655.html" style="color: #f22e00;">亲，请登录</a>&nbsp;</div></li><li><div><a href="http://passport.shangxueba.com/user/register.aspx?url=http%3A//www.shangxueba.com/jingyan/121655.html">免费注册</a> </div></li></ul>
+</div>
+</div>
+</div>
+<div style="height: 26px; overflow: hidden; clear:both;font-size:0px;"></div>
+<script language="javascript" type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/headlogin.js"></script>
+<div class="header">
+    <div class="width960">
+        <div class="h20">
+        </div>
+        <div class="logo fl">
+            <a href="http://www.shangxueba.com/jingyan/">
+                <img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/logo.png" width="278" height="32"></a></div>
+        <div class="search fr">
+            <input class="fl search_input" id="txtKeyWord" value="" onkeypress="return searchKeydown(event,6);">
+            <div class="search_btn fl">
+                <a href="javascript:" onclick="searchNewClick(6)">
+                    <img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/touming.gif"></a></div>
+        </div>
+    </div>
+    <div class="h20">
+    </div>
+    <div class="menu_bg">
+        <div class="width960">
+            <div class="menu fl">
+                <ul>
+                    <li id="WUCTop1_li0" class="menu_hover">
+                        <div id="sidelist">
+                            <h3>
+                                <a href="http://www.shangxueba.com/jingyan/class.html"><span>分类导航</span> <i></i>
+                                </a>
+                            </h3>
+                            <div class="i-list" id="toplist"><ul>
+    <li id="sidelist1">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c1-0-0-1.html" target="_blank"><span>应考经验</span></a></h4>
+        <div class="i-list1" id="i-list1">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c1-4-0-1.html" target="_blank">学历类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-5-0-1.html" target="_blank">职业资格类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-8-0-1.html" target="_blank">财务金融类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-9-0-1.html" target="_blank">建筑工程类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-10-0-1.html" target="_blank">外语类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-11-0-1.html" target="_blank">医卫类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-12-0-1.html" target="_blank">公务员类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-13-0-1.html" target="_blank">外贸类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-94-0-1.html" target="_blank">计算机类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-14-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist2">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c2-0-0-1.html" target="_blank"><span>计算机/互联网</span></a></h4>
+        <div class="i-list1" id="i-list2" style="top:28px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c2-17-0-1.html" target="_blank">办公软件</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-18-0-1.html" target="_blank">常用软件</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-19-0-1.html" target="_blank">程序设计&amp;开发</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-20-0-1.html" target="_blank">存储</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-21-0-1.html" target="_blank">多媒体</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-22-0-1.html" target="_blank">服务器</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-23-0-1.html" target="_blank">互联网</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-24-0-1.html" target="_blank">计算机硬件</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-26-0-1.html" target="_blank">软件工程</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-27-0-1.html" target="_blank">数据库</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-28-0-1.html" target="_blank">网络与通信</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-29-0-1.html" target="_blank">信息安全</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-15-0-1.html" target="_blank">PC操作系统</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-16-0-1.html" target="_blank">UI设计</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-113-0-1.html" target="_blank">网页特效</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-25-0-1.html" target="_blank">平面设计</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-1-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist3">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c3-0-0-1.html" target="_blank"><span>管理/营销/职场</span></a></h4>
+        <div class="i-list1" id="i-list3" style="top:56px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c3-106-0-1.html" target="_blank">资料范文</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-30-0-1.html" target="_blank">项目管理</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-31-0-1.html" target="_blank">企业管理</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-32-0-1.html" target="_blank">人力资源</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-35-0-1.html" target="_blank">销售营销</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-7-0-1.html" target="_blank">市场推广</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-96-0-1.html" target="_blank">职场/励志</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-114-0-1.html" target="_blank">面试指南</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-115-0-1.html" target="_blank">简历攻略</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-116-0-1.html" target="_blank">职业规划</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-33-0-1.html" target="_blank">其他</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist4">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c4-0-0-1.html" target="_blank"><span>金融/投资</span></a></h4>
+        <div class="i-list1" id="i-list4" style="top:84px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c4-37-0-1.html" target="_blank">经济学基础</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-38-0-1.html" target="_blank">货币银行学基础</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-39-0-1.html" target="_blank">创业</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-108-0-1.html" target="_blank">理财知识</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-34-0-1.html" target="_blank">经济贸易</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-99-0-1.html" target="_blank">债券</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-40-0-1.html" target="_blank">股票</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-41-0-1.html" target="_blank">基金</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-42-0-1.html" target="_blank">外汇</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-43-0-1.html" target="_blank">保险</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-44-0-1.html" target="_blank">期货</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-97-0-1.html" target="_blank">黄金</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-98-0-1.html" target="_blank">信托</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-45-0-1.html" target="_blank">房地产</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-73-0-1.html" target="_blank">收藏鉴宝</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-107-0-1.html" target="_blank">行业投资</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-95-0-1.html" target="_blank">其他</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist5">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c5-0-0-1.html" target="_blank"><span>工程/机械</span></a></h4>
+        <div class="i-list1" id="i-list5" style="top:112px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c5-47-0-1.html" target="_blank">机械工程设计</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c5-51-0-1.html" target="_blank">城市规划</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c5-52-0-1.html" target="_blank">工程设备</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c5-53-0-1.html" target="_blank">安全工程</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c5-54-0-1.html" target="_blank">公路桥梁</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c5-56-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist6">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c6-0-0-1.html" target="_blank"><span>生活百科</span></a></h4>
+        <div class="i-list1" id="i-list6" style="top:140px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c6-3-0-1.html" target="_blank">养生保健</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-57-0-1.html" target="_blank">美容时尚</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-58-0-1.html" target="_blank">美食烹饪</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-59-0-1.html" target="_blank">购房置业</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-60-0-1.html" target="_blank">家居装修</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-61-0-1.html" target="_blank">家电维修</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-62-0-1.html" target="_blank">汽车保养</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-63-0-1.html" target="_blank">育儿母婴</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-64-0-1.html" target="_blank">礼节礼仪</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-65-0-1.html" target="_blank">文体艺术</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-66-0-1.html" target="_blank">旅游户外</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-68-0-1.html" target="_blank">占卜风水</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-69-0-1.html" target="_blank">宠物饲养</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-70-0-1.html" target="_blank">家庭关系</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-71-0-1.html" target="_blank">交友技巧</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-72-0-1.html" target="_blank">心理咨询</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-101-0-1.html" target="_blank">哲理故事</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-102-0-1.html" target="_blank">情感&amp;心情</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-103-0-1.html" target="_blank">兴趣爱好</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-104-0-1.html" target="_blank">家庭教育</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-109-0-1.html" target="_blank">摄影摄像</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-2-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist7">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c7-0-0-1.html" target="_blank"><span>外语/方言</span></a></h4>
+        <div class="i-list1" id="i-list7" style="top:168px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c7-77-0-1.html" target="_blank">韩语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-78-0-1.html" target="_blank">德语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-79-0-1.html" target="_blank">粤语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-80-0-1.html" target="_blank">闽南语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-74-0-1.html" target="_blank">英语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-75-0-1.html" target="_blank">法语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-76-0-1.html" target="_blank">日语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-81-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist8">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c8-0-0-1.html" target="_blank"><span>数码/游戏/手机</span></a></h4>
+        <div class="i-list1" id="i-list8" style="top:196px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c8-82-0-1.html" target="_blank">Andriod手机</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-83-0-1.html" target="_blank">iOS手机&amp;笔记本</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-100-0-1.html" target="_blank">Windows Phone</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-84-0-1.html" target="_blank">数码相机</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-85-0-1.html" target="_blank">数码摄像机</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-86-0-1.html" target="_blank">游戏机</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-87-0-1.html" target="_blank">网络游戏</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-88-0-1.html" target="_blank">网页游戏</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-89-0-1.html" target="_blank">单机游戏</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-90-0-1.html" target="_blank">小游戏</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-91-0-1.html" target="_blank">PS系列</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-92-0-1.html" target="_blank">桌面游戏</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-93-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist9">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c10-0-0-1.html" target="_blank"><span>法律法规</span></a></h4>
+        <div class="i-list1" id="i-list9" style="top:224px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c10-0-0-1.html" target="_blank">法律法规</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist10">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c9-0-0-1.html" target="_blank"><span>其它</span></a></h4>
+        <div class="i-list1" id="i-list10" style="top:233px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c9-6-0-1.html" target="_blank">其他</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+</ul>
+<div class="clear">
+</div>
+</div>
+                        </div>
+                    </li>
+                    <li id="WUCTop1_li1" class="a1"><a href="http://www.shangxueba.com/jingyan/" target="_blank">首页</a></li>
+                    <li id="WUCTop1_li2" class="menu_hover2"><a href="http://www.shangxueba.com/jingyan/class.html" target="_blank">经验教程大全</a></li>
+                    <li id="WUCTop1_li3" class="a1"><a href="http://www.shangxueba.com/jingyan/Topic.html" target="_blank">专题</a></li>
+                    <li id="WUCTop1_li6" class="a1"><a href="http://www.shangxueba.com/jingyan/help.aspx" target="_blank"><span class="hot_icon">赚钱攻略</span></a></li>
+                    <li id="WUCTop1_li5" class="a1"><a href="http://jingyan.shangxueba.com/Myinfo.aspx" target="_blank"><span class="star_icon">我的分享</span></a></li>
+                </ul>
+            </div>
+            <div class="share_btn fr">
+                <a href="http://jingyan.shangxueba.com/add.aspx" target="_blank"><span class="upload_icon">
+                    分享经验</span></a> <a href="http://jingyan.shangxueba.com/addTopic.aspx" target="_blank"><span class="fzj_icon">发布专题</span></a></div>
+        </div>
+    </div>
+</div>
+<div class="h20" id="jyclx">
+</div>
+
+    <div class="width960">
+        
+<script type="text/javascript">
+/*JY_960-90_顶通栏*/
+var cpro_id = "u1619884";
+</script>
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/c.js" type="text/javascript"></script>
+        <div class="position">
+            <a href="http://www.shangxueba.com/jingyan/">经验教程</a> &gt; <a href="http://www.shangxueba.com/jingyan/class.html">
+                分类导航</a>
+             &gt; <a target="_blank" href="http://www.shangxueba.com/jingyan/c9-0-0-1.html">其它</a> &gt; <a target="_blank" href="http://www.shangxueba.com/jingyan/c9-6-0-1.html">其他</a> &gt; "no acceptable C compiler found in $PATH"解决手记</div>
+    </div>
+    <div class="width960">
+        <div class="zt_content_bg">
+            <div class="content_main fl">
+                <div class="content_s">
+                    
+                    <h1>
+                        "no acceptable C compiler found in $PATH"解决手记</h1>
+                    <div class="h20">
+                    </div>
+                    <div class="c_user">
+                        <div class="s_lefter fl">
+                            <dl>
+                                <dt>
+                                    <a href="http://passport.shangxueba.com/space_jy_15448.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&#39;http://passport.shangxueba.com/images/men_tiny.gif&#39;"></a></dt>
+                                <dd>
+                                    上传者：<span class="blue"><a href="http://passport.shangxueba.com/space_jy_15448.html" target="_blank"><font color="#3C7BA0">xushengzhi0331</font></a></span>
+                                    &nbsp;&nbsp;<span class="red" style="color: #EA1C1E; font-weight: bold;"></span>
+                                    
+                                    &nbsp;<br>
+                                    我也要“<span class="blue"><a target="_blank" href="http://www.shangxueba.com/jingyan/help.aspx">分享赚钱</a></span>”</dd>
+                            </dl>
+                        </div>
+                        <div class="s_righter fr" style="width: 187px;">
+                            <dl>
+                                <dt>
+                                    <img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/con_icon1.png"></dt>
+                                <dd>
+                                    2013/3/9</dd>
+                            </dl>
+                            
+                            <dl style="border-right: 0px; padding-right: 0px;">
+                                <dt>
+                                    <img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/con_icon3.png"></dt>
+                                <dd>
+                                    评论(<span id="LiteCommCount1">0</span>)</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="h20">
+                    </div>
+                    <p>
+  <span style="font-weight: bold; font-size: 14px;">
+    ·<a href="http://so.csai.cn/link.htm?url=http://www.qingfuzaixian.com/?source=020201" target="_blank">一亿风险准备金：活期理财，随存随取</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    ·<a style="color: Blue;" href="http://so.csai.cn/link.htm?url=https://www.js99cf.com" target="_blank">99财富：获国文集团1亿注资</a><br><br>
+    ·<a style="color: red;" href="http://so.csai.cn/link.htm?url=http://zt.haochedai.com/?qingchun&source=pcxicai" target="_blank">好车贷：银行存管正式上线</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ·<a href="http://so.csai.cn/link.htm?url=https://www.junrongdai.com/?utm_source=xcwwzny" target="_blank">注册即送105元，预期收益15%</a>
+</span>
+</p>
+
+                    <div style="padding-top: 10px; text-align: center;">
+                        <script type="text/javascript">
+var cpro_id="u1617689";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"650",rsi1:"250",pat:"1",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",tft:"0",tlt:"1",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</script>
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/c.js" type="text/javascript"></script>
+
+
+<!--
+<script type="text/javascript">
+    /*JY_640-60_正文头部*/
+    var cpro_id = "u1617689";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+-->
+
+                    </div>
+                    <div class="h20">
+                    </div>
+                    <div id="jc_nrong" class="context">
+                        &gt;[root@server mysql-5.0.56]# ./configure --prefix=/usr/local/mysql --with-charset=gbk --with-extra-charset=all --enable-thread-safe-client --enable-local-infile --with-low-memory<br>checking build system type... i686-pc-linux-gnu<br>checking host system type... i686-pc-linux-gnu<br>checking target system type... i686-pc-linux-gnu<br>checking for a BSD-compatible install... /usr/bin/install -c<br>checking whether build environment is sane... yes<br>checking for gawk... gawk<br>checking whether make sets $(MAKE)... yes<br>checking "character sets"... default: gbk, collation: gbk_chinese_ci; compiled in: gbk latin1 utf8<br>checking whether to compile national Unicode collations... yes<br>checking whether build environment is sane... yes<br>checking whether make sets $(MAKE)... (cached) yes<br>checking for gawk... (cached) gawk<br>checking for gcc... no<br>checking for cc... no<br>checking for cc... no<br>checking for cl... no<br>configure: error: no acceptable C compiler found in $PATH<br>See `config.log' for more details. <br>今天在安装mysql时遇到了上面这个问题，解决办法：安装GCC软件套件<br>&nbsp;[root@server mysql-5.0.56]# yum install gcc<br>Loaded plugins: fastestmirror<br>Loading mirror speeds from cached hostfile<br>&nbsp;* base: centos.ustc.edu.cn<br>&nbsp;* extras: centos.ustc.edu.cn<br>&nbsp;* updates: centos.ustc.edu.cn<br>addons&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 951 B&nbsp;&nbsp;&nbsp;&nbsp; 00:00&nbsp;&nbsp;&nbsp;&nbsp; <br>addons/primary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 202 B&nbsp;&nbsp;&nbsp;&nbsp; 00:00&nbsp;&nbsp;&nbsp;&nbsp; <br>base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1.1 kB&nbsp;&nbsp;&nbsp;&nbsp; 00:00&nbsp;&nbsp;&nbsp;&nbsp; <br>base/primary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 961 kB&nbsp;&nbsp;&nbsp;&nbsp; 00:06&nbsp;&nbsp;&nbsp;&nbsp; <br>base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2705/2705<br>extras&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 2.1 kB&nbsp;&nbsp;&nbsp;&nbsp; 00:00&nbsp;&nbsp;&nbsp;&nbsp; <br>extras/primary_db&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 171 kB&nbsp;&nbsp;&nbsp;&nbsp; 00:00&nbsp;&nbsp;&nbsp;&nbsp; <br>updates&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1.9 kB&nbsp;&nbsp;&nbsp;&nbsp; 00:00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>..........................................................................................<br>.................................................................................<br>................................................................ <br>再次运行上面命令安装mysql即可以正常安装：<br>[root@server mysql-5.0.56]# ./configure --prefix=/usr/local/mysql --with-charset=gbk --with-extra-charset=all --enable-thread-safe-client --enable-local-infile --with-low-memory<br>checking build system type... i686-redhat-linux-gnu<br>checking host system type... i686-redhat-linux-gnu<br>checking target system type... i686-redhat-linux-gnu<br>checking for a BSD-compatible install... /usr/bin/install -c<br>checking whether build environment is sane... yes<br>checking for gawk... gawk<br>checking whether make sets $(MAKE)... yes<br>checking "character sets"... default: gbk, collation: gbk_chinese_ci; compiled in: gbk latin1 utf8<br>checking whether to compile national Unicode collations... yes<br>checking whether build environment is sane... yes<br>checking whether make sets $(MAKE)... (cached) yes<br>checking for gawk... (cached) gawk<br>.............................................................................................................<br>..............................................................................................<br>....................................................................
+                        <div class="shengming">
+                            声明：该文章系网友上传分享，此内容仅代表网友个人经验或观点，不代表本网站立场和观点；若未进行原创声明，则表明该文章系转载自互联网；若该文章内容涉嫌侵权，请及时向<a href="http://www.shangxueba.com/help/banquan.html" target="_blank">上学吧网站投诉&gt;&gt;</a>
+                        </div>
+                        <div style="padding: 10px 0px; text-align: center;">
+                            <script type="text/javascript">
+    /*JY_650-80_正文底部*/
+    var cpro_id = "u1617695";
+</script>
+
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/c.js" type="text/javascript"></script>
+
+                        </div>
+                    </div>
+                    
+                    <div class="h15">
+                    </div>
+                    
+                    
+                    
+                    <div class="h20">
+                    </div>
+                    <div class="dis_area2">
+                        <div class="s_lefter2 fl">
+                            <ul>
+                                
+                                
+                                
+                                
+                                <li id="li4" class="a4">
+                                    <div id="bdshare" class="bdshare_b">
+                                        <a>
+                                            <img style="text-align: center;" alt="" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/touming(1).gif" class="bds_more"></a></div>
+                                </li>
+                                <li id="li5" class="a5"><a href="http://daan.shangxueba.com/AddAsk.aspx?userid=15448" target="_blank"></a></li>
+                            </ul>
+                        </div>
+                        <div class="s_righter2 fr">
+                            <ul>
+                                <li class="a1"><a href="javascript:" onclick="JyChengGong(1,121655)" style="text-decoration: none;">
+                                    <img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/con_icon4.png" width="13" height="15"><br>
+                                    挺好(<span id="LiteSuccess_1">5</span>)</a></li>
+                                <li class="a2"><a href="javascript:" onclick="JyChengGong(2,121655)" style="text-decoration: none;">
+                                    <img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/con_icon5.png" width="13" height="15"><br>
+                                    一般(<span id="LiteFailures_1">2</span>)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="h10">
+                    </div>
+                    <div class="page_next">
+                        上一篇：<a style="color:#0175B7;" href="http://www.shangxueba.com/jingyan/121654.html" target="_blank" title="CentOS yum时出现&quot;Could not retrieve mirrorlist&quot;的解决办法">CentOS yum时出现"Could not retrieve mirrorlist"的解决办法</a><br>下一篇：<a style="color:#0175B7;" href="http://www.shangxueba.com/jingyan/121656.html" target="_blank" title="&quot;checking for termcap functions library… &quot;排错记录">"checking for termcap functions library… "排错记录</a></div>
+                    <div class="h20">
+                    </div>
+                    <div id="LiteViewbanner" class="638gao"><!--650-250原生广告-->
+<script type="text/javascript"> 
+var cpro_id="u2043570"; 
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"650",rsi1:"250",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"} 
+</script> 
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/c.js" type="text/javascript"></script></div>
+                    <div class="h20">
+                    </div>
+                    <div class="relevant_experience">
+                        <div class="title">
+                            <div class="fr" style="padding-top: 5px;">
+                                
+                            </div>
+                            相关经验教程</div>
+                        <div class="content">
+                            <ul id="LiteClassTj1"><li><a href="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道].html" target="_blank" title="&quot;no acceptable C compiler found in $PATH&quot;解决手记">"no acceptable C compiler found in $PATH"解决手记</a></li><li><a href="http://www.shangxueba.com/jingyan/996323.html" target="_blank" title="菜鸟调试手记一（sql server 中文问题）">菜鸟调试手记一（sql&nbsp;server&nbsp;中文问题）</a></li><li><a href="http://www.shangxueba.com/jingyan/111835.html" target="_blank" title="Windows 2003菜鸟使用手记">Windows 2003菜鸟使用手记</a></li><li><a href="http://www.shangxueba.com/jingyan/103052.html" target="_blank" title="开心网辅助程序开发手记（三）：实现停车功能">开心网辅助程序开发手记（三）：实现停车功能</a></li><li><a href="http://www.shangxueba.com/jingyan/996132.html" target="_blank" title="关于JSP中，中文问题（泛指字符问题），以及常见错误调试手记">关于JSP中，中文问题（泛指字符问题），以及常见错误调试手记</a></li></ul>
+                            <div class="h10">
+                            </div>
+                            <a target="_blank" class="rele_upload" href="http://jingyan.shangxueba.com/add.aspx">
+                                上传我的经验教程</a>
+                        </div>
+                        <div style="float: right; width: 250px; padding-top: 7px;">
+                            <div class="h10">
+                            </div>
+                            <script async="" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/adsbygoogle.js"></script>
+
+<!-- JY_250-250_右侧通用 -->
+<ins class="adsbygoogle" style="display: inline-block; width: 250px; height: 250px" data-ad-client="ca-pub-9854389684640705" data-ad-slot="9073990150"></ins>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+                        </div>
+                        <div class="h20">
+                        </div>
+                        <div>
+                            <!-- 经验底部通栏 640-90 -->
+<script charset="gbk" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/ex"></script>
+
+<div style="padding-top:10px;">
+<!--Baidu 640-250 yuansheng-->
+<script type="text/javascript">
+var cpro_id="u2043590";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"640",rsi1:"250",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</script>
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/c.js" type="text/javascript"></script>
+</div>
+                        </div>
+                    </div>
+                    <div class="h10">
+                    </div>
+                    <a name="pinglun"></a>
+                    <div class="h10">
+                    </div>
+                </div>
+                <div class="h20">
+                </div>
+                <iframe id="Iframe1" name="ifm" scrolling="no" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/iframeCommentInfo.html" border="0" height="220px" width="649px" frameborder="0"></iframe>
+            </div>
+            <div class="width250 fr">
+                <div class="upload_share">
+                    <a target="_blank" href="http://jingyan.shangxueba.com/add.aspx">
+                        <img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/touming(1).gif"></a>
+                </div>
+                <div class="h10">
+                </div>
+                <div class="withdraw" style="background: #fff">
+                    <div class="h15">
+                    </div>
+                    <div id="marquees" style="overflow-y: hidden; overflow-x: visible; width: 214px; height: 244px;">
+                        
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1218662.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1218662.html" target="_blank">sr0529</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_29130.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_29130.html" target="_blank">xyz216115</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_2253852.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_2253852.html" target="_blank">hack526022555</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank">ld830918</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank">Paranoia7</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_28294.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_28294.html" target="_blank">wqg1804</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1756969.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130827164358.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1756969.html" target="_blank">looyunk</a></span> 的原创经验被浏览，获得 <span class="red">￥0.002</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1734012.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130815181214.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1734012.html" target="_blank">anbgsck</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank">Paranoia7</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank">ld830918</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1099.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1099.html" target="_blank">cyhjb</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_3839.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_3839.html" target="_blank">jinfeng105</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1365086.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130123102212.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1365086.html" target="_blank">jingsitiandi</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_30632.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_30632.html" target="_blank">a394111</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1128065.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1128065.html" target="_blank">waybol</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1130460.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130527170711.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1130460.html" target="_blank">zaojiashi007</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank">Paranoia7</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_49067.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_49067.html" target="_blank">yanshan415</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_2113313.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_2113313.html" target="_blank">laobo</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_22878.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_22878.html" target="_blank">sxz168</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+
+                    
+                        
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1218662.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1218662.html" target="_blank">sr0529</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_29130.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_29130.html" target="_blank">xyz216115</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_2253852.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_2253852.html" target="_blank">hack526022555</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank">ld830918</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank">Paranoia7</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_28294.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_28294.html" target="_blank">wqg1804</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1756969.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130827164358.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1756969.html" target="_blank">looyunk</a></span> 的原创经验被浏览，获得 <span class="red">￥0.002</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1734012.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130815181214.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1734012.html" target="_blank">anbgsck</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank">Paranoia7</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank">ld830918</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1099.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1099.html" target="_blank">cyhjb</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_3839.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_3839.html" target="_blank">jinfeng105</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1365086.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130123102212.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1365086.html" target="_blank">jingsitiandi</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_30632.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_30632.html" target="_blank">a394111</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1128065.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1128065.html" target="_blank">waybol</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1130460.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130527170711.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1130460.html" target="_blank">zaojiashi007</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank">Paranoia7</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_49067.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_49067.html" target="_blank">yanshan415</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_2113313.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_2113313.html" target="_blank">laobo</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_22878.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_22878.html" target="_blank">sxz168</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+
+                    </div>
+                    <div class="h15">
+                    </div>
+
+                    <script language="JavaScript">
+                        marqueesHeight = 244;
+                        stopscroll = false;
+
+                        with (marquees) {
+                            style.width = 214;
+                            style.height = marqueesHeight;
+                            style.overflowX = "visible";
+                            style.overflowY = "hidden";
+                            onmouseover = new Function("stopscroll=true");
+                            onmouseout = new Function("stopscroll=false");
+                        }
+                        document.write('<div id="templayer" style="position:absolute;z-index:1;visibility:hidden;width:214px;"></div>');
+
+                        preTop = 0; currentTop = 0;
+
+                        function init() {
+                            templayer.innerHTML = "";
+                            while (templayer.offsetHeight < marqueesHeight) {
+                                templayer.innerHTML += marquees.innerHTML;
+                            }
+                            marquees.innerHTML = templayer.innerHTML + templayer.innerHTML;
+                            setInterval("scrollUp()", 20); //越大越慢
+                        }
+                        document.body.onload = init;
+
+                        function scrollUp() {
+                            if (stopscroll == true) return;
+                            preTop = marquees.scrollTop;
+                            marquees.scrollTop += 1;
+                            if (preTop == marquees.scrollTop) {
+                                marquees.scrollTop = templayer.offsetHeight - marqueesHeight;
+                                marquees.scrollTop += 1;
+                            }
+                        }
+                    </script><div id="templayer" style="position:absolute;z-index:1;visibility:hidden;width:214px;">
+                        
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1218662.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1218662.html" target="_blank">sr0529</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_29130.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_29130.html" target="_blank">xyz216115</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_2253852.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_2253852.html" target="_blank">hack526022555</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank">ld830918</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank">Paranoia7</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_28294.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_28294.html" target="_blank">wqg1804</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1756969.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130827164358.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1756969.html" target="_blank">looyunk</a></span> 的原创经验被浏览，获得 <span class="red">￥0.002</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1734012.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130815181214.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1734012.html" target="_blank">anbgsck</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank">Paranoia7</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1237721.html" target="_blank">ld830918</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1099.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1099.html" target="_blank">cyhjb</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_3839.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_3839.html" target="_blank">jinfeng105</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1365086.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130123102212.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1365086.html" target="_blank">jingsitiandi</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_30632.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_30632.html" target="_blank">a394111</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1128065.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1128065.html" target="_blank">waybol</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1130460.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/20130527170711.jpg" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1130460.html" target="_blank">zaojiashi007</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1212428.html" target="_blank">Paranoia7</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_49067.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_49067.html" target="_blank">yanshan415</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_2113313.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_2113313.html" target="_blank">laobo</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_22878.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny.gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_22878.html" target="_blank">sxz168</a></span> 的原创经验被浏览，获得 <span class="red">￥0.001</span> 收益</dd>
+        </dl>
+    
+        <dl style=" width:214px; overflow:hidden">
+            <dt>
+                <a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/men_tiny(1).gif" onerror="this.src=&quot;http://passport.shangxueba.com/images/men_tiny.gif&quot;" width="30" height="30"></a></dt>
+            <dd>
+                <span class="blue"><a href="http://passport.shangxueba.com/space_jy_1230216.html" target="_blank">yanwuliu1234</a></span> 的原创经验被浏览，获得 <span class="red">￥0.005</span> 收益</dd>
+        </dl>
+    
+
+                    </div>
+
+                </div>
+                <div class="h10">
+                </div>
+                <div id="topicviewbanner" class="tp_250">
+<script async="" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/adsbygoogle.js"></script>
+
+<!-- JY_250-250_右侧通用 -->
+
+<ins class="adsbygoogle" style="display:inline-block;width:250px;height:250px" data-ad-client="ca-pub-9854389684640705" data-ad-slot="9073990150"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+                <div class="h10">
+                </div>
+                <div class="intro_data">
+                    <div class="content">
+                        <div class="title">
+                            猜你喜欢
+                        </div>
+                        <div class="content2">
+                            <ul id="LiteXGInfo1"><li><span>[<a href="http://www.shangxueba.com/share/" target="_blank" title="上学吧资料分享平台">资料</a>]</span> <a href="http://www.shangxueba.com/share/p5885735.html" target="_blank" title="[DBA手记]IMP-00093错误的解决方法_数据库教程_编程技术">[DBA手记]IMP-00093错误的解决方法_数据库教程_编程技术</a></li><li><span>[<a href="http://www.shangxueba.com/share/" target="_blank" title="上学吧资料分享平台">资料</a>]</span> <a href="http://www.shangxueba.com/share/p5986694.html" target="_blank" title="[心理咨询师手记].卡玛.扫描版">[心理咨询师手记].卡玛.扫描版</a></li><li><span>[<a href="http://www.shangxueba.com/share/" target="_blank" title="上学吧资料分享平台">资料</a>]</span> <a href="http://www.shangxueba.com/share/p2587980.html" target="_blank" title="Oracle DBA手记：数据库诊断案例与性能优化实践">Oracle DBA手记：数据库诊断案例与性能优化实践</a></li><li><span>[<a href="http://www.shangxueba.com/share/" target="_blank" title="上学吧资料分享平台">资料</a>]</span> <a href="http://www.shangxueba.com/share/p2192916.html" target="_blank" title="心理咨询手记(我的一天)">心理咨询手记(我的一天)</a></li><li><span>[<a href="http://www.shangxueba.com/book/" target="_blank" title="上学吧第一书店">图书</a>]</span> <a href="http://www.shangxueba.com/book/2006575.html" target="_blank" title="管理手记－人力资源经理是怎么思考和解决问题的">管理手记－人力资源经理是怎么思考和解决问题的</a></li><li><span>[<a href="http://www.shangxueba.com/book/" target="_blank" title="上学吧第一书店">图书</a>]</span> <a href="http://www.shangxueba.com/book/2180342.html" target="_blank" title="管理手记:人力资源经理是怎么思考和解决问题的 [平装]">管理手记:人力资源经理是怎么思考和解决问题的 [平装]</a></li><li><span>[<a href="http://www.shangxueba.com/book/" target="_blank" title="上学吧第一书店">图书</a>]</span> <a href="http://www.shangxueba.com/book/316077.html" target="_blank" title="王受之手记系列--北京手记">王受之手记系列--北京手记</a></li><li><span>[<a href="http://www.shangxueba.com/book/" target="_blank" title="上学吧第一书店">图书</a>]</span> <a href="http://www.shangxueba.com/book/1300035.html" target="_blank" title="汽车维修技师手记.丰田车系技师手记">汽车维修技师手记.丰田车系技师手记</a></li><li><span>[<a href="http://www.shangxueba.com/v/" target="_blank" title="上学吧视频教程超市">视频</a>]</span> <a href="http://www.shangxueba.com/v/open/ch484612.html" target="_blank" title="解决化石燃料消耗殆尽的未来能源解决方案">解决化石燃料消耗殆尽的未来能源解决方案</a></li><li><span>[<a href="http://www.shangxueba.com/v/" target="_blank" title="上学吧视频教程超市">视频</a>]</span> <a href="http://www.shangxueba.com/v/open/ch476004.html" target="_blank" title="解决问题">解决问题</a></li><li><span>[<a href="http://www.shangxueba.com/v/" target="_blank" title="上学吧视频教程超市">视频</a>]</span> <a href="http://www.shangxueba.com/v/open/ch483588.html" target="_blank" title="解决问题">解决问题</a></li><li><span>[<a href="http://www.shangxueba.com/v/" target="_blank" title="上学吧视频教程超市">视频</a>]</span> <a href="http://www.shangxueba.com/v/open/ch484039.html" target="_blank" title="解决欺诈">解决欺诈</a></li></ul>
+                        </div>
+                        <div class="h15">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="h10">
+                </div>
+                <div class="tp_250" id="xh250" style="position: static; top: 0px; bottom: auto;">
+                    <script type="text/javascript">
+    /*JY_250-250_悬停*/
+    var cpro_id = "u1617687";
+    (window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id] = { at: "3", rsi0: "250", rsi1: "250", pat: "17", tn: "baiduCustNativeAD", rss1: "#FFFFFF", conBW: "1", adp: "1", ptt: "0", titFF: "%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91", titFS: "14", rss2: "#000000", titSU: "0" }
+</script>
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/c.js" type="text/javascript"></script>
+<div class="h20"></div>
+<script type="text/javascript">
+    var cpro_id = "u2646001";
+    (window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id] = { at: "3", rsi0: "250", rsi1: "250", pat: "6", tn: "baiduCustNativeAD", rss1: "#FFFFFF", conBW: "1", adp: "1", ptt: "1", ptc: "%E7%83%AD%E7%82%B9%E6%8E%A8%E8%8D%90", ptFS: "14", ptFC: "#3399FF", ptBC: "#F2F2F2", titFF: "%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91", titFS: "14", rss2: "#000000", titSU: "0", ptbg: "90", piw: "0", pih: "0", ptp: "0" }
+</script>
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/c.js" type="text/javascript"></script>
+                </div>
+                <div class="h20">
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <div class="h20">
+    </div>
+    <div class="float_dis">
+        <ul>
+            
+            <li class="a3"><a href="http://jingyan.shangxueba.com/add.aspx" target="_blank"></a>
+            </li>
+            <li class="a1"><a href="http://www.shangxueba.com/jingyan/121655.html#pinglun"></a></li>
+            <li class="a2">
+                <div id="bdshare" class="bdshare_b">
+                    <a>
+                        <img style="text-align: center;" alt="" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/touming(1).gif" class="bds_more"></a></div>
+            </li>
+        </ul>
+    </div>
+
+    <script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/top.js" type="text/javascript"></script>
+
+    <div class="h16">
+    </div>
+    <div class="width960">
+        <div style="margin:0px auto; width:960px;">
+<!-- 经验底部通栏 950-90 -->
+<script charset="gbk" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/ex(1)"></script>
+</div>
+        <div id="WUCBottom1_hidTopClass" style="display:none"><ul>
+    <li id="sidelist1">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c1-0-0-1.html" target="_blank"><span>应考经验</span></a></h4>
+        <div class="i-list1" id="i-list1">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c1-4-0-1.html" target="_blank">学历类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-5-0-1.html" target="_blank">职业资格类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-8-0-1.html" target="_blank">财务金融类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-9-0-1.html" target="_blank">建筑工程类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-10-0-1.html" target="_blank">外语类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-11-0-1.html" target="_blank">医卫类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-12-0-1.html" target="_blank">公务员类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-13-0-1.html" target="_blank">外贸类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-94-0-1.html" target="_blank">计算机类</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c1-14-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist2">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c2-0-0-1.html" target="_blank"><span>计算机/互联网</span></a></h4>
+        <div class="i-list1" id="i-list2" style="top:28px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c2-17-0-1.html" target="_blank">办公软件</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-18-0-1.html" target="_blank">常用软件</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-19-0-1.html" target="_blank">程序设计&amp;开发</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-20-0-1.html" target="_blank">存储</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-21-0-1.html" target="_blank">多媒体</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-22-0-1.html" target="_blank">服务器</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-23-0-1.html" target="_blank">互联网</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-24-0-1.html" target="_blank">计算机硬件</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-26-0-1.html" target="_blank">软件工程</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-27-0-1.html" target="_blank">数据库</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-28-0-1.html" target="_blank">网络与通信</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-29-0-1.html" target="_blank">信息安全</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-15-0-1.html" target="_blank">PC操作系统</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-16-0-1.html" target="_blank">UI设计</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-113-0-1.html" target="_blank">网页特效</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-25-0-1.html" target="_blank">平面设计</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c2-1-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist3">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c3-0-0-1.html" target="_blank"><span>管理/营销/职场</span></a></h4>
+        <div class="i-list1" id="i-list3" style="top:56px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c3-106-0-1.html" target="_blank">资料范文</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-30-0-1.html" target="_blank">项目管理</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-31-0-1.html" target="_blank">企业管理</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-32-0-1.html" target="_blank">人力资源</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-35-0-1.html" target="_blank">销售营销</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-7-0-1.html" target="_blank">市场推广</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-96-0-1.html" target="_blank">职场/励志</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-114-0-1.html" target="_blank">面试指南</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-115-0-1.html" target="_blank">简历攻略</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-116-0-1.html" target="_blank">职业规划</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c3-33-0-1.html" target="_blank">其他</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist4">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c4-0-0-1.html" target="_blank"><span>金融/投资</span></a></h4>
+        <div class="i-list1" id="i-list4" style="top:84px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c4-37-0-1.html" target="_blank">经济学基础</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-38-0-1.html" target="_blank">货币银行学基础</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-39-0-1.html" target="_blank">创业</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-108-0-1.html" target="_blank">理财知识</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-34-0-1.html" target="_blank">经济贸易</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-99-0-1.html" target="_blank">债券</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-40-0-1.html" target="_blank">股票</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-41-0-1.html" target="_blank">基金</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-42-0-1.html" target="_blank">外汇</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-43-0-1.html" target="_blank">保险</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-44-0-1.html" target="_blank">期货</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-97-0-1.html" target="_blank">黄金</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-98-0-1.html" target="_blank">信托</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-45-0-1.html" target="_blank">房地产</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-73-0-1.html" target="_blank">收藏鉴宝</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-107-0-1.html" target="_blank">行业投资</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c4-95-0-1.html" target="_blank">其他</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist5">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c5-0-0-1.html" target="_blank"><span>工程/机械</span></a></h4>
+        <div class="i-list1" id="i-list5" style="top:112px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c5-47-0-1.html" target="_blank">机械工程设计</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c5-51-0-1.html" target="_blank">城市规划</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c5-52-0-1.html" target="_blank">工程设备</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c5-53-0-1.html" target="_blank">安全工程</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c5-54-0-1.html" target="_blank">公路桥梁</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c5-56-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist6">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c6-0-0-1.html" target="_blank"><span>生活百科</span></a></h4>
+        <div class="i-list1" id="i-list6" style="top:140px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c6-3-0-1.html" target="_blank">养生保健</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-57-0-1.html" target="_blank">美容时尚</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-58-0-1.html" target="_blank">美食烹饪</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-59-0-1.html" target="_blank">购房置业</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-60-0-1.html" target="_blank">家居装修</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-61-0-1.html" target="_blank">家电维修</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-62-0-1.html" target="_blank">汽车保养</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-63-0-1.html" target="_blank">育儿母婴</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-64-0-1.html" target="_blank">礼节礼仪</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-65-0-1.html" target="_blank">文体艺术</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-66-0-1.html" target="_blank">旅游户外</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-68-0-1.html" target="_blank">占卜风水</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-69-0-1.html" target="_blank">宠物饲养</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-70-0-1.html" target="_blank">家庭关系</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-71-0-1.html" target="_blank">交友技巧</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-72-0-1.html" target="_blank">心理咨询</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-101-0-1.html" target="_blank">哲理故事</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-102-0-1.html" target="_blank">情感&amp;心情</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-103-0-1.html" target="_blank">兴趣爱好</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-104-0-1.html" target="_blank">家庭教育</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-109-0-1.html" target="_blank">摄影摄像</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c6-2-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist7">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c7-0-0-1.html" target="_blank"><span>外语/方言</span></a></h4>
+        <div class="i-list1" id="i-list7" style="top:168px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c7-77-0-1.html" target="_blank">韩语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-78-0-1.html" target="_blank">德语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-79-0-1.html" target="_blank">粤语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-80-0-1.html" target="_blank">闽南语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-74-0-1.html" target="_blank">英语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-75-0-1.html" target="_blank">法语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-76-0-1.html" target="_blank">日语</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c7-81-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist8">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c8-0-0-1.html" target="_blank"><span>数码/游戏/手机</span></a></h4>
+        <div class="i-list1" id="i-list8" style="top:196px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c8-82-0-1.html" target="_blank">Andriod手机</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-83-0-1.html" target="_blank">iOS手机&amp;笔记本</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-100-0-1.html" target="_blank">Windows Phone</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-84-0-1.html" target="_blank">数码相机</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-85-0-1.html" target="_blank">数码摄像机</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-86-0-1.html" target="_blank">游戏机</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-87-0-1.html" target="_blank">网络游戏</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-88-0-1.html" target="_blank">网页游戏</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-89-0-1.html" target="_blank">单机游戏</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-90-0-1.html" target="_blank">小游戏</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-91-0-1.html" target="_blank">PS系列</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-92-0-1.html" target="_blank">桌面游戏</a></li>
+		        <li><a href="http://www.shangxueba.com/jingyan/c8-93-0-1.html" target="_blank">其它</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist9">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c10-0-0-1.html" target="_blank"><span>法律法规</span></a></h4>
+        <div class="i-list1" id="i-list9" style="top:224px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c10-0-0-1.html" target="_blank">法律法规</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+    <li id="sidelist10">
+        <h4>
+            <a href="http://www.shangxueba.com/jingyan/c9-0-0-1.html" target="_blank"><span>其它</span></a></h4>
+        <div class="i-list1" id="i-list10" style="top:233px;">
+            <ul>
+                <li><a href="http://www.shangxueba.com/jingyan/c9-6-0-1.html" target="_blank">其他</a></li>
+            </ul>
+            <div class="h10">
+            </div>
+        </div>
+    </li>
+</ul>
+<div class="clear">
+</div>
+</div>
+<!--<div style="margin:0px auto; width:960px;">
+<script charset="gbk" src="http://p.tanx.com/ex?i=mm_10003462_2771050_11476473"></script>
+</div>-->
+<div class="h10">
+</div>
+<div class="width960">
+    <div class="footer">
+        <a href="http://www.shangxueba.com/help/about.html" target="_blank">关于我们</a>&nbsp;|&nbsp;
+        <a href="http://www.shangxueba.com/sitemap/sitemap.htm" target="_blank">网站导航</a>&nbsp;|&nbsp;
+        <a href="http://www.shangxueba.com/help/help.html" target="_blank">常见问题&amp;帮助</a>&nbsp;|&nbsp;
+        <a href="http://www.shangxueba.com/help/mianze.html" target="_blank">免责声明</a>&nbsp;|&nbsp;
+        <a href="http://www.shangxueba.com/help/jianyi.html" target="_blank">投诉&amp;建议</a>&nbsp;|&nbsp;
+        <a href="http://www.shangxueba.com/help/contact.html" target="_blank">联系我们</a><br>
+        CopyRight 2009-2016 <a href="http://www.shangxueba.com/" target="_blank">上学吧</a>&nbsp;|&nbsp;湘ICP备15007069号
+        <br>
+    </div>
+</div>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/bottom.js"></script>
+<script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/footerRZ.js"></script><div style="padding-top:12px;padding-bottom:30px; text-align:center;">
+<a key="55000dd6c274e77b9cc4483f" logo_size="124x47" logo_type="realname" href="http://v.pinpaibao.com.cn/authenticate/cert/?site=www.shangxueba.com&at=realname" target="_blank"><script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/aq_auth.js"></script><b id="aqLogoOQDYT" style="display: none;"></b><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/sm_124x47.png" alt="安全联盟认证" width="124" height="47" style="border: none;"></a> &nbsp; &nbsp;<img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/raz2.gif"> &nbsp; &nbsp;<a href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action" target="_blank" rel="nofollow"><img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/raz1_1.gif"></a></div>
+
+
+<!-- Baidu统计：全站 -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fccdda4ee34254acf0834dc87f2429bc8' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/h.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fced3789aa51f2fb833c95fe1e901eac3' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/h(1).js" type="text/javascript"></script>
+
+<div id="divQQbox" style="position: absolute; display: none; top: 830px; right: 0px;">
+    <a target="blank" href="tencent://message/?uin=2634277110&Site=qq&Menu=yes">
+        <img src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/topAllqq1.gif"></a>
+    <script type="text/javascript">
+        document.getElementById("topAllQQKf0").innerHTML = document.getElementById("divQQbox").innerHTML;
+    </script>
+</div>
+<!-- Baidu Button BEGIN -->
+
+<script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=1&amp;pos=right&amp;uid=600216" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/bds_s_v2.js"></script>
+
+
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+</script>
+
+<!-- Baidu Button END -->
+
+<script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/windowscoll.js"></script>
+
+
+<script type="text/javascript">
+    if(document.getElementById("toplist") != null)
+        document.getElementById("toplist").innerHTML = document.getElementById("WUCBottom1_hidTopClass").innerHTML;
+</script>
+<!--
+<script type="text/javascript">
+/*度小蜜代码*/
+var cpro_id="u2306265";
+</script>
+<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/exp/lu_bear/js/lu_bear_c.js"></script>
+<style type="text/css">
+.bd_lu_bear_outer_page {
+right : 0px;
+bottom : 30%;
+}
+</style>
+-->
+
+<script type="text/javascript">
+/*经验频道两侧悬浮*/
+var cpro_id = "u1141102";
+</script>
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/f.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    /*JY_300-75_上下折叠*/
+    var cpro_id = "u1713625";
+</script>
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/s(1).js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+    /*JY_0-0_内文*/
+var cpro_id = "u1730417";
+</script>
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/cnw.js" type="text/javascript"></script>
+
+<!--
+<script type="text/javascript">
+    /*JY_搜索推荐*/
+    var cpro_id = "u2105429";
+</script>
+<script src=" http://su.bdimg.com/static/dspui/js/uf.js" type="text/javascript"></script>
+-->
+
+    </div>
+    <div id="doing">
+        &nbsp;
+    </div>
+    <input type="hidden" name="HidXG8" id="HidXG8">
+    <input type="hidden" name="HidXG9" id="HidXG9">
+    <input type="hidden" name="HidXG10" id="HidXG10">
+
+    <script type="text/javascript" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/jyWidth.js"></script>
+
+    <script type="text/javascript" language="javascript">
+        var id = document.getElementById('121655');
+        if (id != null) {
+            id.className = "mu03";
+            document.getElementById(id.parentNode.id.replace("_list", "")).className = "mu01";
+            id.parentNode.className = "";
+            document.getElementById(id.parentNode.id.replace("_list", "_img")).src = "images130121/jc_mulic01.png";
+        }
+    </script>
+
+    <script language="javascript" type="text/javascript">
+        function checktxt(obj) {
+            if (obj.value == "请输入计算结果")
+                obj.value = "";
+        }
+        function checktxts(obj) {
+            if (obj.value == "")
+                obj.value = "请输入计算结果";
+        }
+        function getRange()                      //得到屏幕的大小
+        {
+            var top     = document.body.scrollTop;
+            var left    = document.body.scrollLeft;
+            var height  = document.body.clientHeight;
+            var width   = document.body.clientWidth;
+            if (top==0 && left==0 && height==0 && width==0)
+            {
+                top     = document.documentElement.scrollTop;
+                left    = document.documentElement.scrollLeft;
+                height  = document.documentElement.clientHeight;
+                width   = document.documentElement.clientWidth;
+            }
+            return  {top:top  ,left:left ,height:height ,width:width } ;
+        }
+        function checksubmit()
+        {
+            var range = getRange();
+            if(document.getElementById("txtVerify").value == "" || document.getElementById("txtVerify").value == "请输入计算结果")
+            {
+                alert("请输入验证码的计算结果！");
+                document.getElementById("txtVerify").focus();
+                return false;
+            }
+        }
+ 
+        $(document).ready(function() 
+        {
+
+            if((document.getElementById("LiteClassTj1") != null && document.getElementById("LiteClassTj1").innerHTML == "") || (document.getElementById("LiteClassTj2") != null && document.getElementById("LiteClassTj2").innerHTML == ""))
+            {
+                $.ajax({
+                     url:"http://tuijian.shangxueba.com/CreateXiangguan.aspx?id=" + 121655 + "&num=5&type=6&title=" + escape('no acceptable C compiler found in $PATH解决手记') + "&channel=6",
+                     dataType:"jsonp",
+                     jsonp:"jsonpcallback",
+                     success:function(data){ }
+                });
+            }
+            if(document.getElementById("LiteXGInfo1") != null && document.getElementById("LiteXGInfo1").innerHTML == "")
+            {
+                $.ajax({
+                     url:"http://tuijian.shangxueba.com/CreateXiangguan.aspx?id=" + 121655 + "&num=4&type=1,2,3,4&title=" + escape('no acceptable C compiler found in $PATH解决手记') + "&channel=6",
+                     dataType:"jsonp",
+                     jsonp:"jsonpcallback",
+                     success:function(data){ }
+                });
+            }
+        });
+      
+//        var leh1 = $("#xh250").offset().top;
+//        $(document).ready(function() {
+//            $(window).scroll(loadData);
+//        });
+//        function loadData() {
+//            var now = $(window).scrollTop();
+//            
+//            if (now >= leh1) {
+//                $("#xh250").css("position", "fixed");
+//                $("#xh250").css("top", 30 + "px");
+//                $("#xh250").css("bottom", "auto");
+//            }
+//            else {
+//                $("#xh250").css("position", "static");
+//                //$("#xh250").css("top", leh1 - 40 + "px");
+//                $("#xh250").css("bottom", "auto");
+//            }
+//        }
+    
+    </script>
+    <script type="text/javascript">
+        var leh1 = $(".zt_content_bg").offset().top;
+        var leh2 = leh1 + $(".zt_content_bg").height();
+        var leh3 = leh2 - $("#xh250").height(); //左边底部有20px行高的空白
+        var rih1 = $("#xh250").offset().top;
+        var rih2 = rih1 + $("#xh250").height();
+        $(document).ready(function() {
+            setTimeout(function() {
+                leh1 = $(".zt_content_bg").offset().top;
+                leh2 = leh1 + $(".zt_content_bg").height();
+                leh3 = leh2 - $("#xh250").height(); //左边底部有20px行高的空白
+                rih1 = $("#xh250").offset().top;
+                rih2 = rih1 + $("#xh250").height();
+            }, 1000);
+            $(window).scroll(loadData);
+        });
+        function loadData() {
+            var now = $(window).scrollTop();
+            if (now >= rih1 && now <= leh3) {
+                $("#xh250").css("position", "fixed");
+                $("#xh250").css("top", "30px");
+                $("#xh250").css("bottom", "auto");
+            }
+            else if (now >= leh3) {
+                $("#xh250").css("position", "absolute");
+                $("#xh250").css("top", leh3 + "px");
+                $("#xh250").css("bottom", "auto");
+            }
+            else {
+                $("#xh250").css("position", "static");
+                $("#xh250").css("top", "0px");
+                $("#xh250").css("bottom", "auto");
+            }
+        }
+    </script>
+    
+    <script>
+var cpro_id = 'u2601326';
+</script>
+<script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/i.js"></script>
+    </form><div class="backToTop" title="" style="display: block;"></div>
+
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden;"></div><div class="sogoubottom" id="sougou_bottom" style="display: block;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.shangxueba.com/jingyan/121655.html#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.shangxueba.com/jingyan/121655.html#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.shangxueba.com/jingyan/121655.html#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/yun6.html" style="border: none; display: block; z-index: 2147483645; background: transparent;"></iframe><script src="./no acceptable C compiler found in $PATH 解决手记 - 百科教程网_经验分享平台[上学吧经验教程频道]_files/pv.gif"></script><div><div id="maskLevel" style="position:absolute;top:0;left:0;display:none;text-align:center;z-index:10000;"></div><div id="ym-window" style="position:absolute;z-index:10001;display:none"><div class="ym-tl" id="ym-tl"><div class="ym-tr"><div class="ym-tc" style="cursor:move;"><div class="ym-header-text"></div><div class="ym-header-tools"></div></div></div></div><div class="ym-ml" id="ym-ml"><div class="ym-mr"><div class="ym-mc"><div class="ym-body"></div></div></div></div><div class="ym-ml" id="ym-btnl"><div class="ym-mr"><div class="ym-btn"></div></div></div><div class="ym-bl" id="ym-bl"><div class="ym-br"><div class="ym-bc"></div></div></div></div></div><div id="hm_t_undefined" class="hm-t-container"><div class="hm-t-go-top" style="display: block;"></div></div></body></html>

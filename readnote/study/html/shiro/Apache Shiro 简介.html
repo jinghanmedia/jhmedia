@@ -1,0 +1,760 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN" class="dj_webkit dj_chrome dj_contentbox"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Apache Shiro 简介</title>
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/">
+<link rel="SHORTCUT ICON" href="http://www.ibm.com/favicon.ico">
+<meta name="DC.Rights" content="© Copyright IBM Corporation 2011">
+<meta name="Keywords" content="Shiro, Apache Shiro, authentication, authorization, Nathan A. Good, 身份验证, 授权, tttwaca">
+<meta name="DC.Date" scheme="iso8601" content="2011-08-22">
+<meta name="Source" content="v17 delivery:developerWorks">
+<meta name="Security" content="Public">
+<meta name="Abstract" content="Shiro 是一个 Apache Incubator 项目，旨在简化身份验证和授权。在本文中，了解 Apache Shiro 并通过示例来在一个 Groovy web 应用程序中尝试使用 Shiro 进行身份验证和授权。">
+<meta name="Description" content="Shiro 是一个 Apache Incubator 项目，旨在简化身份验证和授权。在本文中，了解 Apache Shiro 并通过示例来在一个 Groovy web 应用程序中尝试使用 Shiro 进行身份验证和授权。">
+<meta name="IBM.Effective" scheme="W3CDTF" content="2011-08-22">
+<meta name="Owner" content="developerWorks/China/IBM">
+<meta name="DC.Language" scheme="rfc1766" content="zh-CN">
+<meta name="IBM.SpecialPurpose" content="SP001">
+<meta name="IBM.Country" content="CN">
+<meta name="Robots" content="index,follow">
+<meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="CT316">
+<meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="TTA00">
+<meta name="dW.ContentArea" content="5">
+<meta name="dW.Topic" content="264,95,1">
+
+<meta scheme="IBM_WTMCategory" name="IBM.WTMCategory" content="SOFDCDEVCN">
+
+<link rel="canonical" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/index.html">
+<!-- HEADER_SCRIPTS_AND_CSS_INCLUDE -->
+<link href="./Apache Shiro 简介_files/www.css" rel="stylesheet" title="www" type="text/css">
+<link href="./Apache Shiro 简介_files/cnzh.css" rel="stylesheet" title="www" type="text/css">
+<!-- Masthead/footer -->
+<link href="./Apache Shiro 简介_files/dw-mfN2015-01.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./Apache Shiro 简介_files/dw-article-6.css" rel="stylesheet" title="www" type="text/css">
+<link href="./Apache Shiro 简介_files/dw-common-features.css" rel="stylesheet" title="www" type="text/css">
+<link href="./Apache Shiro 简介_files/dw-local-site-v17-N2014-05.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+        <link href="./Apache Shiro 简介_files/dw-bluemix-regbar.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<!-- BEGIN: Use this section to set page specific variables for the Unica Page Tag -->
+<script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/eluminate.js" id="tealium_cormetrics1239"></script><script src="./Apache Shiro 简介_files/utag.js" type="text/javascript" async=""></script><script language="JavaScript">var NTPT_PGEXTRA="ibmSkillLevel=3&ibmCmaId=753385&ibmContentAreas=web";</script>
+<!--END -->
+<script type="text/javascript" src="./Apache Shiro 简介_files/www.js">//</script><script type="text/javascript" src="./Apache Shiro 简介_files/eluminate(1).js"></script><script type="text/javascript" src="./Apache Shiro 简介_files/saved_resource" id="dojoIoScript1" charset="utf-8"></script>
+<script type="text/javascript" src="./Apache Shiro 简介_files/dw-www-v2.js">//</script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.373751.js" id="utag_ibm.main_373751"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/Dialog.xd.js"></script>   
+<script type="text/javascript">dojo.addOnLoad(function(){var dw_lang="zh_CN";var dw_source="dwchina";var dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-2];if(dw_content=="library"){dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-1];dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-3]+"-"+dw_content.substring(0,dw_content.indexOf(".html"))}var lnkID="article-rbar-bmix-home-regbar";dojo.attr(dojo.query(".dw-regbar-btn")[0],"id",lnkID);var lnkHref=dojo.attr(dojo.byId(lnkID),"href")+"?lang="+dw_lang+"&ca="+dw_source+"-_-bluemix-_-"+dw_content+"-_-regbar-article";dojo.attr(dojo.byId(lnkID),"href",lnkHref);var rbstate=dojo.cookie("dwspck");if(rbstate==undefined)rbstate=0;rbstate=Number(rbstate);if(rbstate>=2)rbstate=0;if(rbstate==1){dojo.destroy("dw-regbar");return}var dwRegbarShow=dojo.animateProperty({node:"dw-regbar",duration:1000,delay:1000,properties:{opacity:{start:0,end:1},top:0}});var ibmTopSlideDown=dojo.animateProperty({node:"ibm-top",duration:1000,delay:1000,properties:{marginTop:{start:0,end:42}}});dwRegbarShow.play();ibmTopSlideDown.play();dwHideRegbar=function(){var dwRegbarHide=dojo.animateProperty({node:"dw-regbar",duration:1000,delay:0,properties:{opacity:{start:1,end:0},top:-100}});var ibmTopSlideUp=dojo.animateProperty({node:"ibm-top",duration:1000,delay:0,properties:{marginTop:{start:42,end:0}}});dwRegbarHide.play();ibmTopSlideUp.play();setTimeout(function(){dojo.destroy("dw-regbar")},1000);dojo.cookie("dwspck","1",{expires:3650,path:"/",domain:".ibm.com"})};});</script><script type="text/javascript">
+//  ibmweb.config.set({ sbs: { enabled: false }});
+</script>
+<script type="text/javascript">dojo.addOnLoad(function(){var dw_lang="zh_CN";var dw_source="dwchina";var dw_register="注册免费的 Bluemix 试用版";var dw_connect="连接 Bluemix 开发者";var dw_vp="在 IBM Bluemix 云平台上开发并部署您的下一个应用。";var dw_cta="开始您的试用";var dw_tile_alt="在 IBM Bluemix 云平台上开发并部署您的下一个应用。现在就开始免费试用";var dw_campaign="bluemix";var dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-2];if(dw_content=="library"){dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-1];dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-3]+"-"+dw_content.substring(0,dw_content.indexOf(".html"))}var bluDevComURL="https://developer.ibm.com/bluemix/";var bluLink="https://www.bluemix.net/";var lnkID;var lnkIDd;var lnkIDt;var bLinkEnd;var bLinkTemp;var idTrkr=[];var idCnt;var artTop=dojo.query("div.ibm-col-1-1")[0];var artChildren=dojo.query(artTop).children();var edgy=false;if(dojo.hasClass(artChildren[0],"ibm-inset"))edgy=true;if((artChildren[0].nodeName=="H2")&&(dojo.hasClass(artChildren[1],"ibm-inset")))edgy=true;if(dojo.hasClass(artChildren[0],"codesection"))edgy=true;if((artChildren[0].nodeName=="H5")&&(dojo.hasClass(artChildren[1],"codesection")))edgy=true;if((artChildren[0].nodeName=="H5")&&(artChildren[1].width>=701))edgy=true;if(artChildren[1].width>=701)edgy=true;if(dojo.hasClass(artChildren[0],"ibm-data-table"))edgy=true;if((artChildren[0].nodeName=="H5")&&(dojo.hasClass(artChildren[1],"ibm-data-table")))edgy=true;if(!(edgy)){var sBarAB='<div class="dw-article-sidebar dw-bluemix" id="dwc-exp-a">'+'<img src="//dw1.s81c.com/developerworks/i/bluemix-graphic.png" height="64" width="64" alt=""/>'+'<p>'+dw_vp+'</p>'+'<p class="ibm-button-link-alternate dw-button-green">'+'<a id="tutc-sbar-bmix-home-btn-ABa" href="'+bluLink+'" class="dw-button-large">'+dw_cta+'</a></p></div>';dojo.place(sBarAB,artTop,"first")}var omitList=["#","/catalog","/doc","/solutions"];dojo.forEach(dojo.query("#ibm-content-main a"),function(item,index){var bLink=dojo.attr(item,"href");if(bLink&&bLink.indexOf("/marketplace/cloud/developerworks/")>-1)bLink=bLink.replace("/developerworks/","/developer-program/");if(bLink&&(bLink.indexOf("//bluemix.net")>-1))bLink=bLink.replace("//bluemix.net","//www.bluemix.net");if(bLink&&(bLink.indexOf("//ace.ng.bluemix.net")>-1))bLink=bLink.replace("//ace.ng.bluemix.net","//www.bluemix.net");if(bLink&&(bLink.indexOf("//console.ng.bluemix.net")>-1))bLink=bLink.replace("//console.ng.bluemix.net","//www.bluemix.net");if(bLink&&((bLink.indexOf("/marketplace/cloud/developer-program")>-1)||(bLink.indexOf("developer.ibm.com/sso/bmregistration")>-1)||(bLink.indexOf("//www.bluemix.net")>-1)||(bLink.indexOf("//hub.jazz.net")>-1)||(bLink.indexOf("//developer.ibm.com/open")>-1))){var omitIt=false;for(var i=omitList.length-1;i>=0;--i){if(bLink.indexOf(omitList[i])!=-1){omitIt=true;break}}if(!(omitIt)){var linkClass=dojo.attr(item,"class");var dw_medium="article";if((dojo.attr(item,"id")!=null)&&(dojo.attr(item,"id").indexOf("-sbar-")>-1))dw_medium="sidebar";if((dojo.attr(item,"id")!=null)&&(dojo.attr(item,"id").indexOf("-vpromo-")>-1))dw_medium="video-promotion";if(dojo.query(item).parents(".dw-article-ps-sidebar").length!=0)dw_medium="sidebar";if(dojo.query(item).children("img").length!=0)dw_medium="ad";if(dojo.query(item).parents("ul.ibm-portrait-module-list").length!=0)dw_medium="tile";bLinkEnd="";bLink=bLink.split("?");if((bLink[1])&&(bLink[1].indexOf("repository=")!=-1)){var deployBtn=true;bLink[0]=bLink[0]+"?"+bLink[1];bLink[1]=null}if((bLink[1])&&(bLink[1].indexOf("/")!=-1))bLinkEnd=bLink[1].substring(bLink[1].indexOf("/"));bLink=bLink[0];if(bLink.indexOf("//developer.ibm.com/open")==-1){if(bLink.indexOf("//hub.jazz.net")>-1){if(!(deployBtn)&&((bLink.indexOf("//hub.jazz.net/git")>-1)||(bLink.indexOf("//hub.jazz.net/project")>-1))){bLink=bLink+"?utm_source="+dw_source+"&utm_medium="+dw_medium+"&utm_content="+dw_content+"&utm_campaign="+dw_campaign}else{if(deployBtn){bLink=bLink+"&cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}else{bLink=bLink+"?utm_source="+dw_source+"&utm_campaign="+dw_campaign+"&utm_content="+dw_content+"&utm_medium="+dw_medium}}}else{if(bLink.indexOf("/#/")==-1){if(bLink.substring(bLink.length-7)=="/docs/#"){bLink=bLink.replace("/docs/#","/docs/"+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium)}else if(bLink.substring(bLink.length-5)=="/docs"){bLink=bLink.replace("/docs","/docs/"+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium)}else if(bLink.indexOf("/marketplace/cloud/developer-program")!=-1){bLink=bLink+"?cm_sp="+dw_source+"-premium"+"-_-"+dw_content+"-_-"+dw_medium;}else{bLink=bLink+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}}else{bLink=bLink.substring(0,bLink.indexOf("#"))+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium+bLink.substring(bLink.indexOf("#")-1)}}if(bLinkEnd)bLink=bLink+bLinkEnd;if(linkClass.indexOf("bluemix-home")==-1){if((bLink.indexOf("#")==-1)&&(bLink.indexOf("/solutions")==-1)&&(bLink.indexOf("/catalog")==-1)&&((bLink.indexOf("developer.ibm.com/sso/bmregistration")!=-1)||(bLink.indexOf("//www.bluemix.net/")!=-1))){if(bLink.indexOf("//www.bluemix.net/")!=-1)bLink=bLink.replace("//www.bluemix.net/","//developer.ibm.com/sso/bmregistration");if(bLink.indexOf("http://")==0)bLink=bLink.replace("http://","https://");if(bLink.indexOf("//")==0)bLink=bLink.replace("//","https://");if(bLink.indexOf("?cm_mmc=")!=-1)bLink=bLink.replace("?cm_mmc=","?lang="+dw_lang+"&ca=")}if((bLink.indexOf("#")==-1)&&(bLink.indexOf("/solutions")==-1)&&(bLink.indexOf("//www.bluemix.net?")!=-1)){bLink=bLink.replace("//www.bluemix.net","//developer.ibm.com/sso/bmregistration");if(bLink.indexOf("http://")==0)bLink=bLink.replace("http://","https://");if(bLink.indexOf("//")==0)bLink=bLink.replace("//","https://");if(bLink.indexOf("?cm_mmc=")!=-1)bLink=bLink.replace("?cm_mmc=","?lang="+dw_lang+"&ca=")}}if((bLink.indexOf("#")!=-1)&&(bLink.indexOf("solutions")!=-1)){bLinkTemp=bLink.substring(0,bLink.indexOf("?"));bLink=bLink.substring(bLink.indexOf("/#/")+3,bLink.length);bLink=bLinkTemp+bLink;bLinkTemp=bLink.substring(0,bLink.indexOf("solution="));bLink=bLink.substring(bLink.indexOf("/solution=")+10,bLink.length);bLink=bLinkTemp+bLink;bLink=bLink+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}if((bLink.indexOf("#")!=-1)&&(bLink.indexOf("store")!=-1)){if(bLink.indexOf("&cloudOEPaneId=store")!=-1){bLinkTemp=bLink.split("&cloudOEPaneId=store");bLink=bLinkTemp[0]}bLinkTemp=bLink.substring(bLink.indexOf("serviceOfferingGuid=")+20,bLink.length);bLink=bLink.substring(0,bLink.indexOf(".net/")+5)+"catalog/"+bLinkTemp+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}}dojo.attr(item,"href",bLink);}}});});</script>  <!-- LEADSPACE_STYLES -->
+
+<script type="text/javascript" src="./Apache Shiro 简介_files/cnzh-utf8.js" id="dojoIoScript2" charset="utf-8"></script><script type="text/javascript" src="./Apache Shiro 简介_files/saved_resource(1)" id="dojoIoScript3" charset="utf-8"></script><script type="text/javascript" src="./Apache Shiro 简介_files/profiling.js" id="dojoIoScript4" charset="utf-8"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.1239.js" id="utag_ibm.main_1239"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.684.js" id="utag_ibm.main_684"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.694.js" id="utag_ibm.main_694"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.699.js" id="utag_ibm.main_699"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.752.js" id="utag_ibm.main_752"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.763.js" id="utag_ibm.main_763"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.797.js" id="utag_ibm.main_797"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.1150.js" id="utag_ibm.main_1150"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.1172.js" id="utag_ibm.main_1172"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.1197.js" id="utag_ibm.main_1197"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.1260.js" id="utag_ibm.main_1260"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.1278.js" id="utag_ibm.main_1278"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.1175.js" id="utag_ibm.main_1175"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.1897.js" id="utag_ibm.main_1897"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.2041.js" id="utag_ibm.main_2041"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.2778.js" id="utag_ibm.main_2778"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.2903.js" id="utag_ibm.main_2903"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.2947.js" id="utag_ibm.main_2947"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.2956.js" id="utag_ibm.main_2956"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.3236.js" id="utag_ibm.main_3236"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/move.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/TimedMoveable.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/_CssStateMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/_FormMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/_DialogMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/DialogUnderlay.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/ContentPane.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/common.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/TooltipDialog.xd.js"></script><script type="text/javascript" src="./Apache Shiro 简介_files/blackwhite_lists.json" id="dojoIoScript5" charset="utf-8"></script><script async="" src="./Apache Shiro 简介_files/hotjar-42920.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/Moveable.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/Mover.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/_ContentPaneResizeMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/html.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/loading.xd.js"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/utag.v.js" id="tiqapp"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/common.xd(1).js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/autoscroll.xd.js"></script><script type="text/javascript" charset="utf-8" src="./Apache Shiro 简介_files/_LayoutWidget.xd.js"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/i.js" id="tealium_setTTDid"></script><script type="text/javascript" src="./Apache Shiro 简介_files/atrk.js" id="dojoIoScript6" charset="utf-8"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/i.js" id="tealium_setTTDid"></script><script language="javascript" type="text/javascript" src="./Apache Shiro 简介_files/50200000.js"></script><script language="javascript" type="text/javascript" src="./Apache Shiro 简介_files/cookie-id.js"></script><script language="javascript" type="text/javascript" src="./Apache Shiro 简介_files/rules_50200000.js"></script><script language="javascript" type="text/javascript" src="./Apache Shiro 简介_files/dispatcher-v3.js"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/i.js" id="tealium_setTTDid"></script><script type="text/javascript" async="" charset="utf-8" src="./Apache Shiro 简介_files/i.js" id="tealium_setTTDid"></script><script src="./Apache Shiro 简介_files/yahoo-min.js" type="text/javascript"></script><script src="./Apache Shiro 简介_files/cp-v3.js" type="text/javascript"></script><script src="./Apache Shiro 简介_files/json-min.js" type="text/javascript"></script><script src="./Apache Shiro 简介_files/modules-e12a7ede294d22ffa3a8a711155156e3.js"></script></head>
+<body id="ibm-com" class="v17" aria-busy="false">
+<div id="dw-regbar" class="dw-home-band" aria-labelledby="dw-regbar-vp" role="complementary" style="opacity: 1; top: 0px;">
+    <div class="ibm-columns">
+        <div class="ibm-col-6-6">
+            <span id="dw-regbar-bluemix">IBM <strong>Bluemix</strong></span>
+            <span id="dw-regbar-vp">点击按钮，开始云上的开发！</span>
+            <p class="ibm-button-link-alternate dw-button-green">
+                <a class="dw-button-large dw-regbar-btn" href="https://developer.ibm.com/sso/bmregistration?lang=zh_CN&ca=dwchina-_-bluemix-_-wa-apacheshiro-_-regbar-article" id="article-rbar-bmix-home-regbar">开始您的试用</a>
+            </p>
+        </div>
+    </div>
+    <span>
+        <a onclick="dwHideRegbar();" role="button">
+            <span id="dw-close-regbar" aria-label="Close the registration bar" title="Close the registration bar" role="button">
+        </span></a>
+    </span>
+</div>
+	<div id="ibm-top" class="ibm-landing-page ibm-no-scroll" style="margin-top: 42px;"><img src="./Apache Shiro 简介_files/ibm_logo_print.png" width="43" height="15" id="ibm-print-masthead" alt="IBM Print">
+
+<!-- MASTHEAD_BEGIN -->		
+<div id="ibm-masthead" role="banner">
+
+    <!-- TOP ROW -->    
+	<div id="dw-masthead-top-row">
+		<ul id="ibm-mast-options-dw" role="toolbar" aria-label="Masthead navigation">
+			<li id="dw-mast-top-4" role="presentation">
+				<a href="http://www.ibm.com/developerworks/cn/" tabindex="0"><img src="./Apache Shiro 简介_files/dwn-dw-badge.png" width="43" height="22" alt="dW" aria-label="dW"></a>
+			</li>
+			<li id="dw-mast-top-0" role="presentation">
+				<div id="dw-mast-signin">
+					<a id="dw-mf-signin-link" class="" href="http://www.ibm.com/developerworks/dwwi/jsp/ssologin.jsp?d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F&lang=zh_CN&a=dwmav" title="" tabindex="2">登录</a>
+					<span class="dw-mf-signin-spacer">|</span>
+					<a id="dw-mf-reg-link" class="" href="http://www.ibm.com/developerworks/dwwi/jsp/ssoregister.jsp?d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F&lang=zh_CN&a=dwmav" title="" tabindex="3">注册</a>
+				</div>
+				<div id="dw-mast-auth-link" class="dw-mf-hide">
+					<a class="authenticated ibm-active" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" role="button" tabindex="2"></a>
+					<ul id="dw-mast-auth-menu" class="dw-mf-hide">
+						<li class="dw-mast-auth-menu-title" aria-hidden="true">developerWorks 社区</li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a href="http://www.ibm.com/developerworks/community/profiles/html/myProfileView.do?lang=zh" tabindex="3">我的概要信息</a>
+						</li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a href="http://www.ibm.com/developerworks/community/groups/service/html/mycommunities?lang=zh" tabindex="4">我的社区</a>
+						</li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a href="http://www.ibm.com/developerworks/community/news/?lang=zh" tabindex="5">设置</a>
+						</li>
+						<li class="dw-mast-auth-menu-divider"><hr></li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a id="dw-mast-signout-link" href="http://www.ibm.com/developerworks/dwwi/jsp/ssologout.jsp?d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2F&a=dwmav" tabindex="6">退出</a>
+						</li>
+					</ul>				
+				</div>
+			</li>
+			<li id="dw-mast-top-1">
+				<div></div>
+			</li>
+			<li id="dw-mast-top-3" role="presentation">
+				<a href="http://www.ibm.com/cn/zh/" tabindex="1">IBM</a>
+			</li>
+		</ul>
+	</div>
+
+    <!-- BOTTOM ROW -->
+	<div id="ibm-universal-nav-dw" aria-label="Site map">
+		<ul id="ibm-unav-links-dw">
+			<li id="ibm-unav-home-dwlogo">
+				<a href="http://www.ibm.com/developerworks/cn/"><img src="./Apache Shiro 简介_files/dwn-dw-wordmark.png" width="225" height="28" alt="developerWorks®"></a>
+			</li>
+		</ul>
+		<ul id="ibm-menu-links-dw" class="ibm-menu-links-dw-cn" role="toolbar" aria-label="Site map">
+			<li id="dw-mast-nav-0" role="presentation"><a href="http://www.ibm.com/developerworks/cn/topics/" tabindex="0">技术主题</a></li>
+			<li id="dw-mast-nav-1" role="presentation"><a href="http://www.ibm.com/developerworks/cn/downloads/" tabindex="0">软件下载</a></li>
+			<li id="dw-mast-nav-2" role="presentation"><a href="http://www.ibm.com/developerworks/community/?lang=zh" tabindex="0">社区</a></li>
+			<li id="dw-mast-nav-3" role="presentation"><a href="https://www.ibm.com/developerworks/community/groups/service/html/communityview?communityUuid=6d7f9e5d-5f89-4767-a006-a81b8d186370&lang=zh" tabindex="0">技术讲座</a></li>
+		</ul>
+		<form id="ibm-search-form" action="http://www.ibm.com/search/csass/search/" method="get" name="form1" aria-label="搜索 developerWorks" role="search">
+			<p>
+				<label for="q"><span class="ibm-access">搜索 developerWorks</span></label>
+				<input id="q" type="text" name="q" value="搜索 developerWorks" maxlength="100">
+				<input type="hidden" name="sn" value="dw">
+				<input type="hidden" name="lang" value="zh">
+				<input type="hidden" name="cc" value="CN">
+				<input type="hidden" name="en" value="utf">
+				<input type="hidden" name="hpp" value="20">
+				<input type="hidden" name="dws" value="cndw">
+				<input type="hidden" name="lo" value="zh">
+				<input id="ibm-search" class="ibm-btn-search" type="submit" value="提交">
+			</p>
+		</form>
+	</div>    
+	
+<div id="ibm-social-tools" role="navigation" aria-label="社交工具" style="display: block;"><ul role="toolbar" aria-label="Social tool list"><li><a class="ibm-share-print" title="打印本页面" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" rel="print" dojoattrid="1" role="button" tabindex="0">打印本页面</a></li><li><a class="ibm-share-email" title="用电子邮件发送本页面" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" rel="email" dojoattrid="2" role="button" tabindex="-1">用电子邮件发送本页面</a></li><li></li><li></li><li><a class="ibm-share-weibo" tabindex="-1" role="button" dojoattrid="2" rel="新浪微博" title="新浪微博" href="http://service.weibo.com/share/share.php?title=Apache%20Shiro%20%E7%AE%80%E4%BB%8B&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F&language=zh_cn" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://service.weibo.com/share/share.php?title=%{TITLE}&amp;url=%{URL}&amp;language=zh_cn&#39;});">新浪微博</a></li><li><a class="ibm-share-renren" tabindex="-1" role="button" dojoattrid="3" rel="人人网" title="人人网" href="http://share.renren.com/share/buttonshare?title=Apache%20Shiro%20%E7%AE%80%E4%BB%8B&link=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://share.renren.com/share/buttonshare?title=%{TITLE}&amp;link=%{URL}&#39;});">人人网</a></li><li><a class="dwcn-tencent-link" tabindex="-1" role="button" dojoattrid="4" rel="腾讯微博" title="腾讯微博" href="http://v.t.qq.com/share/share.php?title=Apache%20Shiro%20%E7%AE%80%E4%BB%8B&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://v.t.qq.com/share/share.php?title=%{TITLE}&amp;url=%{URL}&#39;});">腾讯微博</a></li><li><a class="dwcn-sohu-link" tabindex="-1" role="button" dojoattrid="5" rel="搜狐微博" title="搜狐微博" href="http://t.sohu.com/third/post.jsp?title=Apache%20Shiro%20%E7%AE%80%E4%BB%8B%20&link=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://t.sohu.com/third/post.jsp?title=%{TITLE}%20&amp;link=%{URL}&#39;});">搜狐微博</a></li><li><a class="dwcn-netease-link" tabindex="-1" role="button" dojoattrid="6" rel="网易微博" title="网易微博" href="http://t.163.com/article/user/checkLogin.do?info=Apache%20Shiro%20%E7%AE%80%E4%BB%8B%20http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://t.163.com/article/user/checkLogin.do?info=%{TITLE}%20%{URL}&#39;});">网易微博</a></li><li><a class="ibm-share-digg" title="Digg" href="http://digg.com/submit?phase=2&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F&title=Apache%20Shiro%20%E7%AE%80%E4%BB%8B" rel="digg" dojoattrid="7" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://digg.com/submit?phase=2&amp;url=%{URL}&amp;title=%{TITLE}&#39;});">Digg</a></li><li><a class="ibm-share-facebook" title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F&t=Apache%20Shiro%20%E7%AE%80%E4%BB%8B" rel="facebook" dojoattrid="8" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://www.facebook.com/sharer.php?u=%{URL}&amp;t=%{TITLE}&#39;});">Facebook</a></li><li><a class="ibm-share-twitter" title="Twitter" href="http://twitter.com/?status=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F%20-%20Apache%20Shiro%20%E7%AE%80%E4%BB%8B" rel="twitter" dojoattrid="9" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://twitter.com/?status=%{URL}%20-%20%{TITLE}&#39;});">Twitter</a></li><li><a class="ibm-share-delicious" title="Delicious" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F&title=Apache%20Shiro%20%E7%AE%80%E4%BB%8B" rel="delicious" dojoattrid="10" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://delicious.com/post?url=%{URL}&amp;title=%{TITLE}&#39;});">Delicious</a></li><li><a class="ibm-share-linkedin" title="Linked In" href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F&title=Apache%20Shiro%20%E7%AE%80%E4%BB%8B" rel="linkedin" dojoattrid="11" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://www.linkedin.com/shareArticle?mini=true&amp;url=%{URL}&amp;title=%{TITLE}&#39;});">Linked In</a></li></ul></div></div>
+<div id="fdiv" class="ibm-access"></div><!-- MASTHEAD_END -->
+	    
+<!-- LAYOUT -->
+<!-- LEADSPACE_BEGIN --> 
+<div id="ibm-access-cntr" role="main"><div id="ibm-leadspace-head">
+	<!-- LEADSPACE_BODY_BEGIN --> 
+	<div id="ibm-leadspace-body">
+		<!-- Navigation_Trail_BEGIN -->
+      <ul id="ibm-navigation-trail" role="directory" aria-label="Bread Crumbs"><li><a href="http://www.ibm.com/developerworks/cn/">developerWorks 中国</a></li><li><a href="http://www.ibm.com/developerworks/cn/topics/">技术主题</a></li><li><a href="http://www.ibm.com/developerworks/cn/web/">Web development</a></li><li><a href="http://www.ibm.com/developerworks/cn/views/web/libraryview.jsp">文档库</a></li></ul>
+		<!-- END_Navigation_Trail -->
+			<!-- Title_Subtitle -->
+			<h1>Apache Shiro 简介</h1><p><em><span>使用 Apache Shiro 为 web 应用程序进行用户身份验证</span></em></p>
+	</div>
+	<!-- LEADSPACE_BODY_END --> 
+	<!-- SUMMARY_BEGIN -->
+	<div id="dw-summary-area" class="dw-summary-columns">
+		<div class="ibm-col-6-4">
+		<p>Shiro 是一个 Apache Incubator 项目，旨在简化身份验证和授权。在本文中，了解 Apache Shiro 并通过示例来在一个 Groovy web 应用程序中尝试使用 Shiro 进行身份验证和授权。</p>
+		<p class="ibm-no-print ibm-ind-link">
+
+			
+			<span id="nCmts"><span>1</span><img class="dw-cmts-arrow" alt="" src="./Apache Shiro 简介_files/dw-cmts-arrow.png" height="7" width="7"> <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#icomments" class="dw-cmt-link">评论</a></span>
+		</p>
+		</div>
+		<div class="ibm-col-6-2 dw-toc-margin">
+			<p class="dw-summary-author"><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#authorN10020" class="ibm-popup-link" onclick="ibmweb.overlay.show(&#39;authorN10020&#39;,this);return false;" role="button">Nathan A. Good</a>, 高级顾问，自由开发人员, Enterprise Frameworks</p>
+<div id="authorN10020" class="ibm-common-overlay"><div class="ibm-head"><p><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#close" class="ibm-common-overlay-close">关闭 [x]</a></p></div><div class="ibm-body"><div class="ibm-main"><div class="ibm-title"><!--this is where the h2 usually goes--></div><div class="ibm-container ibm-alternate"><div class="ibm-container-body">
+<p><!--.-->
+<img class="dw-summary-bio-image-x64" alt="Nathan Good" align="" src="./Apache Shiro 简介_files/p-ngood.jpg" valign="top" width="64"> Nathan A. Good 居住在明尼苏达州的双子城。他的专长是软件开发、软件架构和系统管理。平时不编写软件时，他喜欢组装 PC 和服务器、阅读和撰写技术文章，并鼓励他的所有朋友转用开源软件。他是许多书籍和文章的作者或合著者，包括 <em>Professional
+		Red Hat Enterprise Linux 3, Regular Expression Recipes: A Problem-Solution Approach</em>
+		和 <em>Foundations of PEAR: Rapid PHP Development</em>。</p><br><br></div></div></div></div><div class="ibm-footer"><!----></div></div>
+			<p class="dw-summary-date">2011 年 8 月 22 日</p>
+			
+
+
+			<div aria-hidden="true" class="ibm-container" id="dw-toc"><div class="ibm-container-body"><ul class="ibm-twisty"><li><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#toggle" class="ibm-twisty-trigger ibm-twisty-trigger-closed"><img src="./Apache Shiro 简介_files/c.gif" alt="expand"></a><span class="ibm-twisty-head">内容</span><div class="ibm-twisty-body" style="display: none;"><ul style="font-size:0.8em" class="ibm-link-list">
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#authentication">身份验证和授权</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#overview">了解 Shiro</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#tokens">用户令牌</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#simple">简单的身份验证</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#auth_ldap">用 LDAP 进行身份验证</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#grails">运行一个 Grails web 应用程序</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#N101AB">故障排除</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#N101CB">结束语</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#resources">参考资料 </a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#icomments">评论</a></li></ul></div></li></ul></div></div>
+		</div>
+	</div>
+	<!-- SUMMARY_END -->
+</div><div id="ibm-pcon">
+
+<!-- BEGIN_IBM-CONTENT -->
+<div id="ibm-content">
+
+<!-- BEGIN_IBM-CONTENT-BODY -->
+<div id="ibm-content-body">
+
+<!-- BEGIN_IBM-CONTENT-MAIN -->
+<div id="ibm-content-main">
+
+<!-- 1_1_COLUMN_BEGIN -->
+<div class="ibm-columns">
+<div class="ibm-col-1-1"><div class="dw-article-sidebar dw-bluemix" id="dwc-exp-a"><img src="./Apache Shiro 简介_files/bluemix-graphic.png" height="64" width="64" alt=""><p>在 IBM Bluemix 云平台上开发并部署您的下一个应用。</p><p class="ibm-button-link-alternate dw-button-green"><a id="tutc-sbar-bmix-home-btn-ABa" href="https://developer.ibm.com/sso/bmregistration?lang=zh_CN&ca=dwchina-_-bluemix-_-wa-apacheshiro-_-sidebar" class="dw-button-large">开始您的试用</a></p></div>
+
+<p>Apache Shiro 是一个框架，可用于身份验证和授权。本文提供了几个示例用来展示如何在 Java™
+		应用程序中使用 Shiro 并给出了如何在一个 Grails web 应用程序中使用它的概述。为了从本文中最大限度地受益，您应该习惯于创建 Java 应用程序并安装了如下的几个组件：
+	</p><ul class="ibm-bullet-list"><li>Java 1.6 JDK</li><li>Grails（用来运行这些 web 应用程序示例）</li></ul><div class="dw-sidebar ibm-inset"><h2 id="fua">常用缩略词</h2><ul class="ibm-bullet-list"><li><strong>API:</strong> 应用程序编程接口</li><li><strong>HTTP:</strong> 超文本传输协议</li><li><strong>JAR:</strong> Java 档案文件</li><li><strong>JDBC:</strong> Java 数据库连接</li><li><strong>JDK:</strong> Java 开发工具包</li><li><strong>LDAP:</strong>轻量级目录访问协议</li></ul></div><h2 id="authentication">身份验证和授权</h2><p>在对系统进行安全保障时，有两个安全性元素非常重要：身份验证和授权。虽然这两个术语代表的是不同的含义，但出于它们在应用程序安全性方面各自的角色考虑，它们有时会被交换使用。
+		</p><p><em>身份验证</em> 指的是验证用户的身份。在验证用户身份时，需要确认用户的身份的确如他们所声称的那样。在大多数应用程序中，身份验证是通过用户名和密码的组合完成的。只要用户选择了他人很难猜到的密码，那么用户名和密码的组合通常就足以确立身份。但是，还有其他的身份验证方式可用，比如指纹、证书和生成键。
+		</p><p>一旦身份验证过程成功地建立起身份，<em>授权</em> 就会接管以便进行访问的限制或允许。
+所以，有这样的可能性：用户虽然通过了身份验证可以登录到一个系统，但是未经过授权，不准做任何事情。还有一种可能是用户虽然具有了某种程度的授权，却并未经过身份验证。
+		</p><p>在为应用程序规划安全性模型时，必须处理好这两个元素以确保系统具有足够的安全性。身份验证是应用程序常见的问题（特别是在只有用户和密码组合的情况下），所以让框架来处理这项工作是一个很好的做法。合理的框架可提供经过测试和维护的优势，让您可以集中精力处理业务问题，而不是解决其解决方案已经实现的问题。
+		</p><p>Apache Shiro 提供了一个可用的安全性框架，各种客户机都可将这个框架应用于它们的应用程序。本文中的这些例子旨在介绍 Shiro 并着重展示对用户进行身份验证的基本任务。
+		</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="overview">了解 Shiro</h2><p>Shiro 是一个用 Java 语言实现的框架，通过一个简单易用的 API 提供身份验证和授权。使用 Shiro，您就能够为您的应用程序提供安全性而又无需从头编写所有代码。
+		</p><div class="dw-sidebar ibm-inset"><h2 id="clgrp">来自 IBM 的总体身份验证解决方案</h2><p>白皮书 
+                    “<a href="http://www-935.ibm.com/services/us/iss/pdf/ibm_tas-technical-whitepaper.pdf">Enhancing Identity Assurance across all Access
+Scenarios Cost Effectively with
+IBM ISS Identity and Access Management Services</a>” 探讨了一个跨各种商业应用程序和访问场景的、完全集成的、企业范围的、经济高效的身份验证解决方案。</p><p>这个解决方案提供了一个高度安全的集中式的身份验证基础设施，通过它的 API 或诸如 RADIUS 或 LDAP 这样的标准身份验证协议可很容易地与各种应用程序或 IT 基础设施组件集成。它支持广泛的软硬件或基于手机的身份验证令牌，在选择具体的身份验证方法方面提供了最大限度的灵活性。 </p></div><p>由于 Shiro 提供具有诸多不同数据源的身份验证，以及 Enterprise Session Management，所以是实现单点登录（SSO）的理想之选 — 大型企业内的一个理想特性，因为在大型企业内，用户需要在一天内经常登录到并使用不同系统。这些数据源包括 JDBC、LDAP、 Kerberos 和 Microsoft® Active Directory® Directory
+			Services (AD DS)。 
+		</p><p>Shiro 的 <code>Session</code> 对象允许无需 <code>HttpSession</code> 即可使用一个用户会话。通过使用一个通用的 
+			<code>Session</code> 对象，即便该代码没有在一个 Web 应用程序中运行，仍可以使用相同的代码。没有对应用服务器或 Web 应用服务器会话管理的依赖，您甚至可以在命令行环境中使用 Shiro。换言之，使用 Shiro 的 API 编写的代码让您可以构建连接到 LDAP 服务器的命令行应用程序并且与 web 应用程序内用来访问 LDAP 服务器的代码相同。
+		</p><h3 id="install_shiro">下载并安装 Shiro</h3><p>Shiro 是预构建的二进制发行版。您可以下载 Shiro
+				JAR 文件或将各项放入到 Apache Maven 或 Apache Ivy 来自动安装这些文件。本例使用 Ivy 下载 Shiro 
+				JAR 文件以及其他所需要的库，脚本很简单，如 <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#list1">清单 1</a> 所示。
+			</p><h5 id="list1">清单 1. Apache Ivy 文件和 Apache Ant 脚本</h5><div class="codesection"><pre class="displaycode">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;ivy-module version="2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"&gt;
+    &lt;info organisation="com.nathanagood.examples" module="shirotest" /&gt;
+    &lt;configurations&gt;
+        &lt;conf name="dist" description="Dependency configuration for distribution." /&gt;
+    &lt;/configurations&gt;
+    &lt;dependencies&gt;
+        &lt;dependency org="commons-logging" name="commons-logging"
+            rev="1.1.1" conf="dist-&gt;default" /&gt;
+        &lt;dependency org="org.slf4j" name="slf4j-log4j12" rev="1.5.8"
+            conf="dist-&gt;default" /&gt;
+        &lt;dependency org="org.apache.shiro" name="shiro-core" rev="1.0.0-incubating"
+            conf="dist-&gt;default" /&gt;
+        &lt;dependency org="org.apache.shiro" name="shiro-web" rev="1.0.0-incubating"
+            conf="dist-&gt;default" /&gt;
+    &lt;/dependencies&gt;
+&lt;/ivy-module&gt;
+
+&lt;project name="shiroTestApp" default="usage" basedir="." 
+    xmlns:ivy="antlib:org.apache.ivy.ant"&gt;
+    &lt;property name="project.lib" value="lib" /&gt;
+    &lt;path id="ivy.task.path"&gt;
+        &lt;fileset dir="${basedir}/ivy-lib"&gt;
+            &lt;include name="**/*.jar" /&gt;
+        &lt;/fileset&gt;
+    &lt;/path&gt;
+
+    &lt;target name="resolve"&gt;
+        &lt;taskdef resource="org/apache/ivy/ant/antlib.xml" 
+            uri="antlib:org.apache.ivy.ant" classpathref="ivy.task.path" /&gt;
+        &lt;ivy:resolve /&gt;
+        &lt;ivy:retrieve pattern="${project.lib}/[conf]/[artifact].[ext]" sync="true" /&gt;
+    &lt;/target&gt;
+
+    &lt;target name="usage"&gt;
+        &lt;echo message="Use --projecthelp to learn more about this project" /&gt;
+    &lt;/target&gt;
+&lt;/project&gt;</pre></div><p>有关使用 Ivy 的更多信息，参见 <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#resources">参考资料</a>。如果不使用 Maven 或 Ivy，可用从本文 <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#resources">参考资料</a> 部分提供的下载站点下载这些 Shiro JAR 文件。
+			</p><p>下载了这些库后，只需将它们添加到 CLASSPATH。编写 <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#list2">清单 2</a> 内所示的简单代码，它获得对当前用户的一个引用并报告说用户未经身份验证。（使用 <code>Subject</code> 类来代表此用户。）
+			</p><h5 id="list2">清单 2. ShiroTest Java 类</h5><div class="codesection"><pre class="displaycode">package com.nathanagood.examples.shirotest;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.config.IniSecurityManagerFactory;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.Factory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class ShiroTest {
+
+    private static Logger logger = LoggerFactory.getLogger(ShiroTest.class);
+
+    public static void main(String[] args) {
+        // Using the IniSecurityManagerFactory, which will use the an INI file
+        // as the security file.
+        Factory&lt;org.apache.shiro.mgt.SecurityManager&gt; factory = 
+            new IniSecurityManagerFactory("auth.ini");
+
+        // Setting up the SecurityManager...
+        org.apache.shiro.mgt.SecurityManager securityManager 
+            = factory.getInstance();
+        SecurityUtils.setSecurityManager(securityManager);
+
+        Subject user = SecurityUtils.getSubject();
+
+        logger.info("User is authenticated:  " + user.isAuthenticated());
+    }
+}</pre></div><p>添加了此代码后，创建一个名为 <em>auth.ini</em> 的文件。此时，这个文件是空白的；它的作用只是为了能够在这里运行这个示例来检查代码是否正常工作。
+			</p><p>创建文件后，运行这个示例。应该会看到包含了一个 INFO 登录消息的输出，报告说用户没有登录。
+			</p><p><code>SecurityUtils</code> 对象是一个 singleton，这意味着不同的对象可以使用它来获得对当前用户的访问。一旦成功地设置了这个 <code>SecurityManager</code>，就可以在应用程序不同部分调用 <code>SecurityUtils.getSubject()</code> 来获得当前用户的信息。
+			</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="tokens">用户令牌</h2><p>在 Shiro 术语中，<em>令牌</em> 指的是一个键，可用它登录到一个系统。最基本和常用的令牌是 <code>UsernamePasswordToken</code>，用以指定用户的用户名和密码。
+		</p><p><code>UsernamePasswordToken</code> 类实现了 
+			<code>AuthenticationToken</code> 接口，它提供了一种获得凭证和用户的主体（帐户身份）的方式。
+			<code>UsernamePasswordToken</code> 适用于大多数应用程序，并且您还可以在需要的时候扩展 <code>AuthenticationToken</code> 接口来将您自己获得凭证的方式包括进来。例如，可以扩展这个接口来提供您应用程序用来验证用户身份的一个关键文件的内容。
+		</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="simple">简单的身份验证</h2><p>至此，这个简单的示例涵盖的内容包括：启动 Shiro
+			<code>SecurityManager</code>、获得当前用户并记录下用户未经身份验证。接下来的这个例子将会使用
+			<code>UsernamePasswordToken</code> 和存储在 INI 文件内的一个用户记录来展示如何通过用户名和密码进行身份验证。
+		</p><p><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#list3">清单 3</a> 内所示的 auth.ini 文件现在包含了一个用户记录；这个记录包含了用户名和密码。您可以在这个记录内定义角色以及为应用程序提供授权。
+		</p><h5 id="list3">清单 3. auth.ini 文件</h5><div class="codesection"><pre class="displaycode">[users]
+bjangles = dance</pre></div><p>现在，创建 <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#tokens">前一节</a> 中介绍的这个 <code>UsernamePasswordToken</code> 对象，如 <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#list4">清单 4</a> 所示。
+		</p><h5 id="list4">清单 4. 使用 UsernamePasswordToken 类</h5><div class="codesection"><pre class="displaycode">// snipped... same as before.
+public class ShiroTest {
+
+    private static Logger logger = LoggerFactory.getLogger(ShiroTest.class);
+
+    public static void main(String[] args) {
+        // Using the IniSecurityManagerFactory, which will use the an INI file
+        // as the security file.
+        Factory&lt;org.apache.shiro.mgt.SecurityManager&gt; factory = 
+            new IniSecurityManagerFactory("auth.ini");
+
+        // Setting up the SecurityManager...
+        org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
+        SecurityUtils.setSecurityManager(securityManager);
+
+        Subject user = SecurityUtils.getSubject();
+
+        logger.info("User is authenticated:  " + user.isAuthenticated());
+<strong>        
+        UsernamePasswordToken token = new UsernamePasswordToken("bjangles", "dance");
+        
+        user.login(token);
+        
+        logger.info("User is authenticated:  " + user.isAuthenticated());</strong>
+    }
+}</pre></div><p><code>UsernamePasswordToken</code> 对象由用户名和密码的组合实例化。随后，令牌被传递至 
+			<code>Subject</code> 类的 <code>login()</code> 
+			方法。
+		</p><p>再次运行这个示例。注意到登录消息现在报告说此用户已经身份验证。		</p><p>要确保代码正常工作且获得的不是一个误报，在代码内更改密码或更改这个 INI 文件并再次运行此示例。<code>login()</code> 方法现在会抛出一个
+			<code>IncorrectCredentialsException</code>。在生产代码内这个异常应被明确捕获以便应用程序在用户提供了不正确的代码时能够进行恰当的响应。
+		</p><p>如果用户不正确，<code>login()</code> 方法就会抛出一个 
+			<code>UnknownAccountException</code>。我们既要考虑如何处理这个异常，但又不应向用户提供太多信息。一种常见的做法是不要向用户提示用户名有效、只有密码不正确。这是因为如果有人试图通过猜测获得访问，那么您绝对不会想要暗示此人他所猜测的用户名是正确的。
+		</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="auth_ldap">用 LDAP 进行身份验证</h2><p>LDAP 是用来在 TCP/IP 上查询目录的一种协议。这些目录可保存有关用户的任意数量的信息，包括用户 ID、联系信息以及组成员等。LDAP 目录对于公司的通讯簿很有用并被广泛使用。
+		</p><p>AD DS 是一种用于用户和组管理的常见目录，它支持 LDAP。
+			Shiro 不包含通用的 LDAP 安全域，但它却包含了一个 
+			<code>ActiveDirectoryRealm</code> 对象，允许针对 LDAP 进行用户的身份验证。本例使用了在 INI 文件内配置的  
+			<code>ActiveDirectoryRealm</code> 对象来验证用户的身份。虽然 AD DS 与 LDAP 不同，但本文中使用的 Shiro 的这个版本并没有自带通用的 LDAP 对象。
+		</p><p>让一个 LDAP 服务器来测试本例要比编写并运行示例本身需要更多工作。如果您不能访问一个
+			AD DS 服务器，那么可以考虑下载并安装 Apache Directory 来提供一个 LDAP 服务器的样例实现。Apache Directory 是用 Java
+语言编写的。同样地，Apache Active Directory Studio 是一个 Eclipse 插件，可用来浏览 LDAP 数据。它还具有一些样例数据，为您提供了一种快捷方式来针对已知值编写代码，而又无需疑惑您遇到的问题是代码问题还是数据问题。
+		</p><p><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#list5">清单 5</a> 显示了用来对存储在 Apache Directory 内的一个用户进行身份验证所需的代码。
+		</p><h5 id="list5">清单 5. 使用 LDAP 进行身份验证</h5><div class="codesection"><pre class="displaycode">// snipped...
+public class ShiroLDAPTest {
+
+    private static Logger logger = LoggerFactory.getLogger(ShiroLDAPTest.class);
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+
+        // Using the IniSecurityManagerFactory, which will use the an INI file
+        // as the security file.
+        Factory&lt;org.apache.shiro.mgt.SecurityManager&gt; factory = 
+            new IniSecurityManagerFactory("actived.ini");
+
+        // Setting up the SecurityManager...
+        org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
+        SecurityUtils.setSecurityManager(securityManager);
+
+        Subject user = SecurityUtils.getSubject();
+
+        logger.info("User is authenticated:  " + user.isAuthenticated());
+
+        UsernamePasswordToken token = 
+        new UsernamePasswordToken(
+            "cn=Cornelius Buckley,ou=people,o=sevenSeas", "argh");
+
+        user.login(token);
+
+        logger.info("User is authenticated:  " + user.isAuthenticated());
+    }
+}</pre></div><p>除了 INI 文件名和用户名及密码之外，代码与之前用 INI 文件内的记录进行身份验证的代码相同。这种类似性的出现是因为您可以使用 INI 文件来配置 Shiro。用来设置 Shiro 针对 Apache Directory 进行身份验证的这些 INI 记录如 <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#list6">清单 6</a> 所示。
+		</p><h5 id="list6">清单 6. actived.ini 文件</h5><div class="codesection"><pre class="displaycode">[main]
+activeDirectoryRealm = org.apache.shiro.realm.activedirectory.ActiveDirectoryRealm
+activeDirectoryRealm.systemUsername = uid=admin,ou=system
+activeDirectoryRealm.systemPassword = secret
+activeDirectoryRealm.searchBase = o=sevenSeas,ou=people
+activeDirectoryRealm.url = ldap://localhost:10389</pre></div><p><strong>注意：</strong> 我使用 Apache Directory Studio 来将用户的密码更改为一个能放入测试代码以确保它工作的值。
+		</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="grails">运行一个 Grails web 应用程序</h2><p>您可以使用两种基本技巧将 Shiro 应用到 web 应用程序。首先，您可以使用这个 API 来将这里所展示的的代码并入一个基础 servlet。其次，您可以使用 Shiro 自带的 HTTP 过滤器。本例展示了第二种技巧，因为使用过滤器充分利用了内置 web 应用服务器技术以及来自 Shiro 项目的预先编写好的代码。
+		</p><p>本例显示了如何使用 Grails 内的这些过滤器。Grails 是一个项目，旨在让您通过使用一种惯例优先原则（convention-over-configuration）的方式尽快地编写 Groovy web 应用程序。有关 Grails 的更多信息，请参见 <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#resources">参考资料</a>。
+		</p><p>对于 Shiro 过滤器，您通常会手动地向 web.xml 文件添加必需的过滤器项。但是，Grails 会在您每次启动应用程序时生成 web.xml 文件，因此不必手动修改 web.xml。
+		</p><p>幸运的是，Grails 提供了插件，可集成到 web.xml 生成过程并会让您也可以参与在 web.xml 文件内编写这些项。如今，Grails 的可用插件很多，包括面向 Shiro 的这个插件。建议尝试使用这个 Shiro Grails 插件，它提供了几个新的脚本，运行这些脚本可以创建不同的域和控制器。
+		</p><p>或者，如果您更愿意自己添加这些项并进行配置，您也可以编写您自己的插件。对于 Grails，编写一个新的插件很容易。要创建能将必需的 Shiro 过滤器项添加到 web.xml 文件的 Grails 插件，可以使用如下命令：
+		</p><div class="codesection"><pre class="displaycode">&gt; grails create-plugin ShiroWebXml</pre></div><p>创建了这个插件项目后，编辑 ShiroWebXmlPlugin.groovy 文件，并添加如 <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#list7">清单 7</a> 所示的代码。
+ 		</p><h5 id="list7">清单 7. 示例插件</h5><div class="codesection"><pre class="displaycode">class ShiroWebXmlPlugin {
+   
+   // snipped plugin details... 
+
+   def doWithWebDescriptor = { xml -&gt;
+
+       def filterElement = xml.'filter'
+       def lastFilter = filterElement[filterElement.size() - 1]
+
+       lastFilter + {
+           'filter' {
+               'filter-name'("ShiroFilter")
+               'filter-class'("org.apache.shiro.web.servlet.IniShiroFilter")
+               'init-param' {
+                   'param-name'("config")
+                   'param-value'("\n#config")
+               }
+           }
+       }
+
+       def filterMappingElement = xml.'filter-mapping'
+       def lastFilterMappingElement = 
+           filterMappingElement[filterMappingElement.size() - 1]
+
+       lastFilterMappingElement + {
+           'filter-mapping' {
+               'filter-name'("ShiroFilter")
+               'url-pattern'("/*")
+               }
+           }
+       }
+}</pre></div><p>当 Grails 执行这个 web.xml 文件时，此代码就会运行。</p><p>在启动这个插件应用程序测试它之前，先将用 Ivy 下载的 Shiro JAR 文件复制到此插件的 lib 文件夹。有了 
+			JAR 文件后，用以下命令测试此插件是否能正常工作：
+		</p><div class="codesection"><pre class="displaycode">grails run-app</pre></div><p>如果此插件应用程序成功启动，您可以将它打包以便用在一个示例项目中。要打包这个插件，使用如下命令：
+		</p><div class="codesection"><pre class="displaycode">grails package-plugin</pre></div><p>可以用如下命令安装这个新的 <code>ShiroWebXmlPlugin</code>：
+		</p><div class="codesection"><pre class="displaycode">cd myapp
+grails install-plugin /path/to/shiro-web-xml-1.0.zip</pre></div><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="N101AB">故障排除</h2><p>如果出现了 <code>UnavailableSecurityManagerException</code>，那么可能是 <code>SecurityManager</code> 未被正确设置。在调用 <code>getSubject()</code> 方法之前，请确保它设在 <code>SecurityUtils</code>
+			对象上。
+		</p><p>连接到 LDAP 服务器可能会有些困难。如果得到一个
+			<code>javax.naming.CommunicationException</code>，那么请检查此 LDAP 服务器的主机名和端口。即便您没有使用 Apache
+			Directory，Apache Directory Studio（可单独安装）也可以帮助您排除连接故障以及名称问题。
+		</p><p>如果您没有使用 Ant Ivy 脚本来初始化您的环境，那么有可能会得到丢失类的错误。即便没有 Apache Commons 
+			Logging library (<code>commons-logging</code>)，这个 INI 文件示例仍可运行，但是运行这个 LDAP
+			示例会导致一个异常。这时，可以使用 Apace Commons <code>BeanUtils</code>
+		来解析这个 INI 文件并设置对象上的值。
+		</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="N101CB">结束语</h2><p>Shiro 是 Apache Incubator 内的一个框架，可让您向应用程序中添加身份验证和授权。它支持不同的身份验证存储方式，比如 LDAP、Kerberos 和 AD DS。Shiro 最小限度的依赖性再加上它相对简单的配置让它成为了应用程序内安全性框架的一个很好的选择。
+		</p><!--CMA ID: 753385--><!--Site ID: 10--><!--XSLT stylesheet used to transform this file: dw-document-html-7.0.xsl-->
+
+
+</div>
+</div>
+<!-- 1_1_COLUMN_END -->
+
+<!-- SPLIT_COLUMNS_BEGIN -->
+<div class="ibm-columns">
+
+<!-- 6_4_COLUMN_BEGIN -->
+<div class="ibm-col-6-4">
+
+<h2 id="resources" class="ibm-rule">参考资料 </h2><h3 class="dw-resources-category-heading">学习</h3><ul class="ibm-bullet-list"><li>
+	了解有关 <a href="http://ant.apache.org/ivy/">Apache Ivy</a> 的更多信息。
+	</li><li>
+		进一步探究 <a href="http://incubator.apache.org/shiro/">Apache Shiro</a>。 
+	</li><li>
+		更多地了解 
+			<a href="http://directory.apache.org/">Apache Directory</a> 和 <a href="http://directory.apache.org/studio/">Apache Directory Studio</a>。
+	</li><li>
+		了解有关 <a href="http://www.grails.org/">Grails</a> 的更多信息。
+	</li><li>developerWorks <a href="http://www.ibm.com/developerworks/cn/offers/techbriefings/">技术活动</a>和<a href="http://www.ibm.com/developerworks/cn/swi/">网络广播</a>：随时关注 developerWorks 技术活动和网络广播。
+</li><li>
+		观看 <a href="http://www.ibm.com/developerworks/cn/offers/lp/demos/">developerWorks 演示中心</a>：包括面向初学者的产品安装和设置演示，以及为经验丰富的开发人员提供的高级功能。
+	</li><li><a href="http://www.ibm.com/developerworks/cn/web/">developerWorks Web development
+               专区</a>：通过专门关于 Web 技术的文章和教程，扩展您在网站开发方面的技能。</li><li><a href="http://www.ibm.com/developerworks/cn/ajax/">developerWorks Ajax 资源中心</a>：这是有关 Ajax 编程模型信息的一站式中心，包括很多文档、教程、论坛、blog、wiki 和新闻。任何 Ajax 的新信息都能在这里找到。</li><li><a href="http://www.ibm.com/developerworks/cn/web20/">developerWorks Web 2.0 资源中心</a>，这是有关 Web 2.0 相关信息的一站式中心，包括大量 Web 2.0 技术文章、教程、下载和相关技术资源。您还可以通过 <a href="http://www.ibm.com/developerworks/cn/web20/newto/">Web 2.0 新手入门</a> 栏目，迅速了解 Web 2.0 的相关概念。</li></ul><h3 class="dw-resources-category-heading">获得产品和技术</h3><ul class="ibm-bullet-list"><li>
+		尝试使用 <a href="http://grails.org/plugin/shiro">Grails Shiro 插件</a>。
+	</li><li>
+		下载
+	<a href="http://incubator.apache.org/shiro/download.html">预构建的 Shiro 二进制文件</a>。
+	</li><li><a href="http://www.ibm.com/developerworks/cn/downloads/">IBM 产品评估试用版软件</a> 或 <a href="http://www.ibm.com/developerworks/cn/downloads/soasandbox/people/">IBM SOA 人员沙箱</a>，并开始使用来自 DB2®、Lotus®、Rational®、
+			Tivoli® 和 WebSphere® 的应用程序开发工具和中间件产品。
+	</li></ul><h3 class="dw-resources-category-heading">讨论</h3><ul class="ibm-bullet-list"><li>加入 <a href="http://www.ibm.com/developerworks/cn/community/" onmouseover="linkQueryAppend(this)">developerWorks 中文社区</a>。查看开发人员推动的博客、论坛、组和维基，并与其他 developerWorks 用户交流。</li><li>现在就创建您的 <a href="https://www.ibm.com/developerworks/mydeveloperworks/profiles/home.do?lang=zh" onmouseover="linkQueryAppend(this)">developerWorks 社区概要信息</a> 并设置一个关于 Apache 或身份验证的 <a href="https://www.ibm.com/developerworks/mydeveloperworks/homepage/help/doc/en/homepage_watchlistuse.html" onmouseover="linkQueryAppend(this)">关注清单</a>。连接到 <a href="http://www.ibm.com/developerworks/mydeveloperworks/#community" onmouseover="linkQueryAppend(this)">developerWorks 社区概要信息</a> 并保持连接。</li><li> 找到 <a href="https://www.ibm.com/developerworks/mydeveloperworks/profiles/html/keywordSearch.do?keyword=web&lang=zh" onmouseover="linkQueryAppend(this)">对 web 开发感兴趣的其他 developerWorks 成员</a>。</li><li>Web 开发人员，<a href="https://www.ibm.com/developerworks/mydeveloperworks/groups/service/html/communityview?communityUuid=4a88af42-962d-4f4d-9b6a-245ea1e61f11" onmouseover="linkQueryAppend(this)">请在 web 开发群组中分享您的经验和知识</a>。</li><li>分享您的知识：<a href="https://www.ibm.com/developerworks/mydeveloperworks/search/web/search" onmouseover="linkQueryAppend(this)">加入一个关注 web 主题的 developerWorks 群组</a>。</li><li>Roland Barcia 在其博客中讨论了 <a href="https://www.ibm.com/developerworks/mydeveloperworks/blogs/barcia/?lang=zh" onmouseover="linkQueryAppend(this)">Web 2.0 和中间件</a>。</li><li>关注 developerWorks 成员 <a href="https://www.ibm.com/developerworks/mydeveloperworks/bookmarks/html?ps=50&search=web&searchType=mode&sortOrder=desc&lang=zh" onmouseover="linkQueryAppend(this)">关于 web 主题的共享书签</a>。</li><li>快速找到答案：访问 <a href="http://www.ibm.com/developerworks/forums/forum.jspa?forumID=1182" onmouseover="linkQueryAppend(this)">Web 2.0 Apps 论坛</a>。</li></ul>
+
+<!-- INLINE_COMMENTS_BEGIN -->
+<h2 id="icomments" class="ibm-alternate-rule ibm-no-print">条评论</h2>
+    
+<div class="ibm-no-print" id="dw-icomments-container">	
+	<div id="threadShow"><img id="imgPlHdr" src="./Apache Shiro 简介_files/animated-progress-38x38c.gif" alt="" style="display: none;"><div id="cmtTog"><div class="ibm-container ibm-alternate-two dw-commentbox dw-noborder"><div class="ibm-container-body dw-commentbox dw-noborder"><p id="signInSect">请 <a onclick="var e=arguments[0] || window.event; dwsi.siInst &amp;&amp; dwsi.siInst.showSignIn(); if (e.stopPropagation){ e.stopPropagation();} else { e.cancelBubble = true; } e.preventDefault &amp;&amp; e.preventDefault(); return false;" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#">登录</a> 或 <a href="http://www.ibm.com/developerworks/dwwi/jsp/ssoregister.jsp?d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Fwa-apacheshiro%2F%23icomments&lang=cn&a=dwmav">注册</a>  后发表评论。</p><p id="cmtHead"><label for="newCmt"><strong>添加评论:</strong></label></p><p>注意：评论中不支持 HTML 语法</p><div id="infoCmt"></div><form focus="name" enctype="multipart/form-data" method="post" action="" name="form" class="ibm-column-form ibm-styled-form"><p class="6-4-textarea"><textarea rows="5" name="newCmt" id="newCmt" class="dw-inoperable" disabled=""></textarea><br></p><span class="ibm-input-group"><input type="checkbox" value="1" name="comment_notification" id="comment_notification" disabled="disabled"><label id="notifyText" class="ibm-form-note dw-btn-cancel-sec" for="comment_notification">有新评论时提醒我</label></span><span class="ibm-form-note dw-btn-cancel-sec notifySection" id="maxCharsCount">剩余 <span id="charCount">1000</span> 字符</span><p class="ibm-buttons-row"><input type="button" value="发布" name="postCmt" id="postCmt" class="ibm-btn-sec ibm-btn-small ibm-disabled" disabled="disabled"></p></form></div></div><div class="ibm-alternate-rule"><hr></div><div id="topControl" class="ibm-container ibm-alternate-two dw-comment-totals" style=""><div class="ibm-container-body"><form id="selectComments" method="get" action=""><p>&nbsp;<span class="dw-comment-totals-label"><strong>共有评论 (<span id="numCmts">1</span>)</strong></span><span class="dw-how-many-comments-label" style="display:none" id="dropdownCmts"><label for="howManyComments"><strong>显示：</strong></label>&nbsp;<select name="comments" id="howManyComments" class="dw-how-many-comments"><option selected="selected" value="recent">最新评论 </option></select><input type="image" class="ibm-btn-go" name="ibm-go" value="Go" src="./Apache Shiro 简介_files/short-btn.gif" alt="Go"><br></span></p></form></div></div><div id="cmtSect"><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>Reivewed &amp; Collected</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">由 <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/GGYY">GGYY</a></strong>  于 2011年09月03日发布 </p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="http://www.ibm.com/developerworks/community/report?lang=zh&referingURL=http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/&mymessage=%E8%AF%84%E8%AE%BA%EF%BC%9A%20Reivewed%20%26%2338%3B%20Collected%0D%E7%94%B1%20GGYY%20%20%E4%BA%8E%202011%E5%B9%B409%E6%9C%8803%E6%97%A5%E5%8F%91%E5%B8%83%20%0D%0D--%E5%9C%A8%E4%B8%8B%E6%96%B9%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA--" target="_self">报告滥用</a></p><div class="dw-clear-both"></div></div></div></div></div></div></div><div id="bottomControl" class="ibm-container ibm-alternate-two dw-comment-totals" style="display:none"><div class="ibm-container-body"><form id="selectComments2" method="get" action=""><p>&nbsp;<span class="dw-comment-totals-label"><strong>共有评论 (<span id="numCmts2">1</span>)</strong></span><span class="dw-how-many-comments-label" style="display:none" id="dropdownCmts2"><label for="howManyComments2"><strong>显示：</strong></label>&nbsp;<select name="comments" id="howManyComments2" class="dw-how-many-comments"><option selected="selected" value="recent">最新评论 </option></select><input type="image" class="ibm-btn-go" name="ibm-go" value="Go" src="./Apache Shiro 简介_files/short-btn.gif" alt="Go"><br></span></p></form></div></div></div>
+</div>
+<!-- Sign in OVERLAY STARTS HERE -->
+    
+<!-- Sign in OVERLAY STARTS HERE -->
+<div class="ibm-common-overlay" id="signin_overlay">
+<div class="ibm-head">
+<p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" onclick="dwsi.siInst.clearForm();">关闭 [x]</a></p>
+</div>
+<div class="ibm-body">
+<div class="ibm-main">
+
+ <div class="ibm-title">
+<h2>developerWorks: 登录</h2>
+<div id="ibm-overlay-error-signin" class="no-display"></div>
+</div>
+<div class="ibm-container ibm-alternate ibm-buttons-last">
+<div class="ibm-container-body">
+<p class="ibm-overlay-intro">标有星（<span class="ibm-required">*</span>）号的字段是必填字段。</p> 
+<form class="ibm-column-form" id="sFormId" action="" method="post" name="sForm" onsubmit="return false;">
+<p><label for="ibmid">IBM ID:<span class="ibm-required">*</span></label><span>
+    <input name="ibm-id" id="ibmid" size="25" value="" class="required" type="text" onkeypress="dwsi.siInst.handleEP(event,this.form);" aria-required="true">
+    <br><a onclick="window.location=&#39;/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=zh_CN&amp;d=&#39;+encodeURIComponent(location.protocol + &#39;//&#39; + location.hostname + location.pathname + &#39;#icomments&#39;); return false;" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" class="ibm-forward-link">需要一个 IBM ID？</a> <br>
+    <a class="ibm-forward-link" href="http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=zh_CN">忘记 IBM ID？</a> 
+</span>
+</p> 
+<p><label for="password">密码：<span class="ibm-required">*</span></label><span>
+    <input name="password" id="password" size="25" value="" class="required" type="password" onkeypress="dwsi.siInst.handleEP(event,this.form);">
+    <br><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" onclick="(function ()
+        {window.location=&#39;https://www.ibm.com/account/profile?page=forgot&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(dwsi.siInst.getAuthUrl())+&#39;%3Fm%3Dloginpage%26lang%3Dzh_CN%26d%3D&#39;+encodeURIComponent(location.href);})();">忘记密码？</a>
+    <br><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=chpw&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(location.href);})();">更改您的密码</a></span></p> 
+<p class="dw-perm-box">
+	<span><input id="perm" type="checkbox" name="perm_name"><label for="perm"> 保持登录。</label></span>
+</p>
+<p>单击提交则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/community/terms?lang=zh">查看条款和条件</a>。</p>
+<div class="ibm-buttons-row">
+   <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="提交" onclick="dwsi.siInst.signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+<input value="取消" type="button" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="dwsi.siInst.clearForm();ibmweb.overlay.hide(&#39;signin_overlay&#39;);return false;"></p>
+</div>
+</form>
+ <div class="ibm-overlay-rule"><hr></div> 
+
+<p>在您首次登录 developerWorks 时，会为您创建一份个人概要。<strong>您的个人概要中的信息（您的姓名、国家/地区，以及公司名称）是公开显示的，而且会随着您发布的任何内容一起显示，除非您选择隐藏您的公司名称。</strong>您可以随时更新您的 IBM 帐户。</p>
+<div><p class="dw-c-overlay-secure">所有提交的信息确保安全。</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Display name OVERLAY STARTS HERE -->
+<div class="ibm-common-overlay" id="displayname_overlay">
+<div class="ibm-head">
+<p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" onclick="dwsi.siInst.clearForm();">关闭 [x]</a></p>
+</div>
+<div class="ibm-body">
+<div class="ibm-main">
+<div class="ibm-title">
+<h2>选择您的昵称</h2><br><br>
+<div id="ibm-overlay-error-dname" class="no-display"></div>
+</div>
+<div class="ibm-container ibm-alternate ibm-buttons-last">
+<div class="ibm-container-body">
+<p class="ibm-overlay-intro">当您初次登录到 developerWorks 时，将会为您创建一份概要信息，您需要指定一个昵称。您的昵称将和您在 developerWorks 发布的内容显示在一起。</p><p><strong>昵称长度在 3 至 31 个字符之间</strong>。 
+    您的昵称在 developerWorks 社区中必须是唯一的，并且出于隐私保护的原因，不能是您的电子邮件地址。</p>
+<p class="ibm-overlay-intro">标有星（<span class="ibm-required">*</span>）号的字段是必填字段。</p> 
+<form id="dFormId" method="post" action="" name="dForm" onsubmit="return false;" class="ibm-column-form">
+<p><label for="displayname">昵称：<span class="ibm-required">*</span></label><span>
+    <input name="displayname" id="displayname" size="25" value="" type="text" onkeypress="dwsi.siInst.handleEP(event,this.form);" aria-required="true"></span>
+    <span class="ibm-form-note">(昵称长度在 3 至 31 个字符之间)</span>
+</p>
+<p>单击<strong>提交</strong>则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/community/terms?lang=zh">查看条款和条件</a>.</p>
+<div class="ibm-buttons-row">
+   <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="提交" onclick="dwsi.siInst.signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+<input value="取消" type="button" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="dwsi.siInst.clearForm();ibmweb.overlay.hide(&#39;displayname_overlay&#39;);return false;"></p>
+</div>
+</form>
+<div class="ibm-overlay-rule"><hr></div>
+<div><p class="dw-c-overlay-secure">所有提交的信息确保安全。</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+
+
+<!-- INLINE_COMMENTS_END -->
+
+</div>
+<!-- 6_4_COLUMN_END -->
+
+<!-- 6_2_COLUMN_BEGIN -->
+<div class="ibm-col-6-2">
+
+<!-- Next_Steps -->
+<!-- Dig_Deeper -->
+
+
+<!-- Promotion_Module -->
+    
+<!-- PROMOTION_MODULE_START -->
+<div class="ibm-alternate-rule"><hr></div>
+<ul class="ibm-portrait-module-list">
+<li><a class="" href="http://www.ibm.com/developerworks/cn/cloud/bluemix/" tabindex="-1" role="presentation"><img height="60" width="60" src="./Apache Shiro 简介_files/sm-f-bluemixrobot60.png" alt="IBM Bluemix 资源中心"></a>
+<h3><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/cloud/bluemix/">IBM Bluemix 资源中心</a></h3>
+<p>文章、教程、演示，帮助您构建、部署和管理云应用。</p></li>
+<li><a class="" href="http://www.ibm.com/developerworks/cn/community/" tabindex="-1" role="presentation"><img height="60" width="60" src="./Apache Shiro 简介_files/sm-f-comcommunity60.png" alt="developerWorks 中文社区"></a>
+<h3><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/community/">developerWorks 中文社区</a></h3>
+<p>立即加入来自 IBM 的专业 IT 社交网络。</p></li>
+<li><a class="" href="http://bluemixathon.devpost.com/" tabindex="-1" role="presentation"><img height="60" width="60" src="./Apache Shiro 简介_files/sm-f-bluemixathon60.png" alt="Bluemixathon 挑战赛"></a>
+<h3><a class="ibm-feature-link" href="http://bluemixathon.devpost.com/">Bluemixathon 挑战赛</a></h3>
+<p>为灾难恢复构建应用，赢取现金大奖。</p></li>
+</ul>
+<!-- PROMOTION_MODULE_END -->
+</div>
+<!-- 6_2_COLUMN_END -->
+
+</div>
+<!-- SPLIT_COLUMNS_END -->
+
+<!-- BOTTOM_BACK_TO_TOP -->
+<div class="ibm-columns">
+<div class="ibm-col-1-1">
+	<div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p>
+</div>
+</div>
+
+<!-- Rating_Meta_BEGIN -->
+<!--Rating_Meta_BEGIN--><div class="metavalue">static.content.url=http://www.ibm.com/developerworks/js/artrating/</div><div class="metavalue">SITE_ID=10</div><div class="metavalue">Zone=Web development</div><div class="metavalue">ArticleID=753385</div><div class="metavalue">ArticleTitle=Apache Shiro 简介</div><div class="metavalue">publish-date=08222011</div><script language="javascript" type="text/javascript">document.write('<div class="metavalue">url='+location.href.replace(/</g,  '%3C')+'</div>');</script><div class="metavalue">url=http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/</div><!--Rating_Meta_END-->
+<!-- Rating_Meta_END -->
+
+</div>
+<!-- END_IBM_CONTENT_MAIN -->
+
+</div>
+<!-- END_IBM_CONTENT_BODY -->
+
+</div>
+<!-- END_IBM_CONTENT -->
+
+</div></div>
+<!-- LEADSPACE_END -->
+
+
+<!-- END_IBM_PCON -->
+<!-- FOOTER_BEGIN -->
+<div id="ibm-footer" aria-label="页脚"><!-- IBM footer container; disabled --></div>
+
+<div id="ibm-footer-module-dwwrapper" role="contentinfo" aria-label="developerWorks Footer">
+
+<div id="ibm-footer-module-dw">
+	<div class="dw-footer-columns">
+		<div class="dw-footer-col-6-1 dw-footer-col-6-1-cn">
+			<ul>
+				<li><a href="https://www.ibm.com/developerworks/secure/feedback.jsp?domain=dwchina" tabindex="0">帮助</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/author/" tabindex="0">联系编辑</a></li>
+				<li><a href="https://www.ibm.com/developerworks/secure/myideas2.jsp?domain=dwchina" tabindex="0">提交内容</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/rss/" tabindex="0">订阅源</a></li>
+			</ul>
+        </div>
+		<div class="dw-footer-col-6-2">
+			<ul>
+				<li><a class="dwcn-sina-link" href="http://weibo.com/ibmdw/" target="_blank" tabindex="0">新浪微博</a></li>
+				<li><a href="https://www.ibm.com/developerworks/community/report?lang=zh" tabindex="0">报告滥用</a></li>
+				<li><a href="https://www.ibm.com/developerworks/community/terms?lang=zh" tabindex="0">使用条款</a></li>
+				<li><a href="https://www.ibm.com/developerworks/cn/community/terms/thirdparty/" tabindex="0">第三方提示</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-3">
+			<ul>
+				<li><a href="http://www.ibm.com/privacy/cn/zh/" tabindex="0">隐私条约</a></li>
+				<li><a href="http://www.ibm.com/ibm/accessibility/cn/" tabindex="0">浏览辅助</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/academic/" tabindex="0">IBM 教育学院教育培养计划</a></li><li><a href="http://www.ibm.com/developerworks/cn/gep/">IBM 创业企业全球扶持计划</a></li><li><a href="http://www.ibm.com/partnerworld/isv/">ISV 资源 (英语)</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-4"> 
+			<ul>
+				<li><a href="http://www.ibm.com/developerworks/cn/newsletter/" tabindex="0">dW 中国每周时事通讯</a></li>
+			</ul>
+			
+		</div>
+		<div class="dw-footer-col-6-5">
+			<ul>
+				<li class="dw-footer-lang-head">选择语言：</li>
+				<li><a href="http://www.ibm.com/developerworks/" tabindex="0">English</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/" lang="zh" tabindex="0">中文</a></li>
+				<li><a href="http://www.ibm.com/developerworks/jp/" lang="ja" tabindex="0">日本語</a></li>
+				<li><a href="http://www.ibm.com/developerworks/ru/" lang="ru" tabindex="0">Русский</a></li>
+				<li><a href="http://www.ibm.com/developerworks/br/" lang="pt" tabindex="0">Português (Brasil)</a></li>
+				<li><a href="http://www.ibm.com/developerworks/ssa/" lang="es" tabindex="0">Español</a></li>
+				<li><a href="http://www.ibm.com/developerworks/vn/" lang="vi" tabindex="0">Việt</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-6">
+			<img width="223" height="46" alt="IBM®" src="./Apache Shiro 简介_files/dwn-ibm-logo-v17.png">
+			<img class="dw-preload" src="./Apache Shiro 简介_files/ibm_sprite_social_blue_ON.png" alt="" width="1" height="1">
+		</div>
+	</div>
+</div>
+
+</div><!-- FOOTER_END -->
+
+<!-- END_IBM-TOP -->
+</div>
+
+<!-- SCRIPTS_INCLUDE_BEGIN -->
+<script type="text/javascript" src="./Apache Shiro 简介_files/dw-comments.js">//</script>
+<script type="text/javascript" language="JavaScript">
+	dojo.ready(function(){
+		rBHash = typeof rBHash == "undefined" ? {} : rBHash;
+		rBHash['viperLang'] = 'zh';
+		rBHash['urlLang'] = 'cn';
+		rBHash['dwwi2Lang'] = 'zh_CN';
+		rBHash['appCode'] = 'dwmav';
+		rBHash['signoutUrl'] = (location.host.toLowerCase() === "www.ibm.com" || location.host.toLowerCase() === "developer.ibm.com") ? 'http://www.ibm.com/developerworks/cn/' : ''; 
+		dwsi.siInst = new dwweb.dynnav.dwsi();
+		dwsi.siInst.initSI();		
+
+		// construct the comment widget
+dwc.cmts = '条评论';
+dwc.signInPreText = '请';
+dwc.signIn = '登录';
+dwc.or = '或';
+dwc.register = '注册';
+dwc.signInPostText = '';
+dwc.leaveCmt = '后发表评论。';
+dwc.view = '查看';
+dwc.totalCmts = '共有评论';
+dwc.postYourCmt = '添加您的评论';
+dwc.show = '显示：';
+dwc.recentCmts = '最新评论';
+dwc.allCmts = '所有评论';
+dwc.tooLongCmt = '您的评论超过了 1000 字符限制';
+dwc.numCharsLeft = '剩余 <span id="charCount">{1}</span> 字符';
+dwc.reportAbuse = '报告滥用';
+dwc.notifyMsg = '有新评论时提醒我';
+dwc.htmlWarning = '注意：评论中不支持 HTML 语法'; 
+dwc.cmt = '评论：';
+dwc.addCmts = '添加评论';
+dwc.addCmt = '添加评论';
+dwc.doNotErase = '--在下方添加评论--'; 
+dwc.viewOrAddCmts = '查看或添加评论';
+dwc.reportInapprCont = '举报不良信息';
+dwc.reportInapprContLink = 'http://www.ibm.com/developerworks/forums/forum.jspa?forumID=1834';
+dwc.postingCmt = '正在发布评论……';
+dwc.noCmt = '快来添加第一条评论';
+dwc.netwkErr = '在检索评论时出错，请稍后刷新。';
+dwc.addACmt = '添加评论';
+dwc.instructCmt = '标有星号（<span class="ibm-required">*</span>）的是必填项目。';
+dwc.btnPost = '发布';
+dwc.btnPostAnon = '匿名发布';
+dwc.btnClrCmt = '清除评论';
+dwc.btnCancel = '取消';
+dwc.showRecent = '显示最新的 {1} 条评论'; // {1} is the count to be substituted
+dwc.showNext = '显示后 {1} 条评论'; // {1} is the count to be substituted
+dwc.showAllCmts = '显示所有评论';
+dwc.enterCmt = '请输入评论内容。';
+dwc.loginErr = '暂时无法验证您的登录状态，请稍后再试。';
+dwc.postErr = '暂时无法发布您的评论，请稍后再试。';
+dwc.postBy = '由 <strong>{1}</strong>  于 {2} '; // {1} is the author to be substituted; {2} is the date
+dwc.siteId = 10;
+dwc.lang = 'zh_CN';
+dwc.viperLang = 'zh';
+//dwc.abuseHref =  null;
+dwc.maxChars = 1000;
+dwc.cmtTxt =  '评论';
+dwc.cmtsTxt =  '评论';  
+		dwc && new dwc.comments('threadShow','95%',5,'nCmts','icomments');
+		});
+</script>
+
+
+
+<!-- SCRIPTS_INCLUDE_END -->
+
+<div id="ibm-metrics">
+<script src="./Apache Shiro 简介_files/stats.js" type="text/javascript">//</script>
+</div>
+
+
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden;"></div><div class="sogoubottom" id="sougou_bottom" style="display: block;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.ibm.com/developerworks/cn/web/wa-apacheshiro/#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./Apache Shiro 简介_files/yun6.html" style="border: none; display: block; z-index: 2147483645; background: transparent;"></iframe><script src="./Apache Shiro 简介_files/pv.gif"></script><div id="ads"></div></body></html>

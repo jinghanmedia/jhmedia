@@ -1,0 +1,2 @@
+﻿document.writeln("<div style=\"padding-top:12px;padding-bottom:30px; text-align:center;\">");
+document.writeln("<a  key =\"55000dd6c274e77b9cc4483f\"  logo_size=\"124x47\"  logo_type=\"realname\"  href=\"http://www.anquan.org\" ><script src=\"http://static.anquan.org/static/outer/js/aq_auth.js\"></script></a> &nbsp; &nbsp;<img src=\"http://www.shangxueba.com/images/raz2.gif\"> &nbsp; &nbsp;<a href=\"http://www.miibeian.gov.cn/state/outPortal/loginPortal.action\" target=\"_blank\" rel=\"nofollow\"><img src=\"http://www.shangxueba.com/images/raz1_1.gif\"></a></div>");

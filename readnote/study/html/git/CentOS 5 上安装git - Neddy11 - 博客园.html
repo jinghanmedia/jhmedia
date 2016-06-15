@@ -1,0 +1,580 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0060)http://www.cnblogs.com/Neddy/archive/2011/02/28/1967548.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>CentOS 5 上安装git - Neddy11 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./CentOS 5 上安装git - Neddy11 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./CentOS 5 上安装git - Neddy11 - 博客园_files/bundle-BlackSun.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/Neddy/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/Neddy/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/Neddy/wlwmanifest.xml">
+<script src="./CentOS 5 上安装git - Neddy11 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'Neddy', cb_enable_mathjax=false;</script>
+<script src="./CentOS 5 上安装git - Neddy11 - 博客园_files/blog-common.js" type="text/javascript"></script>
+<style type="text/css">div#ad_b4,div#ad_b3,div#ad_b2,div#ad_b1{display:none !important;}</style></head>
+<body>
+<a name="top"></a>
+
+<div id="top">
+	
+<div>
+	<table class="HeaderTitles">
+		<tbody><tr>
+			<td>
+				<h1 class="HeaderTitle"><a id="Header1_HeaderTitle" class="HeaderMainTitle" href="http://www.cnblogs.com/Neddy/">玩转FPGA山寨版</a></h1>
+				<p id="tagline">看了《玩转FPGA》，写的不错，写写山寨版和大家交流！</p>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<div>
+	<table id="HeaderBar" class="HeaderBar">
+		<tbody><tr>
+			<td class="HeaderBarTab" nowrap="">
+				
+&nbsp;
+<a id="Header1_MyLinks1_HomeLink" href="http://www.cnblogs.com/">博客园</a>&nbsp;::
+<a id="Header1_MyLinks1_MyHomeLink" href="http://www.cnblogs.com/Neddy/">首页</a>&nbsp;::
+<a id="Header1_MyLinks1_NewPostLink" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>&nbsp;::
+<a id="Header1_MyLinks1_ContactLink" accesskey="9" rel="nofollow" href="http://msg.cnblogs.com/send/Neddy11">联系</a>&nbsp;::
+<a id="Header1_MyLinks1_Syndication" href="http://www.cnblogs.com/Neddy/rss">订阅</a>
+<a id="Header1_MyLinks1_XMLLink" class="XMLLink" href="http://www.cnblogs.com/Neddy/rss"><img src="./CentOS 5 上安装git - Neddy11 - 博客园_files/xml.gif" alt="订阅"></a>&nbsp;::
+<a id="Header1_MyLinks1_Admin" rel="nofollow" href="http://i.cnblogs.com/">管理</a>
+
+			</td>
+			
+			<td class="HeaderBarTabBack" nowrap="" width="100%">
+				
+
+	<table class="BlogStatsBar">
+		<tbody><tr>
+			<td width="100%">
+			</td>
+			<td class="BlogStatsBar" nowrap="">
+				&nbsp;
+				71 
+				Posts&nbsp;::
+				25 Stories
+				::
+				65 Comments
+				::
+				0 Trackbacks
+			</td>
+		</tr>
+	</tbody></table>
+
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+</div>
+<table id="maintable">
+	<tbody><tr><td id="leftmenu">
+	
+		
+<h3>公告</h3>
+<div class="News">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/Neddy/">Neddy11</a><br>园龄：<a href="http://home.cnblogs.com/u/Neddy/" title="入园时间：2010-07-03">5年11个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/Neddy/followers/">120</a><br>关注：<a href="http://home.cnblogs.com/u/Neddy/followees/">4</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;0ccc5235-9286-df11-ba8f-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+		<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/Neddy/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/Neddy/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/Neddy/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/Neddy/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/Neddy/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/Neddy/tag/ALU/">ALU</a>(1)</li><li><a href="http://www.cnblogs.com/Neddy/tag/STM32%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE/">STM32时钟配置</a>(1)</li><li><a href="http://www.cnblogs.com/Neddy/tag/SystemVerilog/">SystemVerilog</a>(1)</li><li><a href="http://www.cnblogs.com/Neddy/tag/VMWare%2BWinDbg%E6%90%AD%E5%BB%BA%28%E9%A9%B1%E5%8A%A8%29%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/">VMWare+WinDbg搭建(驱动)调试环境</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="mainMenuBackground">
+
+		<h3>随笔分类</h3>
+		
+				<ul>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/Neddy/category/314647.html">Android(7)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/Neddy/category/283477.html">ARM(10)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/Neddy/category/283480.html">C/C++(4)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/Neddy/category/283476.html">FPGA(42)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/Neddy/category/284708.html">Linux(31)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/Neddy/category/285319.html">others(3)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/Neddy/category/283479.html">Protel(2)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/Neddy/category/351720.html">u-boot(7)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/Neddy/category/283478.html">USB(2)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/Neddy/category/283481.html">单片机</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				</ul>
+			
+	
+		<h3>随笔档案</h3>
+		
+				<ul>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/Neddy/archive/2013/11.html">2013年11月 (1)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/Neddy/archive/2012/10.html">2012年10月 (1)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/Neddy/archive/2012/07.html">2012年7月 (1)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/Neddy/archive/2012/06.html">2012年6月 (1)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/Neddy/archive/2012/05.html">2012年5月 (1)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/Neddy/archive/2012/03.html">2012年3月 (1)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/Neddy/archive/2012/02.html">2012年2月 (12)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/Neddy/archive/2012/01.html">2012年1月 (5)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/Neddy/archive/2011/12.html">2011年12月 (7)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/Neddy/archive/2011/09.html">2011年9月 (6)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/Neddy/archive/2011/08.html">2011年8月 (2)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/Neddy/archive/2011/07.html">2011年7月 (3)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/Neddy/archive/2011/06.html">2011年6月 (5)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/Neddy/archive/2011/05.html">2011年5月 (1)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/Neddy/archive/2011/04.html">2011年4月 (10)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/Neddy/archive/2011/03.html">2011年3月 (8)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				<li class="menuItemList">
+					<a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/Neddy/archive/2011/02.html">2011年2月 (6)</a>
+					<span style="width:10px">
+						
+					</span> 
+				</li>
+			
+				</ul>
+			
+	
+</div></div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332957.html#3254887">1. Re:linux 中 timeval结构体</a></li>
+        <li class="recent_comment_body">博主是对的</li>
+        <li class="recent_comment_author">--beswkwangbo</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332576.html#3237929">2. Re:linux 中的gmtime和localtime函数</a></li>
+        <li class="recent_comment_body">@selenite140一个是格林尼治时间，一个是北京时间，差8小时...</li>
+        <li class="recent_comment_author">--按部就班</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/28/1967548.html#3204698">3. Re:CentOS 5 上安装git</a></li>
+        <li class="recent_comment_body">安装成功，谢谢。</li>
+        <li class="recent_comment_author">--米唐</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/20/1959218.html#3193140">4. Re:基于DE2的VGA显示</a></li>
+        <li class="recent_comment_body">楼主好人，把完整的工程发我邮箱，好人一生平安！292709452@qq.com</li>
+        <li class="recent_comment_author">--gushuai33333</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/24/1963374.html#3144695">5. Re:【转】FPGA(DE2)上uClinux的移植</a></li>
+        <li class="recent_comment_body">能否提供一下这个文件：nios2-linux-20100621.tar<br>感激不尽！</li>
+        <li class="recent_comment_author">--iamhll</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332576.html#3110952">6. Re:linux 中的gmtime和localtime函数</a></li>
+        <li class="recent_comment_body">发现了同样的问题，这是为什么呢？</li>
+        <li class="recent_comment_author">--selenite140</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332957.html#3090065">7. Re:linux 中 timeval结构体</a></li>
+        <li class="recent_comment_body">你错了，确实是微秒</li>
+        <li class="recent_comment_author">--xiayang</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332957.html#3081083">8. Re:linux 中 timeval结构体</a></li>
+        <li class="recent_comment_body">millisecond 这是毫秒， microseconds是微秒，micro指的是微小的意思，比如Microsoft翻译为微软而不是毫软</li>
+        <li class="recent_comment_author">--Jacob_Liu</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332957.html#2892569">9. Re:linux 中 timeval结构体</a></li>
+        <li class="recent_comment_body">楼主你好，我看到一分代码如下，问一下为什么要乘1000000timeval starttime,endtime; gettimeofday(&amp;starttime,0); //do so......</li>
+        <li class="recent_comment_author">--放作夥</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/01/20/1939900.html#2866672">10. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">写的挺好的，感动……</li>
+        <li class="recent_comment_author">--lizhezhe</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2010/09/01/1814486.html#2781424">11. Re:基于TLC549 ADC的FPGA测试代码设计</a></li>
+        <li class="recent_comment_body">为什么我的程序总是不对呢？能不能给我讲讲。module TLC549(input sys_clk,input sys_rstn,output AD_Cs,output AD_Clk, input A......</li>
+        <li class="recent_comment_author">--于广无声笛</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2012/05/17/2506359.html#2762729">12. Re:[转] STM32 FSMC学习笔记</a></li>
+        <li class="recent_comment_body">弱弱问下博主，片选信号和读写信号需要对照时序图自己拉高拉低，还是FSMC系统控制器自动控制呢？</li>
+        <li class="recent_comment_author">--居安</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/20/1959218.html#2361795">13. Re:基于DE2的VGA显示</a></li>
+        <li class="recent_comment_body">您QQ加不了   麻烦您给我发一份于DE2板子的IP 核的代码   <br>谢谢</li>
+        <li class="recent_comment_author">--瑞瑞萨</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1939900.html#2318732">14. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">博主，代码的解释能能否详细啊？ 有的地方看不太懂，新手</li>
+        <li class="recent_comment_author">--小星2012</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/09/15/2178065.html#2305461">15. Re:Android DatePicker</a></li>
+        <li class="recent_comment_body">不好意思，我点错了，我要点赞同的。</li>
+        <li class="recent_comment_author">--sarah_susan</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1770902.html#2266738">16. Re:NIOS II LCD上面显示时间</a></li>
+        <li class="recent_comment_body">我想问下<br>printf有什么用吗？<br>我见很多人用，但我不知道怎么用呃。。。</li>
+        <li class="recent_comment_author">--企轩</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/24/1963374.html#2252905">17. Re:【转】FPGA(DE2)上uClinux的移植</a></li>
+        <li class="recent_comment_body">nios-linux-2010能给我发一份吗,我进去就是网络错误。。我的邮箱155336889@qq.com，谢谢啦</li>
+        <li class="recent_comment_author">--windyliao01</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2026784.html#2245476">18. Re:基于NIOS II的液晶显示设计——硬件</a></li>
+        <li class="recent_comment_body">看了作者这些博客，我很是受启发，现在正在学FPGA，感到了SOPC的神奇和强大，但是也遇到了很多的问题。我想请问博主，如果在有SOPC的quartus工程中，是不是不能有其他外部的任何电路啊？要实现其......</li>
+        <li class="recent_comment_author">--multihunter</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1780249.html#2224487">19. Re:NIOS II JTAG UART通讯</a></li>
+        <li class="recent_comment_body">博主讲的很好！！！</li>
+        <li class="recent_comment_author">--也许会有</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/20/1959218.html#2202625">20. Re:基于DE2的VGA显示</a></li>
+        <li class="recent_comment_body">楼主，怎样将下载的IP核添加到工程当中啊？？</li>
+        <li class="recent_comment_author">--电子小柯</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/20/1959218.html#2202088">21. Re:基于DE2的VGA显示</a></li>
+        <li class="recent_comment_body">楼主可以也给我发一份吗？ syueika@gmail.com<br>谢谢了！</li>
+        <li class="recent_comment_author">--电子小柯</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/24/1963374.html#2170616">22. Re:【转】FPGA(DE2)上uClinux的移植</a></li>
+        <li class="recent_comment_body">接上一条留言，我的qq是344464802，</li>
+        <li class="recent_comment_author">--minghe</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/24/1963374.html#2170615">23. Re:【转】FPGA(DE2)上uClinux的移植</a></li>
+        <li class="recent_comment_body">大侠你好，你的nios-linux-2010能给我发一份吗，谢谢你了，我下不下来，已经下了三天了，到了72%就停了。h.minghe@gmail.com</li>
+        <li class="recent_comment_author">--minghe</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/24/1963374.html#2123161">24. Re:【转】FPGA(DE2)上uClinux的移植</a></li>
+        <li class="recent_comment_body">大侠的nios2-linux-20100621.tar能发我一份吗？我下不下来它，谢谢<br>crystal.rabbit@163.com</li>
+        <li class="recent_comment_author">--灵. yāo</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2026884.html#2106376">25. Re:基于NIOS II的液晶显示设计——自定义图形库</a></li>
+        <li class="recent_comment_body">@自己林加油！...</li>
+        <li class="recent_comment_author">--Neddy11</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2026884.html#2106277">26. Re:基于NIOS II的液晶显示设计——自定义图形库</a></li>
+        <li class="recent_comment_body">正在学习中。。。</li>
+        <li class="recent_comment_author">--自己林</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1939900.html#2100161">27. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">问一下，定制IP要学习什么，介绍一本定制IP的书籍吧。呵呵。先前接触过FPGA一段时间。</li>
+        <li class="recent_comment_author">--我的学习、生活</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1834353.html#2100145">28. Re:基于FPGA串口通信DMA实验</a></li>
+        <li class="recent_comment_body">DMA释放了处理器，是不错的传输数据方式。顶。</li>
+        <li class="recent_comment_author">--我的学习、生活</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1939900.html#2100129">29. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">这个必须要顶。</li>
+        <li class="recent_comment_author">--我的学习、生活</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/24/1963374.html#2095759">30. Re:【转】FPGA(DE2)上uClinux的移植</a></li>
+        <li class="recent_comment_body">博主，您好！我现在也正在做uclinux移植到DE2开发板上，我遇到dm9000: read wrong id 0x00000000的问题，想问下博主在移植时，有遇到这种问题吗？能否给点建议！谢谢！</li>
+        <li class="recent_comment_author">--dasfsaf</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1939900.html#2066769">31. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">楼主，你好，那个修改“把Interface标签参数类型全都改为integer型就可”在哪里修改的啊?我怎么找不到呢?麻烦你发一下那个IP给我，谢谢了！我的邮箱是：290391493@qq.com...</li>
+        <li class="recent_comment_author">--mowensui</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1939900.html#2065944">32. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">if address == 0  read_mux_out = data_in;<br>else read_mux_out = 0;<br>avalon bus的地址分配</li>
+        <li class="recent_comment_author">--Neddy11</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1939900.html#2065437">33. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">这个是什么意思啊？为什么要用这个语句啊？assign read_mux_out = {16 {(address == 0)}} &amp; data_in;</li>
+        <li class="recent_comment_author">--zgx123</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1939900.html#2065436">34. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">楼主：</li>
+        <li class="recent_comment_author">--zgx123</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/20/1959218.html#2055388">35. Re:基于DE2的VGA显示</a></li>
+        <li class="recent_comment_body">博主可以发给我吗? gjue85@gmail.com. thank you..</li>
+        <li class="recent_comment_author">--guojue</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1780249.html#2053715">36. Re:NIOS II JTAG UART通讯</a></li>
+        <li class="recent_comment_body">请问您做过通过JTAG UART往DDR2 SDRAM中写入数据吗？<br></li>
+        <li class="recent_comment_author">--worktime</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/20/1959218.html#2049372">37. Re:基于DE2的VGA显示</a></li>
+        <li class="recent_comment_body">好帖必须顶！！<br>博主真是好人啊，现在网上找DE2的VGA控制真是很难找啊，博主能否把这个工程发给我啊，我的邮箱是xq810307978@126.com，小弟希望能与博主交流！</li>
+        <li class="recent_comment_author">--灯火空</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1939900.html#2043979">38. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">@zgx123学习FPGA从基础做起，不要好高骛远！FPGA是基于SRAM体系的，断电程式都丢失了，怎么固化？一般是会外挂flash的……...</li>
+        <li class="recent_comment_author">--Neddy11</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1939900.html#2043600">39. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">楼主，你好！请问一下nios的程序能不能固化到fpga芯片中去，可以的话应该怎么样固化啊？<br></li>
+        <li class="recent_comment_author">--zgx123</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Neddy/articles/1939900.html#2042373">40. Re:基于DE2 DS18B20定制IP设计</a></li>
+        <li class="recent_comment_body">楼主，你好，那个修改“把Interface标签参数类型全都改为integer型就可”在哪里修改的啊？<br>谢谢<br></li>
+        <li class="recent_comment_author">--zgx123</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/Neddy/archive/2011/08/07/2130088.html">1. Eclipse改变字体大小(49454)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332957.html">2. linux 中 timeval结构体(48041)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/03/01/1968018.html">3. Linux的环境变量(29234)</a></li><li><a href="./CentOS 5 上安装git - Neddy11 - 博客园_files/CentOS 5 上安装git - Neddy11 - 博客园.html">4. CentOS 5 上安装git(11204)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332576.html">5. linux 中的gmtime和localtime函数(8807)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/07/18/STM32%E6%97%B6%E9%92%9F%E9%85%8D%E7%BD%AE.html">6. STM32时钟配置(4532)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/03/28/1997567.html">7. Matlab 现实RGB和HSI转换(3835)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/12/18/2291576.html">8. 【转】arm-linux-ld命令 ld链接脚本(3750)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332759.html">9. Linux C 函数参考(日期时间)(3093)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/02/20/1959218.html">10. 基于DE2的VGA显示(3047)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/07/16/2108286.html">11. S3C6410移植u-boot(一)(2766)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/29/2331179.html">12. mini2440 使用 J-Link V8 直接烧写 Nor flash(2635)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/03/13/1982840.html">13. 远程控制CentOS(2414)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/08/21/2147636.html">14. 【转】在centos linux上安装jdk7(2307)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/09/10/2173318.html">15. Android FrameLayout的显示效果(2038)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/02/21/1959400.html">16. 基于DE2的VGA显示—NIOS II 命令下载(1995)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/02/02/2335343.html">17. linux C 中的volatile使用(1970)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2026774.html">18. 基于NIOS II的液晶显示设计——TFT驱动(1824)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2027103.html">19. 基于NIOS II的液晶显示设计——ucGUI移植(1748)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/09/15/2178065.html">20. Android DatePicker(1694)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332713.html">21. linux 中的setitimer()函数(1486)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/07/01/2095176.html">22. S3C2440 Timer初始化方法(1112)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/12/09/2281830.html">23. Visual Studio 2008配置SystemC开发环境(1060)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/02/24/1963374.html">24. 【转】FPGA(DE2)上uClinux的移植(1052)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2026784.html">25. 基于NIOS II的液晶显示设计——硬件(845)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2027198.html">26. 基于NIOS II的液晶显示设计——ucGUI测试代码(830)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/09/16/2179209.html">27. Android TimePicker(816)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/02/03/2336698.html">28. 【转】ARM 汇编指令集(806)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/12/01/2269978.html">29. 【转】VMWare+WinDbg搭建(驱动)调试环境(791)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/03/03/1970361.html">30. 【转】nios II架构uclinux的过程(744)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/10/2011226.html">31. 怎么把uclinux下载到EPCS中(738)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2026884.html">32. 基于NIOS II的液晶显示设计——自定义图形库(732)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/09/07/2170330.html">33. Android BMI程式(721)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/02/26/1966035.html">34. 【转】FPGA学习的一些误区(692)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/06/14/2080819.html">35. S3C2440 LED驱动(681)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2026861.html">36. 基于NIOS II的液晶显示设计——图片显示(679)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/09/2010890.html">37. NIOS II 安装uclinux的硬件要求(623)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/12/07/2278761.html">38. 2440的RTC时钟(616)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/02/02/2335399.html">39. Linux C 中连接操作符##(613)</a></li><li><a href="http://www.cnblogs.com/Neddy/p/Tiny4412.html">40. Tiny4412 LED 程序(590)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/Neddy/archive/2011/02/24/1963374.html">1. 【转】FPGA(DE2)上uClinux的移植(7)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/02/20/1959218.html">2. 基于DE2的VGA显示(6)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332957.html">3. linux 中 timeval结构体(4)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332576.html">4. linux 中的gmtime和localtime函数(2)</a></li><li><a href="./CentOS 5 上安装git - Neddy11 - 博客园_files/CentOS 5 上安装git - Neddy11 - 博客园.html">5. CentOS 5 上安装git(2)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2026884.html">6. 基于NIOS II的液晶显示设计——自定义图形库(2)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2026784.html">7. 基于NIOS II的液晶显示设计——硬件(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/09/15/2178065.html">8. Android DatePicker(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/05/17/2506359.html">9. [转] STM32 FSMC学习笔记(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/02/21/1959400.html">10. 基于DE2的VGA显示—NIOS II 命令下载(1)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332957.html">1. linux 中 timeval结构体(4)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332759.html">2. Linux C 函数参考(日期时间)(2)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/08/07/2130088.html">3. Eclipse改变字体大小(2)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/02/03/2336669.html">4. 【转】U-BOOT之一：BootLoader 的概念与功能(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332713.html">5. linux 中的setitimer()函数(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2012/01/31/2332576.html">6. linux 中的gmtime和localtime函数(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/02/21/1959400.html">7. 基于DE2的VGA显示—NIOS II 命令下载(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/02/24/1963374.html">8. 【转】FPGA(DE2)上uClinux的移植(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/03/01/1968018.html">9. Linux的环境变量(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/04/25/2026861.html">10. 基于NIOS II的液晶显示设计——图片显示(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/09/15/2178065.html">11. Android DatePicker(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/09/10/2173318.html">12. Android FrameLayout的显示效果(1)</a></li><li><a href="http://www.cnblogs.com/Neddy/archive/2011/09/07/2170330.html">13. Android BMI程式(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+	
+</td><td id="main">
+	
+<div id="post_detail">
+<div class="post">
+			<div class="postTitle">
+				<a id="cb_post_title_url" href="./CentOS 5 上安装git - Neddy11 - 博客园_files/CentOS 5 上安装git - Neddy11 - 博客园.html">CentOS 5 上安装git</a>
+			</div>
+	
+	<div class="postText">
+		<div id="cnblogs_post_body"><div class="blog_content">在安装NIOS2-LINUX中必须要安装git，可按照Altera WiKi提供的方法根本装不上（输入命令：<strong>yum install git-all git-gui make gcc ncurses-devel bison byacc flex gawk gettext ccache zlib-devel gtk2-devel lzo-devel pax-utilslibglade2-devel</strong>），只能下载后安装：</div>
+<div class="blog_content">//先安装git依赖的包 <br><strong>yum install zlib-devel </strong><br><strong>yum install openssl-devel </strong><br><strong>yum install perl </strong><br><strong>yum install cpio </strong><br><strong>yum install expat-devel </strong><br><strong>yum install gettext-devel </strong><br><br>//安装autoconf <br><strong>yum install autoconf </strong><br><br>//安装git <br><strong>wget http://www.codemonkey.org.uk/projects/git-snapshots/git/git-latest.tar.gz </strong><br><strong>tar xzvf git-latest.tar.gz </strong><br><strong>cd git-{date} </strong><br><strong>autoconf </strong><br><strong>./configure --with-curl=/usr/local </strong><br><strong>make&nbsp;</strong></div>
+<div class="blog_content"><strong>make install </strong></div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/Neddy/category/284708.html">Linux</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(1967548,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/Neddy11" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./CentOS 5 上安装git - Neddy11 - 博客园_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./CentOS 5 上安装git - Neddy11 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/Neddy/" target="_blank"><img src="./CentOS 5 上安装git - Neddy11 - 博客园_files/u143680.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/Neddy/">Neddy11</a><br>
+<a href="http://home.cnblogs.com/u/Neddy/followees">关注 - 4</a><br>
+<a href="http://home.cnblogs.com/u/Neddy/followers">粉丝 - 120</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(1967548,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+	<div class="buryit" onclick="votePost(1967548,&#39;Bury&#39;)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/26/1966035.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/Neddy/archive/2011/02/26/1966035.html" title="发布于2011-02-26 23:02">【转】FPGA学习的一些误区</a><br><a href="http://www.cnblogs.com/Neddy/archive/2011/03/01/1968018.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/Neddy/archive/2011/03/01/1968018.html" title="发布于2011-03-01 14:58">Linux的环境变量</a><br></div>
+</div>
+
+
+	</div>
+	
+	<div class="postfoot">
+		posted on <span id="post-date">2011-02-28 23:34</span> <a href="http://www.cnblogs.com/Neddy/">Neddy11</a> 阅读(<span id="post_view_count">11205</span>) 评论(<span id="post_comment_count">2</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=1967548" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/Neddy/archive/2011/02/28/1967548.html#" onclick="AddToWz(1967548);return false;">收藏</a>
+	</div>
+</div>
+<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=72692,cb_entryId=1967548,cb_blogApp=currentBlogApp,cb_blogUserGuid='0ccc5235-9286-df11-ba8f-001cf0cd104b',cb_entryCreatedDate='2011/2/28 23:34:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<a name="feedback"></a>
+<div id="comments">
+<h3>Feedback</h3>
+
+
+<div class="comment_block">			
+<div class="commentTitle"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/28/1967548.html#2037193" class="layer">#1楼</a><a name="2037193" id="comment_anchor_2037193"></a>[<span class="louzhu">楼主</span>]<span> <span class="comment_date">2011-03-03 09:13</span></span><a id="a_comment_author_2037193" href="http://www.cnblogs.com/Neddy/" target="_blank">Neddy11</a> <a href="http://msg.cnblogs.com/send/Neddy11" title="发送站内短消息" class="sendMsg2This">&nbsp;</a></div>
+<div class="commentText"><div id="comment_body_2037193" class="blog_comment_body">Fedora上安装Git<br>$ wget <a href="http://kernel.org/pub/software/scm/git/git-1.7.3.5.tar.bz2" target="_blank">http://kernel.org/pub/software/scm/git/git-1.7.3.5.tar.bz2</a><br>$ tar -xjvf git-1.7.3.5.tar.bz2<br>$ cd git-1.7.3.5<br>$ make prefix=/usr all ;# prefix设置你的Git安装目录<br>$make<br>$make install</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2037193,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2037193,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2037193_avatar" style="display:none;">http://pic.cnblogs.com/face/u143680.jpg</span></div>
+<div class="commentFooter">&nbsp;&nbsp;<span class="comment_actions"></span></div>
+</div>
+
+<div class="comment_block">			
+<div class="commentTitle"><a href="http://www.cnblogs.com/Neddy/archive/2011/02/28/1967548.html#3204698" class="layer">#2楼</a><a name="3204698" id="comment_anchor_3204698"></a><span id="comment-maxId" style="display:none;">3204698</span><span id="comment-maxDate" style="display:none;">2015/6/9 17:06:26</span><span> <span class="comment_date">2015-06-09 17:06</span></span><a id="a_comment_author_3204698" href="http://www.cnblogs.com/mitang/" target="_blank">米唐</a> <a href="http://msg.cnblogs.com/send/%E7%B1%B3%E5%94%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a></div>
+<div class="commentText"><div id="comment_body_3204698" class="blog_comment_body">安装成功，谢谢。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3204698,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3204698,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3204698_avatar" style="display:none;">http://pic.cnblogs.com/face/u64494.jpg</span></div>
+<div class="commentFooter">&nbsp;&nbsp;<span class="comment_actions"></span></div>
+</div>
+
+</div><div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/Neddy/archive/2011/02/28/1967548.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/Neddy/archive/2011/02/28/1967548.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/547374/" target="_blank">李开复万字长文科普人工智能：AI是什么 将带我们去哪儿？</a><br> ·  <a href="http://news.cnblogs.com/n/547373/" target="_blank">为了探索宇宙 美国在天文望远镜中装了5000个机器人</a><br> ·  <a href="http://news.cnblogs.com/n/547372/" target="_blank">科技巨头纷纷发力人工智能 微软收购LinkedIn是为奋起直追？</a><br> ·  <a href="http://news.cnblogs.com/n/547371/" target="_blank">一加手机3海外提前发布：仅顶配配置 售价399美元</a><br> ·  <a href="http://news.cnblogs.com/n/547370/" target="_blank">我们何时才能驾驶机甲？漫画场景变为现实挑战巨大</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/547251/" target="_blank">一个32岁入门的70后程序员给我的启示</a><br> ·  <a href="http://kb.cnblogs.com/page/539205/" target="_blank">技术发展瓶颈的突破</a><br> ·  <a href="http://kb.cnblogs.com/page/536334/" target="_blank">高效编程之道：好好休息</a><br> ·  <a href="http://kb.cnblogs.com/page/545476/" target="_blank">快速学习者的高效学习策略</a><br> ·  <a href="http://kb.cnblogs.com/page/545784/" target="_blank">一个前端的自我修养</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</script>
+</div>
+
+
+</td></tr>
+</tbody></table>
+
+<p id="footer">
+	Copyright @
+	Neddy11<br>
+	Powered by:
+	<a href="http://scottwater.com/blog" target="_blank">.Text</a> and 
+	<a href="http://asp.net/" target="_blank">ASP.NET</a>
+	<br>
+	Theme by: <a href="http://www.dotnetmonster.com/" target="_blank">.NET Monster</a>
+</p>
+
+
+
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.cnblogs.com/Neddy/archive/2011/02/28/1967548.html#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.cnblogs.com/Neddy/archive/2011/02/28/1967548.html#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.cnblogs.com/Neddy/archive/2011/02/28/1967548.html#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./CentOS 5 上安装git - Neddy11 - 博客园_files/yun6.html" style="border: none; display: none; z-index: 2147483645; background: transparent;"></iframe><script src="./CentOS 5 上安装git - Neddy11 - 博客园_files/pv.gif"></script></body></html>
