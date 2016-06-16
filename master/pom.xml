@@ -10,21 +10,172 @@
         <groupId>com.jhmedia</groupId>
         <artifactId>jhmedia</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../jhmedia</relativePath>
     </parent>
 
     <description>后端</description>
     <artifactId>master</artifactId>
     <name>master</name>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <!-- 依赖类库（依赖jar包） -->
     <dependencies>
+        <!-- ant -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <groupId>ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>${ant.version}</version>
+        </dependency>
+
+        <!-- spring -->
+        <!-- spring-core:包含Spring框架基本的核心工具类-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- spring-beans:包含访问配置文件、创建和管理bean 以及进行Inversion of Control
+         / Dependency Injection（IoC/DI）操作相关的所有类 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- spring-context:为Spring 核心提供了大量扩展。可以找到使用Spring ApplicationContext特性时所需的全部类，
+        JDNI 所需的全部类，instrumentation组件以及校验Validation 方面的相关类 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- spring-webmvc:包含Spring MVC 框架相关的所有类(包括框架的Servlets，Web MVC框架，控制器和视图支持) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+        </dependency>
+        <!--  -->
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
         </dependency>
     </dependencies>
+    <!-- maven-shade-plugin:maven配置生成可执行的jar -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.1</version>
+
+                <!--在构建生命周期中执行一组目标的配置。每个目标可能有不同的配置。-->
+                <executions>
+                    <execution>
+                        <!--绑定了目标的构建生命周期阶段，如果省略，目标会被绑定到源数据里配置的默认阶段-->
+                        <phase>package</phase>
+                        <!--配置的执行目标-->
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers></transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
