@@ -1,0 +1,92 @@
+#mk_header{display:block;margin:0 auto;text-align:justify;width:980px;width:982px\0;background:#F60;}
+#mk_header .wiky_nav{position:absolute;z-index:99;top:192px;}
+#mk_footer{background:url(http://www.cnblogs.com/images/cnblogs_com/wiky/226760/o_mk_blog_footer.jpg) center top scroll no-repeat;display:block; height:200px;width:100%;}
+.mk_img{text-align:center;}
+.mk_img a img{border: 2px solid #D7D9D9;padding:3px;background-color:#FFF;}
+.mk_img a:hover img{border: 4px solid #A0CCEF;padding:1px;}
+.sidebar_indent{margin-left:-9px;}
+
+a{color:#3D93C3;}
+a:hover{color:#3399CC;}
+#main .postBody h2{line-height:1.5;color:#0F83DB;}
+#main .postBody h2 i{color:#F00;}
+body{text-align:center; background:#F5F5F5 url(http://images.cnblogs.com/cnblogs_com/wiky/226760/o_mk_blog_bg.jpg) center top scroll no-repeat;font-family:"Microsoft JhengHei","微軟正黑體","Microsoft YaHei","微软雅黑",Verdana,Arial,Helvetica,sans-serif; font-size:14px;}
+
+#home{margin-top:-20px;display:block;margin:0 auto;text-align:justify;width:982px; background-color:#FFF;}
+@media all and (-webkit-min-device-pixel-ratio:10000),not all and (-webkit-min-device-pixel-ratio:0)
+{head~body #home{ width:982px; }}
+#blogTitle{background:#7F7F7F url(http://www.cnblogs.com/images/cnblogs_com/wiky/226760/o_mk_blog_header.jpg) center top scroll no-repeat;height:160px;}
+#blogTitle .title,#blogTitle .subtitle,#blogTitle h1,#blogTitle h2{ text-indent:-9999px;}
+#main{overflow:hidden;}
+#mainContent{width:650px;margin-right:0px; float:left;}
+#sideBar{position:relative;*position:static;_positon:static;width:300px;border:1px solid #CACACA;border-top-width:0;overflow:hidden;margin-bottom:-5000px;padding:0 3px 5020px 20px;float:right; background:#E5E5E5;top:0;}
+#sideBarMain{float:left;_float:none;font-size:14px;width:280px;_width:auto;}
+#footer,#sideBar .newsItem .catListTitle,.hidden{display:none;}
+
+
+#navigator{background:transparent url(http://images.cnblogs.com/cnblogs_com/wiky/226760/o_nav_bg.jpg) repeat scroll left bottom;border:0 none;height:40px;height:38px\9;}
+#navList li{background:url(http://images.cnblogs.com/cnblogs_com/wiky/226760/o_nav_vr_bg.gif) right 10px no-repeat;background-position:right 8px\9;padding:0 8px;margin-right:0px;}
+
+.postCon a, .postBody a, .feedbackCon a {border-bottom:0 none;color:#4584C5;}
+
+.postTitle{font-size:18px;font-weight:700;line-height:25px;text-shadow:1px 1px 2px #AAAAAA;}
+
+.input_my_zzk{width:200px;}
+input.btn_my_zzk{background-color:#767877;color:#FFF;}
+#sideBar li{margin:0 0.3em;text-indent:0;}
+#sideBar h3{margin-left:0px;}
+.catListTag,.catListLinks{overflow:hidden;_zoom:1;}
+#sideBar .catListTag ul li{float:left;white-space:nowrap;}
+#leftcontentcontainer a{padding:0 4px;}
+#leftcontentcontainer a:hover{color:#FFF;background-color:#767877;}
+.catListLinks ul li{width:130px;float:left;}
+
+ .wiky_nav {  
+     list-style: none;  
+	   background-image:url(http://www.cnblogs.com/images/cnblogs_com/wiky/226760/o_nav_bg.jpg); 
+ }  
+ .wiky_nav li{ 
+    display: block;  
+    overflow: hidden;  
+    padding: 0;  
+    cursor: pointer;  
+	float: left;
+	width: 100px;
+	height: 40px;
+	margin-right: 0px;
+	background-image:url(http://www.cnblogs.com/images/cnblogs_com/wiky/226760/o_nav_sprite3.jpg);
+	background-repeat:no-repeat;
+}
+.wiky_nav a{
+	display:block;
+	height:40px;
+	text-indent:-9999px;
+	outline:none;
+}
+#wiky_nav1 {background-position:0px 0px;}
+#wiky_nav2 {background-position:-170px 0px;}
+#wiky_nav3 {background-position:-340px 0px;}
+#wiky_nav4 { background-position:-510px 0px;}
+#wiky_nav5 { background-position:-680px 0px;}
+#wiky_nav6 { background-position:-850px 0px;}
+#wiky_nav7 { background-position:-1020px 0px;}
+#wiky_nav8 { background-position:-1190px 0px;}
+#wiky_nav1.active, #wiky_nav1:hover { background-position: 0 bottom;}
+#wiky_nav2.active, #wiky_nav2:hover{background-position: -170px bottom;}
+#wiky_nav3.active, #wiky_nav3:hover {background-position: -340px bottom;}
+#wiky_nav4.active, #wiky_nav4:hover {background-position: -510px bottom; }
+#wiky_nav5.active, #wiky_nav5:hover { background-position: -680px bottom;}
+#wiky_nav6.active, #wiky_nav6:hover{background-position: -850px bottom;}
+#wiky_nav7.active, #wiky_nav7:hover {background-position: -1020px bottom;}
+#wiky_nav8.active, #wiky_nav8:hover {background-position: -1190px bottom; }
+
+.mk_title{
+font-size: 16px; color: #3366ff; font-weight:bold;
+}
+.mk_title i{
+color: #ff0000;
+}
+#mk_footer a{
+color:#FFF;
+}
+#mk_count{display:none;}

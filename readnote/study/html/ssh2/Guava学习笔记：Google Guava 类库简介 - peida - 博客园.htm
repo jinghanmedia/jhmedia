@@ -1,0 +1,177 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0060)http://www.cnblogs.com/peida/archive/2013/06/08/3120820.html -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml"><HEAD><META 
+content="IE=9.0000" http-equiv="X-UA-Compatible">
+
+<META content="text/html; charset=utf-8" http-equiv="Content-Type">
+<TITLE>Guava学习笔记：Google Guava 类库简介 - peida - 博客园</TITLE><LINK rel="stylesheet" 
+type="text/css" href="Guava学习笔记：Google%20Guava%20类库简介%20-%20peida%20-%20博客园_files/blog-common.css">
+<LINK id="MainCss" rel="stylesheet" type="text/css" href="Guava学习笔记：Google%20Guava%20类库简介%20-%20peida%20-%20博客园_files/bundle-LessIsMore.css">
+<LINK title="RSS" rel="alternate" type="application/rss+xml" href="http://www.cnblogs.com/peida/rss">
+<LINK title="RSD" rel="EditURI" type="application/rsd+xml" href="http://www.cnblogs.com/peida/rsd.xml">
+<LINK rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.cnblogs.com/peida/wlwmanifest.xml">
+<SCRIPT type="text/javascript" src="Guava学习笔记：Google%20Guava%20类库简介%20-%20peida%20-%20博客园_files/jquery.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">var currentBlogApp = 'peida', cb_enable_mathjax=false;</SCRIPT>
+
+<SCRIPT type="text/javascript" src="Guava学习笔记：Google%20Guava%20类库简介%20-%20peida%20-%20博客园_files/blog-common.js"></SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 9.00.8112.16684"></HEAD>
+<BODY><A name="top"></A>
+<DIV id="home">
+<DIV id="header">
+<DIV id="blogTitle"><!--done-->
+<DIV class="title"><A id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/peida/">竹子-博客(.NET/Java/Linux/架构/管理/敏捷)</A></DIV>
+<DIV class="subtitle">思索、感悟、践行！走向高效，快乐，平衡！</DIV></DIV><!--end: blogTitle 博客的标题和副标题 -->
+<DIV id="navigator">
+<UL id="navList">
+  <LI id="nav_sitehome"><A id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</A></LI>
+  <LI id="nav_myhome"><A id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/peida/">首页</A></LI>
+  <LI id="nav_newpost"><A id="MyLinks1_NewPostLink" class="menu" href="http://i.cnblogs.com/EditPosts.aspx?opt=1" 
+  rel="nofollow">新随笔</A></LI>
+  <LI id="nav_contact"><A id="MyLinks1_ContactLink" class="menu" href="http://msg.cnblogs.com/send/peida" 
+  rel="nofollow">联系</A></LI>
+  <LI id="nav_rss"><A id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/peida/rss">订阅</A><!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/peida/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></LI>
+  <LI id="nav_admin"><A id="MyLinks1_Admin" class="menu" href="http://i.cnblogs.com/" 
+  rel="nofollow">管理</A></LI></UL>
+<DIV class="blogStats"><!--done-->随笔-198&nbsp;文章-0&nbsp;评论-561&nbsp;					</DIV><!--end: blogStats --></DIV><!--end: navigator 博客导航栏 -->
+</DIV><!--end: header 头部 -->
+<DIV id="main">
+<DIV id="mainContent">
+<DIV class="forFlow">
+<DIV id="post_detail"><!--done-->
+<DIV id="topics">
+<DIV class="post">
+<H1 class="postTitle"><A id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/peida/archive/2013/06/08/3120820.html">Guava学习笔记：Google 
+Guava 类库简介</A></H1>
+<DIV class="clear"></DIV>
+<DIV class="postBody">
+<DIV id="cnblogs_post_body">
+<P>　　Guava 是一个 Google 的基于java1.6的类库集合的扩展项目，包括 collections, caching, primitives 
+support, concurrency libraries, common annotations, string processing, I/O, 等等. 
+这些高质量的 API&nbsp;可以使你的JAVa代码更加优雅，更加简洁，让你工作更加轻松愉悦。下面我们就开启优雅Java编程学习之旅！</P>
+<P>　　<STRONG>项目相关信息：</STRONG></P>
+<P>　　官方首页：http://code.google.com/p/guava-libraries<BR>　　官方下载：http://code.google.com/p/guava-libraries/downloads/list<BR>　　官方文档：http://docs.guava-libraries.googlecode.com/git/javadoc<BR>&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+&nbsp;http://www.ostools.net/apidocs/apidoc?api=guava</P>
+<P>　　<STRONG>源码包的简单说明：</STRONG> <BR>　　com.google.common.annotations：普通注解类型。
+<BR>　　com.google.common.base：基本工具类库和接口。 
+<BR>　　com.google.common.cache：缓存工具包，非常简单易用且功能强大的JVM内缓存。
+<BR>　　com.google.common.collect：带泛型的集合接口扩展和实现，以及工具类，这里你会发现很多好玩的集合。 
+<BR>　　com.google.common.eventbus：发布订阅风格的事件总线。<BR>　　com.google.common.hash： 
+哈希工具包。 <BR>　　com.google.common.io：I/O工具包。 
+<BR>　　com.google.common.math：原始算术类型和超大数的运算工具包。 
+<BR>　　com.google.common.net：网络工具包。 
+<BR>　　com.google.common.primitives：八种原始类型和无符号类型的静态工具包。
+<BR>　　com.google.common.reflect：反射工具包。
+<BR>　　com.google.common.util.concurrent：多线程工具包。</P>
+<P>　　<STRONG>类库使用手册：</STRONG></P>
+<P>　　<STRONG>一.&nbsp; 基本工具类：</STRONG>让使用Java语言更令人愉悦。</P>
+<P>　　1. 使用和避免 null：null 有语言歧义， 会产生令人费解的错误， 反正他总是让人不爽。很多 Guava 的工具类在遇到 null 
+时会直接拒绝或出错，而不是默默地接受他们。<BR>　　2. 前提条件：更容易的对你的方法进行前提条件的测试。<BR>　　3. 常见的对象方法： 
+简化了Object常用方法的实现， 如 hashCode() 和 toString()。<BR>　　4. 排序： Guava 强大的 "fluent 
+Comparator"比较器， 提供多关键字排序。<BR>　　5. Throwable类： 简化了异常检查和错误传播。</P>
+<P>　　<STRONG>二.&nbsp; 集合类：</STRONG>集合类库是 Guava 对 JDK 集合类的扩展， 这是 Guava 
+项目最完善和为人所知的部分。</P>
+<P>　　1. Immutable collections（不变的集合）： 防御性编程， 不可修改的集合，并且提高了效率。<BR>　　2. New 
+collection types(新集合类型)：JDK collections 
+没有的一些集合类型，主要有：multisets，multimaps，tables， bidirectional maps等等<BR>　　3. Powerful 
+collection utilities（强大的集合工具类）： java.util.Collections 中未包含的常用操作工具类<BR>　　4. 
+Extension utilities（扩展工具类）: 给 Collection 对象添加一个装饰器? 实现迭代器? 我们可以更容易使用这些方法。</P>
+<P>　　<STRONG>三.&nbsp;</STRONG> 
+<STRONG>缓存</STRONG>:&nbsp;本地缓存，可以很方便的操作缓存对象，并且支持各种缓存失效行为模式。</P>
+<P>　　<STRONG>四.&nbsp; Functional idioms（函数式）:</STRONG> 简洁, 
+Guava实现了Java的函数式编程，可以显著简化代码。</P>
+<P>　　<STRONG>五. Concurrency（并发）：</STRONG>强大,简单的抽象,让我们更容易实现简单正确的并发性代码。</P>
+<P>　　1. ListenableFuture（可监听的Future）: Futures,用于异步完成的回调。<BR>　　2. Service: 
+控制事件的启动和关闭，为你管理复杂的状态逻辑。</P>
+<P>　　<STRONG>六. Strings:</STRONG> 一个非常非常有用的字符串工具类: 提供 splitting，joining， padding 
+等操作。</P>
+<P>　　<STRONG>七. Primitives:</STRONG> 扩展 JDK 中未提供的对原生类型（如int、char等）的操作， 
+包括某些类型的无符号的变量。</P>
+<P>　　<STRONG>八. Ranges:</STRONG> Guava 一个强大的 API，提供 Comparable 类型的范围处理， 
+包括连续和离散的情况。</P>
+<P>　　<STRONG>九. I/O:</STRONG> 简化 I/O 操作, 特别是对 I/O 流和文件的操作, for Java 5 and 
+6.<BR><BR>　　<STRONG>十. Hashing:</STRONG> 提供比 Object.hashCode() 更复杂的 hash 方法, 提供 
+Bloom filters.<BR><BR>　　<STRONG>十一. EventBus:</STRONG> 
+基于发布-订阅模式的组件通信，但是不需要明确地注册在委托对象中。<BR><BR>　　<STRONG>十二. Math:</STRONG> 优化的 math 
+工具类，经过完整测试。<BR><BR>　　<STRONG>十三. Reflection:</STRONG> Guava 的 Java 反射机制工具类。</P>
+<P>&nbsp;　　</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P></DIV>
+<DIV id="MySignature"></DIV>
+<DIV class="clear"></DIV>
+<DIV id="blog_post_info_block">
+<DIV id="BlogPostCategory"></DIV>
+<DIV id="EntryTag"></DIV>
+<DIV id="blog_post_info"></DIV>
+<DIV class="clear"></DIV>
+<DIV id="post_next_prev"></DIV></DIV></DIV>
+<DIV class="postDesc">posted @ <SPAN id="post-date">2013-06-08 11:24</SPAN> <A 
+href="http://www.cnblogs.com/peida/">peida</A> 阅读(<SPAN 
+id="post_view_count">...</SPAN>) 评论(<SPAN id="post_comment_count">...</SPAN>)  
+<A href="http://i.cnblogs.com/EditPosts.aspx?postid=3120820" 
+rel="nofollow">编辑</A> <A onclick="AddToWz(3120820);return false;" href="http://www.cnblogs.com/peida/archive/2013/06/08/3120820.html#">收藏</A></DIV></DIV>
+<SCRIPT type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=38044,cb_entryId=3120820,cb_blogApp=currentBlogApp,cb_blogUserGuid='0f3e420b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2013/6/8 11:24:00';loadViewCount(cb_entryId);</SCRIPT>
+</DIV><!--end: topics 文章、评论容器--></DIV><A name="!comments"></A>
+<DIV id="blog-comments-placeholder"></DIV>
+<SCRIPT type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</SCRIPT>
+
+<DIV id="comment_form" class="commentform"><A name="commentform"></A>
+<DIV id="divCommentShow"></DIV>
+<DIV id="comment_nav"><SPAN id="span_refresh_tips"></SPAN><A id="lnk_RefreshComments" 
+onclick="return RefreshCommentList();" href="javascript:void(0);" clientidmode="Static" 
+runat="server">刷新评论</A><A onclick="return RefreshPage();" href="http://www.cnblogs.com/peida/archive/2013/06/08/3120820.html#">刷新页面</A><A 
+href="http://www.cnblogs.com/peida/archive/2013/06/08/3120820.html#top">返回顶部</A></DIV>
+<DIV id="comment_form_container"></DIV>
+<DIV id="ad_text_under_commentbox" class="ad_text_commentbox"></DIV>
+<DIV id="ad_t2"></DIV>
+<DIV id="opt_under_post"></DIV>
+<DIV id="ad_c1" class="c_ad_block"></DIV>
+<DIV id="under_post_news"></DIV>
+<DIV id="ad_c2" class="c_ad_block"></DIV>
+<DIV id="under_post_kb"></DIV>
+<DIV id="HistoryToday" class="c_ad_block"></DIV>
+<SCRIPT type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</SCRIPT>
+</DIV></DIV><!--end: forFlow --></DIV><!--end: mainContent 主体内容容器-->
+<DIV id="sideBar">
+<DIV id="sideBarMain"><!--done-->
+<DIV class="newsItem">
+<H3 class="catListTitle">公告</H3>
+<DIV id="blog-news"></DIV>
+<SCRIPT type="text/javascript">loadBlogNews();</SCRIPT>
+</DIV>
+<DIV id="calendar">
+<DIV style="display: none;" id="blog-calendar"></DIV>
+<SCRIPT type="text/javascript">loadBlogDefaultCalendar();</SCRIPT>
+</DIV>
+<DIV id="leftcontentcontainer">
+<DIV id="blog-sidecolumn"></DIV>
+<SCRIPT type="text/javascript">loadBlogSideColumn();</SCRIPT>
+</DIV></DIV><!--end: sideBarMain --></DIV><!--end: sideBar 侧边栏容器 -->
+<DIV class="clear"></DIV></DIV><!--end: main -->
+<DIV class="clear"></DIV>
+<DIV id="footer"><!--done-->Copyright ©2016 peida	</DIV><!--end: footer -->
+</DIV><!--end: home 自定义的最大容器 --><!--PageEndHtml Block Begin-->
+<SCRIPT language="javascript" type="text/javascript" src="Guava学习笔记：Google%20Guava%20类库简介%20-%20peida%20-%20博客园_files/1910329.js"></SCRIPT>
+<NOSCRIPT>&lt;a href="http://www.51.la/?1910329" target="_blank"&gt;&lt;img 
+alt="我要啦免费统计" src="http://img.users.51.la/1910329.asp" style="border:none" 
+/&gt;统计代码&lt;/a&gt;</NOSCRIPT>
+<SCRIPT language="JavaScript" charset="gb2312" src="Guava学习笔记：Google%20Guava%20类库简介%20-%20peida%20-%20博客园_files/stat.js"></SCRIPT>
+
+<SCRIPT language="JavaScript" src="Guava学习笔记：Google%20Guava%20类库简介%20-%20peida%20-%20博客园_files/stat(1).js"></SCRIPT>
+<!--PageEndHtml Block End--></BODY></HTML>

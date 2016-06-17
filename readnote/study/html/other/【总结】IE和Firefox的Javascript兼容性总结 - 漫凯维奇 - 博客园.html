@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/bundle-LessIsMoreRight.css">
+<link type="text/css" rel="stylesheet" href="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/64988.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/wiky/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/wiky/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/wiky/wlwmanifest.xml">
+<script type="text/javascript" src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/encoder.js"></script><script src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'wiky', cb_enable_mathjax=false;</script>
+<script src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/blog-common.js" type="text/javascript"></script>
+<style type="text/css">div#ad_b4,div#ad_b3,div#ad_b2,div#ad_b1{display:none !important;}</style></head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<div id="mk_header"> 
+<ul class="wiky_nav" style="width: 800px; height: 40px;">  
+     <li id="wiky_nav1" style="left: 0px; margin: 0px; position: absolute; width: 100px;"><a href="http://www.cnblogs.com/wiky/" title="博客首页">Home</a></li>  
+     <li id="wiky_nav2" style="left: 100px; margin: 0px; position: absolute; width: 100px;"><a href="http://www.cnblogs.com/wiky/category/227099.html" title="(X)HTML/CSS">HTML/CSS</a></li>  
+     <li id="wiky_nav3" style="left: 200px; margin: 0px; position: absolute; width: 100px;"><a href="http://www.cnblogs.com/wiky/category/227100.html" title="JavaScript/jQuery">JavaScript/jQuery</a></li>  
+     <li id="wiky_nav4" style="left: 300px; margin: 0px; position: absolute; width: 100px;"><a href="http://www.cnblogs.com/wiky/category/227739.html" title="前端资源">Resource</a></li> 
+     <li id="wiky_nav5" class="" style="left: 400px; margin: 0px; position: absolute; overflow: hidden; width: 100px;"><a href="http://www.cnblogs.com/wiky/category/227738.html" title="前端技巧">Tips</a></li> 
+     <li id="wiky_nav6" style="left: 500px; margin: 0px; position: absolute; width: 100px;"><a href="http://www.cnblogs.com/wiky/category/241740.html" title="前端教程">Tutorials</a></li> 
+     <li id="wiky_nav7" style="left: 600px; margin: 0px; position: absolute; width: 100px;"><a href="http://www.cnblogs.com/wiky/articles/about.html" title="关于前端档案和维奇">About</a></li>  
+     <li id="wiky_nav8" style="right: 0px; margin: 0px; position: absolute; width: 100px;"><a href="http://www.cnblogs.com/wiky/rss" title="RSS订阅">RSS</a></li>  
+ </ul> 
+</div>
+<!--PageBeginHtml Block End-->
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/wiky/">维奇-前端档案(Fef)</a></div>
+<div class="subtitle">专注于前端开发、WEB性能优化、交互设计与用户体验设计、WEB标准。</div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"></li>
+<li id="nav_myhome"></li>
+<li id="nav_newpost"><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"></li>
+<li id="nav_rss"><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/wiky/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/wiky/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔-17&nbsp;
+文章-1&nbsp;
+评论-220&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园.html">【总结】IE和Firefox的Javascript兼容性总结</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p style="text-align: center;" class="mk_img"><a href="javascript:void(0)"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/2010011003560741.jpg"></a></p>
+<p>　　长久以来JavaScript兼容性一直是Web开发者的一个主要问题。在正式规范、事实标准以及各种实现之间的存在的差异让许多开发者日夜煎熬。为此，主要从以下几方面差异总结IE和Firefox的Javascript兼容性:</p>
+<p>　　一、<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#t1">函数和方法差异</a>；</p>
+<p>　　二、<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#t2">样式访问和设置</a>；</p>
+<p>　　三、<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#t3">DOM方法及对象引用</a>；</p>
+<p>　　四、<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#t4">事件处理</a>；</p>
+<p>　　五、<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#t5">其他差异的兼容处理</a>。</p>
+<p>&nbsp;</p>
+<p><a name="t1"></a><span style="color: #ff6600; font-size: 15pt; font-weight: bold;">一、函数和方法差异</span></p>
+<p class="mk_title"><i>1</i>. getYear()方法</p>
+<p>【分析说明】先看一下以下代码：</p>
+<div class="cnblogs_code">
+<pre><div><span style="color: #0000ff;">var</span><span style="color: #000000;"> year</span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> Date().getYear();<br>document.write(year);</span></div></pre>
+</div>
+<p>　　在IE中得到的日期是"2010"，在Firefox中看到的日期是"110"，主要是因为在 Firefox 里面 getYear 返回的是 "当前年份-1900" 的值。</p>
+<p>【兼容处理】</p>
+<p>　　加上对年份的判断，如:</p>
+<div class="cnblogs_code">
+<pre><div><span style="color: #000000;"><span style="font-family: &#39;Courier New&#39;; color: #0000ff;">var</span><span style="font-family: &#39;Courier New&#39;; color: #000000;"> year</span><span style="font-family: &#39;Courier New&#39;; color: #000000;">=</span><span style="font-family: &#39;Courier New&#39;; color: #000000;"> </span><span style="font-family: &#39;Courier New&#39;; color: #0000ff;">new</span><span style="font-family: &#39;Courier New&#39;; color: #000000;"> Date().getYear();</span><br>year </span><span style="color: #000000;">=</span><span style="color: #000000;"> (year</span><span style="color: #000000;">&lt;</span><span style="color: #000000;">1900</span><span style="color: #000000;">?</span><span style="color: #000000;">(</span><span style="color: #000000;">1900</span><span style="color: #000000;">+</span><span style="color: #000000;">year):year);</span></div><div><span style="color: #000000;">document.write(year);</span></div></pre>
+</div>
+<p>　　也可以通过 getFullYear getUTCFullYear 去调用:</p>
+<div class="cnblogs_code">
+<pre><div><span style="color: #0000ff;">var</span><span style="color: #000000;"> year </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> Date().getFullYear();<br>document.write(year);</span></div></pre>
+</div>
+<p>&nbsp;</p>
+<p class="mk_title"><i>2</i>. eval()函数</p>
+<p>【分析说明】在IE中，可以使用eval("idName")或getElementById("idName")来取得id为idName的HTML对象；Firefox下只能使用getElementById("idName")来取得id为idName的HTML对象。</p>
+<p>【兼容处理】统一用getElementById("idName")来取得id为idName的HTML对象。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>3</i>. const声明</p>
+<p>【分析说明】在 IE 中不能使用 const 关键字。如：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">const constVar </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #000000;">32</span><span style="color: #000000;">; </span></div></pre>
+</div>
+<p>在IE中这是语法错误。</p>
+<p>【兼容处理】不使用 const ，以 var 代替。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>4</i>. var</p>
+<p>【分析说明】请看以下代码：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">echo</span><span style="color: #000000;">=</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(str){<br> document.write(str);<br>}</span></div><script type="text/javascript"><!--mce:0--></script><script type="text/javascript"><!--mce:1--></script><script type="text/javascript"><!--mce:2--></script><script type="text/javascript"><!--mce:3--></script><script type="text/javascript"><!--mce:4--></script>pre&gt;
+</pre>
+</div>
+<p>　　这个函数在IE上运行正常，Firefox下却报错了。</p>
+<p>【兼容处理】而在echo前加上var就正常了，这个就是我们提到var的目的。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>5</i>. const 问题</p>
+<p>【分析说明】在 IE 中不能使用 const 关键字。如&nbsp;const constVar = 32;&nbsp;在IE中这是语法错误。</p>
+<p>【解决方法】不使用 const ，以 var 代替。</p>
+<p>&nbsp;</p>
+<p><a name="t2"></a><span style="color: #ff6600; font-size: 15pt; font-weight: bold;">二、样式访问和设置</span></p>
+<p class="mk_title"><i>1</i>. CSS的"float"属性</p>
+<p>【分析说明】Javascript访问一个给定CSS 值的最基本句法是：object.style.property，但部分CSS属性跟Javascript中的保留字命名相同，如"float"，"for"，"class"等，不同浏览器写法不同。</p>
+<p>在IE中这样写：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">document.getElementById(</span><span style="color: #000000;">"</span><span style="color: #000000;">header</span><span style="color: #000000;">"</span><span style="color: #000000;">).style.styleFloat </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #000000;">"</span><span style="color: #000000;">left</span><span style="color: #000000;">"</span><span style="color: #000000;">;</span></div></pre>
+</div>
+<p>在Firefox中这样写：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">document.getElementById(</span><span style="color: #000000;">"</span><span style="color: #000000;">header</span><span style="color: #000000;">"</span><span style="color: #000000;">).style.cssFloat </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #000000;">"</span><span style="color: #000000;">left</span><span style="color: #000000;">"</span><span style="color: #000000;">;</span></div></pre>
+</div>
+<p>【兼容处理】在写之前加一个判断，判断浏览器是否是IE：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">if</span><span style="color: #000000;">(document.all){</span></div><div><span style="color: #000000;">　　document.getElementById(</span><span style="color: #000000;">"</span><span style="color: #000000;">header</span><span style="color: #000000;">"</span><span style="color: #000000;">).style.styleFloat </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #000000;">"</span><span style="color: #000000;">left</span><span style="color: #000000;">"</span><span style="color: #000000;">;</span></div><div><span style="color: #000000;">}<br></span><span style="color: #0000ff;">else</span><span style="color: #000000;">{</span></div><div><span style="color: #000000;">　　document.getElementById(</span><span style="color: #000000;">"</span><span style="color: #000000;">header</span><span style="color: #000000;">"</span><span style="color: #000000;">).style.cssFloat </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #000000;">"</span><span style="color: #000000;">left</span><span style="color: #000000;">"</span><span style="color: #000000;">;</span></div><div><span style="color: #000000;">}</span></div></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p class="mk_title"><i>2</i>. 访问&lt;label&gt;标签中的"for"</p>
+<p>【分析说明】和"float"属性一样，同样需要使用不现的句法区分来访问&lt;label&gt;标签中的"for"。</p>
+<p>在IE中这样写：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">var</span><span style="color: #000000;"> myObject </span><span style="color: #000000;">=</span><span style="color: #000000;"> document.getElementById(</span><span style="color: #000000;">"</span><span style="color: #000000;">myLabel</span><span style="color: #000000;">"</span><span style="color: #000000;">);<br></span><span style="color: #0000ff;">var</span><span style="color: #000000;"> myAttribute </span><span style="color: #000000;">=</span><span style="color: #000000;"> myObject.getAttribute(</span><span style="color: #000000;">"</span><span style="color: #000000;">htmlFor</span><span style="color: #000000;">"</span><span style="color: #000000;">);</span></div></pre>
+</div>
+<p>在Firefox中这样写：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">var</span><span style="color: #000000;"> myObject </span><span style="color: #000000;">=</span><span style="color: #000000;"> document.getElementById(</span><span style="color: #000000;">"</span><span style="color: #000000;">myLabel</span><span style="color: #000000;">"</span><span style="color: #000000;">);<br></span><span style="color: #0000ff;">var</span><span style="color: #000000;"> myAttribute </span><span style="color: #000000;">=</span><span style="color: #000000;"> myObject.getAttribute(</span><span style="color: #000000;">"</span><span style="color: #000000;">for</span><span style="color: #000000;">"</span><span style="color: #000000;">);</span></div></pre>
+</div>
+<p>【兼容处理】解决的方法也是先
+<script type="text/javascript"></script>
+<script type="text/javascript"></script>
+<script type="text/javascript"></script>
+<script type="text/javascript"></script>
+判断浏览器类型。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>3</i>. 访问和设置class属性</p>
+<p>【分析说明】同样由于class是Javascript保留字的原因，这两种浏览器使用不同的 JavaScript 方法来获取这个属性。</p>
+<p>IE8.0之前的所有IE版本的写法：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">var</span><span style="color: #000000;"> myObject </span><span style="color: #000000;">=</span><span style="color: #000000;"> document.getElementById(</span><span style="color: #000000;">"</span><span style="color: #000000;">header</span><span style="color: #000000;">"</span><span style="color: #000000;">);<br></span><span style="color: #0000ff;">var</span><span style="color: #000000;"> myAttribute </span><span style="color: #000000;">=</span><span style="color: #000000;"> myObject.getAttribute(</span><span style="color: #000000;">"</span><span style="color: #000000;">className</span><span style="color: #000000;">"</span><span style="color: #000000;">);</span></div></pre>
+</div>
+<p>适用于IE8.0 以及 firefox的写法：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">var</span><span style="color: #000000;"> myObject </span><span style="color: #000000;">=</span><span style="color: #000000;"> document.getElementById(</span><span style="color: #000000;">"</span><span style="color: #000000;">header</span><span style="color: #000000;">"</span><span style="color: #000000;">);<br></span><span style="color: #0000ff;">var</span><span style="color: #000000;"> myAttribute </span><span style="color: #000000;">=</span><span style="color: #000000;"> myObject.getAttribute(</span><span style="color: #000000;">"</span><span style="color: #000000;">class</span><span style="color: #000000;">"</span><span style="color: #000000;">);</span></div></pre>
+</div>
+<p>　　另外，在使用setAttribute()设置Class属性的时候，两种浏览器也存在同样的差异。</p>
+<p>　　setAttribute("className",value);</p>
+<p>　　这种写法适用于IE8.0之前的所有IE版本，注意：IE8.0也不支持"className"属性了。</p>
+<p>　　setAttribute("class",value);适用于IE8.0 以及 firefox。</p>
+<p>【兼容处理】</p>
+<p>方法一，两种都写上：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">var</span><span style="color: #000000;"> myObject </span><span style="color: #000000;">=</span><span style="color: #000000;"> document.getElementById(</span><span style="color: #000000;">"</span><span style="color: #000000;">header</span><span style="color: #000000;">"</span><span style="color: #000000;">);<br>myObject.setAttribute(</span><span style="color: #000000;">"</span><span style="color: #000000;">class</span><span style="color: #000000;">"</span><span style="color: #000000;">,</span><span style="color: #000000;">"</span><span style="color: #000000;">classValue</span><span style="color: #000000;">"</span><span style="color: #000000;">);<br>myObject.setAttribute(</span><span style="color: #000000;">"</span><span style="color: #000000;">className</span><span style="color: #000000;">"</span><span style="color: #000000;">,</span><span style="color: #000000;">"</span><span style="color: #000000;">classValue</span><span style="color: #000000;">"</span><span style="color: #000000;">);</span></div><div><span style="color: #000000;">&nbsp;</span><span style="color: #008000;">//</span><span style="color: #008000;">设置header的class为classValue</span></div></pre>
+</div>
+<p>方法二，IE和FF都支持object.className，所以可以这样写：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">var</span><span style="color: #000000;"> myObject </span><span style="color: #000000;">=</span><span style="color: #000000;"> document.getElementById(</span><span style="color: #000000;">"</span><span style="color: #000000;">header</span><span style="color: #000000;">"</span><span style="color: #000000;">);<br>myObject.className</span><span style="color: #000000;">=</span><span style="color: #000000;">"</span><span style="color: #000000;">classValue</span><span style="color: #000000;">"</span><span style="color: #000000;">;</span><span style="color: #008000;">//</span><span style="color: #008000;">设置header的class为classValue</span></div></pre>
+</div>
+<p>方法三，先判断浏览器类型，再根据浏览器类型采用对应的写法。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>4</i>. 对象宽高赋值问题</p>
+<p>【分析说明】FireFox中类似 obj.style.height = imgObj.height 的语句无效。</p>
+<p>【兼容处理】统一使用 obj.style.height = imgObj.height + ‘px’;</p>
+<p>&nbsp;</p>
+<p><a name="t3"></a><span style="color: #ff6600; font-size: 15pt; font-weight: bold;">三、DOM方法及对象引用</span></p>
+<p class="mk_title"><i>1</i>. getElementById</p>
+<p>【分析说明】先来看一组代码：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;6a3c4926-36d1-4e4a-afa3-1b7a9d3d3f84&#39;)">
+<div id="cnblogs_code_open_6a3c4926-36d1-4e4a-afa3-1b7a9d3d3f84">
+<pre><div><span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> input对象访问1 </span><span style="color: #008000;">--&gt;</span><span style="color: #000000;"><br></span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="id"</span><span style="color: #800000;"> </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="button"</span><span style="color: #ff0000;"> <br>value</span><span style="color: #0000ff;">="click me"</span><span style="color: #ff0000;"> ōnclick</span><span style="color: #0000ff;">="alert(id.value)"/</span><span style="color: #0000ff;">&gt;</span></div></pre>
+</div>
+</div>
+<p>　　在Firefox中，按钮没反应，在IE中，就可以，因为对于IE来说，一个HTML 元素的 ID 可以直接在脚本中当作变量名来使用，而Firefox中不可以。</p>
+<p>【兼容处理】尽量采用W3C&nbsp;DOM&nbsp;的写法，访问对象的时候，用document.getElementById("id")&nbsp;以ID来访问对象，且一个ID在页面中必须是唯一的，同样在以标签名来访问对象的时候，用document.getElementsByTagName("div")[0] 。该方式得到较多浏览器的支持。</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> input对象访问2 </span><span style="color: #008000;">--&gt;</span><span style="color: #000000;"><br></span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="id"</span><span style="color: #800000;"> </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="button"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="click me"</span></div><div><span style="color: #0000ff;">&nbsp;</span><span style="color: #ff0000;"> onclick</span><span style="color: #0000ff;">="alert(document.getElementById('id').value)" /</span><span style="color: #0000ff;">&gt;</span></div></pre>
+</div>
+<p>&nbsp;</p>
+<p class="mk_title"><i>2</i>. 集合类对象访问</p>
+<p>【分析说明】IE下，可以使用()或[]获取集合类对象；Firefox下，只能使用[]获取集合类对象。如：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">document.write(document.forms(</span><span style="color: #000000;">"</span><span style="color: #000000;">formName</span><span style="color: #000000;">"</span><span style="color: #000000;">).src);</span></div><div><span style="color: #000000;"><span style="font-family: &#39;Courier New&#39;; color: #008000;">//该写法在IE下能访问到Form对象的scrc属性</span></span></div></pre>
+</div>
+<p>&nbsp;【兼容处理】将document.forms("formName")改为 document.forms["formName"]。统一使用[]获取集合类对象。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>3</i>. frame的引用</p>
+<p>【分析说明】IE可以通过id或者name访问这个frame对应的window对象，而Firefox只可以通过name来访问这个frame对应的window对象。</p>
+<p>　　例如如果上述frame标签写在最上层的window里面的htm里面，那么可以这样访问：</p>
+<p>IE： window.top.frameId或者window.top.frameName来访问这个window对象；</p>
+<p>Firefox：只能这样window.top.frameName来访问这个window对象。</p>
+<p>【兼容处理】使用frame的name来访问frame对象，另外，在IE和Firefox中都可以使用window.document.getElementById(”frameId”)来访问这个frame对象。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>4</i>. parentElement</p>
+<p>【分析说明】IE中支持使用parentElement和parentNode获取父节点。而Firefox只可以使用parentNode。&nbsp;</p>
+<p>【兼容处理】因为firefox与IE都支持DOM，因此统一使用parentNode来访问父节点。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>5</i>. table操作</p>
+<p>【分析说明】IE下table中无论是用innerHTML还是appendChild插入&lt;tr&gt;都没有效果，而其他浏览器却显示正常。</p>
+<p>【兼容处理】解决的方法是，将&lt;tr&gt;加到table的&lt;tbody&gt;元素中，如下面所示：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;ab407f81-f59d-4c6b-8be6-1b96ffba1840&#39;)"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div id="cnblogs_code_open_ab407f81-f59d-4c6b-8be6-1b96ffba1840">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">var</span><span style="color: #000000;"> row </span><span style="color: #000000;">=</span><span style="color: #000000;"> document.createElement(</span><span style="color: #000000;">"</span><span style="color: #000000;">tr</span><span style="color: #000000;">"</span><span style="color: #000000;">);<br></span><span style="color: #0000ff;">var</span><span style="color: #000000;"> cell </span><span style="color: #000000;">=</span><span style="color: #000000;"> document.createElement(</span><span style="color: #000000;">"</span><span style="color: #000000;">td</span><span style="color: #000000;">"</span><span style="color: #000000;">);<br></span><span style="color: #0000ff;">var</span><span style="color: #000000;"> cell_text </span><span style="color: #000000;">=</span><span style="color: #000000;"> document.createTextNode(</span><span style="color: #000000;">"</span><span style="color: #000000;">插入的内容</span><span style="color: #000000;">"</span><span style="color: #000000;">);<br>cell.appendChild(cell_text);<br>row.appendChild(cell);<br>document.getElementsByTagName(</span><span style="color: #000000;">"</span><span style="color: #000000;">tbody</span><span style="color: #000000;">"</span><span style="color: #000000;">)[</span><span style="color: #000000;">0</span><span style="color: #000000;">].appendChild(row);</span></div></pre>
+</div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p class="mk_title"><i>6</i>. 移除节点removeNode()和removeChild()</p>
+<p>【分析说明】appendNode在IE和Firefox下都能正常使用，但是removeNode只能在IE下用。</p>
+<p>　　removeNode方法的功能是删除一个节点，语法为node.removeNode（false）或者node.removeNode（true），返回值是被删除的节点。</p>
+<p>　　removeNode（false）表示仅仅删除指定节点，然后这个节点的原孩子节点提升为原双亲节点的孩子节点。</p>
+<p>　　removeNode（true）表示删除指定节点及其所有下属节点。被删除的节点成为了孤立节点，不再具有有孩子节点和双亲节点。</p>
+<p>【兼容处理】Firefox中节点没有removeNode方法，只能用removeChild方法代替，先回到父节点，在从父节点上移除要移除的节点。</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">node.parentNode.removeChild(node);&nbsp;</span></div><div><span style="color: #000000;">&nbsp;</span><span style="color: #008000;">//</span><span style="color: #008000;"> 为了在ie和firefox下都能正常使用，取上一层的父结点，然后remove。</span></div></pre>
+</div>
+<p>&nbsp;</p>
+<p class="mk_title"><i>7</i>. childNodes获取的节点</p>
+<p>【分析说明】childNodes的下标的含义在IE和Firefox中不同，看一下下面的代码：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">ul </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="main"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;"> <br>  </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">1</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;"><br>  </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">2</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;"><br>  </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">3</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;"><br></span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">ul</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;"> <br></span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">=button </span><span style="color: #ff0000;">value</span><span style="color: #0000ff;">="click me!"</span><span style="color: #ff0000;"> onclick</span><span style="color: #0000ff;">=</span></div><div><span style="color: #0000ff;">"alert(document.getElementById('main').childNodes.length)"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;"> </span></div></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>分别用IE和Firefox运行，IE的结果是3，而Firefox则是7。Firefox使用DOM规范，"#text"表示文本（实际是无意义的空格和换行等）在Firefox里也会被解析成一个节点，在IE里只有有实际意义的文本才会解析成"#text"。</p>
+<p>【兼容处理】</p>
+<p>方法一，获取子节点时，可以通过node.getElementsByTagName()来回避这个问题。但是 getElementsByTagName对复杂的DOM结构遍历明显不如用childNodes，因为childNodes能更好的处理DOM的层次结构。</p>
+<p>方法二，在实际运用中，Firefox在遍历子节点时，不妨在for循环里加上：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">if</span><span style="color: #000000;">(childNode.nodeName</span><span style="color: #000000;">=="</span><span style="color: #000000;">#text</span><span style="color: #000000;">"</span><span style="color: #000000;">) </span><span style="color: #0000ff;">continue</span><span style="color: #000000;">;</span><span style="color: #008000;">//</span><span style="color: #008000;">或者使用nodeType == 1。</span></div></pre>
+</div>
+<p>这样可以跳过一些文本节点。</p>
+<p>延伸阅读</p>
+<p>　　《<a target="_blank" href="http://space.cnblogs.com/group/topic/3976/">IE和FireFox中的childNodes区别</a>》</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>8</i>. Firefox不能对innerText支持</p>
+<p>【分析说明】Firefox不支持innerText，它支持textContent来实现innerText，不过textContent没有像innerText一样考虑元素的display方式，所以不完全与IE兼容。如果不用textContent，字符串里面不包含HTML代码也可以用innerHTML代替。也可以用js写个方法实现，可参考《<a href="http://www.cnblogs.com/luoluo/archive/2008/11/24/1340111.html" target="_blank">为firefox实现innerText属性</a>》一文。</p>
+<p>【兼容处理】通过判断浏览器类型来兼容：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">if</span><span style="color: #000000;">(document.all){<br>document.getElementById(</span><span style="color: #000000;">'</span><span style="color: #000000;">element</span><span style="color: #000000;">'</span><span style="color: #000000;">).innerText </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #000000;">"</span><span style="color: #000000;">my text</span><span style="color: #000000;">"</span><span style="color: #000000;">;<br>} </span><span style="color: #0000ff;">else</span><span style="color: #000000;">{<br>document.getElementById(</span><span style="color: #000000;">'</span><span style="color: #000000;">element</span><span style="color: #000000;">'</span><span style="color: #000000;">).textContent </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #000000;">"</span><span style="color: #000000;">my text</span><span style="color: #000000;">"</span><span style="color: #000000;">;<br>}</span></div></pre>
+</div>
+<p>&nbsp;</p>
+<p><a name="t4"></a><span style="color: #ff6600; font-size: 15pt; font-weight: bold;">四、事件处理</span></p>
+<p>　　如果在使用javascript的时候涉及到event处理，就需要知道event在不同的浏览器中的差异，主要的JavaScript的事件模型有三种（参考《<a target="_blank" href="http://www.oreillynet.com/pub/a/javascript/synd/2001/09/25/event_models.html">Supporting Three Event Models at Once</a>》），它们分别是NN4、IE4+和W3C/Safar。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>1</i>. window.event</p>
+<p>【分析说明】先看一段代码</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">function</span><span style="color: #000000;"> et()<br>{ <br>    alert(event);</span><span style="color: #008000;">//</span><span style="color: #008000;">IE: [object]</span><span style="color: #008000;"><br></span><span style="color: #000000;">}</span></div></pre>
+</div>
+<p>　　以上代码在IE运行的结果是[object]，而在Firefox无法运行。</p>
+<p>　　因为在IE中event作为window对象的一个属性可以直接使用，但是在Firefox中却使用了W3C的模型，它是通过传参的方法来传播事件的，也就是说你需要为你的函数提供一个事件响应的接口。</p>
+<p>【兼容处理】添加对event判断，根据浏览器的不同来得到正确的event：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">function</span><span style="color: #000000;"> et()<br>{ <br>    evt</span><span style="color: #000000;">=</span><span style="color: #000000;">evt</span><span style="color: #000000;">?</span><span style="color: #000000;">evt:(window.event</span><span style="color: #000000;">?</span><span style="color: #000000;">window.event:</span><span style="color: #0000ff;">null</span><span style="color: #000000;">);&nbsp;</span></div><div><span>&nbsp;</span><span>　　</span><span style="color: #008000;">//</span><span style="color: #008000;">兼容IE和Firefox</span><span style="color: #008000;"><br></span><span style="color: #000000;">    alert(evt);<br>}</span></div></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p class="mk_title"><i>2</i>. 键盘值的取得</p>
+<p>【分析说明】IE和Firefox获取键盘值的方法不同，可以理解，Firefox下的event.which与IE下的event.keyCode相当。关于彼此不同，可参考《<a target="_blank" href="http://www.jb51.net/article/7556.htm">键盘事件中keyCode、which和charCode 的兼容性测试</a>》</p>
+<p>【兼容处理】</p>
+<div onclick="cnblogs_code_show(&#39;fe28838b-428e-43b5-9b9e-56bdc48b5eac&#39;)" class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div id="cnblogs_code_open_fe28838b-428e-43b5-9b9e-56bdc48b5eac">
+<pre><div><span style="color: #0000ff;">function</span><span style="color: #000000;"> myKeyPress(evt){</span></div><div><span style="color: #000000;"><span style="color: #008000;">    //兼容IE和Firefox获得keyBoardEvent对象<br></span>    evt </span><span style="color: #000000;">=</span><span style="color: #000000;"> (evt) </span><span style="color: #000000;">?</span><span style="color: #000000;"> evt : ((window.event) </span><span style="color: #000000;">?</span><span style="color: #000000;"> window.event : </span><span style="color: #000000;">""</span><span style="color: #000000;">)&nbsp;</span></div><div><span style="color: #000000;">&nbsp;</span><span style="color: #008000;">    </span><span style="color: #008000;"><span style="color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif;"><span style="color: #008000;">//</span><span style="color: #008000;">兼容IE和Firefox获得keyBoardEvent对象的键值</span></span></span><span style="color: #008000;"><br></span><span style="color: #000000;">    </span><span style="color: #0000ff;">var</span><span style="color: #000000;"> key </span><span style="color: #000000;">=</span><span style="color: #000000;"> evt.keyCode</span><span style="color: #000000;">?</span><span style="color: #000000;">evt.keyCode:evt.which;&nbsp;</span></div><div><span style="color: #000000;">    </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(evt.ctrlKey </span><span style="color: #000000;">&amp;&amp;</span><span style="color: #000000;"> (key </span><span style="color: #000000;">==</span><span style="color: #000000;"> </span><span style="color: #000000;">13</span><span style="color: #000000;"> </span><span style="color: #000000;">||</span><span style="color: #000000;"> key </span><span style="color: #000000;">==</span><span style="color: #000000;"> </span><span style="color: #000000;">10</span><span style="color: #000000;">)){&nbsp;</span></div><div><span style="color: #000000;">&nbsp;</span><span style="color: #008000;">　　　　　　//</span><span style="color: #008000;">同时按下了Ctrl和回车键</span><span style="color: #008000;"><br></span><span style="color: #000000;">        </span><span style="color: #008000;">//</span><span style="color: #008000;">do something;</span><span style="color: #008000;"><br></span><span style="color: #000000;">    }<br>}</span></div></pre>
+</div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p class="mk_title"><i>3</i>. 事件源的获取</p>
+<p>【分析说明】在使用事件委托的时候，通过事件源获取来判断事件到底来自哪个元素，但是，在IE下，event对象有srcElement属性，但是没有target属性；Firefox下，even对象有target属性，但是没有srcElement属性。&nbsp;</p>
+<p>【兼容处理】</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">ele</span><span style="color: #000000;">=</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(evt){ </span><span style="color: #008000;">//</span><span style="color: #008000;">捕获当前事件作用的对象</span><span style="color: #008000;"><br></span><span style="color: #000000;">   evt</span><span style="color: #000000;">=</span><span style="color: #000000;">evt</span><span style="color: #000000;">||</span><span style="color: #000000;">window.event;<br></span><span style="color: #0000ff;">　　return</span></div><div><span style="color: #0000ff;">&nbsp;</span><span style="color: #000000;">　　(obj=event.srcElement?event.srcElement:event.target;</span><span style="color: #000000;">);<br>}<br></span></div></pre>
+</div>
+<p>&nbsp;</p>
+<p class="mk_title"><i>4</i>. 事件监听</p>
+<p>【分析说明】在事件监听处理方面，IE提供了attachEvent和detachEvent两个接口，而Firefox提供的是addEventListener和removeEventListener。</p>
+<p>【兼容处理】最简单的兼容性处理就是封装这两套接口：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;9b5fe7e9-ab59-47a4-ba83-83dfebec70f7&#39;)"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div id="cnblogs_code_open_9b5fe7e9-ab59-47a4-ba83-83dfebec70f7">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">function</span><span style="color: #000000;"> addEvent(elem, eventName, handler) {<br>　　</span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (elem.attachEvent) {<br>　　　　elem.attachEvent(</span><span style="color: #000000;">"</span><span style="color: #000000;">on</span><span style="color: #000000;">"</span><span style="color: #000000;"> </span><span style="color: #000000;">+</span><span style="color: #000000;"> eventName, </span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){</span></div><div><span style="color: #000000;">　　　　　　　　　　　　　　　　　　　　handler.call(elem)});</span></div><div><span style="color: #000000;">&nbsp;</span><span style="color: #008000;">　　　　<span style="color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif;"><span style="color: #008000;">//此处</span><span style="color: #008000;">使用回调函数call()，让this指向elem</span></span></span><span style="color: #008000;"><br></span><span style="color: #000000;">　　} </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (elem.addEventListener) {<br>　　　　elem.addEventListener(eventName, handler, </span><span style="color: #0000ff;">false</span><span style="color: #000000;">);<br>　　}</span></div><div><span style="color: #000000;">}<br></span><span style="color: #0000ff;">function</span><span style="color: #000000;"> removeEvent(elem, eventName, handler) {<br>　　</span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (elem.detachEvent) {<br>　　　　elem.detachEvent(</span><span style="color: #000000;">"</span><span style="color: #000000;">on</span><span style="color: #000000;">"</span><span style="color: #000000;"> </span><span style="color: #000000;">+</span><span style="color: #000000;"> eventName, </span><span style="color: #0000ff;">function</span><span style="color: #000000;">(){</span></div><div><span style="color: #000000;">　　　　　　　　　　　　　　　　　　　　handler.call(elem)});</span></div><div>&nbsp;<span style="color: #008000;"><span style="color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif;"><span style="color: #008000;">　　　　//此处</span><span style="color: #008000;">使用回调函数call()，让this指向elem</span></span><br></span><span style="color: #000000;">　　} </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (elem.removeEventListener) {<br>　　　　elem.removeEventListener(eventName, handler, </span><span style="color: #0000ff;">false</span><span style="color: #000000;">);<br>　　}<br>}</span></div></pre>
+</div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>　　需要特别注意，Firefox下，事件处理函数中的this指向被监听元素本身，而在IE下则不然,可使用回调函数call，让当前上下文指向监听的元素。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>5</i>. 鼠标位置</p>
+<p>【分析说明】IE下，even对象有x，y属性，但是没有pageX，pageY属性；Firefox下，even对象有pageX，pageY属性，但是没有x，y属性。&nbsp;</p>
+<p>【兼容处理】使用mX(mX = event.x ? event.x : event.pageX;)来代替IE下的event.x或者Firefox下的event.pageX。复杂点还要考虑绝对位置。</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;8b625eba-2fac-4315-babb-73c6c7aa2b8f&#39;)"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div id="cnblogs_code_open_8b625eba-2fac-4315-babb-73c6c7aa2b8f">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">function</span><span style="color: #000000;"> getAbsPoint(e){<br>    </span><span style="color: #0000ff;">var</span><span style="color: #000000;"> x </span><span style="color: #000000;">=</span><span style="color: #000000;"> e.offsetLeft, y </span><span style="color: #000000;">=</span><span style="color: #000000;"> e.offsetTop;<br>    </span><span style="color: #0000ff;">while</span><span style="color: #000000;"> (e </span><span style="color: #000000;">=</span><span style="color: #000000;"> e.offsetParent) {<br>        x </span><span style="color: #000000;">+=</span><span style="color: #000000;"> e.offsetLeft;<br>        y </span><span style="color: #000000;">+=</span><span style="color: #000000;"> e.offsetTop;<br>    }<br>    alert(</span><span style="color: #000000;">"</span><span style="color: #000000;">x:</span><span style="color: #000000;">"</span><span style="color: #000000;"> </span><span style="color: #000000;">+</span><span style="color: #000000;"> x </span><span style="color: #000000;">+</span><span style="color: #000000;"> </span><span style="color: #000000;">"</span><span style="color: #000000;">,</span><span style="color: #000000;">"</span><span style="color: #000000;"> </span><span style="color: #000000;">+</span><span style="color: #000000;"> </span><span style="color: #000000;">"</span><span style="color: #000000;">y:</span><span style="color: #000000;">"</span><span style="color: #000000;"> </span><span style="color: #000000;">+</span><span style="color: #000000;"> y);<br>}</span></div></pre>
+</div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><a name="t5"></a><span style="color: #ff6600; font-size: 15pt; font-weight: bold;">五、其他差异的兼容处理</span></p>
+<p class="mk_title"><i>1</i>. XMLHttpRequest</p>
+<p>【分析说明】new ActiveXObject("Microsoft.XMLHTTP");只在IE中起作用，Firefox不支持，但支持<span style="font-family: Verdana, Arial, sans-serif; line-height: 22px; font-size: 13px; -webkit-border-horizontal-spacing: 1px; -webkit-border-vertical-spacing: 1px;">XMLHttpRequest。</span></p>
+<p><span style="font-family: Verdana, Arial, sans-serif;"><span style="line-height: 22px; -webkit-border-horizontal-spacing: 1px; -webkit-border-vertical-spacing: 1px; font-size: small;">【兼容处理】</span></span></p>
+<p><span style="font-family: Verdana, Arial, sans-serif;">
+</span></p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;5d25cf6c-ff41-43a1-b009-20a462024cac&#39;)"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div id="cnblogs_code_open_5d25cf6c-ff41-43a1-b009-20a462024cac">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">function</span><span style="color: #000000;"> createXHR() {<br>    </span><span style="color: #0000ff;">var</span><span style="color: #000000;"> xhr</span><span style="color: #000000;">=</span><span style="color: #0000ff;">null</span><span style="color: #000000;">; <br>    </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(window.XMLHttpRequest){<br>        xhr</span><span style="color: #000000;">=</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> ActiveXObject(</span><span style="color: #000000;">"</span><span style="color: #000000;">Msxml2.XMLHTTP</span><span style="color: #000000;">"</span><span style="color: #000000;">); <br>    }</span><span style="color: #0000ff;">else</span><span style="color: #000000;">{ <br>        </span><span style="color: #0000ff;">try</span><span style="color: #000000;"> { <br>            xhr</span><span style="color: #000000;">=</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> ActiveXObject(</span><span style="color: #000000;">"</span><span style="color: #000000;">Microsoft.XMLHTTP</span><span style="color: #000000;">"</span><span style="color: #000000;">); <br>        } <br>        </span><span style="color: #0000ff;">catch</span><span style="color: #000000;">() { <br>            xhr</span><span style="color: #000000;">=</span><span style="color: #0000ff;">null</span><span style="color: #000000;">; <br>        } <br>    }<br>    </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(</span><span style="color: #000000;">!</span><span style="color: #000000;">xhr)</span><span style="color: #0000ff;">return</span><span style="color: #000000;">;<br>    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> xhr;<br>}</span></div></pre>
+</div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p class="mk_title"><i>2</i>. 模态和非模态窗口</p>
+<p>【分析说明】IE中可以通过showModalDialog和showModelessDialog打开模态和非模态窗口，但是Firefox不支持。&nbsp;</p>
+<p>【解决办法】直接使用window.open(pageURL,name,parameters)方式打开新窗口。&nbsp;如果需要传递参数，可以使用frame或者iframe。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>3.&nbsp;</i>input.type属性问题</p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 10.5pt; font-family: &amp;amp;amp; color: #333333;"><o:p></o:p></span></p>
+<p>IE下 input.type属性为只读，但是Firefox下可以修改</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>4</i>. 对select元素的option操作</p>
+<p>设置options，IE和Firefox写法不同：</p>
+<p>Firefox:可直接设置</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">option.text </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #000000;">'</span><span style="color: #000000;">foooooooo</span><span style="color: #000000;">'</span><span style="color: #000000;">;</span></div></pre>
+</div>
+<p>IE:只能设置</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">option.innerHTML </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #000000;">'</span><span style="color: #000000;">fooooooo</span><span style="color: #000000;">'</span><span style="color: #000000;">;</span></div></pre>
+</div>
+<p>删除一个select的option的方法：</p>
+<p>Firefox:可以</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">select.options.remove(selectedIndex);</span></div></pre>
+</div>
+<p>IE7:可以用</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">select.options[i] </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #0000ff;">null</span><span style="color: #000000;">;</span></div></pre>
+</div>
+<p>IE6:需要写</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #000000;">select.options[i].outerHTML </span><span style="color: #000000;">=</span><span style="color: #000000;"> </span><span style="color: #0000ff;">null</span><span style="color: #000000;">;</span></div></pre>
+</div>
+<p>&nbsp;</p>
+<p class="mk_title"><i>5</i>. img对象alt和title的解析</p>
+<p>【分析说明】img对象有alt和title两个属性，区别在于，alt：当照片不存在或者load错误时的提示。</p>
+<p>title：照片的tip说明,&nbsp;在IE中如果没有定义title，alt也可以作为img的tip使用，但是在Firefox中，两者完全按照标准中的定义使用&nbsp;</p>
+<p style="margin-top: 5px; margin-right: auto; margin-bottom: 5px; margin-left: auto; text-indent: 0px;">在定义img对象时。</p>
+<p style="margin-top: 5px; margin-right: auto; margin-bottom: 5px; margin-left: auto; text-indent: 0px;">【兼容处理】最好将alt和title对象都写全，保证在各种浏览器中都能正常使用 。</p>
+<p>&nbsp;</p>
+<p class="mk_title"><i>6</i>. img的src刷新问题</p>
+<p>【分析说明】先看一下代码：</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="pic"</span><span style="color: #ff0000;"> onclick</span><span style="color: #0000ff;">= "this.src= 'a.jpg'"</span></div><div><span style="color: #0000ff;">&nbsp;</span><span style="color: #ff0000;">   src</span><span style="color: #0000ff;">="aa.jpg<span style="color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif;"><span style="color: #0000ff;">"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="cursor: pointer"</span><span style="color: #0000ff;">/&gt;</span></span></span></div></pre>
+</div>
+<p>在IE 下，这段代码可以用来刷新图片，但在FireFox下不行。主要是缓存问题。</p>
+<p>【兼容处理】在地址后面加个随机数就解决了:&nbsp;</p>
+<div class="cnblogs_code">
+<pre><div><!--<br /><br />Code highlighting produced by Actipro CodeHighlighter (freeware)<br />http://www.CodeHighlighter.com/<br /><br />--><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="pic"</span><span style="color: #ff0000;"> onclick</span><span style="color: #0000ff;">= "javascript:this.src=this.src+'?'</span></div><div><span style="color: #0000ff;">　　　　　+Math.random()"<span style="color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif;"><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="a.jpg"</span><span style="color: #ff0000;"> style</span><span style="color: #0000ff;">="cursor: pointer"</span><span style="color: #0000ff;">/&gt;</span></span></span></div></pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="color: #ff6600; font-size: 15pt; font-weight: bold;">总结</span></p>
+<p>　　IE和Firefox的Javascript方面存在着不少的差异，要做到兼容，我觉得很有必要把一些常见的整理成一个js库，如DOM的操作，事件的处理，XMLHttpRequest请求等，或者也可以选择使用现有的一些库(如jQuery，YUI，ExtJs等)，不过我觉得还是有必要了解一下这些差异，这样对于我们参加兼容性和可用性代码很有帮助。</p>
+<p>　　办法总比问题多，无论浏览器兼容如何折腾人，做前端开发的总能迎刃而解的！</p>
+<p>&nbsp;</p>
+<p>本文地址：<a href="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园.html" target="_blank">http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html&nbsp;</a></p>
+<p><span style="font-size: medium;"><strong><span style="font-size: small;"><span style="color: #3366ff;"><span style="color: #ff0000;">PS</span>：本文由<a href="http://www.cnblogs.com/wiky/" target="_blank">维奇</a>总结，如有转载请注明出处，谢谢！</span></span></strong></span></p>
+<p>&nbsp;</p>
+<p><strong><span style="font-size: medium;">参考资料</span></strong></p>
+<p><a href="http://ham.javaeye.com/blog/204040" target="_blank">Javascript中的常见问题</a></p>
+<p class="MsoNormal"><span lang="EN-US" style="mso-bidi-font-size: 10.5pt; font-family: &amp;amp;amp; color: #333333;"><o:p></o:p></span></p>
+<p><a href="http://www.cnblogs.com/dwjaissk/archive/2006/04/01/364329.html" target="_blank">Javascript兼容多种浏览器</a></p>
+<p><a href="http://home.phpchina.com/space.php?uid=953&do=blog&id=3166" target="_blank">JavaScript兼容性小议</a></p>
+<p><a href="http://www.cnblogs.com/starspace/archive/2009/03/03/1402210.html" target="_blank">IE &amp; Firefox 兼容性问题</a></p>
+<p><a href="http://www.happinesz.cn/archives/1097/" target="_blank">IE与Firefox在JavaScript上的7个不同句法</a></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/wiky/category/227100.html">JavaScript</a>, <a href="http://www.cnblogs.com/wiky/category/227738.html">Tips</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/wiky/tag/%E6%80%BB%E7%BB%93/">总结</a>, <a href="http://www.cnblogs.com/wiky/tag/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>, <a href="http://www.cnblogs.com/wiky/tag/javascript/">javascript</a></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(1643202,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/%E6%BC%AB%E5%87%AF%E7%BB%B4%E5%A5%87" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/wiky/" target="_blank"><img src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/u106987.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/wiky/">漫凯维奇</a><br>
+<a href="http://home.cnblogs.com/u/wiky/followees">关注 - 0</a><br>
+<a href="http://home.cnblogs.com/u/wiky/followers">粉丝 - 205</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(1643202,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">15</span>
+    </div>
+	<div class="buryit" onclick="votePost(1643202,&#39;Bury&#39;)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/wiky/archive/2010/01/07/Browser-CSS-Hacks-assembles.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/wiky/archive/2010/01/07/Browser-CSS-Hacks-assembles.html" title="发布于2010-01-07 16:24">【总结】浏览器CSS Hacks汇总</a><br><a href="http://www.cnblogs.com/wiky/archive/2010/01/10/showcase-of-modern-navigation-design-trends.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/wiky/archive/2010/01/10/showcase-of-modern-navigation-design-trends.html" title="发布于2010-01-10 23:54">【转载】网站导航设计趋势案例集合</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2010-01-09 23:54</span> <a href="http://www.cnblogs.com/wiky/">漫凯维奇</a> 阅读(<span id="post_view_count">21049</span>) 评论(<span id="post_comment_count">10</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=1643202" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#" onclick="AddToWz(1643202);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=64988,cb_entryId=1643202,cb_blogApp=currentBlogApp,cb_blogUserGuid='5f776b0c-03f6-de11-ba8f-001cf0cd104b',cb_entryCreatedDate='2010/1/9 23:54:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#1744035" class="layer">#1楼</a><a name="1744035" id="comment_anchor_1744035"></a>  <span class="comment_date">2010-01-11 09:50</span> <a id="a_comment_author_1744035" href="http://www.cnblogs.com/tsoukw/" target="_blank">Kevin Zou</a> <a href="http://msg.cnblogs.com/send/Kevin%20Zou" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1744035" class="blog_comment_body">收藏备用</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1744035,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1744035,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1744035_avatar" style="display:none;">http://pic.cnblogs.com/face/u8276.gif</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#1744098" class="layer">#2楼</a><a name="1744098" id="comment_anchor_1744098"></a>  <span class="comment_date">2010-01-11 10:39</span> <a id="a_comment_author_1744098" href="http://www.cnblogs.com/hwqlb/" target="_blank">YJJ</a> <a href="http://msg.cnblogs.com/send/YJJ" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1744098" class="blog_comment_body">博主的菜单很漂亮~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1744098,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1744098,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1744098_avatar" style="display:none;">http://pic.cnblogs.com/face/u40297.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#1744100" class="layer">#3楼</a><a name="1744100" id="comment_anchor_1744100"></a>  <span class="comment_date">2010-01-11 10:39</span> <a id="a_comment_author_1744100" href="http://www.cnblogs.com/fengmiaosen/" target="_blank">冯淼森</a> <a href="http://msg.cnblogs.com/send/%E5%86%AF%E6%B7%BC%E6%A3%AE" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1744100" class="blog_comment_body">楼主总结的很不错啊，收藏了~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1744100,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1744100,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1744100_avatar" style="display:none;">http://pic.cnblogs.com/face/u40301.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#1744501" class="layer">#4楼</a><a name="1744501" id="comment_anchor_1744501"></a>  <span class="comment_date">2010-01-11 17:24</span> <a id="a_comment_author_1744501" href="http://www.cnblogs.com/meiqunfeng/" target="_blank">梅子</a> <a href="http://msg.cnblogs.com/send/%E6%A2%85%E5%AD%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1744501" class="blog_comment_body">Mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1744501,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1744501,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1744501_avatar" style="display:none;">http://pic.cnblogs.com/face/u49127.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#1744529" class="layer">#5楼</a><a name="1744529" id="comment_anchor_1744529"></a>  <span class="comment_date">2010-01-11 18:03</span> <a id="a_comment_author_1744529" href="http://www.cnblogs.com/Mrchoi/" target="_blank">Mr.Choi</a> <a href="http://msg.cnblogs.com/send/Mr.Choi" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1744529" class="blog_comment_body">值得收藏的好文章!</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1744529,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1744529,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1744529_avatar" style="display:none;">http://pic.cnblogs.com/face/u71893.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#1747097" class="layer">#6楼</a><a name="1747097" id="comment_anchor_1747097"></a>  <span class="comment_date">2010-01-14 16:20</span> <a id="a_comment_author_1747097" href="http://www.cnblogs.com/zhouxin/" target="_blank">天天不在</a> <a href="http://msg.cnblogs.com/send/%E5%A4%A9%E5%A4%A9%E4%B8%8D%E5%9C%A8" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1747097" class="blog_comment_body">说实话,我还以为不是博客园了.<br><br>LZ的页面好漂亮,排版好漂亮.......</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1747097,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1747097,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1747097_avatar" style="display:none;">http://pic.cnblogs.com/face/81011/20131228110737.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#1838233" class="layer">#7楼</a><a name="1838233" id="comment_anchor_1838233"></a>  <span class="comment_date">2010-06-02 01:00</span> <a id="a_comment_author_1838233" href="http://www.cnblogs.com/skyaspnet/" target="_blank">skyaspnet</a> <a href="http://msg.cnblogs.com/send/skyaspnet" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1838233" class="blog_comment_body">4. var<br><br>这条我测试过，在IE和FF下都正常，因为它直接转换为全局变量</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1838233,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1838233,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1838233_avatar" style="display:none;">http://pic.cnblogs.com/face/u48814.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#1950561" class="layer">#8楼</a><a name="1950561" id="comment_anchor_1950561"></a>  <span class="comment_date">2010-11-03 16:25</span> <a id="ctl00_CommentList_NameLink_7" title="未注册用户" target="_blank">beautiful a</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1950561" class="blog_comment_body">直接使用window.open(pageURL,name,parameters)方式打开新窗口。 如果需要传递参数，可以使用frame或者iframe。<br><br><br>-----------------------------------------------<br><a href="http://www.columbiasportswearoutlet.org/" target="_blank">columbia sportswear outlet</a> | <a href="http://www.thenorthface-outlet.org/" target="_blank">north face outlet</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#1974753" class="layer">#9楼</a><a name="1974753" id="comment_anchor_1974753"></a>  <span class="comment_date">2010-12-01 23:36</span> <a id="a_comment_author_1974753" href="http://home.cnblogs.com/u/186035/" target="_blank">李长明</a> <a href="http://msg.cnblogs.com/send/%E6%9D%8E%E9%95%BF%E6%98%8E" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1974753" class="blog_comment_body">感谢我自己找到了这篇文章,更感谢楼主分享自己的心得,谢谢.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1974753,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1974753,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#2947511" class="layer">#10楼</a><a name="2947511" id="comment_anchor_2947511"></a><span id="comment-maxId" style="display:none;">2947511</span><span id="comment-maxDate" style="display:none;">2014/5/25 16:36:48</span>  <span class="comment_date">2014-05-25 16:36</span> <a id="a_comment_author_2947511" href="http://www.cnblogs.com/zernmal/" target="_blank">zernmal</a> <a href="http://msg.cnblogs.com/send/zernmal" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2947511" class="blog_comment_body">博主威武</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2947511,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2947511,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2947511_avatar" style="display:none;">http://pic.cnblogs.com/face/465433/20140518104845.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/547592/" target="_blank">腾讯12年，定力的考验</a><br> ·  <a href="http://news.cnblogs.com/n/547591/" target="_blank">无脑转发的日子什么时候才是个头</a><br> ·  <a href="http://news.cnblogs.com/n/547590/" target="_blank">当我们谈全栈工程师时，我们在谈什么？</a><br> ·  <a href="http://news.cnblogs.com/n/547589/" target="_blank">霍炬：网络霸凌、收费阅读和内容创业</a><br> ·  <a href="http://news.cnblogs.com/n/547588/" target="_blank">微软WP手机份额跌惨 集体跳槽Android阵营</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/547251/" target="_blank">一个32岁入门的70后程序员给我的启示</a><br> ·  <a href="http://kb.cnblogs.com/page/539205/" target="_blank">技术发展瓶颈的突破</a><br> ·  <a href="http://kb.cnblogs.com/page/536334/" target="_blank">高效编程之道：好好休息</a><br> ·  <a href="http://kb.cnblogs.com/page/545476/" target="_blank">快速学习者的高效学习策略</a><br> ·  <a href="http://kb.cnblogs.com/page/545784/" target="_blank">一个前端的自我修养</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><h3>关于"前端档案"</h3>
+<span class="mk_img sidebar_indent"><a title="关于\&quot;前端档案\&quot;" href="http://www.cnblogs.com/wiky/articles/about.html"><img alt="前端档案" src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/o_sidebar_psd_about.jpg"></a> </span>       <div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/wiky/">漫凯维奇</a><br>园龄：<a href="http://home.cnblogs.com/u/wiky/" title="入园时间：2009-12-31">6年5个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/wiky/followers/">205</a><br>关注：<a href="http://home.cnblogs.com/u/wiky/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;5f776b0c-03f6-de11-ba8f-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2009/12/01&#39;);return false;">&lt;</a></td><td align="center">2010年1月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2010/02/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center"><a href="http://www.cnblogs.com/wiky/archive/2010/01/01.html"><u>1</u></a></td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center"><a href="http://www.cnblogs.com/wiky/archive/2010/01/04.html"><u>4</u></a></td><td align="center"><a href="http://www.cnblogs.com/wiky/archive/2010/01/05.html"><u>5</u></a></td><td align="center"><a href="http://www.cnblogs.com/wiky/archive/2010/01/06.html"><u>6</u></a></td><td align="center"><a href="http://www.cnblogs.com/wiky/archive/2010/01/07.html"><u>7</u></a></td><td align="center">8</td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/wiky/archive/2010/01/09.html"><u>9</u></a></td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/wiky/archive/2010/01/10.html"><u>10</u></a></td><td align="center">11</td><td align="center">12</td><td align="center"><a href="http://www.cnblogs.com/wiky/archive/2010/01/13.html"><u>13</u></a></td><td align="center">14</td><td align="center">15</td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/wiky/archive/2010/01/16.html"><u>16</u></a></td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center"><a href="http://www.cnblogs.com/wiky/archive/2010/01/26.html"><u>26</u></a></td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/wiky/archive/2010/04/21/gradual-change-button.html">1. 【教程】jQuery打造动态渐变按钮</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/17/better-css-code.html">2. 【总结】高效整洁CSS代码原则</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/15/animated-menu-0415.html">3. 【教程】jQuery打造动态下滑菜单</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/01/10-Tips-To-Having-A-Great-Website.html">4. 【翻译】优秀网站的10个技巧</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/03/31/CSS-Opacity-Comprehensive-collect.html">5. 【总结】CSS透明度大汇总</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/02/03/web-standard-exchange.html">6. 【总结】WEB标准化交流会小记--广州站</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/02/03/what-a-good-website-need.html">7. 【分享】一个好的网站需要什么</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/26/javaScript-library-or-code-yourself.html">8. 【翻译】使用JavaScript库还是自写代码？</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/16/website-makes-browser-crash-reasons.html">9. 【总结】网站令浏览器崩溃的原因</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/13/ten_reasons_to_learn_and_use_web_standards.html">10. 【翻译】学习和使用web标准的十大理由</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/wiky/tag/%E6%80%BB%E7%BB%93/">总结</a>(5)</li><li><a href="http://www.cnblogs.com/wiky/tag/CSS/">CSS</a>(3)</li><li><a href="http://www.cnblogs.com/wiky/tag/javascript/">javascript</a>(3)</li><li><a href="http://www.cnblogs.com/wiky/tag/tips/">tips</a>(3)</li><li><a href="http://www.cnblogs.com/wiky/tag/web%E6%A0%87%E5%87%86/">web标准</a>(3)</li><li><a href="http://www.cnblogs.com/wiky/tag/%E7%BF%BB%E8%AF%91/">翻译</a>(3)</li><li><a href="http://www.cnblogs.com/wiky/tag/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>(3)</li><li><a href="http://www.cnblogs.com/wiky/tag/%E6%8A%80%E5%B7%A7/">技巧</a>(2)</li><li><a href="http://www.cnblogs.com/wiky/tag/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1/">交互设计</a>(2)</li><li><a href="http://www.cnblogs.com/wiky/tag/jQuery/">jQuery</a>(2)</li><li><a href="http://www.cnblogs.com/wiky/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(36)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/wiky/category/227099.html">(X)HTML/CSS(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/wiky/category/227102.html">F2E</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/wiky/category/227100.html">JavaScript(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/wiky/category/227739.html">Resources(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/wiky/category/227738.html">Tips(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/wiky/category/241740.html">Tutorials(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/wiky/category/228696.html">Web标准(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/wiky/category/227101.html">创博志(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/wiky/category/228243.html">用户体验(6)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(17)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/wiky/archive/2010/04.html">2010年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/wiky/archive/2010/03.html">2010年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/wiky/archive/2010/02.html">2010年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/wiky/archive/2010/01.html">2010年1月 (10)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListForeign">
+<h3 class="catListTitle">Foreign</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.alistapart.com/" rel="nofollow" target="_blank">A List Apart</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://javascript.about.com/" rel="nofollow" target="_blank">About.com:JavaScript</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://ajaxian.com/" rel="nofollow" target="_blank">ajaxian</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.javascriptkit.com/" rel="nofollow" target="_blank">javascript kit</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://ejohn.org/" rel="nofollow" target="_blank">John Resig</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://nate.koechley.com/blog/" rel="nofollow" target="_blank">Nate Koechley</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_6" href="http://www.nczonline.net/" rel="nofollow" target="_blank">Nicholas C. Zakas</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_7" href="http://www.quirksmode.org/" rel="nofollow" target="_blank">Peter-Paul Koch</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_8" href="http://developer.yahoo.com/" rel="nofollow" target="_blank">Yahoo Dev Network</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListLinks">
+<h3 class="catListTitle">Links/Friends</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_3_Link_0" href="http://www.cnblogs.com/cloudgamer/" rel="nofollow" target="_blank">cloudgamer</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_1" href="http://www.css-js.com/" rel="nofollow" target="_blank">CSS-JS.COM</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_2" href="http://www.cssrain.cn/" rel="nofollow" target="_blank">CSSrain</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_3" href="http://www.cssfan.cn/" rel="nofollow" target="_blank">CSS爱好者</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_4" href="http://www.w2blog.net/" rel="nofollow" target="_blank">eason007</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_5" href="http://www.ueidea.com/blog" rel="nofollow" target="_blank">Mark</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_6" href="http://imouou.com/blog/" rel="nofollow" target="_blank">o仔札记</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_7" href="http://wiky.000a.biz/doc/" rel="nofollow" target="_blank">wikyJs</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_8" href="http://www.chonggou.net/blog" rel="nofollow" target="_blank">重构博客</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wiky/archive/2010/03/31/CSS-Opacity-Comprehensive-collect.html#3082578">1. Re:【总结】CSS透明度大汇总</a></li>
+        <li class="recent_comment_body">楼主的博客确实漂亮....</li>
+        <li class="recent_comment_author">--njl_041x</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wiky/archive/2010/04/21/gradual-change-button.html#3035071">2. Re:【教程】jQuery打造动态渐变按钮</a></li>
+        <li class="recent_comment_body">山重水复疑无路，柳暗花明又一村啊</li>
+        <li class="recent_comment_author">--白衣书生</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wiky/archive/2010/01/26/javaScript-library-or-code-yourself.html#3035062">3. Re:【翻译】使用JavaScript库还是自写代码？</a></li>
+        <li class="recent_comment_body">小功能可以使用js原生代码，或者觉得自己的js水平可以和写js库的作者不相伯仲，就可以使用原生代码。如果项目比较大，而且水平还没有到达那个高度，用库比较方便。</li>
+        <li class="recent_comment_author">--白衣书生</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#2947511">4. Re:【总结】IE和Firefox的Javascript兼容性总结</a></li>
+        <li class="recent_comment_body">博主威武</li>
+        <li class="recent_comment_author">--zernmal</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/wiky/archive/2010/01/26/javaScript-library-or-code-yourself.html#2855971">5. Re:【翻译】使用JavaScript库还是自写代码？</a></li>
+        <li class="recent_comment_body">mark、</li>
+        <li class="recent_comment_author">--majinyun0802</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/wiky/archive/2010/03/31/CSS-Opacity-Comprehensive-collect.html">1. 【总结】CSS透明度大汇总(24699)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/15/animated-menu-0415.html">2. 【教程】jQuery打造动态下滑菜单(22142)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/21/gradual-change-button.html">3. 【教程】jQuery打造动态渐变按钮(21952)</a></li><li><a href="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园.html">4. 【总结】IE和Firefox的Javascript兼容性总结(21049)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/16/website-makes-browser-crash-reasons.html">5. 【总结】网站令浏览器崩溃的原因(14440)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/17/better-css-code.html">6. 【总结】高效整洁CSS代码原则(9318)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/01/10-Tips-To-Having-A-Great-Website.html">7. 【翻译】优秀网站的10个技巧(5105)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/26/javaScript-library-or-code-yourself.html">8. 【翻译】使用JavaScript库还是自写代码？(4778)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/04/css-box-Model2.html">9. 【转载】CSS盒子模型(4194)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/02/03/what-a-good-website-need.html">10. 【分享】一个好的网站需要什么(3849)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/21/gradual-change-button.html">1. 【教程】jQuery打造动态渐变按钮(50)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/15/animated-menu-0415.html">2. 【教程】jQuery打造动态下滑菜单(28)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/17/better-css-code.html">3. 【总结】高效整洁CSS代码原则(23)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/16/website-makes-browser-crash-reasons.html">4. 【总结】网站令浏览器崩溃的原因(18)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/26/javaScript-library-or-code-yourself.html">5. 【翻译】使用JavaScript库还是自写代码？(17)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/01/10-Tips-To-Having-A-Great-Website.html">6. 【翻译】优秀网站的10个技巧(14)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/03/31/CSS-Opacity-Comprehensive-collect.html">7. 【总结】CSS透明度大汇总(12)</a></li><li><a href="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园.html">8. 【总结】IE和Firefox的Javascript兼容性总结(10)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/02/03/what-a-good-website-need.html">9. 【分享】一个好的网站需要什么(6)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/13/ten_reasons_to_learn_and_use_web_standards.html">10. 【翻译】学习和使用web标准的十大理由(5)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/15/animated-menu-0415.html">1. 【教程】jQuery打造动态下滑菜单(25)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/21/gradual-change-button.html">2. 【教程】jQuery打造动态渐变按钮(19)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/03/31/CSS-Opacity-Comprehensive-collect.html">3. 【总结】CSS透明度大汇总(18)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/17/better-css-code.html">4. 【总结】高效整洁CSS代码原则(16)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/16/website-makes-browser-crash-reasons.html">5. 【总结】网站令浏览器崩溃的原因(16)</a></li><li><a href="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园.html">6. 【总结】IE和Firefox的Javascript兼容性总结(15)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/04/01/10-Tips-To-Having-A-Great-Website.html">7. 【翻译】优秀网站的10个技巧(7)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/26/javaScript-library-or-code-yourself.html">8. 【翻译】使用JavaScript库还是自写代码？(7)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/02/03/what-a-good-website-need.html">9. 【分享】一个好的网站需要什么(3)</a></li><li><a href="http://www.cnblogs.com/wiky/archive/2010/01/06/5-simple-but-useful-css-properties.html">10. 【翻译】5个简单，但有用的CSS属性(3)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 漫凯维奇
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<div id="mk_footer">Copyright ©2010 <a style="color:#FFF;" href="http://www.cnblogs.com/wiky/articles/about.html">漫凯维奇</a> | <a style="color:#FFF;" href="http://www.cnblogs.com/wiky/admin/EditPosts.aspx">后台管理</a> |<a style="color:#FFF;" href="http://home.cnblogs.com/wiky/">我的主页</a>  <div id="mk_count"><script src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/stat.php" language="JavaScript"></script><script src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1914501" target="_blank" title="站长统计">站长统计</a></div></div>
+<script type="text/javascript" src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/kwicks.js"></script>
+<script type="text/javascript" src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/custom.js"></script>
+<!--PageEndHtml Block End-->
+
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.cnblogs.com/wiky/archive/2010/01/09/IE-and-Firefox-Javascript-compatibility.html#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/yun6.html" style="border: none; display: none; z-index: 2147483645; background: transparent;"></iframe><script src="./【总结】IE和Firefox的Javascript兼容性总结 - 漫凯维奇 - 博客园_files/pv.gif"></script></body></html>
