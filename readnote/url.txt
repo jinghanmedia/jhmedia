@@ -1,6 +1,22 @@
-1.Բ������������� 9.0 �������ܰ�:
-http://www.7down.net/soft/52206.html#comment
-2.spring-oxm:spring O/X Mapperֻ�Ƕ��������еĵ��������ʵ�ֵ�ͳһ�Ľ��档
+|==============================2016-06-16======================================|
+|    1.圆方室内设计软件 9.0 完美解密版:                                               |
+|    http://www.7down.net/soft/52206.html#comment                              |
+|    2.spring-oxm:spring O/X Mapper只是定义由流行的第三方框架实现的统一的界面。                            |
+|    3.beetl学习：http://beetl.sourceforge.net/                                  |
+|    4.开源中国社区&beetl：http://www.oschina.net/question/tag/beetl               |
+|==================================2016-06-16==================================|
 
-3.��������ҵ��
-ȫ������ָ�������½����������е�ר������������Ϊʲô������������֤��������Ե�ɡ������෨����ʲô���ݳ�ʲô�����
+☆.本周日作业（2016年06月16日）：
+全国经济指数都在下降，很多公司倒闭，而广州市的专利数在增长，为什么？找数据来佐证这个现象的缘由。
+（分类法，抽什么数据出什么结果）
+
+|==============================================================================|
+|                                                                              |
+|                       eclipse查看jar包源代码乱码问题解决                                                                    |
+|                                                                              |
+|==================================2016-06-16==================================|
+步骤1:在eclipse菜单栏中，Window–>Preferences–>General–>Content types
+             将JAR Content ， Java Class File 的Default encoding都设置为所需的编码（UTF-8）;
+步骤2:设置Workspace的编码 Window–>Preferences–>General–>Workspace，
+             将Text file encoding的默认编码设置为和上面一致的编码（UTF-8）;
+步骤3:保存，重启Eclipse。
