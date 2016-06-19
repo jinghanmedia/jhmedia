@@ -6,6 +6,12 @@
  *========================================*/
 package com.jhmadia.master;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
+import ch.qos.logback.core.joran.spi.JoranException;
+
 /**
  * 类   名：启动类
  * <pre>
@@ -18,7 +24,15 @@ package com.jhmadia.master;
 public class Start {
 
     public static void main(String[] args) {
-        
+
+        // 加载日志配置文件 start
+        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+        JoranConfigurator configurator = new JoranConfigurator();
+        configurator.setContext(lc);
+        lc.reset();
+        try {
+            configurator.doConfigure("master_config/logback.xml");
+        } catch (JoranException e) {}
     }
 
 }
