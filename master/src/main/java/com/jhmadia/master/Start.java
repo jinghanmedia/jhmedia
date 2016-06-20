@@ -6,11 +6,11 @@
  *========================================*/
 package com.jhmadia.master;
 
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.util.resource.Resource;
+import org.eclipse.jetty.webapp.WebAppContext;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.joran.JoranConfigurator;
-import ch.qos.logback.core.joran.spi.JoranException;
 
 /**
  * 类   名：启动类
@@ -23,8 +23,11 @@ import ch.qos.logback.core.joran.spi.JoranException;
  */
 public class Start {
 
-    public static void main(String[] args) {
+    static final Logger logger = LoggerFactory.getLogger(Start.class);
 
+    public static void main(String[] args) throws Exception {
+
+        /*
         // 加载日志配置文件 start
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         JoranConfigurator configurator = new JoranConfigurator();
@@ -32,7 +35,27 @@ public class Start {
         lc.reset();
         try {
             configurator.doConfigure("master_config/logback.xml");
-        } catch (JoranException e) {}
+        } catch (JoranException e) {
+            
+        }
+        */
+
+        // 端口号
+        int port = 8080;
+        logger.info("Starting server at port {}", port);
+        Server server = new Server(port);
+        WebAppContext handler = new WebAppContext();
+
+        // 设定handler
+        handler.setContextPath("/");
+        handler.setBaseResource(Resource.newClassPathResource("/webapp"));
+        handler.setMaxFormContentSize(Integer.MAX_VALUE);
+        handler.setDefaultsDescriptor("/webdefault.xml");
+
+        server.setHandler(handler);
+        server.start();
+        logger.info("Server started at port {}", port);
+        server.join();
     }
 
 }

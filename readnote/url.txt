@@ -1,7 +1,7 @@
 |==============================2016-06-16======================================|
 |    1.圆方室内设计软件 9.0 完美解密版:                                               |
 |    http://www.7down.net/soft/52206.html#comment                              |
-|    2.spring-oxm:spring O/X Mapper只是定义由流行的第三方框架实现的统一的界面。                            |
+|    2.spring-oxm:spring O/X Mapper只是定义由流行的第三方框架实现的统一的界面.            |
 |    3.beetl学习：http://beetl.sourceforge.net/                                  |
 |    4.开源中国社区&beetl：http://www.oschina.net/question/tag/beetl               |
 |==================================2016-06-16==================================|
@@ -12,7 +12,7 @@
 
 |==============================================================================|
 |                                                                              |
-|                       eclipse查看jar包源代码乱码问题解决                                                                    |
+|                       eclipse查看jar包源代码乱码问题解决()                         |
 |                                                                              |
 |==================================2016-06-16==================================|
 步骤1:在eclipse菜单栏中，Window–>Preferences–>General–>Content types
@@ -20,3 +20,13 @@
 步骤2:设置Workspace的编码 Window–>Preferences–>General–>Workspace，
              将Text file encoding的默认编码设置为和上面一致的编码（UTF-8）;
 步骤3:保存，重启Eclipse。
+
+|==============================================================================|
+|                                                                              |
+|                                     <笔记>                                    |
+|                                                                              |
+|==================================2016-06-20==================================|
+1.阿里巴巴java开发工程师大神的个人网站：https://github.com/xulingbo/xulingbo.github.io/issues/
+2.观察者设计模式简介:http://blog.chinaunix.net/uid-24922718-id-4104243.html
+3.MyBatis 入门(五)--分页查询（2） :http://blog.chinaunix.net/uid-261569-id-5711315.html
+4.MongoDB教程：http://www.runoob.com/mongodb/mongodb-tutorial.html
