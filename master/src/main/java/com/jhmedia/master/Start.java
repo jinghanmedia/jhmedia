@@ -4,7 +4,7 @@
  * 备    注：中国广东省广州市番禺区大石镇植村村五路(海珠区客村新港中路影盛花园C栋2508室)
  * CopyRigth (C) 2015-2016 jhmedia 婧涵影视
  *========================================*/
-package com.jhmadia.master;
+package com.jhmedia.master;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.resource.Resource;
