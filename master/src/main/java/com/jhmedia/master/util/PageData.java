@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("rawtypes")
 public class PageData extends HashMap implements Map {
 
     private static final long serialVersionUID = 5477699388817976275L;
@@ -24,6 +25,7 @@ public class PageData extends HashMap implements Map {
     Map map = null;
     HttpServletRequest request;
     
+    @SuppressWarnings("unchecked")
     public PageData(HttpServletRequest request) {
         this.request = request;
         Map properties = request.getParameterMap();
@@ -118,6 +120,7 @@ public class PageData extends HashMap implements Map {
         return map.keySet();
     }
 
+    @SuppressWarnings("unchecked")
     public void putAll(Map t) {
         map.putAll(t);
     }
