@@ -1,4 +1,4 @@
-package com.jhmadia.master.util;
+package com.jhmedia.master.util;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;

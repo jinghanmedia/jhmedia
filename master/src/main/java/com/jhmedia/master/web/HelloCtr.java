@@ -1,4 +1,4 @@
-package com.jhmadia.master.web;
+package com.jhmedia.master.web;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jhmadia.master.util.PageData;
-import com.jhmadia.master.web.common.BaseController;
+import com.jhmedia.master.util.PageData;
+import com.jhmedia.master.web.common.BaseController;
 
 @Controller
 @RequestMapping("/helloworld")

@@ -1,4 +1,4 @@
-package com.jhmadia.master.web.common;
+package com.jhmedia.master.web.common;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.jhmadia.master.util.PageData;
+import com.jhmedia.master.util.PageData;
 
 public class BaseController {
 
