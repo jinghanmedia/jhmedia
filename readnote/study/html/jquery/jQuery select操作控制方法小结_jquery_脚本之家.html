@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jb51.net/article/23648.htm -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><script type="text/javascript" charset="utf-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/changyan.js"></script>
+<meta charset="gb2312">
+<meta name="applicable-device" content="pc">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform">
+<title>jQuery select操作控制方法小结_jquery_脚本之家</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+<meta name="keywords" content="jQuery,select操作">
+<meta name="description" content="很多朋友对jquery select的操作很有兴趣，但网上的东西太多，所以脚本之家特别将Jquery Select操作方法整理下，方便大家查找。">
+<link rel="alternate" media="only screen and(max-width: 640px)" href="http://m.jb51.net/article/23648.htm">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.jb51.net/article/23648.htm">
+<meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.jb51.net/article/23648.htm">
+<script type="text/javascript">
+var tougao="mdxy-dxy";var lmname="JavaScript";var ourl="";
+(function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return"http://m.jb51.net"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
+</script>
+<link type="text/css" href="./jQuery select操作控制方法小结_jquery_脚本之家_files/base.css" rel="stylesheet">
+<link type="text/css" href="./jQuery select操作控制方法小结_jquery_脚本之家_files/common.css" rel="stylesheet">
+<script type="text/javascript" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/jquery.min.js"></script>
+<script type="text/javascript" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/base.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/version-v3.js"></script><style type="text/css">div#logo_m,div#logo_r,div#tldown,[style*="width:1000px;"][style*="height:60px;"],dd#down2,li#down3,[style*="width: 1000px;"][style*="height: 60px;"][style*="top: 400px;"][style*="left: 0px;"],dd#softr1,div[class="main mb10 clearfix"],div[class="r300 clearfix mt10"],div[id^="BAIDU_SSP__wrapper_u"],div[class="r300 clearfix"]{display:none !important;}</style><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/cookie"></script><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/adapter.min.js"></script><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/cyrHH3dwi"></script><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/version.js"></script><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/cookie(1)"></script><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/cyrHH3dwi(1)"></script><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/event"></script><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/sea.v2.2.0.js"></script><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/app-build.js"></script><link rel="stylesheet" type="text/css" href="./jQuery select操作控制方法小结_jquery_脚本之家_files/upload-img.css"><style id="changyanCss">#SOHUCS{clear:both;min-height:320;_height:320px;overflow:visible;}#SOHUCS iframe{width:100%;min-height:320px;_height:320px;}</style><link charset="utf-8" rel="stylesheet" href="http://changyan.itc.cn/v2.5/v20160405176/src/css/changyan2.css?20160405176"><link charset="utf-8" rel="stylesheet" href="http://changyan.itc.cn/v2.5/v20160405176/src/css/scs/default.css?20160405176"><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/main.js"></script><script type="text/javascript" charset="UTF-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/render-pc.js"></script></head>
+<body>
+<!--head Star -->
+<div id="head">
+  <div class="toolBar">
+  <div class="main">
+    <!--topNav Star -->
+    <div class="topNav clearfix">
+      <ul class="navList fl">
+        <li>
+          <div class="one"><a href="http://www.jb51.net/" target="_blank">脚本之家</a></div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/softs/" target="_blank">软件下载<i class="icon"></i></a></div>
+          <div class="two">
+<a href="http://www.jb51.net/softs/android.html" target="_blank">android软件</a> <a href="http://www.jb51.net/softs/mac.html" target="_blank">MAC软件</a> <a href="http://www.jb51.net/qudong/" target="_blank">驱动下载</a> <a href="http://www.jb51.net/fonts/" target="_blank">字体下载</a> <a href="http://www.jb51.net/dll/" target="_blank">DLL下载</a> </div>
+</li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/codes/" target="_blank">源码下载<i class="icon"></i></a></div>
+          <div class="two"> <a href="http://www.jb51.net/codes/asp.html" target="_blank">asp源码</a> <a href="http://www.jb51.net/codes/php.html" target="_blank">php源码</a> <a href="http://www.jb51.net/codes/aspnet.html" target="_blank">asp.net源码</a> <a href="http://www.jb51.net/codes/jsp.html" target="_blank">jsp源码</a> <a href="http://www.jb51.net/codes/editor.html" target="_blank">网页编辑器</a> <a href="http://www.jb51.net/codes/list123_1.html" target="_blank">数据库管理</a> <a href="http://www.jb51.net/codes/list124_1.html" target="_blank">常用组件</a> <a href="http://www.jb51.net/jiaoben/" target="_blank">脚本下载</a></div>
+        </li>
+        <li>
+          <div class="one"><a href="http://tools.jb51.net/" target="_blank">在线工具<i class="icon"></i></a></div>
+          <div class="two"> <a href="http://www.jb51.net/shouce/" target="_blank">在线手册</a> <a href="http://www.jb51.net/tools/cssyasuo.shtml" target="_blank">CSS格式化</a> <a href="http://tools.jb51.net/tools/js_geshihua.asp" target="_blank">JS格式化</a> <a href="http://www.jb51.net/tools/html-js.htm" target="_blank">Html转化为Js</a> <a href="http://tools.jb51.net/regex/javascript" target="_blank">js正则表达式</a>
+</div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/w3school/" target="_blank">网页教程基础</a></div>
+        </li>
+			<li>
+          <div class="one"><a href="http://s.jb51.net/" target="_blank">服务器常用软件</a></div>
+        </li>
+		<li>
+          <div class="one"><a href="http://m.jb51.net/" target="_blank">手机版</a></div>
+          <div class="two"><img src="./jQuery select操作控制方法小结_jquery_脚本之家_files/m.jb51.net.png" data-baiduimageplus-ignore=""></div>     
+        </li>
+        <li class="watch">
+          <div class="one"><a href="http://weibo.com/jb51net" target="_blank" rel="nofollow"><i class="icon"></i>关注微信</a></div>
+          <div class="two"><img src="./jQuery select操作控制方法小结_jquery_脚本之家_files/weixin_200.gif" data-baiduimageplus-ignore=""></div>
+        </li>
+      </ul>
+      <div class="navUser mt5 fr" id="jb51_topbar"> </div>
+    </div>
+    <!--topNav End -->
+  </div>
+</div>
+
+  <div class="main clearfix">
+    <div class="mtb10 clearfix">
+      <div class="logo"><a href="http://www.jb51.net/"><img src="./jQuery select操作控制方法小结_jquery_脚本之家_files/logo.gif" title="脚本之家" alt="脚本之家"></a></div>
+      <div class="logom fl"><span id="logo_m" class="jbTestPos"></span></div>
+      <div class="logor fr"><span id="logo_r" class="jbTestPos"></span></div>
+    </div>
+<!-- 导航-->
+<div class="nav_top clearfix">
+<ul>
+<li><a href="http://www.jb51.net/web/">网页制作</a></li>
+<li><a href="http://www.jb51.net/list/index_1.htm">网络编程</a></li>
+<li><a href="http://www.jb51.net/list/index_96.htm">脚本专栏</a></li>
+<li><a href="http://www.jb51.net/jiaoben/">脚本下载</a></li>
+<li><a href="http://www.jb51.net/list/index_104.htm">数据库</a></li>
+<li><a href="http://www.jb51.net/cms/">CMS教程</a></li>
+<li><a href="http://www.jb51.net/books/">电子书籍</a></li>
+<li><a href="http://www.jb51.net/pingmian/">平面设计</a></li>
+<li><a href="http://www.jb51.net/media/">媒体动画</a></li>
+<li><a href="http://www.jb51.net/os/">操作系统</a></li>
+<li><a href="http://www.jb51.net/yunying/">网站运营</a></li>
+<li><a href="http://www.jb51.net/hack/">网络安全</a></li>
+<li class="last"><a href="http://www.jb51.net/shouce/">在线手册</a></li>
+
+</ul>
+</div>
+
+<!--导航结束-->
+<div class="subnav clearfix">
+<ul><li><a href="http://www.jb51.net/list/list_170_1.htm" title="YUI.Ext相关">YUI.Ext相关</a></li>
+<li><a href="http://www.jb51.net/list/list_171_1.htm" title="prototype">prototype</a></li>
+<li><a href="http://www.jb51.net/list/list_172_1.htm" title="jquery">jquery</a></li>
+<li><a href="http://www.jb51.net/list/list_253_1.htm" title="AngularJS">AngularJS</a></li>
+<li><a href="http://www.jb51.net/list/list_187_1.htm" title="json">json</a></li>
+<li><a href="http://www.jb51.net/list/list_194_1.htm" title="lib_js">lib_js</a></li>
+<li><a href="http://www.jb51.net/list/list_198_1.htm" title="js面向对象">js面向对象</a></li>
+<li><a href="http://www.jb51.net/list/list_217_1.htm" title="extjs">extjs</a></li>
+<li><a href="http://www.jb51.net/list/list_225_1.htm" title="Mootools">Mootools</a></li>
+<li><a href="http://www.jb51.net/list/list_241_1.htm" title="Seajs">Seajs</a></li>
+<li><a href="http://www.jb51.net/list/list_181_1.htm" title="dojo">dojo</a></li>
+<li><a href="http://www.jb51.net/list/list_240_1.htm" title="其它">其它</a></li>
+</ul>
+</div>
+<div class="NavBar clearfix ptb10">
+<div class="fl w690">
+<div class="box mb15 mt10"><i class="icon"></i>您的位置：<a href="http://www.jb51.net/">首页</a> → <a href="http://www.jb51.net/list/index_1.htm" title="网络编程">网络编程</a> → <a href="http://www.jb51.net/list/list_3_1.htm" title="JavaScript">JavaScript</a> → <a href="http://www.jb51.net/list/list_23_1.htm" title="javascript类库">javascript类库</a> → <a href="http://www.jb51.net/list/list_172_1.htm" title="jquery">jquery</a> → 正文内容 jQuery select操作</div>
+</div>
+<div class="fr w300"><div class="search">
+<form action="http://so.jb51.net/cse/search" target="_blank">
+    <input type="hidden" name="s" value="10520733385329581432">
+    <input type="hidden" name="ie" value="gbk">
+    <input type="text" name="q" class="key_input" placeholder="请输入关键词">
+    <input type="submit" value="搜索" class="c_btn">
+</form></div></div>
+  </div>
+</div>
+<!--head End -->
+<div class="main mb10 clearfix">
+<div class="clearfix"><span id="tonglan1" class="jbTestPos"></span></div>
+</div>
+
+<!--content Star -->
+<div id="contents">
+ <div class="main clearfix">
+      <div class="w690 fl">
+      <div class="article-content border">
+      <div class="title">
+            <h1 class="YaHei">jQuery select操作控制方法小结</h1>
+            <p>作者：  字体：[<a href="javascript:turnbig()">增加</a> <a href="javascript:turnsmall()">减小</a>] 类型：转载 时间：2010-05-26<a href="http://www.jb51.net/article/23648.htm#comments"> 我要评论</a></p>
+        </div>
+        <div class="art_desc mt10"><div id="art_demo">很多朋友对jquery select的操作很有兴趣，但网上的东西太多，所以脚本之家特别将Jquery Select操作方法整理下，方便大家查找。</div></div>
+        <div class="lbd clearfix"><span id="art_up" class="jbTestPos"></span></div>
+        <div id="content">
+需要注意的是，这里的代码好多是针对jquery 1.32以前的版本（以后的版本已经不支持@）,所以替换为空测试下即可。<br><br><strong>jQuery获取Select选择的Text和Value: <br></strong>语法解释： <br>1. $("#select_id").change(function(){//code...}); //为Select添加事件，当选择其中一项时触发 <br>2. var checkText=$("#select_id").find("option:selected").text(); //获取Select选择的Text <br>3. var checkValue=$("#select_id").val(); //获取Select选择的Value <br>4. var checkIndex=$("#select_id ").get(0).selectedIndex; //获取Select选择的索引值 <br><br>5. var maxIndex=$("#select_id option:last").attr("index"); //获取Select最大的索引值 <br><br><strong>jQuery设置Select选择的Text和Value: <br></strong>语法解释： <br>1. $("#select_id ").get(0).selectedIndex=1; //设置Select索引值为1的项选中 <br>2. $("#select_id ").val(4); //设置Select的Value值为4的项选中 <br>3. $("#select_id option[text='jQuery']").attr("selected", true); //设置Select的Text值为jQuery的项选中 <br><br><br><strong>jQuery添加/删除Select的Option项：</strong> <br>语法解释： <br>1. $("#select_id").append("&lt;option value='Value'&gt;Text&lt;/option&gt;"); //为Select追加一个Option(下拉项) <br>2. $("#select_id").prepend("&lt;option value='0'&gt;请选择&lt;/option&gt;"); //为Select插入一个Option(第一个位置) <br>3. $("#select_id option:last").remove(); //删除Select中索引值最大Option(最后一个) <br>4. $("#select_id option[index='0']").remove(); //删除Select中索引值为0的Option(第一个) <br>5. $("#select_id option[value='3']").remove(); //删除Select中Value='3'的Option <br>5. $("#select_id option[text='4']").remove(); //删除Select中Text='4'的Option <br><br><br>//遍历option和添加、移除option <br>function changeShipMethod(shipping){ <br>var len = $("select[@name=ISHIPTYPE] option").length <br>if(shipping.value != "CA"){ <br>$("select[@name=ISHIPTYPE] option").each(function(){ <br>if($(this).val() == 111){ <br>$(this).remove(); <br>} <br>}); <br>}else{ <br>$("&lt;option value='111'&gt;UPS Ground&lt;/option&gt;").appendTo($("select[@name=ISHIPTYPE]")); <br>} <br>} <br><br><br>//取得下拉选单的选取值 <br><br>$(#testSelect option:selected').text(); <br>或$("#testSelect").find('option:selected').text(); <br>或$("#testSelect").val(); <br>////////////////////////////////////////////////////////////////// <br>记性不好的可以收藏下： <br>1,下拉框: <br><br>var cc1 = $(".formc select[@name='country'] option[@selected]").text(); //得到下拉菜单的选中项的文本(注意中间有空格) <br>var cc2 = $('.formc select[@name="country"]').val(); //得到下拉菜单的选中项的值 <br>var cc3 = $('.formc select[@name="country"]').attr("id"); //得到下拉菜单的选中项的ID属性值 <br>$("#select").empty();//清空下拉框//$("#select").html(''); <br>$("&lt;option value='1'&gt;1111&lt;/option&gt;").appendTo("#select")//添加下拉框的option <br><br>稍微解释一下: <br>1.select[@name='country'] option[@selected] 表示具有name 属性， <br>并且该属性值为'country' 的select元素 里面的具有selected 属性的option 元素； <br>可以看出有@开头的就表示后面跟的是属性。 <br><br>2,单选框: <br>$("input[@type=radio][@checked]").val(); //得到单选框的选中项的值(注意中间没有空格) <br>$("input[@type=radio][@value=2]").attr("checked",'checked'); //设置单选框value=2的为选中状态.(注意中间没有空格) <br><br>3,复选框: <br>$("input[@type=checkbox][@checked]").val(); //得到复选框的选中的第一项的值 <br>$("input[@type=checkbox][@checked]").each(function(){ //由于复选框一般选中的是多个,所以可以循环输出 <br>alert($(this).val()); <br>}); <br><br>$("#chk1").attr("checked",'');//不打勾 <br>$("#chk2").attr("checked",true);//打勾 <br>if($("#chk1").attr('checked')==undefined){} //判断是否已经打勾 <br><br><br>当然jquery的选择器是强大的. 还有很多方法. <br><br>&lt;script src="jquery-1.2.1.js" type="text/javascript"&gt;&lt;/script&gt; <br>&lt;script language="javascript" type="text/javascript"&gt; <br>$(document).ready(function(){ <br>$("#selectTest").change(function() <br>{ <br>//alert("Hello"); <br>//alert($("#selectTest").attr("name")); <br>//$("a").attr("href","xx.html"); <br>//window.location.href="xx.html"; <br>//alert($("#selectTest").val()); <br>alert($("#selectTest option[@selected]").text()); <br>$("#selectTest").attr("value", "2"); <br><br>}); <br>}); <br>&lt;/script&gt; <br><br><br>&lt;a href="#"&gt;aaass&lt;/a&gt; <br><br>&lt;!--下拉框--&gt; <br>&lt;select id="selectTest" name="selectTest"&gt; <br>&lt;option value="1"&gt;11&lt;/option&gt; <br>&lt;option value="2"&gt;22&lt;/option&gt; <br>&lt;option value="3"&gt;33&lt;/option&gt; <br>&lt;option value="4"&gt;44&lt;/option&gt; <br>&lt;option value="5"&gt;55&lt;/option&gt; <br>&lt;option value="6"&gt;66&lt;/option&gt; <br>&lt;/select&gt; <br>jquery radio取值，checkbox取值，select取值，radio选中，checkbox选中，select选中，及其相关获取一组radio被选中项的值 <br>var item = $('input[@name=items][@checked]').val(); <br>获取select被选中项的文本 <br>var item = $("select[@name=items] option[@selected]").text(); <br>select下拉框的第二个元素为当前选中值 <br>$('#select_id')[0].selectedIndex = 1; <br>radio单选组的第二个元素为当前选中值 <br>$('input[@name=items]').get(1).checked = true; <br>获取值： <br>文本框，文本区域：$("#txt").attr("value")； <br>多选框checkbox：$("#checkbox_id").attr("value")； <br>单选组radio： $("input[@type=radio][@checked]").val(); <br>下拉框select： $('#sel').val(); <br>控制表单元素： <br>文本框，文本区域：$("#txt").attr("value",'');//清空内容 <br>$("#txt").attr("value",'11');//填充内容 <br>多选框checkbox： $("#chk1").attr("checked",'');//不打勾 <br>$("#chk2").attr("checked",true);//打勾 <br>if($("#chk1").attr('checked')==undefined) //判断是否已经打勾 <br>单选组radio： $("input[@type=radio]").attr("checked",'2');//设置value=2的项目为当前选中项 <br>下拉框select： $("#sel").attr("value",'-sel3');//设置value=-sel3的项目为当前选中项 <br>$("&lt;optionvalue='1'&gt;1111&lt;/option&gt;&lt;optionvalue='2'&gt; 2222&lt;/option&gt;").appendTo("#sel")//添加下拉框的option <br>$("#sel").empty()；//清空下拉框 <br><br>获取一组radio被选中项的值 <br>var item = $('input[@name=items][@checked]').val(); <br>获取select被选中项的文本 <br>var item = $("select[@name=items] option[@selected]").text(); <br>select下拉框的第二个元素为当前选中值 <br>$('#select_id')[0].selectedIndex = 1; <br>radio单选组的第二个元素为当前选中值 <br>$('input[@name=items]').get(1).checked = true; <br>获取值： <br>文本框，文本区域：$("#txt").attr("value")； <br>多选框checkbox：$("#checkbox_id").attr("value")； <br>单选组radio： $("input[@type=radio][@checked]").val(); <br>下拉框select： $('#sel').val(); <br>控制表单元素： <br>文本框，文本区域：$("#txt").attr("value",'');//清空内容 <br>$("#txt").attr("value",'11');//填充内容 <br>多选框checkbox： $("#chk1").attr("checked",'');//不打勾 <br>$("#chk2").attr("checked",true);//打勾 <br>if($("#chk1").attr('checked')==undefined) //判断是否已经打勾 <br>单选组radio： $("input[@type=radio]").attr("checked",'2');//设置value=2的项目为当前选中项 <br>下拉框select： $("#sel").attr("value",'-sel3');//设置value=-sel3的项目为当前选中项 <br>$("&lt;option value='1'&gt;1111&lt;/option&gt;&lt;option value='2'&gt;2222&lt;/option&gt;").appendTo("#sel")//添加下拉框的option <br>$("#sel").empty()；//清空下拉框 <br><br>更多可以参考如下文章:<br><a href="http://www.jb51.net/article/23520.htm" target="_blank">Jquery Select操作方法集合脚本之家特别版</a>
+
+</div><!--endmain-->
+<div class="art_xg">
+<h4>您可能感兴趣的文章:</h4><ul><li><a href="http://www.jb51.net/article/19560.htm" title="jquery select(列表)的操作（取值/赋值）" target="_blank">jquery select(列表)的操作（取值/赋值）</a></li><li><a href="http://www.jb51.net/article/20898.htm" title="Jquery 获取表单text,areatext,radio,checkbox,select值的代码" target="_blank">Jquery 获取表单text,areatext,radio,checkbox,select值的代码</a></li><li><a href="http://www.jb51.net/article/23338.htm" title="jQuery Selector选择器小结" target="_blank">jQuery Selector选择器小结</a></li><li><a href="http://www.jb51.net/article/24181.htm" title="jquery multiSelect 多选下拉框" target="_blank">jquery multiSelect 多选下拉框</a></li><li><a href="http://www.jb51.net/article/24679.htm" title="jQuery选中select控件 无法设置selected的解决方法" target="_blank">jQuery选中select控件 无法设置selected的解决方法</a></li><li><a href="http://www.jb51.net/article/25929.htm" title="JQuery 绑定select标签的onchange事件，弹出选择的值，并实现跳转、传参" target="_blank">JQuery 绑定select标签的onchange事件，弹出选择的值，并实现跳转、传参</a></li><li><a href="http://www.jb51.net/article/27442.htm" title="jquery操作select option 的代码小结" target="_blank">jquery操作select option 的代码小结</a></li><li><a href="http://www.jb51.net/article/27516.htm" title="jquery中获取select选中值的代码" target="_blank">jquery中获取select选中值的代码</a></li><li><a href="http://www.jb51.net/article/28201.htm" title="JQuery扩展插件Validate—6 radio、checkbox、select的验证" target="_blank">JQuery扩展插件Validate—6 radio、checkbox、select的验证</a></li><li><a href="http://www.jb51.net/article/33552.htm" title="jQuery获取Select选择的Text和Value(详细汇总)" target="_blank">jQuery获取Select选择的Text和Value(详细汇总)</a></li><li><a href="http://www.jb51.net/article/37323.htm" title="Jquery多选下拉列表插件jquery multiselect功能介绍及使用" target="_blank">Jquery多选下拉列表插件jquery multiselect功能介绍及使用</a></li><li><a href="http://www.jb51.net/article/39483.htm" title="浅析jQuery对select操作小结(遍历option,操作option)" target="_blank">浅析jQuery对select操作小结(遍历option,操作option)</a></li><li><a href="http://www.jb51.net/article/40856.htm" title="JQuery中对Select的option项的添加、删除、取值" target="_blank">JQuery中对Select的option项的添加、删除、取值</a></li><li><a href="http://www.jb51.net/article/41075.htm" title="jQuery动态添加删除select项(实现代码)" target="_blank">jQuery动态添加删除select项(实现代码)</a></li><li><a href="http://www.jb51.net/article/42395.htm" title="jquery及原生js获取select下拉框选中的值示例" target="_blank">jquery及原生js获取select下拉框选中的值示例</a></li><li><a href="http://www.jb51.net/article/44320.htm" title="jquery动态加载select下拉框示例代码" target="_blank">jquery动态加载select下拉框示例代码</a></li><li><a href="http://www.jb51.net/article/46317.htm" title="基于JQuery实现的Select级联" target="_blank">基于JQuery实现的Select级联</a></li><li><a href="http://www.jb51.net/article/46486.htm" title="jquery操作select详解(取值,设置选中)" target="_blank">jquery操作select详解(取值,设置选中)</a></li><li><a href="http://www.jb51.net/article/50532.htm" title="jQuery操作select下拉框的text值和value值的方法" target="_blank">jQuery操作select下拉框的text值和value值的方法</a></li><li><a href="http://www.jb51.net/article/50578.htm" title="jquery控制select的text/value值为选中状态" target="_blank">jquery控制select的text/value值为选中状态</a></li><li><a href="http://www.jb51.net/article/50805.htm" title="jQuery select表单提交省市区城市三级联动核心代码" target="_blank">jQuery select表单提交省市区城市三级联动核心代码</a></li><li><a href="http://www.jb51.net/article/52010.htm" title="jQuery取得设置清空select选择的文本与值" target="_blank">jQuery取得设置清空select选择的文本与值</a></li><li><a href="http://www.jb51.net/article/59415.htm" title="jQuery中:selected选择器用法实例" target="_blank">jQuery中:selected选择器用法实例</a></li><li><a href="http://www.jb51.net/article/61004.htm" title="jquery实现动态操作select选中" target="_blank">jquery实现动态操作select选中</a></li><li><a href="http://www.jb51.net/article/75276.htm" title="jquery制作属于自己的select自定义样式" target="_blank">jquery制作属于自己的select自定义样式</a></li></ul>
+</div>
+<div class="lbd clearfix">
+<span id="art_down" class="jbTestPos"></span>
+</div>
+<div id="shoucang"></div>
+<div class="tags mt10">
+<strong>Tags：</strong><a href="http://img.jb51.net/tag/jQuery/1.htm" target="_blank" title="搜索关于jQuery的文章">jQuery</a> <a href="http://img.jb51.net/tag/select%B2%D9%D7%F7/1.htm" target="_blank" title="搜索关于select操作的文章">select操作</a> 
+</div>
+<div class="relatedarticle clearfix mt5">
+<h2>相关文章</h2>
+<ul><li><span>2011-08-08</span><a href="http://www.jb51.net/article/28055.htm" title="jQuery设计思想完整篇" target="_blank">jQuery设计思想完整篇</a></li><li><span>2016-04-04</span><a href="http://www.jb51.net/article/82865.htm" title="使用jQuery制作基础的Web图片轮播效果" target="_blank">使用jQuery制作基础的Web图片轮播效果</a></li><li><span>2011-12-12</span><a href="http://www.jb51.net/article/29139.htm" title="用jQuery模拟页面加载进度条的实现代码" target="_blank">用jQuery模拟页面加载进度条的实现代码</a></li><li><span>2011-08-08</span><a href="http://www.jb51.net/article/28082.htm" title="jQuery页面滚动浮动层智能定位实例代码" target="_blank">jQuery页面滚动浮动层智能定位实例代码</a></li><li><span>2011-01-01</span><a href="http://www.jb51.net/article/25950.htm" title="基于jquery的cookie的用法" target="_blank">基于jquery的cookie的用法</a></li><li><span>2011-03-03</span><a href="http://www.jb51.net/article/26433.htm" title="基于jQuery的简单的列表导航菜单" target="_blank">基于jQuery的简单的列表导航菜单</a></li><li><span>2016-06-06</span><a href="http://www.jb51.net/article/86730.htm" title="jQuery的层级查找方式分析" target="_blank">jQuery的层级查找方式分析</a></li><li><span>2013-04-04</span><a href="http://www.jb51.net/article/35848.htm" title="jQuery获取注册信息并提示实现代码" target="_blank">jQuery获取注册信息并提示实现代码</a></li><li><span>2016-03-03</span><a href="http://www.jb51.net/article/80259.htm" title="jQuery获取某天的农历日期并判断是否除夕或新年的方法" target="_blank">jQuery获取某天的农历日期并判断是否除夕或新年的方法</a></li><li><span>2015-01-01</span><a href="http://www.jb51.net/article/59834.htm" title="jQuery 中DOM 操作详解" target="_blank">jQuery 中DOM 操作详解</a></li></ul>
+</div>
+<div class="lbd clearfix mt5">
+<span id="art_down2" class="jbTestPos"></span>
+</div>
+<a href="http://www.jb51.net/article/23648.htm#comments"></a>
+<div id="comments">
+<h2>最新评论</h2>
+<div class="pd5"><div id="SOHUCS" sid="art_23648" style="width: 100%; height: auto;"><div id="SOHU_MAIN"><div id="SOHU-comment-main" class="sohu-comment-wrapper"><div id="article_info_sohu">        <div class="reset-g clear-g section-title-w  section-title-logoutStyle">
+            <div class="title-join-w">
+                <div class="join-wrap-w join-wrap-b"><strong class="wrap-name-w wrap-name-b">评论</strong><span class="wrap-join-w wrap-join-b">(<em class="join-strong-gw join-strong-bg">0</em><span node-type="involved">人参与</span><i class="gap-b">，</i><em class="join-strong-gw join-strong-bg">0</em><span node-type="comments">条评论</span>)</span></div>
+            </div>
+            <div class="title-user-w">
+                <div node-type="sohu-pact" class="title-link-w" style="display: none;"><a href="http://zt.pinglun.sohu.com/s2014/sljyhgy/index.shtml" target="_blank">搜狐“我来说两句”用户公约</a></div>
+            </div>
+        </div>
+        </div><div id="login_sohu"></div><div id="comment_sohu"><div node-type="cbox-wrapper" class="reset-g section-cbox-w"><div style="width:1px;height:1px;overflow:hidden;"><img src="./jQuery select操作控制方法小结_jquery_脚本之家_files/vcode.jpg" style="visibility:hidden;width:1px;height:1px;"></div><div class="clear-g cbox-block-w">
+            <div class="block-head-w">
+                <div class="head-img-w">
+                                        <a node-type="user-avatar" href="javascript:void(0)" target="_self"><img src="./jQuery select操作控制方法小结_jquery_脚本之家_files/pic42_null.gif" onerror="SOHUCS.isImgErr(this)" width="42" height="42" alt=""></a>
+                    </div>
+                <!--
+                -->
+            </div>
+        <div class="block-post-w block-post-default-e"><div class="post-wrap-w post-wrap-b"><div class="wrap-area-w"><div class="area-textarea-w" style="position:relative;zoom:1;z-index:9;"><textarea name="" class="textarea-fw textarea-bf">来说两句吧...</textarea></div></div><div class="clear-g wrap-action-w wrap-action-b"><div class="action-function-w action-function-b relative-z-w"><ul class="clear-g"><li class="function-face-w"><a href="javascript:void(0)" class="effect-w" title="表情"><i class="face-b"></i></a></li><li class="function-uploadimg-w"><a href="javascript:void(0)" class="effect-w" title="上传图片"><i class="uploadimg-b"></i></a><div class="uploadimg-file-w"><input class="file-fw" id="img_upload" name="file" type="file" accept="image/*"></div><div class="img-btn-cover" style="width:40px;height:40px;margin-top:-40px;z-index:-1;position: relative;"></div></li><!--<li class="function-at-w"><a href="javascript:void(0)" class="effect-w"><i class="at-b"></i></a></li>--></ul></div><div class="clear-g action-issue-w"><div class="issue-btn-w"><a href="javascript:void(0)"><button class="btn-fw btn-bf btn-fw-main">发布</button></a></div></div></div></div>
+                                    <div node-type="login-list" class="post-login-w">
+                <ul class="clear-g">
+                                                            <li style="display:block">
+                        <div class="login-wrap-w login-wrap-b">
+                            <a data-key="sina" target="_self" href="javascript:;" title="新浪微博" alt="新浪微博">
+                                <span class="wrap-icon-w icon30-sina-b"></span><span class="wrap-name-w wrap-name-b">微博登录</span>
+                            </a>
+                        </div>
+                    </li>
+                                        <li style="display:block">
+                        <div class="login-wrap-w login-wrap-b">
+                            <a data-key="qq" target="_self" href="javascript:;" title="QQ" alt="QQ">
+                                <span class="wrap-icon-w icon30-qq-b"></span><span class="wrap-name-w wrap-name-b">QQ登录</span>
+                            </a>
+                        </div>
+                    </li>
+                                        <li>
+                        <div class="login-wrap-w login-wrap-b login-wrap-phone-b">
+                            <a data-key="phone" target="_self" href="javascript:void(0)">
+                                <span class="wrap-icon-w icon30-phone-b"></span><span class="wrap-name-w wrap-name-b">手机登录</span>
+                            </a>
+                        </div>
+                    </li>
+                    </ul>
+            </div>
+            </div></div><div node-type="prompt-no-privilege" class="cbox-prompt-w" style="display: none;">
+            <span class="prompt-empty-w prompt-empty-b">等级不够，发表评论升至指定级别才能获得该特权。详情请参见<a node-type="privilege-intro" href="javascript:;">等级说明</a>。</span>
+        </div></div></div><div id="list_sort_sohu"></div><div id="list_sohu" topicid="557832858">
+        <div class="reset-g section-list-w">
+            <div class="list-comment-empty-w">
+                <div class="empty-prompt-w"><span class="prompt-null-w prompt-null-b">还没有评论，快来抢沙发吧！</span></div>
+            </div>
+        </div></div><div id="list_hot"></div><div id="page_sohu"></div><div id="more_list_sohu"></div><div id="powerby_sohu">        <div class="reset-g section-service-w">
+            <div class="service-wrap-w service-wrap-b"><a node-type="powered-by" href="http://changyan.sohu.com/?from=changyan" target="_blank">Powered by 畅言</a></div>
+        </div></div></div></div></div></div>
+</div>
+      </div><!--endborder-->
+      </div><!--end fl-->
+      
+<div class="w300 fr">
+<div class="r300 clearfix"><span id="side_up" class="jbTestPos"></span></div>
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">大家感兴趣的内容</h4>
+<ul class="newsList newList-in">
+<li><em class="no1">1</em><a href="http://www.jb51.net/article/27444.htm" title="jquery加载页面的方法(页面加载完成就执行)" target="_blank">jquery加载页面的方法(页面加载完</a></li><li><em class="no2">2</em><a href="http://www.jb51.net/article/19366.htm" title="jquery JSON的解析方式" target="_blank">jquery JSON的解析方式</a></li><li><em class="no3">3</em><a href="http://www.jb51.net/article/21628.htm" title="jquery $(document).ready() 与window.onload的区别" target="_blank">jquery $(document).ready() 与w</a></li><li><em class="no4">4</em><a href="http://www.jb51.net/article/25929.htm" title="JQuery 绑定select标签的onchange事件，弹出选择的值，并实现跳转、传参" target="_blank">JQuery 绑定select标签的onchang</a></li><li><em class="no5">5</em><a href="http://www.jb51.net/article/19342.htm" title="jquery 将disabled的元素置为enabled的三种方法" target="_blank">jquery 将disabled的元素置为ena</a></li><li><em class="no6">6</em><a href="http://www.jb51.net/article/24219.htm" title="jQuery.Autocomplete实现自动完成功能（详解）" target="_blank">jQuery.Autocomplete实现自动完成</a></li><li><em class="no7">7</em><a href="http://www.jb51.net/article/24581.htm" title="JQuery中each()的使用方法说明" target="_blank">JQuery中each()的使用方法说明</a></li><li><em class="no8">8</em><a href="http://www.jb51.net/article/33087.htm" title="12款经典的白富美型—jquery图片轮播插件—前端开发必备" target="_blank">12款经典的白富美型—jquery图片</a></li><li><em class="no9">9</em><a href="http://www.jb51.net/article/31780.htm" title="jquery 如何动态添加、删除class样式方法介绍" target="_blank">jquery 如何动态添加、删除class</a></li><li><em class="no10">10</em><a href="http://www.jb51.net/article/28930.htm" title="jQuery EasyUI API 中文文档 - DataGrid数据表格" target="_blank">jQuery EasyUI API 中文文档 - D</a></li>
+</ul>
+</div>
+</div>
+<div class="r300 clearfix mt10"><span id="idctu" class="jbTestPos"></span></div>
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">最近更新的内容</h4>
+<ul class="newsListA">
+<ul><li><a href="http://www.jb51.net/article/22635.htm" title="Jquery Ajax学习实例6 向WebService发出请求，返回DataSet(XML) 异步调用" target="_blank">Jquery Ajax学习实例6 向WebService发出请</a></li><li><a href="http://www.jb51.net/article/22942.htm" title="基于JQuery的cookie插件" target="_blank">基于JQuery的cookie插件</a></li><li><a href="http://www.jb51.net/article/44973.htm" title="jqGrid随窗口大小变化自适应大小的示例代码" target="_blank">jqGrid随窗口大小变化自适应大小的示例代</a></li><li><a href="http://www.jb51.net/article/63957.htm" title="使用jQuery实现更改默认alert框体" target="_blank">使用jQuery实现更改默认alert框体</a></li><li><a href="http://www.jb51.net/article/25284.htm" title="cnblogs中在闪存中屏蔽某人的实现代码" target="_blank">cnblogs中在闪存中屏蔽某人的实现代码</a></li><li><a href="http://www.jb51.net/article/18751.htm" title="JQuery 无废话系列教程(一) jquery入门 [推荐]" target="_blank">JQuery 无废话系列教程(一) jquery入门 [</a></li><li><a href="http://www.jb51.net/article/29121.htm" title="jquery focus(fn),blur(fn)方法实例代码" target="_blank">jquery focus(fn),blur(fn)方法实例代码</a></li><li><a href="http://www.jb51.net/article/41782.htm" title="从jquery的过滤器.filter()方法想到的" target="_blank">从jquery的过滤器.filter()方法想到的</a></li><li><a href="http://www.jb51.net/article/41320.htm" title="查找iframe里元素的方法可传参" target="_blank">查找iframe里元素的方法可传参</a></li><li><a href="http://www.jb51.net/article/61478.htm" title="分析了一下JQuery中的extend方法实现原理" target="_blank">分析了一下JQuery中的extend方法实现原理</a></li></ul>
+</ul>
+</div>
+</div>   
+<div class="r300 clearfix mt10"><span id="idctu1" class="jbTestPos"></span></div>
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">常用在线小工具</h4>
+<ul class="newsListA"><span id="bctools" class="jbTestPos"></span></ul>
+</div>
+</div>
+<div class="r300 clearfix mt10" id="idctu2"><span id="idctu2" class="jbTestPos"></span></div>
+<div class="mt10 rFixedBox">
+<span id="r_2" class="jbTestPos"></span>
+</div>
+      
+      
+      </div><!--end fr-->
+      </div>
+</div><!--end content-->
+<div id="footer">
+<div class="main clearfix">
+<p>
+<a href="http://www.jb51.net/about.htm" target="_blank">关于我们</a> - 
+<a href="http://www.jb51.net/support.htm" target="_blank">广告合作</a> - 
+<a href="http://www.jb51.net/linkus.htm" target="_blank">联系我们</a> -  
+<a href="http://www.jb51.net/sm.htm" target="_blank">免责声明</a> -  
+<a href="http://www.jb51.net/sitemap.htm" target="_blank">网站地图</a> - 
+<a href="tencent://message/?uin=461478385&Site=http://www.jb51.net" target="_blank">投诉建议</a> - 
+<a href="http://www.jb51.net/up.htm" target="_blank">在线投稿</a>
+</p>
+<p>&#169;CopyRight 2006-2016 JB51.Net Inc All Rights Reserved. 脚本之家 版权所有</p>
+</div>
+</div><!--end footer-->
+<link type="text/css" rel="stylesheet" href="./jQuery select操作控制方法小结_jquery_脚本之家_files/shCore.css">
+<link type="text/css" rel="Stylesheet" href="./jQuery select操作控制方法小结_jquery_脚本之家_files/shThemeDefault.css">
+<script type="text/javascript" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/shCore.js"></script>
+<script type="text/javascript" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/shAutoloader.js"></script>
+<script type="text/javascript"> 
+if (top.location != self.location)top.location=self.location;
+$('#content').find('img').each(function(){
+        var img = this;
+        if (img.width >= 650){
+            img.style.width = "650px";
+            img.style.height = "auto";
+            //$(img).removeAttr('height');
+            var aTag = document.createElement('a');
+            aTag.href = img.src;
+			aTag.target="_blank";
+            $(aTag).addClass('bPic')
+            .insertAfter(img).append(img)
+          }
+    });
+ $(window).scroll(function()
+    {	
+    	//rFixedBox跟随滚动
+    	var h = $(window).height();
+        var top = $(window).scrollTop();
+    	var rFixedBox = $('.rFixedBox').prev().offset();
+        var fixedTop = rFixedBox.top;
+		
+        if(top>=fixedTop+344)
+        {
+			var h1 = parseInt($('#content').children('.main').height());
+			if(parseInt(top) + 340 < h1){
+				$('.rFixedBox').css({'position':'fixed','top': 0});
+			}else{
+				$('.rFixedBox').css({'position':'absolute','top': h1-510});
+			}
+        }
+        else
+        {
+            $('.rFixedBox').css({'position':'static', 'top':0});   
+        }	
+       /* return true;*/
+    });
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'ps powershell			/jslib/syntaxhighlighter/scripts/shBrushPowerShell.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script type="text/javascript" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/jbLoader.js"></script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<div id="tongji">
+<script type="text/javascript" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/tongji.js"></script>
+<script>
+(function(){
+var appid = 'cyrHH3dwi',
+conf = 'prod_1dc5dc80970106099d43fe242b7465fc';
+var doc = document,
+s = doc.createElement('script'),
+h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+s.type = 'text/javascript';
+s.charset = 'utf-8';
+s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+h.insertBefore(s,h.firstChild);
+window.SCS_NO_IFRAME = true;
+})();
+</script>
+</div>
+<script type="text/javascript" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/pl.asp"></script>
+<script type="text/javascript" charset="utf-8" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/saved_resource"></script>
+
+
+<!-- published at 2016-6-17 1:26:05By dxycms qq:461478385  -->
+</div><div class="sogoutip" style="z-index: 2147483645; visibility: hidden;"></div><div class="sogoubottom" id="sougou_bottom" style="display: block;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.jb51.net/article/23648.htm#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.jb51.net/article/23648.htm#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.jb51.net/article/23648.htm#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./jQuery select操作控制方法小结_jquery_脚本之家_files/yun6.html" style="border: none; display: block; z-index: 2147483645; background: transparent;"></iframe><script src="./jQuery select操作控制方法小结_jquery_脚本之家_files/pv.gif"></script></body></html>

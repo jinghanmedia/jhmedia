@@ -1,0 +1,781 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0090)http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN" class="dj_webkit dj_chrome dj_contentbox"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>使用 SQL 查询外键关系的技巧</title>
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/">
+<link rel="SHORTCUT ICON" href="http://www.ibm.com/favicon.ico">
+<meta name="DC.Rights" content="© Copyright IBM Corporation 2013">
+<meta name="Keywords" content="SQL, Hierarchical Queries, Foreign Key, Constraints, Referential Integrity, RI, SYSCAT.REFERENCES, DB2_COMPATIBILITY_VECTOR, Petrus, Chan, 分级查询, 外键, 约束, 参照完整性, ddddmca">
+<meta name="DC.Date" scheme="iso8601" content="2013-06-20">
+<meta name="Source" content="v17 delivery:developerWorks">
+<meta name="Security" content="Public">
+<meta name="Abstract" content="本文将探讨如何编写 SQL 查询来查找 IBM DB2 for Linux, UNIX, and Windows 数据库中的外键关系。基于一个具有主键的表，您将学习如何返回子表和后代表，以及从附表到这些子表和后代表的参照完整性 (RI) 关系路径。此外，您还将了解可以如何修改该查询，以返回数据库中所有表的结果。">
+<meta name="Description" content="本文将探讨如何编写 SQL 查询来查找 IBM DB2 for Linux, UNIX, and Windows 数据库中的外键关系。基于一个具有主键的表，您将学习如何返回子表和后代表，以及从附表到这些子表和后代表的参照完整性 (RI) 关系路径。此外，您还将了解可以如何修改该查询，以返回数据库中所有表的结果。">
+<meta name="IBM.Effective" scheme="W3CDTF" content="2013-06-20">
+<meta name="Owner" content="developerWorks/China/IBM">
+<meta name="DC.Language" scheme="rfc1766" content="zh-CN">
+<meta name="IBM.SpecialPurpose" content="SP001">
+<meta name="IBM.Country" content="CN">
+<meta name="Robots" content="index,follow">
+<meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="CT316">
+<meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="SSEPGG,B7D000,SWB00">
+<meta name="IBM.BrandProduct" scheme="IBM_BrandProductTaxonomy" content="SSEPGG">
+<meta name="dW.ContentArea" content="18">
+<meta name="dW.Topic" content="270,505">
+
+<meta scheme="IBM_WTMCategory" name="IBM.WTMCategory" content="SOFDCIMTCN"> 
+
+<link rel="canonical" href="./使用 SQL 查询外键关系的技巧_files/使用 SQL 查询外键关系的技巧.html">
+<!-- HEADER_SCRIPTS_AND_CSS_INCLUDE -->
+<link href="./使用 SQL 查询外键关系的技巧_files/www.css" rel="stylesheet" title="www" type="text/css">
+<link href="./使用 SQL 查询外键关系的技巧_files/cnzh.css" rel="stylesheet" title="www" type="text/css">
+<!-- Masthead/footer -->
+<link href="./使用 SQL 查询外键关系的技巧_files/dw-mfN2015-01.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./使用 SQL 查询外键关系的技巧_files/dw-article-6.css" rel="stylesheet" title="www" type="text/css">
+<link href="./使用 SQL 查询外键关系的技巧_files/dw-common-features.css" rel="stylesheet" title="www" type="text/css">
+<link href="./使用 SQL 查询外键关系的技巧_files/dw-local-site-v17-N2014-05.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+        <link href="./使用 SQL 查询外键关系的技巧_files/dw-bluemix-regbar.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<!-- BEGIN: Use this section to set page specific variables for the Unica Page Tag -->
+<script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/eluminate.js" id="tealium_cormetrics1245"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/eluminate.js" id="tealium_cormetrics1239"></script><script src="./使用 SQL 查询外键关系的技巧_files/utag.js" type="text/javascript" async=""></script><script language="JavaScript">var NTPT_PGEXTRA="ibmSkillLevel=3&ibmCmaId=934948&ibmContentAreas=data";</script>
+<!--END -->
+<script type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/www.js">//</script><script type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/eluminate(1).js"></script>
+<script type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/dw-www-v2.js">//</script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/Dialog.xd.js"></script>   
+<script type="text/javascript">dojo.addOnLoad(function(){var dw_lang="zh_CN";var dw_source="dwchina";var dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-2];if(dw_content=="library"){dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-1];dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-3]+"-"+dw_content.substring(0,dw_content.indexOf(".html"))}var lnkID="article-rbar-bmix-home-regbar";dojo.attr(dojo.query(".dw-regbar-btn")[0],"id",lnkID);var lnkHref=dojo.attr(dojo.byId(lnkID),"href")+"?lang="+dw_lang+"&ca="+dw_source+"-_-bluemix-_-"+dw_content+"-_-regbar-article";dojo.attr(dojo.byId(lnkID),"href",lnkHref);var rbstate=dojo.cookie("dwspck");if(rbstate==undefined)rbstate=0;rbstate=Number(rbstate);if(rbstate>=2)rbstate=0;if(rbstate==1){dojo.destroy("dw-regbar");return}var dwRegbarShow=dojo.animateProperty({node:"dw-regbar",duration:1000,delay:1000,properties:{opacity:{start:0,end:1},top:0}});var ibmTopSlideDown=dojo.animateProperty({node:"ibm-top",duration:1000,delay:1000,properties:{marginTop:{start:0,end:42}}});dwRegbarShow.play();ibmTopSlideDown.play();dwHideRegbar=function(){var dwRegbarHide=dojo.animateProperty({node:"dw-regbar",duration:1000,delay:0,properties:{opacity:{start:1,end:0},top:-100}});var ibmTopSlideUp=dojo.animateProperty({node:"ibm-top",duration:1000,delay:0,properties:{marginTop:{start:42,end:0}}});dwRegbarHide.play();ibmTopSlideUp.play();setTimeout(function(){dojo.destroy("dw-regbar")},1000);dojo.cookie("dwspck","1",{expires:3650,path:"/",domain:".ibm.com"})};});</script><script type="text/javascript">
+//  ibmweb.config.set({ sbs: { enabled: false }});
+</script>
+<script type="text/javascript">dojo.addOnLoad(function(){var dw_lang="zh_CN";var dw_source="dwchina";var dw_register="注册免费的 Bluemix 试用版";var dw_connect="连接 Bluemix 开发者";var dw_vp="在 IBM Bluemix 云平台上开发并部署您的下一个应用。";var dw_cta="开始您的试用";var dw_tile_alt="在 IBM Bluemix 云平台上开发并部署您的下一个应用。现在就开始免费试用";var dw_campaign="bluemix";var dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-2];if(dw_content=="library"){dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-1];dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-3]+"-"+dw_content.substring(0,dw_content.indexOf(".html"))}var bluDevComURL="https://developer.ibm.com/bluemix/";var bluLink="https://www.bluemix.net/";var lnkID;var lnkIDd;var lnkIDt;var bLinkEnd;var bLinkTemp;var idTrkr=[];var idCnt;var artTop=dojo.query("div.ibm-col-1-1")[0];var artChildren=dojo.query(artTop).children();var edgy=false;if(dojo.hasClass(artChildren[0],"ibm-inset"))edgy=true;if((artChildren[0].nodeName=="H2")&&(dojo.hasClass(artChildren[1],"ibm-inset")))edgy=true;if(dojo.hasClass(artChildren[0],"codesection"))edgy=true;if((artChildren[0].nodeName=="H5")&&(dojo.hasClass(artChildren[1],"codesection")))edgy=true;if((artChildren[0].nodeName=="H5")&&(artChildren[1].width>=701))edgy=true;if(artChildren[1].width>=701)edgy=true;if(dojo.hasClass(artChildren[0],"ibm-data-table"))edgy=true;if((artChildren[0].nodeName=="H5")&&(dojo.hasClass(artChildren[1],"ibm-data-table")))edgy=true;if(!(edgy)){var sBarAB='<div class="dw-article-sidebar dw-bluemix" id="dwc-exp-a">'+'<img src="//dw1.s81c.com/developerworks/i/bluemix-graphic.png" height="64" width="64" alt=""/>'+'<p>'+dw_vp+'</p>'+'<p class="ibm-button-link-alternate dw-button-green">'+'<a id="tutc-sbar-bmix-home-btn-ABa" href="'+bluLink+'" class="dw-button-large">'+dw_cta+'</a></p></div>';dojo.place(sBarAB,artTop,"first")}var omitList=["#","/catalog","/doc","/solutions"];dojo.forEach(dojo.query("#ibm-content-main a"),function(item,index){var bLink=dojo.attr(item,"href");if(bLink&&bLink.indexOf("/marketplace/cloud/developerworks/")>-1)bLink=bLink.replace("/developerworks/","/developer-program/");if(bLink&&(bLink.indexOf("//bluemix.net")>-1))bLink=bLink.replace("//bluemix.net","//www.bluemix.net");if(bLink&&(bLink.indexOf("//ace.ng.bluemix.net")>-1))bLink=bLink.replace("//ace.ng.bluemix.net","//www.bluemix.net");if(bLink&&(bLink.indexOf("//console.ng.bluemix.net")>-1))bLink=bLink.replace("//console.ng.bluemix.net","//www.bluemix.net");if(bLink&&((bLink.indexOf("/marketplace/cloud/developer-program")>-1)||(bLink.indexOf("developer.ibm.com/sso/bmregistration")>-1)||(bLink.indexOf("//www.bluemix.net")>-1)||(bLink.indexOf("//hub.jazz.net")>-1)||(bLink.indexOf("//developer.ibm.com/open")>-1))){var omitIt=false;for(var i=omitList.length-1;i>=0;--i){if(bLink.indexOf(omitList[i])!=-1){omitIt=true;break}}if(!(omitIt)){var linkClass=dojo.attr(item,"class");var dw_medium="article";if((dojo.attr(item,"id")!=null)&&(dojo.attr(item,"id").indexOf("-sbar-")>-1))dw_medium="sidebar";if((dojo.attr(item,"id")!=null)&&(dojo.attr(item,"id").indexOf("-vpromo-")>-1))dw_medium="video-promotion";if(dojo.query(item).parents(".dw-article-ps-sidebar").length!=0)dw_medium="sidebar";if(dojo.query(item).children("img").length!=0)dw_medium="ad";if(dojo.query(item).parents("ul.ibm-portrait-module-list").length!=0)dw_medium="tile";bLinkEnd="";bLink=bLink.split("?");if((bLink[1])&&(bLink[1].indexOf("repository=")!=-1)){var deployBtn=true;bLink[0]=bLink[0]+"?"+bLink[1];bLink[1]=null}if((bLink[1])&&(bLink[1].indexOf("/")!=-1))bLinkEnd=bLink[1].substring(bLink[1].indexOf("/"));bLink=bLink[0];if(bLink.indexOf("//developer.ibm.com/open")==-1){if(bLink.indexOf("//hub.jazz.net")>-1){if(!(deployBtn)&&((bLink.indexOf("//hub.jazz.net/git")>-1)||(bLink.indexOf("//hub.jazz.net/project")>-1))){bLink=bLink+"?utm_source="+dw_source+"&utm_medium="+dw_medium+"&utm_content="+dw_content+"&utm_campaign="+dw_campaign}else{if(deployBtn){bLink=bLink+"&cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}else{bLink=bLink+"?utm_source="+dw_source+"&utm_campaign="+dw_campaign+"&utm_content="+dw_content+"&utm_medium="+dw_medium}}}else{if(bLink.indexOf("/#/")==-1){if(bLink.substring(bLink.length-7)=="/docs/#"){bLink=bLink.replace("/docs/#","/docs/"+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium)}else if(bLink.substring(bLink.length-5)=="/docs"){bLink=bLink.replace("/docs","/docs/"+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium)}else if(bLink.indexOf("/marketplace/cloud/developer-program")!=-1){bLink=bLink+"?cm_sp="+dw_source+"-premium"+"-_-"+dw_content+"-_-"+dw_medium;}else{bLink=bLink+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}}else{bLink=bLink.substring(0,bLink.indexOf("#"))+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium+bLink.substring(bLink.indexOf("#")-1)}}if(bLinkEnd)bLink=bLink+bLinkEnd;if(linkClass.indexOf("bluemix-home")==-1){if((bLink.indexOf("#")==-1)&&(bLink.indexOf("/solutions")==-1)&&(bLink.indexOf("/catalog")==-1)&&((bLink.indexOf("developer.ibm.com/sso/bmregistration")!=-1)||(bLink.indexOf("//www.bluemix.net/")!=-1))){if(bLink.indexOf("//www.bluemix.net/")!=-1)bLink=bLink.replace("//www.bluemix.net/","//developer.ibm.com/sso/bmregistration");if(bLink.indexOf("http://")==0)bLink=bLink.replace("http://","https://");if(bLink.indexOf("//")==0)bLink=bLink.replace("//","https://");if(bLink.indexOf("?cm_mmc=")!=-1)bLink=bLink.replace("?cm_mmc=","?lang="+dw_lang+"&ca=")}if((bLink.indexOf("#")==-1)&&(bLink.indexOf("/solutions")==-1)&&(bLink.indexOf("//www.bluemix.net?")!=-1)){bLink=bLink.replace("//www.bluemix.net","//developer.ibm.com/sso/bmregistration");if(bLink.indexOf("http://")==0)bLink=bLink.replace("http://","https://");if(bLink.indexOf("//")==0)bLink=bLink.replace("//","https://");if(bLink.indexOf("?cm_mmc=")!=-1)bLink=bLink.replace("?cm_mmc=","?lang="+dw_lang+"&ca=")}}if((bLink.indexOf("#")!=-1)&&(bLink.indexOf("solutions")!=-1)){bLinkTemp=bLink.substring(0,bLink.indexOf("?"));bLink=bLink.substring(bLink.indexOf("/#/")+3,bLink.length);bLink=bLinkTemp+bLink;bLinkTemp=bLink.substring(0,bLink.indexOf("solution="));bLink=bLink.substring(bLink.indexOf("/solution=")+10,bLink.length);bLink=bLinkTemp+bLink;bLink=bLink+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}if((bLink.indexOf("#")!=-1)&&(bLink.indexOf("store")!=-1)){if(bLink.indexOf("&cloudOEPaneId=store")!=-1){bLinkTemp=bLink.split("&cloudOEPaneId=store");bLink=bLinkTemp[0]}bLinkTemp=bLink.substring(bLink.indexOf("serviceOfferingGuid=")+20,bLink.length);bLink=bLink.substring(0,bLink.indexOf(".net/")+5)+"catalog/"+bLinkTemp+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}}dojo.attr(item,"href",bLink);}}});});</script>  <!-- LEADSPACE_STYLES -->
+
+<script type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/cnzh-utf8.js" id="dojoIoScript2" charset="utf-8"></script><script type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/saved_resource" id="dojoIoScript3" charset="utf-8"></script><script type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/profiling.js" id="dojoIoScript4" charset="utf-8"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/move.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/TimedMoveable.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/_CssStateMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/_FormMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/_DialogMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/DialogUnderlay.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/ContentPane.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/common.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/TooltipDialog.xd.js"></script><script type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/blackwhite_lists.json" id="dojoIoScript5" charset="utf-8"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/Moveable.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/Mover.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/_ContentPaneResizeMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/html.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/loading.xd.js"></script><script type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/atrk.js" id="dojoIoScript6" charset="utf-8"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.3738221.js" id="utag_ibm.main_3738221"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/common.xd(1).js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/autoscroll.xd.js"></script><script type="text/javascript" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/_LayoutWidget.xd.js"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.1239.js" id="utag_ibm.main_1239"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.684.js" id="utag_ibm.main_684"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.694.js" id="utag_ibm.main_694"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.699.js" id="utag_ibm.main_699"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.752.js" id="utag_ibm.main_752"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.763.js" id="utag_ibm.main_763"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.797.js" id="utag_ibm.main_797"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.1150.js" id="utag_ibm.main_1150"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.1172.js" id="utag_ibm.main_1172"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.1197.js" id="utag_ibm.main_1197"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.1260.js" id="utag_ibm.main_1260"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.1278.js" id="utag_ibm.main_1278"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.1897.js" id="utag_ibm.main_1897"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.2041.js" id="utag_ibm.main_2041"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.2778.js" id="utag_ibm.main_2778"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.2903.js" id="utag_ibm.main_2903"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.2947.js" id="utag_ibm.main_2947"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.2956.js" id="utag_ibm.main_2956"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.3236.js" id="utag_ibm.main_3236"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.1175.js" id="utag_ibm.main_1175"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.3738211.js" id="utag_ibm.main_3738211"></script><script async="" src="./使用 SQL 查询外键关系的技巧_files/hotjar-42920.js"></script><script language="javascript" type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/50200000.js"></script><script language="javascript" type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/cookie-id.js"></script><script language="javascript" type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/rules_50200000.js"></script><script language="javascript" type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/dispatcher-v3.js"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.v.js" id="tiqapp"></script><script language="javascript" type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/50200000.js"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/utag.1245.js" id="utag_ibm.main_1245"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/i.js" id="tealium_setTTDid"></script><script language="javascript" type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/cookie-id.js"></script><script language="javascript" type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/50200000.js"></script><script language="javascript" type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/cookie-id.js"></script><script src="./使用 SQL 查询外键关系的技巧_files/yahoo-min.js" type="text/javascript"></script><script src="./使用 SQL 查询外键关系的技巧_files/cp-v3.js" type="text/javascript"></script><script src="./使用 SQL 查询外键关系的技巧_files/json-min.js" type="text/javascript"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/i.js" id="tealium_setTTDid"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/i.js" id="tealium_setTTDid"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/i.js" id="tealium_setTTDid"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/01556b8e6a1b00223b3047b482241e07f004007700bd0" id="tealium_visitor_service_1175main"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/01556b8e6a1b00223b3047b482241e07f004007700bd0(1)" id="tealium_visitor_service_1175main"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/01556b8e6a1b00223b3047b482241e07f004007700bd0(2)" id="tealium_visitor_service_1175main"></script><script type="text/javascript" async="" charset="utf-8" src="./使用 SQL 查询外键关系的技巧_files/01556b8e6a1b00223b3047b482241e07f004007700bd0(3)" id="tealium_visitor_service_1175main"></script></head>
+<body id="ibm-com" class="v17" aria-busy="false">
+<div id="dw-regbar" class="dw-home-band" aria-labelledby="dw-regbar-vp" role="complementary" style="opacity: 1; top: 0px;">
+    <div class="ibm-columns">
+        <div class="ibm-col-6-6">
+            <span id="dw-regbar-bluemix">IBM <strong>Bluemix</strong></span>
+            <span id="dw-regbar-vp">点击按钮，开始云上的开发！</span>
+            <p class="ibm-button-link-alternate dw-button-green">
+                <a class="dw-button-large dw-regbar-btn" href="https://developer.ibm.com/sso/bmregistration?lang=zh_CN&ca=dwchina-_-bluemix-_-dm-1301foreignkey-_-regbar-article" id="article-rbar-bmix-home-regbar">开始您的试用</a>
+            </p>
+        </div>
+    </div>
+    <span>
+        <a onclick="dwHideRegbar();" role="button">
+            <span id="dw-close-regbar" aria-label="Close the registration bar" title="Close the registration bar" role="button">
+        </span></a>
+    </span>
+</div>
+	<div id="ibm-top" class="ibm-landing-page ibm-no-scroll" style="margin-top: 42px;"><img src="./使用 SQL 查询外键关系的技巧_files/ibm_logo_print.png" width="43" height="15" id="ibm-print-masthead" alt="IBM Print">
+
+<!-- MASTHEAD_BEGIN -->		
+<div id="ibm-masthead" role="banner">
+
+    <!-- TOP ROW -->    
+	<div id="dw-masthead-top-row">
+		<ul id="ibm-mast-options-dw" role="toolbar" aria-label="Masthead navigation">
+			<li id="dw-mast-top-4" role="presentation">
+				<a href="http://www.ibm.com/developerworks/cn/" tabindex="0"><img src="./使用 SQL 查询外键关系的技巧_files/dwn-dw-badge.png" width="43" height="22" alt="dW" aria-label="dW"></a>
+			</li>
+			<li id="dw-mast-top-0" role="presentation">
+				<div id="dw-mast-signin">
+					<a id="dw-mf-signin-link" class="" href="http://www.ibm.com/developerworks/dwwi/jsp/ssologin.jsp?d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html&lang=zh_CN&a=dwmav" title="" tabindex="2">登录</a>
+					<span class="dw-mf-signin-spacer">|</span>
+					<a id="dw-mf-reg-link" class="" href="http://www.ibm.com/developerworks/dwwi/jsp/ssoregister.jsp?d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html&lang=zh_CN&a=dwmav" title="" tabindex="3">注册</a>
+				</div>
+				<div id="dw-mast-auth-link" class="dw-mf-hide">
+					<a class="authenticated ibm-active" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" role="button" tabindex="2"></a>
+					<ul id="dw-mast-auth-menu" class="dw-mf-hide">
+						<li class="dw-mast-auth-menu-title" aria-hidden="true">developerWorks 社区</li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a href="http://www.ibm.com/developerworks/community/profiles/html/myProfileView.do?lang=zh" tabindex="3">我的概要信息</a>
+						</li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a href="http://www.ibm.com/developerworks/community/groups/service/html/mycommunities?lang=zh" tabindex="4">我的社区</a>
+						</li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a href="http://www.ibm.com/developerworks/community/news/?lang=zh" tabindex="5">设置</a>
+						</li>
+						<li class="dw-mast-auth-menu-divider"><hr></li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a id="dw-mast-signout-link" href="http://www.ibm.com/developerworks/dwwi/jsp/ssologout.jsp?d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2F&a=dwmav" tabindex="6">退出</a>
+						</li>
+					</ul>				
+				</div>
+			</li>
+			<li id="dw-mast-top-1">
+				<div></div>
+			</li>
+			<li id="dw-mast-top-3" role="presentation">
+				<a href="http://www.ibm.com/cn/zh/" tabindex="1">IBM</a>
+			</li>
+		</ul>
+	</div>
+
+    <!-- BOTTOM ROW -->
+	<div id="ibm-universal-nav-dw" aria-label="Site map">
+		<ul id="ibm-unav-links-dw">
+			<li id="ibm-unav-home-dwlogo">
+				<a href="http://www.ibm.com/developerworks/cn/"><img src="./使用 SQL 查询外键关系的技巧_files/dwn-dw-wordmark.png" width="225" height="28" alt="developerWorks®"></a>
+			</li>
+		</ul>
+		<ul id="ibm-menu-links-dw" class="ibm-menu-links-dw-cn" role="toolbar" aria-label="Site map">
+			<li id="dw-mast-nav-0" role="presentation"><a href="http://www.ibm.com/developerworks/cn/topics/" tabindex="0">技术主题</a></li>
+			<li id="dw-mast-nav-1" role="presentation"><a href="http://www.ibm.com/developerworks/cn/downloads/" tabindex="0">软件下载</a></li>
+			<li id="dw-mast-nav-2" role="presentation"><a href="http://www.ibm.com/developerworks/community/?lang=zh" tabindex="0">社区</a></li>
+			<li id="dw-mast-nav-3" role="presentation"><a href="https://www.ibm.com/developerworks/community/groups/service/html/communityview?communityUuid=6d7f9e5d-5f89-4767-a006-a81b8d186370&lang=zh" tabindex="0">技术讲座</a></li>
+		</ul>
+		<form id="ibm-search-form" action="http://www.ibm.com/search/csass/search/" method="get" name="form1" aria-label="搜索 developerWorks" role="search">
+			<p>
+				<label for="q"><span class="ibm-access">搜索 developerWorks</span></label>
+				<input id="q" type="text" name="q" value="搜索 developerWorks" maxlength="100">
+				<input type="hidden" name="sn" value="dw">
+				<input type="hidden" name="lang" value="zh">
+				<input type="hidden" name="cc" value="CN">
+				<input type="hidden" name="en" value="utf">
+				<input type="hidden" name="hpp" value="20">
+				<input type="hidden" name="dws" value="cndw">
+				<input type="hidden" name="lo" value="zh">
+				<input id="ibm-search" class="ibm-btn-search" type="submit" value="提交">
+			</p>
+		</form>
+	</div>    
+	
+<div id="ibm-social-tools" role="navigation" aria-label="社交工具" style="display: block;"><ul role="toolbar" aria-label="Social tool list"><li><a class="ibm-share-print" title="打印本页面" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" rel="print" dojoattrid="0" role="button" tabindex="0">打印本页面</a></li><li><a class="ibm-share-email" title="用电子邮件发送本页面" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" rel="email" dojoattrid="1" role="button" tabindex="-1">用电子邮件发送本页面</a></li><li></li><li></li><li><a class="ibm-share-weibo" tabindex="-1" role="button" dojoattrid="2" rel="新浪微博" title="新浪微博" href="http://service.weibo.com/share/share.php?title=%E4%BD%BF%E7%94%A8%20SQL%20%E6%9F%A5%E8%AF%A2%E5%A4%96%E9%94%AE%E5%85%B3%E7%B3%BB%E7%9A%84%E6%8A%80%E5%B7%A7&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html&language=zh_cn" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://service.weibo.com/share/share.php?title=%{TITLE}&amp;url=%{URL}&amp;language=zh_cn&#39;});">新浪微博</a></li><li><a class="ibm-share-renren" tabindex="-1" role="button" dojoattrid="3" rel="人人网" title="人人网" href="http://share.renren.com/share/buttonshare?title=%E4%BD%BF%E7%94%A8%20SQL%20%E6%9F%A5%E8%AF%A2%E5%A4%96%E9%94%AE%E5%85%B3%E7%B3%BB%E7%9A%84%E6%8A%80%E5%B7%A7&link=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://share.renren.com/share/buttonshare?title=%{TITLE}&amp;link=%{URL}&#39;});">人人网</a></li><li><a class="dwcn-tencent-link" tabindex="-1" role="button" dojoattrid="4" rel="腾讯微博" title="腾讯微博" href="http://v.t.qq.com/share/share.php?title=%E4%BD%BF%E7%94%A8%20SQL%20%E6%9F%A5%E8%AF%A2%E5%A4%96%E9%94%AE%E5%85%B3%E7%B3%BB%E7%9A%84%E6%8A%80%E5%B7%A7&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://v.t.qq.com/share/share.php?title=%{TITLE}&amp;url=%{URL}&#39;});">腾讯微博</a></li><li><a class="dwcn-sohu-link" tabindex="-1" role="button" dojoattrid="5" rel="搜狐微博" title="搜狐微博" href="http://t.sohu.com/third/post.jsp?title=%E4%BD%BF%E7%94%A8%20SQL%20%E6%9F%A5%E8%AF%A2%E5%A4%96%E9%94%AE%E5%85%B3%E7%B3%BB%E7%9A%84%E6%8A%80%E5%B7%A7%20&link=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://t.sohu.com/third/post.jsp?title=%{TITLE}%20&amp;link=%{URL}&#39;});">搜狐微博</a></li><li><a class="dwcn-netease-link" tabindex="-1" role="button" dojoattrid="6" rel="网易微博" title="网易微博" href="http://t.163.com/article/user/checkLogin.do?info=%E4%BD%BF%E7%94%A8%20SQL%20%E6%9F%A5%E8%AF%A2%E5%A4%96%E9%94%AE%E5%85%B3%E7%B3%BB%E7%9A%84%E6%8A%80%E5%B7%A7%20http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://t.163.com/article/user/checkLogin.do?info=%{TITLE}%20%{URL}&#39;});">网易微博</a></li><li><a class="ibm-share-digg" title="Digg" href="http://digg.com/submit?phase=2&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html&title=%E4%BD%BF%E7%94%A8%20SQL%20%E6%9F%A5%E8%AF%A2%E5%A4%96%E9%94%AE%E5%85%B3%E7%B3%BB%E7%9A%84%E6%8A%80%E5%B7%A7" rel="digg" dojoattrid="7" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://digg.com/submit?phase=2&amp;url=%{URL}&amp;title=%{TITLE}&#39;});">Digg</a></li><li><a class="ibm-share-facebook" title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html&t=%E4%BD%BF%E7%94%A8%20SQL%20%E6%9F%A5%E8%AF%A2%E5%A4%96%E9%94%AE%E5%85%B3%E7%B3%BB%E7%9A%84%E6%8A%80%E5%B7%A7" rel="facebook" dojoattrid="8" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://www.facebook.com/sharer.php?u=%{URL}&amp;t=%{TITLE}&#39;});">Facebook</a></li><li><a class="ibm-share-twitter" title="Twitter" href="http://twitter.com/?status=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html%20-%20%E4%BD%BF%E7%94%A8%20SQL%20%E6%9F%A5%E8%AF%A2%E5%A4%96%E9%94%AE%E5%85%B3%E7%B3%BB%E7%9A%84%E6%8A%80%E5%B7%A7" rel="twitter" dojoattrid="9" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://twitter.com/?status=%{URL}%20-%20%{TITLE}&#39;});">Twitter</a></li><li><a class="ibm-share-delicious" title="Delicious" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html&title=%E4%BD%BF%E7%94%A8%20SQL%20%E6%9F%A5%E8%AF%A2%E5%A4%96%E9%94%AE%E5%85%B3%E7%B3%BB%E7%9A%84%E6%8A%80%E5%B7%A7" rel="delicious" dojoattrid="10" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://delicious.com/post?url=%{URL}&amp;title=%{TITLE}&#39;});">Delicious</a></li><li><a class="ibm-share-linkedin" title="Linked In" href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html&title=%E4%BD%BF%E7%94%A8%20SQL%20%E6%9F%A5%E8%AF%A2%E5%A4%96%E9%94%AE%E5%85%B3%E7%B3%BB%E7%9A%84%E6%8A%80%E5%B7%A7" rel="linkedin" dojoattrid="11" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://www.linkedin.com/shareArticle?mini=true&amp;url=%{URL}&amp;title=%{TITLE}&#39;});">Linked In</a></li></ul></div></div>
+<div id="fdiv" class="ibm-access"></div><!-- MASTHEAD_END -->
+	    
+<!-- LAYOUT -->
+<!-- LEADSPACE_BEGIN --> 
+<div id="ibm-access-cntr" role="main"><div id="ibm-leadspace-head">
+	<!-- LEADSPACE_BODY_BEGIN --> 
+	<div id="ibm-leadspace-body">
+		<!-- Navigation_Trail_BEGIN -->
+      <ul id="ibm-navigation-trail" role="directory" aria-label="Bread Crumbs"><li><a href="http://www.ibm.com/developerworks/cn/">developerWorks 中国</a></li><li><a href="http://www.ibm.com/developerworks/cn/topics/">技术主题</a></li><li><a href="http://www.ibm.com/developerworks/cn/data/">Information Management</a></li><li><a href="http://www.ibm.com/developerworks/cn/views/data/libraryview.jsp">文档库</a></li></ul>
+		<!-- END_Navigation_Trail -->
+			<!-- Title_Subtitle -->
+			<h1>使用 SQL 查询外键关系的技巧</h1>
+	</div>
+	<!-- LEADSPACE_BODY_END --> 
+	<!-- SUMMARY_BEGIN -->
+	<div id="dw-summary-area" class="dw-summary-columns">
+		<div class="ibm-col-6-4">
+		<p>本文探讨如何编写 SQL 查询来查找 IBM® DB2® for Linux®, UNIX®, and Windows® 数据库中的外键关系。基于一个具有主键的表，您将学习如何返回子表和后代表，以及从附表到这些子表和后代表的参照完整性 (RI) 关系路径。此外，您还将了解可以如何修改该查询，以返回数据库中所有表的结果。</p>
+		<p class="ibm-no-print ibm-ind-link">
+
+			
+			<span id="nCmts"><span>0</span><img class="dw-cmts-arrow" alt="" src="./使用 SQL 查询外键关系的技巧_files/dw-cmts-arrow.png" height="7" width="7"> <a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#icomments" class="dw-cmt-link">评论</a></span>
+		</p>
+		</div>
+		<div class="ibm-col-6-2 dw-toc-margin">
+			<p class="dw-summary-author"><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#authorN1001A" class="ibm-popup-link" onclick="ibmweb.overlay.show(&#39;authorN1001A&#39;,this);return false;" role="button">Petrus Chan</a>, 顾问软件开发人员,  IBM</p>
+<div id="authorN1001A" class="ibm-common-overlay"><div class="ibm-head"><p><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#close" class="ibm-common-overlay-close">关闭 [x]</a></p></div><div class="ibm-body"><div class="ibm-main"><div class="ibm-title"><!--this is where the h2 usually goes--></div><div class="ibm-container ibm-alternate"><div class="ibm-container-body">
+<p><!--.-->
+<img class="dw-summary-bio-image-x64" alt="作者 Petrus Chan 的照片" align="" name="Author photo" src="./使用 SQL 查询外键关系的技巧_files/p-pchan.jpg" valign="top" width="64">Petrus Chan 研究 IBM DB2 for Linux, UNIX, and Window 的 SQL Compiler 已有 15 年。Petrus 精通 DB2 活动数据功能，比如约束、触发器和物化的查询表，拥有 4 项数据系统和方法专利。</p><br><br></div></div></div></div><div class="ibm-footer"><!----></div></div>
+			<p class="dw-summary-date">2013 年 6 月 20 日</p>
+			
+
+
+			<div class="ibm-container" id="dw-toc"><div class="ibm-container-body"><ul class="ibm-twisty"><li id="dw-try-related"><div id="dw-try-related-bckgrd"></div><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#toggle" class="ibm-twisty-trigger ibm-twisty-trigger-closed"><img src="http://%20www.ibm.com/i/c.gif" alt="-" aria-hidden="true"></a><span class="ibm-twisty-head"> 试用相关软件</span><div class="ibm-twisty-body" style="display: none;"><ul class="ibm-link-list" id="related-downloads-place-holder"><li><a href="http://www.ibm.com/developerworks/cn/downloads/im/dsm/index.html?ca=dct-trial-" class="ibm-forward-em-link">试用: IBM Data Server Manager</a></li><li><a href="http://www.ibm.com/developerworks/cn/downloads/im/db2recovery/index.html?ca=dct-trial-" class="ibm-forward-em-link">试用: DB2 Recovery Expert for Linux, UNIX and Windows</a></li><li><a href="http://www.ibm.com/developerworks/cn/downloads/im/db2/index.html?ca=dct-trial-" class="ibm-forward-em-link">试用: IBM DB2 with BLU Acceleration for Linux, UNIX and Windows</a></li></ul></div></li><li aria-hidden="true"><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#toggle" class="ibm-twisty-trigger ibm-twisty-trigger-closed" aria-hidden="true"><img src="./使用 SQL 查询外键关系的技巧_files/c.gif" alt="expand"></a><span class="ibm-twisty-head" aria-hidden="true">内容</span><div class="ibm-twisty-body" aria-hidden="true" style="display: none;"><ul style="font-size:0.8em" class="ibm-link-list">
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#introduction">简介</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#sampleschema1">样例模式</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#displayRI">如何显示所有 RI 约束</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#sampleschema2">显示一个给定表的所有外键子表和后代表</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#Extractinfo1">显示数据库中所有没有 RI 循环的表的外键子表和后代表关系</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#Extractinfo2">显示可能具有 RI 循环的外键子表和后代表关系</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#Conclusion">结束语</a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#resources">参考资料 </a></li>
+<li><a class="ibm-anchor-down-em-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#icomments">评论</a></li></ul></div></li></ul></div></div>
+		</div>
+	</div>
+	<!-- SUMMARY_END -->
+</div><div id="ibm-pcon">
+
+<!-- BEGIN_IBM-CONTENT -->
+<div id="ibm-content">
+
+<!-- BEGIN_IBM-CONTENT-BODY -->
+<div id="ibm-content-body">
+
+<!-- BEGIN_IBM-CONTENT-MAIN -->
+<div id="ibm-content-main">
+
+<!-- 1_1_COLUMN_BEGIN -->
+<div class="ibm-columns">
+<div class="ibm-col-1-1">
+
+<table border="0" cellpadding="0" cellspacing="0" class="ibm-data-table" summary="试用版下载" width="50%"><thead xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><tr><th scope="col">免费下载：<a href="http://www.ibm.com/developerworks/cn/downloads/im/udbexp/">IBM® DB2® Express-C 10.1 免费版</a> 或者 <a href="http://www.ibm.com/developerworks/cn/downloads/im/udb/">DB2® 10.1 for Linux®, UNIX®, and Windows® 试用版</a></th></tr></thead><tbody xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><tr><td>下载更多的 <a href="http://www.ibm.com/developerworks/cn/downloads/">IBM 软件试用版</a>，并加入 <a href="https://www.ibm.com/developerworks/mydeveloperworks/groups/service/html/communityview?communityUuid=38997896-bb16-451a-aa97-189a27a3cd5a/?lang=zh">IBM 软件下载与技术交流群组</a>，参与在线交流。</td></tr></tbody></table><h2 id="introduction">简介</h2><p>当一个数据库中存在大量外键约束时，您可能发现难以可视化表之间的外键关系。本文将探讨如何编写 SQL 查询来查找 DB2 for Linux, UNIX, and Windows 中的外键关系。</p><p>文中将讨论以下变体。</p><ul class="ibm-bullet-list"><li>给定一个外键父表，返回 RI（参照完整性）子表和后代表，以及从附表到这些子表和后代表的 RI 关系路径。</li><li>修改所提供的查询，以返回数据库中所有表的结果。</li></ul><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="sampleschema1">样例模式</h2><p>清单 1 中所示的样例模式将用于本文中的示例。</p><h5 id="listing1">清单 1. 样例模式</h5><div class="codesection"><pre class="displaycode">set schema newton;
+                
+create table grandparent (i1 int not null primary key, i2 int, i3 int);
+create table parent (i1 int not null primary key, i2 int);
+create table parent2 (i1 int  not null primary key, i2 int);
+create table child  (i1 int not null primary key, i2 int, i3 int);
+create table grandchild  (i1 int not null primary key, i2 int, i3 int);
+                
+alter table parent add constraint fkp1 foreign key (i2) references grandparent;
+alter table parent2 add constraint fkp2 foreign key (i2) references grandparent;
+alter table child add constraint fk1 foreign key (i2) references parent;
+alter table child add constraint fk2 foreign key (i3) references parent2;
+alter table grandchild add constraint fk3 foreign key (i2) references child;
+alter table grandchild add constraint fk4 foreign key (i3) references parent2;
+                
+create table gp (i1 int not null, i2 int not null, i3 int, primary key (i1, i2));
+create table p1 (i1 int not null primary key, i2 int, i3 int);
+create table c11 (i1 int not null primary key, i2 int);
+create table c12 (i1 int not null primary key, i2 int);
+                
+alter table p1 add constraint fkp1 foreign key (i2, i3) references gp;
+alter table c11 add constraint fkc11 foreign key (i2) references p1;
+alter table c12 add constraint fkc12 foreign key (i2) references p1;
+alter table gp add constraint fkgp1 foreign key (i2) references c12;
+                
+create table self (i1 int not null primary key, i2 int);
+alter table self add constraint fk_self foreign key (i2) references self;</pre></div><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="displayRI">如何显示所有 RI 约束</h2><p>在最简单的形式中，您可以通过查询目录视图 SYSCAT.REFERENCES 来获取所有外键约束的清单。</p><div class="codesection"><pre class="displaycode">SELECT * FROM SYSCAT.REFERENCES</pre></div><p>您可以结合使用结果和 SYSCAT.KEYCOLUSE 来查找外键列。</p><p>要生成 RI 约束中使用的外键列的列表（用逗号分隔），可以在将 SYSCAT.REFERENCES 与 SYSCAT.KEYCOLUSE 联结（join）时使用 LISTAGG() 聚合函数，如清单 2 所示。</p><h5 id="listing2">清单 2. LISTAGG() 聚合函数</h5><div class="codesection"><pre class="displaycode">select  substr(R.reftabschema,1,12) as P_Schema, substr(R.reftabname,1,12) as PARENT,
+        substr(R.tabschema,1,12) as C_Schema, substr (R.tabname,1,12) as CHILD,
+        substr(R.constname,1,12) as CONSTNAME, 
+        substr(LISTAGG(C.colname,', ') WITHIN GROUP (ORDER BY C.colname),1,20) as FKCOLS 
+from syscat.references R, syscat.keycoluse C 
+where R.constname = C.constname and R.tabschema = C.tabschema and R.tabname = C.tabname
+group by R.reftabschema, R.reftabname, R.tabschema, R.tabname, R.constname;</pre></div><p>结果将类似于清单 3。</p><h5 id="listing3">清单 3. LISTAGG() 聚合函数的输出</h5><div class="codesection"><pre class="displaycode">P_SCHEMA     PARENT       C_SCHEMA     CHILD        CONSTNAME    FKCOLS              
+------------ ------------ ------------ ------------ ------------ ----------------
+NEWTON       PARENT       NEWTON       CHILD        FK1          I2                  
+NEWTON       PARENT2      NEWTON       CHILD        FK2          I3                  
+NEWTON       CHILD        NEWTON       GRANDCHILD   FK3          I2                  
+NEWTON       PARENT2      NEWTON       GRANDCHILD   FK4          I3                  
+NEWTON       P1           NEWTON       C11          FKC11        I2                  
+NEWTON       P1           NEWTON       C12          FKC12        I2                  
+NEWTON       C12          NEWTON       GP           FKGP1        I2                  
+NEWTON       GP           NEWTON       P1           FKP1         I2  , I3           
+NEWTON       GRANDPARENT  NEWTON       PARENT       FKP1         I2                  
+NEWTON       GRANDPARENT  NEWTON       PARENT2      FKP2         I2                  
+NEWTON       SELF         NEWTON       SELF         FK_SELF      I2</pre></div><p>但是，在一个复杂数据库中，父表和它的非直接后代之间的关系很难从前面描述的简单查询中看出。</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="sampleschema2">显示一个给定表的所有外键子表和后代表</h2><p>您可以编写一个递归查询来遍历 RI 关系。但是，如果使用 DB2 for Linux, UNIX, and Windows, Version 9.7 或更高版本，那么分层查询是递归地遍历 SYSCAT.REFERENCES 中的 RI 关系的更好的替代方法。参阅 <a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#resources">参考资料</a> 一节，了解有关的更多信息。</p><p>在 DB2 中使用分层查询需要以下 DB2_COMPATIBILITY_VECTOR 设置：</p><div class="codesection"><pre class="displaycode">db2set DB2_COMPATIBILITY_VECTOR=08
+db2stop
+db2start</pre></div><p>分层查询支持 START WITH 和 CONNECT BY 子句的规范。</p><p>例如，清单 4 中所示的查询（查询 1）返回所有 RI 后代和从根表 NEWTON.GRANDPARENT 到它们的惟一路径。</p><h5 id="listing4">清单 4. 查询 1</h5><div class="codesection"><pre class="displaycode">with 
+root_parents (root_parent_schema, root_parent_name) AS
+ (select * from table(values ('NEWTON', 'GRANDPARENT')))
+select 
+ substr(connect_by_root reftabname,1,11) as root,
+ substr (level, 1,5) as lvl,
+--  substr(reftabschema,1,6) as parent_schema,
+ substr(reftabname,1,11) as parent, 
+--  substr(tabschema,1,6) as child_schema,
+ substr(tabname,1,10) as child, 
+ substr(constname,1,5) as cnst, 
+ substr(sys_connect_by_path(reftabname, '-&gt;') || '-&gt;' || 
+ substr(tabname,1,20),1,42) as chain
+from syscat.references
+start with (reftabschema,reftabname) in (select root_parent_schema, 
+                                        root_parent_name from root_parents)
+connect by nocycle prior  tabname = reftabname 
+                      and tabschema = reftabschema;</pre></div><p><strong>注意</strong>：模式名称已从所有查询的输出中删除，以便得到更好的格式。</p><p>查询 1 将返回清单 5 中所示的结果。</p><h5 id="listing5">清单 5. 查询 1 的输出</h5><div class="codesection"><pre class="displaycode">ROOT        LVL   PARENT      CHILD      CNST  CHAIN                                     
+----------- ----- ----------- ---------- ----- ------------------------------------------
+GRANDPARENT 1     GRANDPARENT PARENT     FKP1  -&gt;GRANDPARENT-&gt;PARENT                     
+GRANDPARENT 2     PARENT      CHILD      FK1   -&gt;GRANDPARENT-&gt;PARENT-&gt;CHILD              
+GRANDPARENT 3     CHILD       GRANDCHILD FK3   -&gt;GRANDPARENT-&gt;PARENT-&gt;CHILD-&gt;GRANDCHILD  
+GRANDPARENT 1     GRANDPARENT PARENT2    FKP2  -&gt;GRANDPARENT-&gt;PARENT2                    
+GRANDPARENT 2     PARENT2     CHILD      FK2   -&gt;GRANDPARENT-&gt;PARENT2-&gt;CHILD             
+GRANDPARENT 3     CHILD       GRANDCHILD FK3   -&gt;GRANDPARENT-&gt;PARENT2-&gt;CHILD-&gt;GRANDCHILD 
+GRANDPARENT 2     PARENT2     GRANDCHILD FK4   -&gt;GRANDPARENT-&gt;PARENT2-&gt;GRANDCHILD</pre></div><p><strong>注意</strong>：查询将显示从给定根表到它的每个后代表的所有惟一路径。如果有一个钻石形的 RI 路径，那么两条路径都会显示在结果中。如上面的示例中所示，会显示以下两条路径。</p><ul class="ibm-bullet-list"><li>GRANDPARENT-&gt;PARENT-&gt;CHILD-&gt;GRANDCHILD</li><li>GRANDPARENT-&gt;PARENT2-&gt;CHILD-&gt;GRANDCHILD</li></ul><p>以下是使用分层查询相比传统的递归查询的一些优势。</p><ul class="ibm-bullet-list"><li>递归性由 START WITH 和 CONNECT BY 子句处理，无需编写递归查询。</li><li>伪列 LEVEL 自动返回从根父表到该表的级数。</li><li>标量函数 sys_connect_by_path() 构建一个字符串，表示分层结构中从根表到一个节点的一条路径。在前一个示例中，该函数用在 CHAIN 列中来构建来自根表的 RI 关系链。</li><li>如果存在任何 RI 循环（例如 GP → P1 → C12 → GP），NOCYCLE 子句允许您告诉递归函数在循环中忽略重复行。</li></ul><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="Extractinfo1">显示数据库中所有没有 RI 循环的表的外键子表和后代表关系</h2><p>如果数据库中没有 RI 循环，那么您可以修改通用表的表达式 root_parents，以包含至少有一个子表但没有父表的所有表，如清单 6 中的查询 2 所示。</p><h5 id="listing6">清单 6. 查询 2</h5><div class="codesection"><pre class="displaycode">with 
+root_parents (root_parent_schema, root_parent_name) AS
+ (select tabschema, tabname
+    from syscat.tables
+    where parents = 0 and children &gt; 0)
+select 
+  substr(connect_by_root reftabname,1,11) as root,
+  substr (level, 1,5) as lvl,
+--  substr(reftabschema,1,6) as parent_schema,
+  substr(reftabname,1,11) as parent, 
+--  substr(tabschema,1,6) as child_schema,
+  substr(tabname,1,10) as child, 
+  substr(constname,1,5) as cnst, 
+  substr(sys_connect_by_path(reftabname, '-&gt;') || '-&gt;' || 
+  substr(tabname,1,20),1,42) as chain
+from syscat.references
+start with (reftabschema,reftabname) in (select root_parent_schema, 
+                                        root_parent_name from root_parents)
+connect by prior  tabname = reftabname and tabschema = reftabschema;</pre></div><p>但是，查询 2 不会包含处于 RI 循环中的表，因为这些表拥有的父表和子表数都大于 0。</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="Extractinfo2">显示可能具有 RI 循环的外键子表和后代表关系</h2><h3 id="N100FF">RI 循环中包含根表的用户输入</h3><p>从业务逻辑角度讲，RI 循环中的一些表将更适合用作 RI 循环中的根父表。但是，数据库无法轻松地确定 RI 循环中的哪个表应该是根父表。</p><p>如果系统中没有太多 RI 循环，您可编写一个半自动查询为每个 RI 循环手动指定一个表作为根父表。</p><p>在清单 7 中所示的查询 3 中，通过在通用表的表达式 root_parents 的 UNION ALL 操作中添加一个 VALUES 子句，可以手动指定每个 RI 循环中的根表，查询将返回数据库中的所有 RI 子表和后代表。</p><h5 id="listing7">清单 7. 查询 3</h5><div class="codesection"><pre class="displaycode">with 
+root_parents (root_parent_schema, root_parent_name) AS
+ (select tabschema, tabname
+    from syscat.tables
+    where parents = 0 and children &gt; 0
+  UNION ALL
+  select * from table(values ('NEWTON', 'GP'), ('NEWTON', 'SELF')))
+select 
+  substr(connect_by_root reftabname,1,11) as root,
+  substr (level, 1,3) as lvl,
+--  substr(reftabschema,1,6) as parent_schema,
+  substr(reftabname,1,11) as parent, 
+--  substr(tabschema,1,6) as child_schema,
+  substr(tabname,1,10) as child, 
+  substr(constname,1,7) as cnstnam, 
+  substr(sys_connect_by_path(reftabname, '-&gt;') || '-&gt;' || 
+  substr(tabname,1,20),1,42) as chain
+from syscat.references
+start with (reftabschema,reftabname) in (select root_parent_schema, 
+                                        root_parent_name from root_parents)
+connect by NOCYCLE prior  tabname = reftabname and tabschema = reftabschema;</pre></div><p>结果将类似于清单 8。</p><h5 id="listing8">清单 8. 查询 3 的输出</h5><div class="codesection"><pre class="displaycode">ROOT        LVL PARENT      CHILD      CNSTNAM CHAIN                                     
+----------- --- ----------- ---------- ------- ------------------------------------------
+SELF        1   SELF        SELF       FK_SELF -&gt;SELF-&gt;SELF                              
+GRANDPARENT 1   GRANDPARENT PARENT     FKP1    -&gt;GRANDPARENT-&gt;PARENT                     
+GRANDPARENT 2   PARENT      CHILD      FK1     -&gt;GRANDPARENT-&gt;PARENT-&gt;CHILD              
+GRANDPARENT 3   CHILD       GRANDCHILD FK3     -&gt;GRANDPARENT-&gt;PARENT-&gt;CHILD-&gt;GRANDCHILD  
+GRANDPARENT 1   GRANDPARENT PARENT2    FKP2    -&gt;GRANDPARENT-&gt;PARENT2                    
+GRANDPARENT 2   PARENT2     CHILD      FK2     -&gt;GRANDPARENT-&gt;PARENT2-&gt;CHILD             
+GRANDPARENT 3   CHILD       GRANDCHILD FK3     -&gt;GRANDPARENT-&gt;PARENT2-&gt;CHILD-&gt;GRANDCHILD 
+GRANDPARENT 2   PARENT2     GRANDCHILD FK4     -&gt;GRANDPARENT-&gt;PARENT2-&gt;GRANDCHILD        
+GP          1   GP          P1         FKP1    -&gt;GP-&gt;P1                                  
+GP          2   P1          C11        FKC11   -&gt;GP-&gt;P1-&gt;C11                             
+GP          2   P1          C12        FKC12   -&gt;GP-&gt;P1-&gt;C12                             
+GP          3   C12         GP         FKGP1   -&gt;GP-&gt;P1-&gt;C12-&gt;GP</pre></div><h3 id="N10119">RI 循环中不包含根表的用户输入</h3><p>如果更喜欢全自动方式，不关心 RI 循环中哪个表被选为根表，那么只需在每个 RI 循环中包含一个代表，以下过程就会将每个 RI 循环中的一个代表性的表存储在一个名为 CYCLEROOTS 的临时表中。最后，该过程使用 CYCLEROOTS 中存储的表名称（如清单 8 所示）显示数据库中的所有 RI 链，如清单 9 所示。</p><h5 id="listing9">清单 9. 显示所有 RI 链的查询 3</h5><div class="codesection"><pre class="displaycode">-- If needed, create the user temporary tablespace for the temporary table.
+CREATE BUFFERPOOL BUFFERPOOL4K  PAGESIZE 4K;
+CREATE USER TEMPORARY TABLESPACE STMPTSP4 PAGESIZE 4K  BUFFERPOOL BUFFERPOOL4K;
+                
+-- create the temporary table to store one representative from each RI cycle as root
+create GLOBAL TEMPORARY TABLE SESSION.CYCLEROOTS (SCHEMANAME VARCHAR(128),  
+                                                  TABNAME VARCHAR(128));
+                
+--#SET TERMINATOR @
+-- procedure to display RI chains in the database
+CREATE PROCEDURE newton.FIND_RI_CHAINS ()
+DETERMINISTIC 
+NO EXTERNAL ACTION
+DYNAMIC RESULT SETS 1
+BEGIN
+    DECLARE CYCLESCHEMA VARCHAR(128);
+    DECLARE CYCLETABLE VARCHAR(128);
+    DECLARE ROWS_FETCHED BIGINT;
+    DECLARE C_CYCLETABLES CURSOR;
+                
+    -- This query will return the final result set after
+    -- temporary table SESSION.CYCLEROOTS has been populated.
+    DECLARE C_RESULTS CURSOR WITH RETURN TO CLIENT FOR
+    WITH 
+    ROOT_PARENTS (ROOT_PARENT_SCHEMA, ROOT_PARENT_NAME) AS
+        (SELECT TABSCHEMA, TABNAME
+            FROM SYSCAT.TABLES
+            WHERE PARENTS = 0 AND CHILDREN &gt; 0
+        UNION ALL
+        SELECT * FROM SESSION.CYCLEROOTS),
+    HIERARCHY (ROOT, LEVEL, REFTABSCHEMA, REFTABNAME, TABSCHEMA, TABNAME, 
+               CONSTNAME, CHAIN) AS
+        (SELECT
+            CONNECT_BY_ROOT REFTABNAME,
+            LEVEL, 
+            REFTABSCHEMA AS P_SCHEMA,
+            REFTABNAME AS PARENT, 
+            TABSCHEMA AS C_SCHEMA,
+            TABNAME AS CHILD, 
+            CONSTNAME AS CNSTNAM, 
+            SUBSTR(SYS_CONNECT_BY_PATH(REFTABNAME, '-&gt;') || '-&gt;' || 
+            SUBSTR(TABNAME,1,20),1,42) AS CHAIN
+        FROM SYSCAT.REFERENCES
+        START WITH (REFTABSCHEMA,REFTABNAME) IN (SELECT ROOT_PARENT_SCHEMA,
+                                                 ROOT_PARENT_NAME
+                                                 FROM ROOT_PARENTS)
+        CONNECT BY NOCYCLE PRIOR  TABNAME = REFTABNAME AND TABSCHEMA =
+         REFTABSCHEMA)
+    SELECT
+        SUBSTR(H.root,1,11) AS ROOT,
+        CAST (H.LEVEL AS CHAR(2)) as LVL,
+--       SUBSTR(H.REFTABSCHEMA,1,6) as P_SCHEMA,
+        SUBSTR(H.REFTABNAME,1,11) as PARENT, 
+--       SUBSTR(H.TABSCHEMA,1,6) as C_SCHEMA,
+        SUBSTR(H.TABNAME,1,10) as CHILD, 
+        SUBSTR(H.CONSTNAME,1,7) as CNSTNAM, 
+        SUBSTR(H.CHAIN,1,42) as CHAIN
+        FROM HIERARCHY H;
+
+        -- initialize temporary table
+        DELETE FROM SESSION.CYCLEROOTS;
+
+        -- this query will return the remaining tables that are in RI cycles
+        SET C_CYCLETABLES = CURSOR FOR
+            WITH 
+                ROOT_PARENTS (ROOT_PARENT_SCHEMA, ROOT_PARENT_NAME) AS
+                  (SELECT TABSCHEMA, TABNAME
+                    FROM SYSCAT.TABLES
+                    WHERE PARENTS = 0 AND CHILDREN &gt; 0
+                   UNION ALL
+                   SELECT * FROM SESSION.CYCLEROOTS),
+                HIERARCHY (ROOT, LEVEL, REFTABSCHEMA, REFTABNAME, TABSCHEMA, 
+                           TABNAME, CONSTNAME, CHAIN) AS
+                (SELECT CONNECT_BY_ROOT REFTABNAME AS ROOT, LEVEL, 
+                    REFTABSCHEMA AS PARENT_SCHEMA,
+                    REFTABNAME AS PARENT, 
+                    TABSCHEMA AS CHILD_SCHEMA,
+                    TABNAME AS CHILD, 
+                    CONSTNAME AS CONSTNAME, 
+                    SUBSTR(SYS_CONNECT_BY_PATH(REFTABNAME, '-&gt;') || '-&gt;' || 
+                    SUBSTR(TABNAME,1,20),1,50) AS CHAIN
+                FROM SYSCAT.REFERENCES
+                START WITH (REFTABSCHEMA,REFTABNAME) IN (SELECT ROOT_PARENT_SCHEMA,
+                                                ROOT_PARENT_NAME FROM ROOT_PARENTS)
+                CONNECT BY NOCYCLE PRIOR  TABNAME = REFTABNAME AND 
+                                          TABSCHEMA =  REFTABSCHEMA)
+            SELECT TABSCHEMA, TABNAME
+                FROM SYSCAT.TABLES
+                WHERE CHILDREN &gt; 0
+            EXCEPT
+                SELECT REFTABSCHEMA, REFTABNAME  FROM HIERARCHY H;
+
+        OPEN C_CYCLETABLES;
+
+        -- Just select the first table as a root table from the remaining tables that are 
+        -- in RI cycles
+        FETCH C_CYCLETABLES INTO CYCLESCHEMA, CYCLETABLE;
+
+        SET ROWS_FETCHED = CURSOR_ROWCOUNT(C_CYCLETABLES);
+
+        -- Keep looping until the result set from C_CYCLETABLES is empty.
+        WHILE (ROWS_FETCHED &gt; 0) DO
+
+            -- insert the select representative into temporary table SESSION.CYCLEROOTS 
+            INSERT INTO SESSION.CYCLEROOTS VALUES (CYCLESCHEMA, CYCLETABLE);
+
+            CLOSE C_CYCLETABLES;
+
+            -- restart the cursor.  The result set will be different from the 
+            -- the previous iterations of the loop.  All the tables that
+            -- are in the same RI cycle as the newly added representative
+            -- will not show up in the result set from the next iteration of the
+            -- loop.
+            OPEN C_CYCLETABLES;
+
+            FETCH FROM C_CYCLETABLES INTO CYCLESCHEMA, CYCLETABLE;
+
+            SET ROWS_FETCHED = CURSOR_ROWCOUNT(C_CYCLETABLES);
+
+        END WHILE;
+
+        CLOSE C_CYCLETABLES;
+
+        -- When the loop exits, one representative from each RI cycle will have
+        -- been added to the temporary table SESSION.CYCLEROOTS.  We will now 
+        -- open C_RESULTS using the populated temporary table SESSION.CYCLEROOTS.
+
+        OPEN C_RESULTS;
+
+END@
+--#SET TERMINATOR ;
+
+CALL newton.FIND_RI_CHAINS();
+
+DROP TABLE  SESSION.CYCLEROOTS;</pre></div><p>结果将类似于清单 10。</p><h5 id="listing10">清单 10. 显示所有 RI 链的查询 3 的输出</h5><div class="codesection"><pre class="displaycode">Result set 1
+--------------
+                
+ROOT       LVL PARENT      CHILD      CNSTNAM CHAIN                                     
+---------- --- ----------- ---------- ------- ------------------------------------------
+SELF        1  SELF        SELF       FK_SELF -&gt;SELF-&gt;SELF                              
+GRANDPARENT 1  GRANDPARENT PARENT     FKP1    -&gt;GRANDPARENT-&gt;PARENT                     
+GRANDPARENT 2  PARENT      CHILD      FK1     -&gt;GRANDPARENT-&gt;PARENT-&gt;CHILD              
+GRANDPARENT 3  CHILD       GRANDCHILD FK3     -&gt;GRANDPARENT-&gt;PARENT-&gt;CHILD-&gt;GRANDCHILD  
+GRANDPARENT 1  GRANDPARENT PARENT2    FKP2    -&gt;GRANDPARENT-&gt;PARENT2                    
+GRANDPARENT 2  PARENT2     CHILD      FK2     -&gt;GRANDPARENT-&gt;PARENT2-&gt;CHILD             
+GRANDPARENT 3  CHILD       GRANDCHILD FK3     -&gt;GRANDPARENT-&gt;PARENT2-&gt;CHILD-&gt;GRANDCHILD 
+GRANDPARENT 2  PARENT2     GRANDCHILD FK4     -&gt;GRANDPARENT-&gt;PARENT2-&gt;GRANDCHILD        
+C12         1  C12         GP         FKGP1   -&gt;C12-&gt;GP                                 
+C12         2  GP          P1         FKP1    -&gt;C12-&gt;GP-&gt;P1                             
+C12         3  P1          C11        FKC11   -&gt;C12-&gt;GP-&gt;P1-&gt;C11                        
+C12         3  P1          C12        FKC12   -&gt;C12-&gt;GP-&gt;P1-&gt;C12   
+                
+12 record(s) selected.
+                
+Return Status = 0</pre></div><p>请注意，表 C12 已被选择为包含 GP-&gt;P1-&gt;C12-&gt;GP 的 RI 循环中的代表。</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="Conclusion">结束语</h2><p>本文介绍了如何编写一个分层查询来查找数据库中的外键关系。具体而言，本文提供了一个查询示例来查找给定表的外键子表和后代表。还提供了示例查询和过程来查找数据库中的所有表的所有外键关系，无论 RI 循环中是否包含根表的用户输入。</p><!--CMA ID: 934948--><!--Site ID: 10--><!--XSLT stylesheet used to transform this file: dw-document-html-7.0.xsl-->
+
+
+</div>
+</div>
+<!-- 1_1_COLUMN_END -->
+
+<!-- SPLIT_COLUMNS_BEGIN -->
+<div class="ibm-columns">
+
+<!-- 6_4_COLUMN_BEGIN -->
+<div class="ibm-col-6-4">
+
+<h2 id="resources" class="ibm-rule">参考资料 </h2><h3 class="dw-resources-category-heading">学习</h3><ul class="ibm-bullet-list"><li>在 DB2 解决方案信息中心查找 <a href="http://pic.dhe.ibm.com/infocenter/db2luw/v9r7/index.jsp?topic=/com.ibm.db2.luw.apdv.porting.doc/doc/r0052877.html">分层查询</a> 的更多信息。</li><li>查阅 <a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html">Java SimpleDateFormat 参考指南</a>。</li><li>查阅 <a href="http://pic.dhe.ibm.com/infocenter/wxdinfo/v6r0/index.jsp?topic=%2Fcom.ibm.websphere.messages.doc%2Fcom.ibm.ws.runtime.runtime.html">Websphere Message 参考指南，了解详细的 messageIDs 消息</a>。</li><li>访问 <a href="http://www.ibm.com/developerworks/cn/data/">developerWorks Information Management 专区</a>，查找面向 DB2 开发人员和管理员的更多资源。</li><li>随时关注专注于各种 IBM 产品和 IT 行业主题的 <a href="http://www.ibm.com/developerworks/offers/techbriefings/events.html">developerWorks 技术活动和网络广播</a>。</li><li>参加 <a href="http://www.ibm.com/developerworks/offers/techbriefings/">免费的 developerWorks Live! 讲座</a>，迅速掌握 IBM 产品和工具，以及 IT 行业趋势。</li><li>在 <a href="http://www.twitter.com/developerworks/">Twitter 上关注 developerWorks</a>。</li><li>观看 <a href="http://www.ibm.com/developerworks/cn/offers/lp/demos/">developerWorks 演示</a>，那里提供了从面向初学者的产品安装和设置演示，以及面向经验丰富的开发人员的高级功能演示。</li></ul><h3 class="dw-resources-category-heading">获得产品和技术</h3><ul class="ibm-bullet-list"><li>免费下载：<a href="http://www.ibm.com/developerworks/cn/downloads/im/udbexp/">IBM® DB2® Express-C 10.1 免费版</a> 或者 <a href="http://www.ibm.com/developerworks/cn/downloads/im/udb/">DB2® 10.1 for Linux®, UNIX®, and Windows® 试用版</a>。</li><li>使用 <a href="http://www.ibm.com/developerworks/cn/downloads/">IBM 试用版软件</a> 构建您的下一个开发项目，这些软件可直接从 developerWorks 下载。</li><li>以最适合您的方式 <a href="http://www.ibm.com/developerworks/cn/downloads/">评估 IBM 产品</a>：下载产品试用版，在线试用产品，在云环境中使用产品，或者在 <a href="http://www.ibm.com/developerworks/cn/downloads/soasandbox/index.html"> SOA 沙盒</a> 中花几小时学习如何高效地实现面向服务的架构。</li></ul><h3 class="dw-resources-category-heading">讨论</h3><ul class="ibm-bullet-list"><li>加入 <a href="http://www.ibm.com/developerworks/cn/community/">developerWorks 社区</a>。探索由开发人员推动的博客、论坛、群组和维基，并与其他 developerWorks 用户进行交流。</li></ul>
+
+<!-- INLINE_COMMENTS_BEGIN -->
+<h2 id="icomments" class="ibm-alternate-rule ibm-no-print">条评论</h2>
+    
+<div class="ibm-no-print" id="dw-icomments-container">	
+	<div id="threadShow"><img id="imgPlHdr" src="./使用 SQL 查询外键关系的技巧_files/animated-progress-38x38c.gif" alt="" style="display: none;"><div id="cmtTog"><div class="ibm-container ibm-alternate-two dw-commentbox dw-noborder"><div class="ibm-container-body dw-commentbox dw-noborder"><p id="signInSect">请 <a onclick="var e=arguments[0] || window.event; dwsi.siInst &amp;&amp; dwsi.siInst.showSignIn(); if (e.stopPropagation){ e.stopPropagation();} else { e.cancelBubble = true; } e.preventDefault &amp;&amp; e.preventDefault(); return false;" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#">登录</a> 或 <a href="http://www.ibm.com/developerworks/dwwi/jsp/ssoregister.jsp?d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fdata%2Flibrary%2Ftecharticle%2Fdm-1301foreignkey%2Findex.html%23icomments&lang=cn&a=dwmav">注册</a>  后发表评论。</p><p id="cmtHead"><label for="newCmt"><strong>添加评论:</strong></label></p><p>注意：评论中不支持 HTML 语法</p><div id="infoCmt"></div><form focus="name" enctype="multipart/form-data" method="post" action="" name="form" class="ibm-column-form ibm-styled-form"><p class="6-4-textarea"><textarea rows="5" name="newCmt" id="newCmt" class="dw-inoperable" disabled=""></textarea><br></p><span class="ibm-input-group"><input type="checkbox" value="1" name="comment_notification" id="comment_notification" disabled="disabled"><label id="notifyText" class="ibm-form-note dw-btn-cancel-sec" for="comment_notification">有新评论时提醒我</label></span><span class="ibm-form-note dw-btn-cancel-sec notifySection" id="maxCharsCount">剩余 <span id="charCount">1000</span> 字符</span><p class="ibm-buttons-row"><input type="button" value="发布" name="postCmt" id="postCmt" class="ibm-btn-sec ibm-btn-small ibm-disabled" disabled="disabled"></p></form></div></div><div class="ibm-alternate-rule"><hr></div><div id="topControl" class="ibm-container ibm-alternate-two dw-comment-totals" style="display: none;"><div class="ibm-container-body"><form id="selectComments" method="get" action=""><p>&nbsp;<span class="dw-comment-totals-label"><strong>共有评论 (<span id="numCmts">0</span>)</strong></span><span class="dw-how-many-comments-label" style="display:none" id="dropdownCmts"><label for="howManyComments"><strong>显示：</strong></label>&nbsp;<select name="comments" id="howManyComments" class="dw-how-many-comments"><option selected="selected" value="recent">最新评论 </option></select><input type="image" class="ibm-btn-go" name="ibm-go" value="Go" src="./使用 SQL 查询外键关系的技巧_files/short-btn.gif" alt="Go"><br></span></p></form></div></div><div id="cmtSect"><div class="comment"><div class="dw-icomment-container"><table class="dw-icomment-body" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td><p>快来添加第一条评论</p></td></tr></tbody></table></div></div></div></div><div id="bottomControl" class="ibm-container ibm-alternate-two dw-comment-totals" style="display: none;"><div class="ibm-container-body"><form id="selectComments2" method="get" action=""><p>&nbsp;<span class="dw-comment-totals-label"><strong>共有评论 (<span id="numCmts2">0</span>)</strong></span><span class="dw-how-many-comments-label" style="display:none" id="dropdownCmts2"><label for="howManyComments2"><strong>显示：</strong></label>&nbsp;<select name="comments" id="howManyComments2" class="dw-how-many-comments"><option selected="selected" value="recent">最新评论 </option></select><input type="image" class="ibm-btn-go" name="ibm-go" value="Go" src="./使用 SQL 查询外键关系的技巧_files/short-btn.gif" alt="Go"><br></span></p></form></div></div></div>
+</div>
+<!-- Sign in OVERLAY STARTS HERE -->
+    
+<!-- Sign in OVERLAY STARTS HERE -->
+<div class="ibm-common-overlay" id="signin_overlay">
+<div class="ibm-head">
+<p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" onclick="dwsi.siInst.clearForm();">关闭 [x]</a></p>
+</div>
+<div class="ibm-body">
+<div class="ibm-main">
+
+ <div class="ibm-title">
+<h2>developerWorks: 登录</h2>
+<div id="ibm-overlay-error-signin" class="no-display"></div>
+</div>
+<div class="ibm-container ibm-alternate ibm-buttons-last">
+<div class="ibm-container-body">
+<p class="ibm-overlay-intro">标有星（<span class="ibm-required">*</span>）号的字段是必填字段。</p> 
+<form class="ibm-column-form" id="sFormId" action="" method="post" name="sForm" onsubmit="return false;">
+<p><label for="ibmid">IBM ID:<span class="ibm-required">*</span></label><span>
+    <input name="ibm-id" id="ibmid" size="25" value="" class="required" type="text" onkeypress="dwsi.siInst.handleEP(event,this.form);" aria-required="true">
+    <br><a onclick="window.location=&#39;/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=zh_CN&amp;d=&#39;+encodeURIComponent(location.protocol + &#39;//&#39; + location.hostname + location.pathname + &#39;#icomments&#39;); return false;" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" class="ibm-forward-link">需要一个 IBM ID？</a> <br>
+    <a class="ibm-forward-link" href="http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=zh_CN">忘记 IBM ID？</a> 
+</span>
+</p> 
+<p><label for="password">密码：<span class="ibm-required">*</span></label><span>
+    <input name="password" id="password" size="25" value="" class="required" type="password" onkeypress="dwsi.siInst.handleEP(event,this.form);">
+    <br><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" onclick="(function ()
+        {window.location=&#39;https://www.ibm.com/account/profile?page=forgot&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(dwsi.siInst.getAuthUrl())+&#39;%3Fm%3Dloginpage%26lang%3Dzh_CN%26d%3D&#39;+encodeURIComponent(location.href);})();">忘记密码？</a>
+    <br><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=chpw&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(location.href);})();">更改您的密码</a></span></p> 
+<p class="dw-perm-box">
+	<span><input id="perm" type="checkbox" name="perm_name"><label for="perm"> 保持登录。</label></span>
+</p>
+<p>单击提交则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/community/terms?lang=zh">查看条款和条件</a>。</p>
+<div class="ibm-buttons-row">
+   <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="提交" onclick="dwsi.siInst.signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+<input value="取消" type="button" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="dwsi.siInst.clearForm();ibmweb.overlay.hide(&#39;signin_overlay&#39;);return false;"></p>
+</div>
+</form>
+ <div class="ibm-overlay-rule"><hr></div> 
+
+<p>在您首次登录 developerWorks 时，会为您创建一份个人概要。<strong>您的个人概要中的信息（您的姓名、国家/地区，以及公司名称）是公开显示的，而且会随着您发布的任何内容一起显示，除非您选择隐藏您的公司名称。</strong>您可以随时更新您的 IBM 帐户。</p>
+<div><p class="dw-c-overlay-secure">所有提交的信息确保安全。</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Display name OVERLAY STARTS HERE -->
+<div class="ibm-common-overlay" id="displayname_overlay">
+<div class="ibm-head">
+<p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" onclick="dwsi.siInst.clearForm();">关闭 [x]</a></p>
+</div>
+<div class="ibm-body">
+<div class="ibm-main">
+<div class="ibm-title">
+<h2>选择您的昵称</h2><br><br>
+<div id="ibm-overlay-error-dname" class="no-display"></div>
+</div>
+<div class="ibm-container ibm-alternate ibm-buttons-last">
+<div class="ibm-container-body">
+<p class="ibm-overlay-intro">当您初次登录到 developerWorks 时，将会为您创建一份概要信息，您需要指定一个昵称。您的昵称将和您在 developerWorks 发布的内容显示在一起。</p><p><strong>昵称长度在 3 至 31 个字符之间</strong>。 
+    您的昵称在 developerWorks 社区中必须是唯一的，并且出于隐私保护的原因，不能是您的电子邮件地址。</p>
+<p class="ibm-overlay-intro">标有星（<span class="ibm-required">*</span>）号的字段是必填字段。</p> 
+<form id="dFormId" method="post" action="" name="dForm" onsubmit="return false;" class="ibm-column-form">
+<p><label for="displayname">昵称：<span class="ibm-required">*</span></label><span>
+    <input name="displayname" id="displayname" size="25" value="" type="text" onkeypress="dwsi.siInst.handleEP(event,this.form);" aria-required="true"></span>
+    <span class="ibm-form-note">(昵称长度在 3 至 31 个字符之间)</span>
+</p>
+<p>单击<strong>提交</strong>则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/community/terms?lang=zh">查看条款和条件</a>.</p>
+<div class="ibm-buttons-row">
+   <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="提交" onclick="dwsi.siInst.signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+<input value="取消" type="button" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="dwsi.siInst.clearForm();ibmweb.overlay.hide(&#39;displayname_overlay&#39;);return false;"></p>
+</div>
+</form>
+<div class="ibm-overlay-rule"><hr></div>
+<div><p class="dw-c-overlay-secure">所有提交的信息确保安全。</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+
+
+<!-- INLINE_COMMENTS_END -->
+
+</div>
+<!-- 6_4_COLUMN_END -->
+
+<!-- 6_2_COLUMN_BEGIN -->
+<div class="ibm-col-6-2">
+
+<!-- Next_Steps -->
+<!-- Dig_Deeper -->
+
+
+<!-- Promotion_Module -->
+    
+<!-- PROMOTION_MODULE_START -->
+<div class="ibm-alternate-rule"><hr></div>
+<ul class="ibm-portrait-module-list">
+<li><a class="" href="http://www.ibm.com/developerworks/cn/cloud/bluemix/" tabindex="-1" role="presentation"><img height="60" width="60" src="./使用 SQL 查询外键关系的技巧_files/sm-f-bluemixrobot60.png" alt="IBM Bluemix 资源中心"></a>
+<h3><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/cloud/bluemix/">IBM Bluemix 资源中心</a></h3>
+<p>文章、教程、演示，帮助您构建、部署和管理云应用。</p></li>
+<li><a class="" href="http://www.ibm.com/developerworks/cn/community/" tabindex="-1" role="presentation"><img height="60" width="60" src="./使用 SQL 查询外键关系的技巧_files/sm-f-comcommunity60.png" alt="developerWorks 中文社区"></a>
+<h3><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/community/">developerWorks 中文社区</a></h3>
+<p>立即加入来自 IBM 的专业 IT 社交网络。</p></li>
+<li><a class="" href="http://bluemixathon.devpost.com/" tabindex="-1" role="presentation"><img height="60" width="60" src="./使用 SQL 查询外键关系的技巧_files/sm-f-bluemixathon60.png" alt="Bluemixathon 挑战赛"></a>
+<h3><a class="ibm-feature-link" href="http://bluemixathon.devpost.com/">Bluemixathon 挑战赛</a></h3>
+<p>为灾难恢复构建应用，赢取现金大奖。</p></li>
+</ul>
+<!-- PROMOTION_MODULE_END -->
+</div>
+<!-- 6_2_COLUMN_END -->
+
+</div>
+<!-- SPLIT_COLUMNS_END -->
+
+<!-- BOTTOM_BACK_TO_TOP -->
+<div class="ibm-columns">
+<div class="ibm-col-1-1">
+	<div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p>
+</div>
+</div>
+
+<!-- Rating_Meta_BEGIN -->
+<!--Rating_Meta_BEGIN--><div class="metavalue">static.content.url=http://www.ibm.com/developerworks/js/artrating/</div><div class="metavalue">SITE_ID=10</div><div class="metavalue">Zone=Information Management</div><div class="metavalue">ArticleID=934948</div><div class="metavalue">ArticleTitle=使用 SQL 查询外键关系的技巧</div><div class="metavalue">publish-date=06202013</div><script language="javascript" type="text/javascript">document.write('<div class="metavalue">url='+location.href.replace(/</g,  '%3C')+'</div>');</script><div class="metavalue">url=http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html</div><!--Rating_Meta_END-->
+<!-- Rating_Meta_END -->
+
+</div>
+<!-- END_IBM_CONTENT_MAIN -->
+
+</div>
+<!-- END_IBM_CONTENT_BODY -->
+
+</div>
+<!-- END_IBM_CONTENT -->
+
+</div></div>
+<!-- LEADSPACE_END -->
+
+
+<!-- END_IBM_PCON -->
+<!-- FOOTER_BEGIN -->
+<div id="ibm-footer" aria-label="页脚"><!-- IBM footer container; disabled --></div>
+
+<div id="ibm-footer-module-dwwrapper" role="contentinfo" aria-label="developerWorks Footer">
+
+<div id="ibm-footer-module-dw">
+	<div class="dw-footer-columns">
+		<div class="dw-footer-col-6-1 dw-footer-col-6-1-cn">
+			<ul>
+				<li><a href="https://www.ibm.com/developerworks/secure/feedback.jsp?domain=dwchina" tabindex="0">帮助</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/author/" tabindex="0">联系编辑</a></li>
+				<li><a href="https://www.ibm.com/developerworks/secure/myideas2.jsp?domain=dwchina" tabindex="0">提交内容</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/rss/" tabindex="0">订阅源</a></li>
+			</ul>
+        </div>
+		<div class="dw-footer-col-6-2">
+			<ul>
+				<li><a class="dwcn-sina-link" href="http://weibo.com/ibmdw/" target="_blank" tabindex="0">新浪微博</a></li>
+				<li><a href="https://www.ibm.com/developerworks/community/report?lang=zh" tabindex="0">报告滥用</a></li>
+				<li><a href="https://www.ibm.com/developerworks/community/terms?lang=zh" tabindex="0">使用条款</a></li>
+				<li><a href="https://www.ibm.com/developerworks/cn/community/terms/thirdparty/" tabindex="0">第三方提示</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-3">
+			<ul>
+				<li><a href="http://www.ibm.com/privacy/cn/zh/" tabindex="0">隐私条约</a></li>
+				<li><a href="http://www.ibm.com/ibm/accessibility/cn/" tabindex="0">浏览辅助</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/academic/" tabindex="0">IBM 教育学院教育培养计划</a></li><li><a href="http://www.ibm.com/developerworks/cn/gep/">IBM 创业企业全球扶持计划</a></li><li><a href="http://www.ibm.com/partnerworld/isv/">ISV 资源 (英语)</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-4"> 
+			<ul>
+				<li><a href="http://www.ibm.com/developerworks/cn/newsletter/" tabindex="0">dW 中国每周时事通讯</a></li>
+			</ul>
+			
+		</div>
+		<div class="dw-footer-col-6-5">
+			<ul>
+				<li class="dw-footer-lang-head">选择语言：</li>
+				<li><a href="http://www.ibm.com/developerworks/" tabindex="0">English</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/" lang="zh" tabindex="0">中文</a></li>
+				<li><a href="http://www.ibm.com/developerworks/jp/" lang="ja" tabindex="0">日本語</a></li>
+				<li><a href="http://www.ibm.com/developerworks/ru/" lang="ru" tabindex="0">Русский</a></li>
+				<li><a href="http://www.ibm.com/developerworks/br/" lang="pt" tabindex="0">Português (Brasil)</a></li>
+				<li><a href="http://www.ibm.com/developerworks/ssa/" lang="es" tabindex="0">Español</a></li>
+				<li><a href="http://www.ibm.com/developerworks/vn/" lang="vi" tabindex="0">Việt</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-6">
+			<img width="223" height="46" alt="IBM®" src="./使用 SQL 查询外键关系的技巧_files/dwn-ibm-logo-v17.png">
+			<img class="dw-preload" src="./使用 SQL 查询外键关系的技巧_files/ibm_sprite_social_blue_ON.png" alt="" width="1" height="1">
+		</div>
+	</div>
+</div>
+
+</div><!-- FOOTER_END -->
+
+<!-- END_IBM-TOP -->
+</div>
+
+<!-- SCRIPTS_INCLUDE_BEGIN -->
+<script type="text/javascript" src="./使用 SQL 查询外键关系的技巧_files/dw-comments.js">//</script>
+<script type="text/javascript" language="JavaScript">
+	dojo.ready(function(){
+		rBHash = typeof rBHash == "undefined" ? {} : rBHash;
+		rBHash['viperLang'] = 'zh';
+		rBHash['urlLang'] = 'cn';
+		rBHash['dwwi2Lang'] = 'zh_CN';
+		rBHash['appCode'] = 'dwmav';
+		rBHash['signoutUrl'] = (location.host.toLowerCase() === "www.ibm.com" || location.host.toLowerCase() === "developer.ibm.com") ? 'http://www.ibm.com/developerworks/cn/' : ''; 
+		dwsi.siInst = new dwweb.dynnav.dwsi();
+		dwsi.siInst.initSI();		
+
+		// construct the comment widget
+dwc.cmts = '条评论';
+dwc.signInPreText = '请';
+dwc.signIn = '登录';
+dwc.or = '或';
+dwc.register = '注册';
+dwc.signInPostText = '';
+dwc.leaveCmt = '后发表评论。';
+dwc.view = '查看';
+dwc.totalCmts = '共有评论';
+dwc.postYourCmt = '添加您的评论';
+dwc.show = '显示：';
+dwc.recentCmts = '最新评论';
+dwc.allCmts = '所有评论';
+dwc.tooLongCmt = '您的评论超过了 1000 字符限制';
+dwc.numCharsLeft = '剩余 <span id="charCount">{1}</span> 字符';
+dwc.reportAbuse = '报告滥用';
+dwc.notifyMsg = '有新评论时提醒我';
+dwc.htmlWarning = '注意：评论中不支持 HTML 语法'; 
+dwc.cmt = '评论：';
+dwc.addCmts = '添加评论';
+dwc.addCmt = '添加评论';
+dwc.doNotErase = '--在下方添加评论--'; 
+dwc.viewOrAddCmts = '查看或添加评论';
+dwc.reportInapprCont = '举报不良信息';
+dwc.reportInapprContLink = 'http://www.ibm.com/developerworks/forums/forum.jspa?forumID=1834';
+dwc.postingCmt = '正在发布评论……';
+dwc.noCmt = '快来添加第一条评论';
+dwc.netwkErr = '在检索评论时出错，请稍后刷新。';
+dwc.addACmt = '添加评论';
+dwc.instructCmt = '标有星号（<span class="ibm-required">*</span>）的是必填项目。';
+dwc.btnPost = '发布';
+dwc.btnPostAnon = '匿名发布';
+dwc.btnClrCmt = '清除评论';
+dwc.btnCancel = '取消';
+dwc.showRecent = '显示最新的 {1} 条评论'; // {1} is the count to be substituted
+dwc.showNext = '显示后 {1} 条评论'; // {1} is the count to be substituted
+dwc.showAllCmts = '显示所有评论';
+dwc.enterCmt = '请输入评论内容。';
+dwc.loginErr = '暂时无法验证您的登录状态，请稍后再试。';
+dwc.postErr = '暂时无法发布您的评论，请稍后再试。';
+dwc.postBy = '由 <strong>{1}</strong>  于 {2} '; // {1} is the author to be substituted; {2} is the date
+dwc.siteId = 10;
+dwc.lang = 'zh_CN';
+dwc.viperLang = 'zh';
+//dwc.abuseHref =  null;
+dwc.maxChars = 1000;
+dwc.cmtTxt =  '评论';
+dwc.cmtsTxt =  '评论';  
+		dwc && new dwc.comments('threadShow','95%',5,'nCmts','icomments');
+		});
+</script>
+
+
+
+<!-- SCRIPTS_INCLUDE_END -->
+
+<div id="ibm-metrics">
+<script src="./使用 SQL 查询外键关系的技巧_files/stats.js" type="text/javascript">//</script>
+</div>
+
+
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden;"></div><div class="sogoubottom" id="sougou_bottom" style="display: block;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1301foreignkey/index.html#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./使用 SQL 查询外键关系的技巧_files/yun6.html" style="border: none; display: block; z-index: 2147483645; background: transparent;"></iframe><script src="./使用 SQL 查询外键关系的技巧_files/pv.gif"></script></body></html>

@@ -1,0 +1,27 @@
+16:42:19.532 [qtp511717113-19] DEBUG dao.FlowIntroductionMapper.selectOne - ==>  Preparing: select * from flow_introduction where flowid=? 
+16:42:19.532 [qtp511717113-19] DEBUG dao.FlowIntroductionMapper.selectOne - ==> Parameters: 127551(String)
+16:42:19.532 [qtp511717113-19] DEBUG dao.FlowIntroductionMapper.selectOne - <==      Total: 1
+16:42:19.539 [qtp511717113-19] DEBUG dao.XMBMapper.findByXMH - ==>  Preparing: select * from lc_xm where xmh = ? 
+16:42:19.539 [qtp511717113-19] DEBUG dao.XMBMapper.findByXMH - ==> Parameters: LX2016062810000(String)
+16:42:19.541 [qtp511717113-19] DEBUG dao.XMBMapper.findByXMH - <==      Total: 1
+16:42:19.546 [qtp511717113-19] DEBUG dao.MBManageMapper.findNewBDJLByAll - ==>  Preparing: select * from ( select * from ( select bdjlid, xmh, czsj, mbfl, bdm, czrid, sfdy, sj from lc_bdjl where xmh=? and lc_id=? order by sj desc ) t group by mbfl ) tt order by sj 
+16:42:19.546 [qtp511717113-19] DEBUG dao.MBManageMapper.findNewBDJLByAll - ==> Parameters: LX2016062810000(String), 127551(String)
+16:42:19.547 [qtp511717113-19] DEBUG dao.MBManageMapper.findNewBDJLByAll - <==      Total: 2
+16:42:19.554 [qtp511717113-19] DEBUG dao.FlowFormMapper.findByID - ==>  Preparing: select id, formname , tablename , formdescribe, createdate , lastdate, formElements, contenthtml, url, status from flow_form where id = ? 
+16:42:19.554 [qtp511717113-19] DEBUG dao.FlowFormMapper.findByID - ==> Parameters: 69(String)
+16:42:19.555 [qtp511717113-19] DEBUG dao.FlowFormMapper.findByID - <==      Total: 1
+16:42:19.557 [qtp511717113-19] DEBUG dao.FlowFormMapper.findListByIds - ==>  Preparing: select * from flow_form where id in ( ? , ? , ? , ? , ? ) 
+16:42:19.557 [qtp511717113-19] DEBUG dao.FlowFormMapper.findListByIds - ==> Parameters: 31(Integer), 36(Integer), 38(Integer), 39(Integer), 41(Integer)
+16:42:19.558 [qtp511717113-19] DEBUG dao.FlowFormMapper.findListByIds - <==      Total: 4
+16:42:19.697 [qtp511717113-13] DEBUG dao.FlowFormMapper.findByID - ==>  Preparing: select id, formname , tablename , formdescribe, createdate , lastdate, formElements, contenthtml, url, status from flow_form where id = ? 
+16:42:19.697 [qtp511717113-13] DEBUG dao.FlowFormMapper.findByID - ==> Parameters: 38(String)
+16:42:19.698 [qtp511717113-13] DEBUG dao.FlowFormMapper.findByID - <==      Total: 1
+16:42:19.722 [qtp511717113-13] DEBUG dao.MBManageMapper.findBDJLByXMH - ==>  Preparing: select bdjlid, bdm, czsj from lc_bdjl where xmh=? 
+16:42:19.723 [qtp511717113-13] DEBUG dao.MBManageMapper.findBDJLByXMH - ==> Parameters: LX2016062810000(String)
+16:42:19.723 [qtp511717113-13] DEBUG dao.MBManageMapper.findBDJLByXMH - <==      Total: 24
+16:42:19.727 [qtp511717113-13] DEBUG dao.FlowMapper.getVarinst - ==>  Preparing: select * from act_hi_varinst v where 1 = 1 and NAME_ = ? and TASK_ID_ in ( ? , ? , ? , ? , ? , ? ) order by ID_ desc limit 0,1000 
+16:42:19.727 [qtp511717113-13] DEBUG dao.FlowMapper.getVarinst - ==> Parameters: completeUserText(String), 127599(String), 127592(String), 127586(String), 127580(String), 127573(String), 127565(String)
+16:42:19.728 [qtp511717113-13] DEBUG dao.FlowMapper.getVarinst - <==      Total: 6
+16:42:19.730 [qtp511717113-13] DEBUG dao.UserManageMapper.findYhByYhids - ==>  Preparing: select yhid, yhm, zhlx from yh_yh where yhid in ( ? , ? , ? , ? , ? , ? ) 
+16:42:19.730 [qtp511717113-13] DEBUG dao.UserManageMapper.findYhByYhids - ==> Parameters: 6b8ef80c128f4373a2262c86636ea655(String), 8f56ccd222c7451f9fb61d3e0fabfc5d(String), 8f56ccd222c7451f9fb61d3e0fabfc5d(String), 8f56ccd222c7451f9fb61d3e0fabfc5d(String), 8f56ccd222c7451f9fb61d3e0fabfc5d(String), 8f56ccd222c7451f9fb61d3e0fabfc5d(String)
+16:42:19.731 [qtp511717113-13] DEBUG dao.UserManageMapper.findYhByYhids - <==      Total: 2

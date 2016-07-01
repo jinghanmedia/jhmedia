@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0063)http://www.360doc.com/content/10/1105/14/4409124_66835856.shtml -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/hm.js"></script><script type="text/javascript">
+        if (window.location.toString().indexOf("shtml?") > 0) {
+            self.location = window.location.toString().replace(window.location.search.toString(), "");
+        }
+        function doccheckart(json) {
+            if (json[0].result == "1") {
+                self.location = "http://www.360doc.com/noarticle.aspx";
+            }
+        }
+    </script>
+     <script src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/getstatusv2.ashx" type="text/javascript" charset="utf-8"></script>
+    <script src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/jquery1.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        if (navigator.userAgent.indexOf("iPhone") > 0 || navigator.userAgent.indexOf("Android") > 0 || navigator.userAgent.indexOf("iPod") > 0) {  //手机端跳转
+            var patt1 = new RegExp("[0-9]*_[0-9]*");
+            var url = patt1.exec(location.href);
+            if (url != "") {
+                self.location = "http://www.360doc.cn/article/" + url + ".html";
+            }
+        }
+    </script>
+    <meta content="360doc" name="classification"><link rel="alternate" media="only screen and (max-width: 640px)" href="http://www.360doc.cn/article/4409124_66835856.html"><meta content="字段,mysql,table" name="keywords"><meta content="mysql 添加字段、删除字段、调整字段顺序 | mysql添加字段" name="description"><meta name="mobile-agent" content="format=html5;url=http://www.360doc.cn/article/4409124_66835856.html"><meta content="mysql 添加字段、删除字段、调整字段顺序 | mysql添加字段。alter table `user_movement_log`Add column GatewayId int  not null default 0 AFTER `Regionid` (在哪个字段后面添加)mysql&gt; alter table tablename add index 索引名 (字段名1[，字段名2 ...]);mysql&gt; alter table tablename add index emp_name (name);加主关键字的索引。mysql&gt; ALTER TABLE table_name CHANGE old_field_name new_field_name field_type;" name="360docabstract"><meta content="www.360doc.com" name="author"><title>
+	mysql 添加字段、删除字段、调整字段顺序 | mysql添加字段
+</title>
+    <script type="text/javascript" language="javascript">
+        window.onerror = ignoreError;
+        function ignoreError() {
+            return true;
+        }
+    </script>
+    <script src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/indexhead.js" type="text/javascript" charset="utf-8"></script><script type="text/javascript" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/chat.js"></script><script type="text/javascript" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/chatuserlist.js"></script><link rel="stylesheet" type="text/css" href="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/chat.css">
+    <script src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/showarticlefollow20160329.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/jQuery.md5.min.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d86954201130d615136257dde062a503";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <link rel="stylesheet" type="text/css" href="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/wzhead-cleaned.css"><link rel="stylesheet" type="text/css" href="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/newArticle20160509.css"><script src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/share.js"></script><script type="text/javascript" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/EssayforIE120425.js"></script><link href="about:blank" rel="styleSheet" type="text/css"></head>
+<body onmouseup="setDragEnd()" onclick="delAllDiv(event)">
+    
+    <script type="text/javascript">
+        var baiduImagePlus = {
+            noLogo: true,
+            unionId: 'u2617463',
+            maxMiniAdCount: 0,
+            formList: [{ formId: 10 }]
+        };
+    </script>
+    <script type="text/javascript" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/i.js"></script>
+    
+    <span id="LayerLogin"></span>
+    <div style="position: fixed; width: 100%; z-index: 2147483647; left: 0;">
+        <div class="mainnav">
+            <div class="mainnav1">
+                <div class="lf360" style="padding-left: 5px;">
+                    <a href="http://www.360doc.com/index.html">
+                        <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/logoo.gif"></a>
+                </div>
+                <div style="width: 625px; padding-top: 0px; padding-left: 4px; position: absolute;">
+                    <table height="34" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr id="daohangtr">
+                                <td style="width: 185px; _width: 0px; *width: 0px !important;"></td>
+                                <td class="navwz1" width="95">
+                                    <a href="http://www.360doc.com/index.html">首&nbsp;页</a>
+                                </td>
+                                <td width="100" class="  navwz1">
+                                    <a href="http://www.360doc.com/readroom.html">阅览室</a>
+                                </td>
+                                <td width="88" class="  navwz1">
+                                    <a href="http://www.360doc.com/weekstar.html">馆友</a>
+                                </td>
+                                <td width="132" class="  navwz1">
+                                    <a href="http://www.360doc.com/my360doc.aspx">我的图书馆</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="rt360" style="padding-top: 6px; width: 133px; padding-left: 38px;" id="outerdiv"><div class="denglbj lan2"><div style=" width:43px; float:left; text-align:center;" onmouseover="this.style.backgroundColor=&#39;#e5e5e5&#39;;this.parentNode.className=&#39;denglbj2 lan2&#39;" onmouseout="this.style.backgroundColor=&#39;#fcfcfc&#39;;this.parentNode.className=&#39;denglbj lan2&#39;"><a href="javascript:void(0)" onclick="loginnew()">登录</a></div><div style=" width:1px; float:left; "></div><div style="width:46px; float:left;text-align:center; margin-left:1px;*margin-left:0px;" onmouseover="this.style.backgroundColor=&#39;#e5e5e5&#39;;this.parentNode.className=&#39;denglbj3 lan2&#39;" onmouseout="this.style.backgroundColor=&#39;#fcfcfc&#39;;this.parentNode.className=&#39;denglbj lan2&#39;" id="regdiv"><a href="http://www.360doc.com/register.aspx?refer=800" target="_blank">注册</a></div><div class="boxwid xinngdui" id="bfdiv"><a href="http://www.360doc.com/content/10/1105/14/4409124_66835856.shtml#"><img id="imgbfabc" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/5.gif"></a></div><div style=" position: absolute; margin-left:35px; *margin-left:-95px;_margin-left:-93px; width:96px;display:none;z-index:200;" id="func"><div class="tugduo3" id="divfunc" style="cursor:pointer;float:right; width:41px;"><div style=" height:26px; width:39px; border:1px solid #d4d4d4; border-bottom:none; background-color:#fff;"></div></div><div class="tipzhu3  right hui2" id="layerdiv"><ul><li><a href="http://www.360doc.com/advice.html" target="_blank">留言交流</a></li><li><a href="http://www.360doc.com/helpnew.html" target="_blank">网文摘手</a></li><li><a href="http://www.360doc.com/mobilapp.htm" target="_blank">手机客户端</a></li><li style=" border:none;"><a href="http://www.360doc.com/help.html" target="_blank">帮助</a></li></ul></div></div></div></div>
+                <div class=" rt360" style="padding-top: 6px; padding-right: 0px;">
+                    <div class="lf360 serch">
+                        <input name="input2" class="serchpt" id="txtSearchword" onkeydown="ongosearch()" onkeyup="showIntelliSense()" onfocus="if(this.value==&#39;搜文章 找馆友&#39;) this.value=&#39;&#39;;this.style.color=&#39;#272727&#39;" onblur="if(!this.value) {this.value=&#39;搜文章 找馆友&#39;;this.style.color=&#39;#b2b2b2&#39;;}" onpaste="showIntelliSense1()" type="text" value="搜文章 找馆友">
+                    </div>
+                    <div class="lf360 ssuo">
+                        <a id="searchlinkid" href="javascript:gosearch();"></a>
+                    </div>
+                    <div id="divsearch" style="margin-top: 25px; margin-left: 1px; display: block; position: absolute; z-index: 100;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navxt">
+        </div>
+    </div>
+    <div style="height: 44px; _height: 0px; width: 100%;"></div>
+    <div class="both"></div>
+
+    <div class="doc360article_content" style="width: 1018px;">
+
+        <div style="height: 90px; padding-top: 13px;">
+            <div id="ADAboveArtContent"><iframe marginwidth="0" marginheight="0" frameborder="0" scrolling="no" width="1012" height="90" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/aboveConentAD2.html"></iframe></div>
+        </div>
+        <p class="clearboth"></p>
+        <div class="a_left" style="width: 688px;">
+            <div id="bgchange" style="width: 662px;">
+                <div class="fontsize_bgcolor_controler">
+                    <div class="a_bgcolor">
+                        <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/bgcolor.jpg">
+                        <div class="a_colorlist">
+                            <span class="a_color1" onclick="wzhitnew(18);">
+                                <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/yes.gif"></span>
+                            <span class="a_color2" onclick="wzhitnew(19);">
+                                <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/yes.gif"></span>
+                            <span class="a_color3" onclick="wzhitnew(20);">
+                                <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/yes.gif"></span>
+                            <span class="a_color4" onclick="wzhitnew(21);">
+                                <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/yes.gif"></span>
+                            <span class="a_color5" onclick="wzhitnew(22);">
+                                <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/yes.gif"></span>
+                            <span class="a_color6 cur" onclick="wzhitnew(23);">
+                                <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/yes.gif"></span>
+                        </div>
+                    </div>
+                    <div class="a_fontsize">
+                        <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/fontSize.jpg">
+                        <div class="fschange">
+                            <label>
+                                <input type="radio" name="font_Size" id="" value="18" onclick="wzhitnew(15);">大
+                           
+                            </label>
+                            &nbsp;
+                           
+                            <label>
+                                <input type="radio" name="font_Size" id="" value="16" onclick="wzhitnew(16);">中
+                           
+                            </label>
+                            &nbsp;
+                           
+                            <label>
+                                <input type="radio" name="font_Size" id="" value="14" onclick="wzhitnew(17);">小
+                           
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <h2 id="titiletext">mysql 添加字段、删除字段、调整字段顺序 | mysql添加字段</h2>
+                <div class="article_data">
+                    <div class="article_data_left">
+                        2010-11-05
+                        <span class="a_username">&nbsp;<a href="http://www.360doc.com/userhome/4409124" id="savernickname" target="_blank" onclick="wzhitnew(1);">鳴天</a>
+                        </span>
+                        <span id="articleinfo">
+                            <span id="docsource" class="a_from">&nbsp;<a href="http://mysqltjzd.jiaogen.com/2010/04/27/mysql-%e6%b7%bb%e5%8a%a0%e5%ad%97%e6%ae%b5%e3%80%81%e5%88%a0%e9%99%a4%e5%ad%97%e6%ae%b5%e3%80%81%e8%b0%83%e6%95%b4%e5%ad%97%e6%ae%b5%e9%a1%ba%e5%ba%8f/" target="_blank" onclick="wzhitnew(14);">文章来源</a></span><span id="360doc_Readnum">&nbsp;&nbsp;阅&nbsp;1021&nbsp;</span><span id="360docResaveCount"><span onclick="ShowSaverUser();wzhitnew(3);" id="360doc_saverNum" style="cursor: pointer;">&nbsp;转&nbsp;<span style="cursor:pointer;" onclick="javascript:ShowSaverUser();">5</span></span>
+                                <span id="360doc_saverUser"><div id="sameArtOuter" style="display:none;position: absolute; height:305px;width:144px;left:0px;margin-top:15px;z-index:100000;"><div id="sameArt" style=" overflow-y: auto;  height:300px;overflow-x: hidden; z-index: 100;right:0px;margin-top:-10px;" onclick="event.cancelBubble=true;"></div></div></span>
+                            </span>
+                        </span>
+                    </div>
+                    <div id="resavelayer1" class="bdsharebuttonbox article_data_right bdshare-button-style0-16" data-bd-bind="1466994046970"><div class="zcommond"><a class="p2" href="javascript:void(0);" onclick="SaveArt();wzhitnew(24);">转藏到我的图书馆</a><div class="s2 f_right" onclick="setTimeout(function(){$(&#39;.article_data_right .sharelist_new&#39;).slideToggle(0);},10);"><span onclicl="wzhitnew(5);"></span></div><a class="p1" href="javascript:void(0);" onclick="shareWeixin();wzhitnew(30);">微信</a> <span class="s1" onclick="setTimeout(function(){$(&#39;.article_data_right .sharelist_new&#39;).slideToggle(0);},10);wzhitnew(4);" onmouseover="this.style.color=&#39;#0f659c&#39;" onmouseout="this.style.color=&#39;&#39;">分享：</span></div><div class="sharelist_new" id="fenxiangLayer"> <a class="slbg1" href="javascript:void(0);" data-cmd="qzone" onclick="wzhitnew(8);">QQ空间</a> <a class="slbg2" href="javascript:void(0);" data-cmd="sqq" onclick="wzhitnew(6);">QQ好友</a> <a class="slbg3" href="javascript:void(0);" data-cmd="tsina" onclick="wzhitnew(9);">新浪微博</a> <a class="slbg4" href="javascript:void(0);" data-cmd="tqq" onclick="wzhitnew(10);">腾讯微博</a> <a class="slbg5" href="javascript:void(0);" onclick="showdivemail1();wzhitnew(12);">推荐给朋友</a> </div><div style="position: absolute;display:none;z-index:1;left:143px;" id="fuzhitishidiv"></div></div>
+                </div>
+                
+                <div id="articlecontent" class="article_container" onmousedown="newhighlight = true;" onmouseup="NewHighlight(event);">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td id="artContent">
+                                    <div>
+<p>添加字段：</p>
+<p>alter table `user_movement_log`<br>Add column GatewayId int&nbsp; not null default 0 AFTER `Regionid` (在哪个字段后面添加)</p>
+<p>&nbsp;删除字段：</p>
+<p>alter table `user_movement_log` drop column Gatewayid</p>
+<p>调整字段顺序：</p>
+<p>ALTER TABLE `user_movement_log`&nbsp; CHANGE `GatewayId` `GatewayId` int not null default 0&nbsp; AFTER RegionID</p>
+<p>//主键</p>
+<p>&nbsp;&nbsp; alter table tabelname add new_field_id int(5) unsigned default 0 not null auto_increment ,add primary key (new_field_id);//增加一个新列</p>
+<p>&nbsp;&nbsp; alter table t2 add d timestamp;<br>alter table infos add ex tinyint not null default ‘0′;//删除列</p>
+<p>&nbsp;&nbsp; alter table t2 drop column c;//重命名列</p>
+<p>&nbsp;&nbsp; alter table t1 change a b integer;<br>//改变列的类型</p>
+<p>&nbsp;&nbsp; alter table t1 change b b bigint not null;<br>alter table infos change list list tinyint not null default ‘0′;<br>//重命名表</p>
+<p>&nbsp;&nbsp; alter table t1 rename t2;加索引</p>
+<p>&nbsp;&nbsp; mysql&gt; alter table tablename change depno depno int(5) not null;<br>mysql&gt; alter table tablename add index 索引名 (字段名1[，字段名2 …]);<br>mysql&gt; alter table tablename add index emp_name (name);加主关键字的索引</p>
+<p>mysql&gt; alter table tablename add primary key(id);加唯一限制条件的索引</p>
+<p>&nbsp; mysql&gt; alter table tablename add unique emp_name2(cardnumber);删除某个索引</p>
+<p>&nbsp;&nbsp; mysql&gt;alter table tablename drop index emp_name;修改表：</p>
+<p>增加字段：</p>
+<p>&nbsp;&nbsp; mysql&gt; ALTER TABLE table_name ADD field_name field_type;修改原字段名称及类型：</p>
+<p>&nbsp;&nbsp; mysql&gt; ALTER TABLE table_name CHANGE old_field_name new_field_name field_type;删除字段：</p>
+<p>&nbsp;&nbsp; mysql&gt; ALTER TABLE table_name DROP field_name;</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="viewerPlaceHolder" style="width: 717px; height: 700px; display: none; margin: 0 auto;">
+                    </div>
+                </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <ul></ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div></div>
+                <span></span>
+                <a></a>
+                <p style="margin: 0; padding: 0;"></p>
+                <p class="clearboth"></p>
+                <div class="bdsharebuttonbox bottombtn bdshare-button-style0-16" data-bd-bind="1466994046970">
+                    <div class="zcommond" style="overflow: visible;">
+                        <a href="javascript:void(0);" class="btn_collect" onclick="SaveArt();wzhitnew(26);">转藏到我的图书馆</a>
+                        <a id="flowimg3" href="javascript:void(0);" class="btn_good" onclick="Showflowerlayer(&#39;sendedLayer1&#39;);wzhitnew(27);">献花（<span id="articleflowernum">0</span>）
+                        <span id="flowernumadd" style="display: none;">+1</span>
+
+                        </a>
+                        <span class="span1 f_left" onclick="setTimeout(function(){$(&#39;.bottombtn .sharelist_new&#39;).slideToggle(0);},10);wzhitnew(33);" onmouseover="this.style.color=&#39;#0f659c&#39;" onmouseout="this.style.color=&#39;&#39;">分享：</span>
+                        <a class="sharewx f_left" href="javascript:void(0);" onclick="shareWeixin();wzhitnew(64);">微信</a>
+                        <div class="s2 f_left" onclick="setTimeout(function(){$(&#39;.bottombtn .sharelist_new&#39;).slideToggle(0);},10);wzhitnew(34);"><span></span></div>
+                    </div>
+                    <div class="sharelist_new" id="fenxiangLayer2">
+                        <a class="slbg1" href="javascript:void(0);" data-cmd="qzone" onclick="wzhitnew(13);">QQ空间</a>
+                        <a class="slbg2" href="javascript:void(0);" data-cmd="sqq" onclick="wzhitnew(7);">QQ好友</a>
+                        <a class="slbg3" href="javascript:void(0);" data-cmd="tsina" onclick="wzhitnew(55);">新浪微博</a>
+                        <a class="slbg4" href="javascript:void(0);" data-cmd="tqq" onclick="wzhitnew(56);">腾讯微博</a>
+                        <a class="slbg5" href="javascript:void(0);" onclick="showdivemail1();wzhitnew(35);">推荐给朋友</a>
+                    </div>
+                </div>
+                <div class="bottom_controler">
+                    <p class="bottom_cleft">
+                        来自：
+                         <span class="a_username" style="width: auto;" onclick="wzhitnew(59)">
+                             <a href="http://www.360doc.com/userhome/4409124" id="savernickname2" target="_blank">鳴天</a>
+                         </span>
+                        &gt; 
+                        <span id="cname" class="a_from" onclick="wzhitnew(60)"><a href="http://www.360doc.com/userhome.aspx?userid=4409124&cid=3" target="_blank">《MySQL》</a></span>
+                    </p>
+                    <div class="bottom_cright">
+                        <a href="https://www.baidu.com/s?wd=%e5%ad%97%e6%ae%b5+mysql+table&tn=SE_hldp01010_6r0gix1f" target="_blank" class="a1" onclick="wzhitnew(100);">以文找文</a>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <a href="javascript:void(0);" class="a2" onclick="showAlertLayer1();wzhitnew(36);">举报</a>
+                    </div>
+                </div>
+                <div class="prev_next">
+                    <p id="lastart" class="p1" style="display: block;"> 上一篇：<a onclick="wzhitnew(57);" href="http://www.360doc.com/content/10/1105/13/4409124_66825240.shtml" target="_blank">MySQL自增字段创建 | mysql添加字段</a></p>
+                    <p id="nextart" class="p2" style="display: block;"> 下一篇：<a onclick="wzhitnew(58);" href="http://www.360doc.com/content/10/1105/14/4409124_66836165.shtml" target="_blank">mysql如何添加字段 | mysql添加字段</a></p>
+                </div>
+            </div>
+            <p class="clearboth"></p>
+            <div style="width: 676px; float: left;">
+                <div class="str_border" style="border: none; position: relative; z-index: 2;">
+                    <strong>猜你喜欢</strong>
+                </div>
+                <ul class="youlike" style="margin-top: -18px; position: relative; z-index: 1;">
+                    <iframe id="youlikead" style="width: 676px; height: 280px; border: 0;" frameborder="0" scrolling="no" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/adbaiduyoulike.html"></iframe>
+                </ul>
+                <div class="zcommond" style="padding: 10px 0 20px;">
+                    <div class="bottom_article f_left">
+                        <div class="str_border">
+                            <strong>类似文章</strong>
+                            <a href="http://www.360doc.com/relevant/66835856_more.shtml" target="_blank" class="a_more f_right" onclick="wzhitnew(38)">更多</a>
+                        </div>
+                        <ul class="barticle_list">
+                            
+                                    <li><span><a href="http://www.360doc.com/content/11/0621/10/6743016_128396953.shtml" target="_blank" onclick="wzhitnew(37)">mysql alter修改字段</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/10/1105/13/4409124_66825240.shtml" target="_blank" onclick="wzhitnew(37)">MySQL自增字段创建 | mysql添加字段</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/12/0312/11/5907545_193686065.shtml" target="_blank" onclick="wzhitnew(37)">MySQL中文实例基础操作手册（下）</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/12/0903/23/10384031_234139098.shtml" target="_blank" onclick="wzhitnew(37)">mysql从库被修改的恢复</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/11/1014/18/6963129_156195001.shtml" target="_blank" onclick="wzhitnew(37)">MySQL常用命令</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/07/0803/16/24835_651305.shtml" target="_blank" onclick="wzhitnew(37)">存储过程关于更改数据表结构的语句(pl/s...</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/11/0524/16/2560742_119064880.shtml" target="_blank" onclick="wzhitnew(37)">MySQL索引的查看创建和删除</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/11/0113/15/3894454_86252488.shtml" target="_blank" onclick="wzhitnew(37)">db2 表的列非空和空</a></span></li>
+                                
+                        </ul>
+                    </div>
+                    <div class="bottom_article f_right">
+                        <div class="str_border">
+                            <strong>精选文章</strong>
+                        </div>
+                        <ul class="barticle_list">
+                            
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/13/0804/22/1325850_304766271.shtml" target="_blank">网络视频下载技巧</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/14/0112/04/10101824_344510180.shtml" target="_blank">生姜的神奇功效你知道吗</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/12/0502/12/1361014_208084916.shtml" target="_blank">喜欢吃饺子的人请珍藏</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/14/1213/19/14253823_432675594.shtml" target="_blank">香蕉的六种花样吃法 好吃又时尚</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/13/1205/09/909770_334602014.shtml" target="_blank">对于你来说昨天已经过去,抖抖身上的尘埃,继续前行吧</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/13/1016/09/3105541_321790664.shtml" target="_blank">中国最美风水村</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/10/0607/09/1194998_31710567.shtml" target="_blank">养生必知15个健康黄金时间</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/13/1127/15/6214759_332578737.shtml" target="_blank">老子开导你</a></span></li>
+                                
+                        </ul>
+                    </div>
+                </div>
+                
+                <iframe id="underZcommondAd" style="width: 676px; height: 202px;" frameborder="0" scrolling="no" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/underzcommond.html"></iframe>
+                <div class="zcommond" style="margin-top: 10px;">
+                    
+                    <div class="f_left" style="width: 300px; height: 90px;">
+                        <iframe id="aboveReflectionAd1" frameborder="0" scrolling="no" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/aboveReflectionAd1.html"></iframe>
+                    </div>
+                    
+                    <div class="f_left" style="width: 300px; height: 90px; margin-left: 44px;">
+                        <iframe id="aboveReflectionAd2" frameborder="0" scrolling="no" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/aboveReflectionAd2.html"></iframe>
+                    </div>
+                </div>
+
+                <p></p>
+                <div id="ReflectionPart"><div style="margin: 0px 0px;"><div class="plbox" style="height:auto;"><div class="plmain"><div style="height: 23px;" class="titwx">发表评论：</div><div class="deluwx">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请&nbsp;<span><a onclick="ReflectionLoginform();wzhitnew(45);" href="javascript:void(0);">登录</a></span>&nbsp;或者&nbsp;<span><a onclick="InsertLogData(4);wzhitnew(46);" href="http://www.360doc.com/register.aspx?refer=53&reurl=showweb/0/0/54400091122.aspx" target="_blank">注册</a></span>&nbsp;后再进行评论</div><div class="rt360" style="height: 26px;margin:-22px 170px 0 0;_display:inline;"><span class="dsfwz">社交帐号登录：</span><a class="dsftb sf1" href="javascript:void(0);" onclick="ArtLoginTypeID=13;toSNSLogin(&#39;smb&#39;);wzhitnew(47);_hmt.push([&#39;_trackEvent&#39;,&#39;loginsina&#39;,&#39;clicknum&#39;,&#39;wenzhangyeremark&#39;]);" title="新浪微博"></a><a class="dsftb sf2 " onclick="ArtLoginTypeID=13;toSNSLogin(&#39;qq&#39;);wzhitnew(48);_hmt.push([&#39;_trackEvent&#39;,&#39;loginqq&#39;,&#39;clicknum&#39;,&#39;wenzhangyeremark&#39;]); " href="javascript:void(0);" title="腾讯QQ"></a><a class="dsftb sf3" href="javascript:void(0);" onclick="ArtLoginTypeID=13;toSNSLogin(&#39;wx&#39;);wzhitnew(49);_hmt.push([&#39;_trackEvent&#39;,&#39;loginrenren&#39;,&#39;clicknum&#39;,&#39;wenzhangyeremark&#39;]);" title="微信"></a></div></div></div></div></div>
+                <div style="padding-top: 15px; padding-left: 15px;" id="Reflction"><div id="360docRefTN" class="wenzhang_bt" style="display: none;"></div><div id="360docRefCT"></div><div id="360docRefPB" style="display: none;"></div></div>
+            </div>
+        </div>
+        <div class="a_right">
+            <div class="user_info">
+                <div class="user_photo f_left">
+                    <p class="user_photopic">
+                        <a href="http://www.360doc.com/userhome/4409124" id="userphotourl" target="_blank" onclick="wzhitnew(28);">
+                            <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/001.gif" id="userphoto" width="58" height="58">
+                        </a>
+                    </p>
+                    <a href="javascript:void(0);" onclick="docTalk();wzhitnew(106);" class="user_talk" title="与TA对话"></a>
+                </div>
+                <div class="user_data f_right">
+                    <div class="user_data_name">
+                        <a href="http://www.360doc.com/userhome/4409124" id="nickname" target="_blank" onclick="wzhitnew(29);">鳴天</a>
+                        <img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/user_name_tag.gif" alt="图书馆">
+                    </div>
+                    <p id="userdegree"><img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/userstar2.gif"><img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/userstar3.gif"><img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/userstar3.gif"><img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/userstar3.gif"><img src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/userstar3.gif"></p>
+                    <div class="user_data_num">
+                        <a id="spanfollowstatus" class="gz_no"></a>
+                        <script type="text/javascript">isfollow(4409124);</script>
+                        <span id="follownum">1</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>馆藏</span>&nbsp;<span id="artnum">25</span>
+                    </div>
+                </div>
+            </div>
+            <div class="his_her"><ul class="his_her_type"><li class="f_left curone">TA的最新馆藏</li></ul><div class="his_her_div" style="height:190px;"><ul class="his_her_list"><li><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/14/0923/11/9133935_411693536.shtml" target="_blank" onclick="wzhitnew(51)">初秋自驾全攻略：百里山水画廊吃喝玩乐！</a></div><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/15/0517/22/7443026_471315208.shtml" target="_blank" onclick="wzhitnew(51)">没钱玩？198个免费景点任你选!</a></div><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/15/0906/17/302433_497292345.shtml" target="_blank" onclick="wzhitnew(51)">如果你爱旅游，收藏吧，太全了！</a></div><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/12/0903/14/276037_234030938.shtml" target="_blank" onclick="wzhitnew(51)">美国西部牛仔片 106部</a></div><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/11/0615/14/1993072_127109736.shtml" target="_blank" onclick="wzhitnew(51)">家教失败的原因</a></div><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/11/0615/14/1993072_127113560.shtml" target="_blank" onclick="wzhitnew(51)">论独身子女的家庭教育问题——跟胡适的母亲学教育</a></div></li></ul></div></div>
+
+
+
+
+
+<div class="both" style="padding-top: 10px; height: 260px;">
+    <iframe id="ifartad1" height="250px" width="300px" frameborder="0" scrolling="no" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/ad2_300.html"></iframe>
+    <div style="height: 10px;">
+    </div>
+</div>
+
+<div class="his_her" id="recommendArt" style="margin-top: 5px;">
+    <div class="str_border" style="margin: 0;">
+        <span style="font-size: 14px; float: left;">推荐阅读</span>
+        <a style="float: right;" class="a_more" onclick="wzhitnew(32)" href="http://www.360doc.com/readroom.html" target="_blank">更多</a>
+    </div>
+    <div class="his_her_div" style="height: 264px;">
+        <ul class="his_her_list">
+            <li id="recommendArtLists"><div><span></span><a href="http://www.360doc.com/content/10/1108/11/4409124_67585329.shtml" target="_blank" onclick="wzhitnew(31)">apache安装失败，命令行启动！</a></div><div><span></span><a href="http://www.360doc.com/content/10/1109/05/4409124_67973531.shtml" target="_blank" onclick="wzhitnew(31)">TestLink中集成Mantis bug 管理系统</a></div><div><span></span><a href="http://www.360doc.com/content/10/1105/02/4409124_66836165.shtml" target="_blank" onclick="wzhitnew(31)">mysql如何添加字段 | mysql添加字段</a></div><div><span></span><a href="http://www.360doc.com/content/14/0923/11/9133935_411693536.shtml" target="_blank" onclick="wzhitnew(31)">初秋自驾全攻略：百里山水画廊吃喝玩乐！</a></div><div><span></span><a href="http://www.360doc.com/content/10/1204/11/4409124_74893803.shtml" target="_blank" onclick="wzhitnew(31)">穿越火线不能全屏的修改办法</a></div><div><span></span><a href="http://www.360doc.com/content/12/0710/09/5702610_223320777.shtml" target="_blank" onclick="wzhitnew(31)">延庆百里山水画廊旅游攻略</a></div><div><span></span><a href="http://www.360doc.com/content/14/0114/05/15109633_345268056.shtml" target="_blank" onclick="wzhitnew(31)">Hadoop伪分布涉及的一些linux操作和配置</a></div><div><span></span><a href="http://www.360doc.com/content/15/0108/10/14018215_439269806.shtml" target="_blank" onclick="wzhitnew(31)">牛逼顿的一生--当智商高到一定程度，情商还重要么</a></div><div><span></span><a href="http://www.360doc.com/content/10/1105/02/4409124_66841033.shtml" target="_blank" onclick="wzhitnew(31)">Ubuntu中文论坛 ? 查看主题 - [分享]Shell编程基础</a></div></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="both" style="padding-top: 10px;">
+    <iframe id="ifartad2" height="250" width="300px" frameborder="0" scrolling="no" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/ad3_300.html"></iframe>
+</div>
+<br>
+
+
+<iframe id="ifartrightsogou" height="190" width="300px" frameborder="0" scrolling="no" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/artrightadsogou300.html"></iframe>
+
+
+
+            <div class="both" id="divad5" style="padding-top: 11px; zoom: 1; width: 300px;">
+                <div id="divad4" style="">
+                    <div>
+                        
+                        <iframe id="ifartad" height="250px" width="300px" frameborder="0" scrolling="no" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/ad4_300.html"></iframe>
+                    </div>
+                    <div class="ggwz">
+                        <a href="javascript:void(0);" onclick="closead(2);">关闭</a>
+                    </div>
+                    <div style="height: 13px;">
+                    </div>
+                </div>
+                <div style="clear: both;" id="divad6">
+                    <div id="adfloatbaidu">
+                        <iframe id="ifartadfloadbaidu" height="250px" width="250px" frameborder="0" scrolling="no" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/ad5.html" style="width: 250px; margin: 0px auto;"></iframe>
+                    </div>
+                    <div class="ggwz" style="left: 25px;">
+                        <a href="javascript:void(0);" onclick="closead(3);">关闭</a>
+                    </div>
+                    <div style="height: 13px;">
+                    </div>
+                </div>
+                <div style="height: 75px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="clearboth"></p>
+    <input type="hidden" id="docarttitle" value="mysql+%e6%b7%bb%e5%8a%a0%e5%ad%97%e6%ae%b5%e3%80%81%e5%88%a0%e9%99%a4%e5%ad%97%e6%ae%b5%e3%80%81%e8%b0%83%e6%95%b4%e5%ad%97%e6%ae%b5%e9%a1%ba%e5%ba%8f+%7c+mysql%e6%b7%bb%e5%8a%a0%e5%ad%97%e6%ae%b5">
+    <input type="hidden" id="firstartid" value="66835856">
+    <input type="hidden" id="artreadroomid" value="0">
+    <script src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/StickySystem20160414.js" type="text/javascript" charset="utf-8"></script>
+    <script>GerLookingUserInfo(1,4409124,1,0,'-1',-1,10,0);OutputSource('http%3a%2f%2fmysqltjzd.jiaogen.com%2f2010%2f04%2f27%2fmysql-%25e6%25b7%25bb%25e5%258a%25a0%25e5%25ad%2597%25e6%25ae%25b5%25e3%2580%2581%25e5%2588%25a0%25e9%2599%25a4%25e5%25ad%2597%25e6%25ae%25b5%25e3%2580%2581%25e8%25b0%2583%25e6%2595%25b4%25e5%25ad%2597%25e6%25ae%25b5%25e9%25a1%25ba%25e5%25ba%258f%2f','');OutputCategory(4409124,3,'%e3%80%8aMySQL%e3%80%8b');OutputLastNextArt('MySQL%e8%87%aa%e5%a2%9e%e5%ad%97%e6%ae%b5%e5%88%9b%e5%bb%ba+%7c+mysql%e6%b7%bb%e5%8a%a0%e5%ad%97%e6%ae%b5','http://www.360doc.com/content/10/1105/13/4409124_66825240.shtml',0);OutputLastNextArt('mysql%e5%a6%82%e4%bd%95%e6%b7%bb%e5%8a%a0%e5%ad%97%e6%ae%b5+%7c+mysql%e6%b7%bb%e5%8a%a0%e5%ad%97%e6%ae%b5','http://www.360doc.com/content/10/1105/14/4409124_66836165.shtml',1);</script>
+
+
+<div class="sogoutip" style="z-index: 2147483645; visibility: hidden;"></div><div class="sogoubottom" id="sougou_bottom" style="display: block;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.360doc.com/content/10/1105/14/4409124_66835856.shtml#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.360doc.com/content/10/1105/14/4409124_66835856.shtml#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.360doc.com/content/10/1105/14/4409124_66835856.shtml#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/yun6.html" style="border: none; display: block; z-index: 2147483645; background: transparent;"></iframe><div id="goTop2" style="left: 1480.5px; display: block;"><div id="goTop"><a href="http://www.360doc.com/content/10/1105/14/4409124_66835856.shtml#" id="go_top"></a></div><div id="goTop1"><a href="javascript:void(0);" id="go_top1"></a></div><div></div></div><script src="./mysql 添加字段、删除字段、调整字段顺序   mysql添加字段_files/pv.gif"></script></body></html>
