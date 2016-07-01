@@ -30,3 +30,9 @@
 2.观察者设计模式简介:http://blog.chinaunix.net/uid-24922718-id-4104243.html
 3.MyBatis 入门(五)--分页查询（2） :http://blog.chinaunix.net/uid-261569-id-5711315.html
 4.MongoDB教程：http://www.runoob.com/mongodb/mongodb-tutorial.html
+|==============================================================================|
+|                                                                              |
+|                                     <笔记>                                    |
+|                                                                              |
+|==================================2016-06-25==================================|
+1.gojs简介：http://www.jianshu.com/p/2e7840e1111c
