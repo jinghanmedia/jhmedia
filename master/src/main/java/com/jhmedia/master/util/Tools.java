@@ -40,8 +40,12 @@ public class Tools {
      * @return 满足指定的正则表达式，则返回true；否则返回false。
      */
     public static boolean isNumber(String value) {
-        String regex = "^(-?[1-9]\\d*\\.?\\d*)|(-?0\\.\\d*[1-9])|(-?[0])|(-?0\\.\\d*)$";
+        String regex = "^(-?[1-9]\\d*\\.?\\d*)|(-?0\\.\\d*[1-9])|(-?[0])|(-?0\\.\\d+[1-9])$";
         return value.matches(regex);
     }
 
+    public static void main(String[] args) {
+        String value = "0.1000090";
+        System.out.println(isNumber(value));
+    }
 }
