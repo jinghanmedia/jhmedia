@@ -6,11 +6,16 @@
  *========================================*/
 package com.jhmedia.master;
 
+import java.util.Properties;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.jhmedia.master.constant.MConst;
+import com.jhmedia.master.util.PropertiesUtil;
 
 /**
  * 类   名：启动类
@@ -40,8 +45,11 @@ public class Start {
         }
         */
 
+        // 加载配置文件
+        PropertiesUtil.loadProperties();
+
         // 端口号
-        int port = 8080;
+        int port = MConst.port;
         logger.info("Starting server at port {}", port);
         Server server = new Server(port);
         WebAppContext handler = new WebAppContext();
