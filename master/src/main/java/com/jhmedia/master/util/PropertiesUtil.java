@@ -9,6 +9,8 @@ package com.jhmedia.master.util;
 import java.io.FileInputStream;
 import java.util.Properties;
 
+import com.jhmedia.master.constant.MConst;
+
 /**
  * <pre>
  * 类   名：配置文件读取 
@@ -19,23 +21,29 @@ import java.util.Properties;
  */
 public class PropertiesUtil {
 
-    private static final String propertiesConfig = "";
     /**
      * 加载配置文件的参数
      */
     public static void loadProperties() throws Exception {
         Properties properties = new Properties();
-        properties.load(new FileInputStream(propertiesConfig));
+        properties.load(new FileInputStream(MConst.MC_FILEPATH));
 
-        if (Tools.isNotEmpty(properties.getProperty("port"))) {
-            if (Tools.isNumber(properties.getProperty("port"))) {
-                
+        if (Tools.isNotEmpty(properties.getProperty(MConst.MC_PNAME_PORT))) {
+            if (Tools.isNumber(properties.getProperty(MConst.MC_PNAME_PORT))) {
+                MConst.port = Integer.valueOf(
+                        properties.getProperty(MConst.MC_PNAME_PORT));
             } else {
                 throw new Exception("端口号不正确！");
             }
         } else {
             throw new Exception("配置文件中缺少port配置！");
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        loadProperties();
+
+        System.out.println(MConst.port);
     }
 
 }
